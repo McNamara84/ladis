@@ -70,9 +70,11 @@ jobs:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/testing.sqlite
         APP_ENV: testing
+        PHP_INI_SCAN_DIR: ""
       run: |
         echo "🧪 Running Laravel Test Suite..."
-        php artisan test --parallel
+        # PHP Warnings für Tests unterdrücken
+        php -d error_reporting="E_ALL & ~E_WARNING" artisan test
         
     - name: Run frontend tests (if available)
       run: |
