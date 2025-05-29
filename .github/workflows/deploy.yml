@@ -3,6 +3,7 @@ name: Deploy Laravel Application
 on:
   push:
     branches: [ main ]
+  # Die folgenden 2 Zeilen entfernen vor Merge
   pull_request:
     branches: [ main ]
 
@@ -134,7 +135,7 @@ jobs:
         
     - name: Reload PHP-FPM and Nginx
       run: |
-        sudo systemctl reload php8.3-fpm
+        sudo systemctl reload php8.4-fpm
         sudo systemctl reload nginx
         
     - name: Clean up old deployments (keep last 5)
