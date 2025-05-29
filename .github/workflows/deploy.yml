@@ -1,5 +1,4 @@
 name: Deploy Laravel Application
-
 on:
   push:
     branches: [ main ]
@@ -16,10 +15,25 @@ jobs:
     
     - name: Setup PHP
       run: |
-        # PHP ist bereits installiert, nur Version prüfen
         php -v
         which php
         which composer
+
+    - name: Setup Node.js via NVM
+      run: |
+        # NVM laden
+        export NVM_DIR="$HOME/.nvm"
+        [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+        
+        # Node.js 20 verwenden
+        nvm use 20
+        
+        # PATH für nachfolgende Steps setzen
+        echo "$HOME/.nvm/versions/node/v20.19.2/bin" >> $GITHUB_PATH
+        
+        # Versionen überprüfen
+        node -v
+        npm -v
         
     - name: Copy .env file
       run: |
@@ -49,10 +63,25 @@ jobs:
     
     - name: Setup PHP
       run: |
-        # PHP ist bereits installiert, nur Version prüfen
         php -v
         which php
         which composer
+
+    - name: Setup Node.js via NVM
+      run: |
+        # NVM laden
+        export NVM_DIR="$HOME/.nvm"
+        [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+        
+        # Node.js 20 verwenden
+        nvm use 20
+        
+        # PATH für nachfolgende Steps setzen
+        echo "$HOME/.nvm/versions/node/v20.19.2/bin" >> $GITHUB_PATH
+        
+        # Versionen überprüfen
+        node -v
+        npm -v
         
     - name: Install/Update Composer dependencies
       run: composer install --no-dev --optimize-autoloader --no-progress
@@ -104,8 +133,22 @@ jobs:
       run: |
         cd $DEPLOY_PATH
         if [ -f package.json ]; then
-          npm ci
-          npm run build
+          echo "package.json found, installing npm dependencies..."
+          
+          # Überprüfen ob npm verfügbar ist
+          if command -v npm >/dev/null 2>&1; then
+            echo "✅ npm found: $(npm -v)"
+            npm ci
+            npm run build
+            echo "✅ Frontend assets compiled successfully"
+          else
+            echo "❌ npm not found in PATH"
+            echo "Available paths:"
+            echo $PATH
+            exit 1
+          fi
+        else
+          echo "No package.json found, skipping npm steps"
         fi
         
     - name: Set proper permissions
