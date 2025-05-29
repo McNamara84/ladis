@@ -15,11 +15,11 @@ jobs:
     - uses: actions/checkout@v4
     
     - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '8.4'
-        extensions: mbstring, xml, ctype, iconv, intl, pdo_mysql, zip, bcmath, gd, curl
-        coverage: none
+      run: |
+        # PHP ist bereits installiert, nur Version prüfen
+        php -v
+        which php
+        which composer
         
     - name: Copy .env file
       run: |
@@ -28,7 +28,7 @@ jobs:
         fi
         
     - name: Install Composer dependencies
-      run: composer install --prefer-dist --no-progress --no-suggest
+      run: composer install --prefer-dist --no-progress
       
     - name: Generate application key
       run: |
@@ -42,20 +42,20 @@ jobs:
   deploy:
     needs: test
     runs-on: self-hosted
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     
     steps:
     - uses: actions/checkout@v4
     
     - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '8.4'
-        extensions: mbstring, xml, ctype, iconv, intl, pdo_mysql, zip, bcmath, gd, curl
-        coverage: none
+      run: |
+        # PHP ist bereits installiert, nur Version prüfen
+        php -v
+        which php
+        which composer
         
     - name: Install/Update Composer dependencies
-      run: composer install --no-dev --optimize-autoloader --no-progress --no-suggest
+      run: composer install --no-dev --optimize-autoloader --no-progress
       
     - name: Create deployment directory
       run: |
@@ -78,7 +78,6 @@ jobs:
           cp /var/www/laser/.env .env
         else
           cp .env.example .env
-          # Hier würdest du normalerweise die .env-Datei mit Produktionswerten füllen
         fi
         
     - name: Generate application key (if needed)
