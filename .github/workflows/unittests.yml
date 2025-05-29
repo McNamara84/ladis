@@ -36,20 +36,55 @@ jobs:
         node -v
         npm -v
         
-    - name: Copy .env file
+    - name: Copy .env file and configure for testing
       run: |
         if [ ! -f .env ]; then
           cp .env.example .env
         fi
         
+        # Spezielle Test-Konfiguration setzen
+        echo "APP_ENV=testing" >> .env
+        echo "APP_DEBUG=true" >> .env
+        echo "DB_CONNECTION=sqlite" >> .env
+        echo "DB_DATABASE=database/testing.sqlite" >> .env
+        echo "CACHE_DRIVER=array" >> .env
+        echo "SESSION_DRIVER=array" >> .env
+        echo "QUEUE_CONNECTION=sync" >> .env
+        echo "LOG_CHANNEL=stderr" >> .env
+        
     - name: Install Composer dependencies
       run: composer install --prefer-dist --no-progress
       
+    - name: Debug Laravel setup
+      run: |
+        echo "🔍 Debugging Laravel setup..."
+        echo "Current directory: $(pwd)"
+        echo "PHP Version: $(php -v)"
+        echo "Laravel files:"
+        ls -la artisan
+        echo ".env file exists: $(test -f .env && echo 'YES' || echo 'NO')"
+        echo "Bootstrap cache directory:"
+        ls -la bootstrap/cache/ || echo "bootstrap/cache directory doesn't exist"
+        echo "Vendor directory:"
+        ls -la vendor/ | head -5
+        
+        echo "Testing basic PHP..."
+        php -r "echo 'PHP works\n';"
+        
+        echo "Testing Laravel autoloader..."
+        php -r "require 'vendor/autoload.php'; echo 'Autoloader works\n';"
+        
     - name: Generate application key
       run: |
-        if grep -q "APP_KEY=$" .env; then
-          php artisan key:generate
+        echo "🔑 Generating application key..."
+        if grep -q "APP_KEY=$" .env || grep -q "APP_KEY=\"\"" .env; then
+          php artisan key:generate --force
+        else
+          echo "APP_KEY already set"
         fi
+        
+        echo "Verifying .env file:"
+        grep "APP_KEY" .env || echo "No APP_KEY found!"
         
     - name: Create SQLite database for testing
       run: |
@@ -65,16 +100,40 @@ jobs:
           echo "No package.json found, skipping npm install"
         fi
         
+    - name: Clear Laravel caches and prepare environment
+      run: |
+        # Alle Caches löschen
+        rm -rf bootstrap/cache/*.php
+        rm -rf storage/framework/cache/data/*
+        rm -rf storage/framework/sessions/*
+        rm -rf storage/framework/views/*
+        
+        # Verzeichnisse erstellen falls sie nicht existieren
+        mkdir -p bootstrap/cache
+        mkdir -p storage/framework/cache/data
+        mkdir -p storage/framework/sessions
+        mkdir -p storage/framework/views
+        mkdir -p storage/logs
+        
+        # Berechtigungen setzen
+        chmod -R 775 storage bootstrap/cache
+        
     - name: Run Laravel tests
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/testing.sqlite
         APP_ENV: testing
-        PHP_INI_SCAN_DIR: ""
       run: |
         echo "🧪 Running Laravel Test Suite..."
-        # PHP Warnings für Tests unterdrücken
-        php -d error_reporting="E_ALL & ~E_WARNING" artisan test
+        
+        # Erste Methode: Artisan test (bevorzugt)
+        if php artisan test --help >/dev/null 2>&1; then
+          echo "Using php artisan test..."
+          php artisan test
+        else
+          echo "Artisan test failed, trying PHPUnit directly..."
+          ./vendor/bin/phpunit
+        fi
         
     - name: Run frontend tests (if available)
       run: |
