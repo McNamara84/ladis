@@ -8,41 +8,27 @@ on:
 
 jobs:
   tests:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     
     steps:
     - uses: actions/checkout@v4
     
     - name: Setup PHP
-      run: |
-        # PHP ist bereits installiert, nur Version prüfen
-        php -v
-        which php
-        which composer
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.4'
+        extensions: mbstring, xml, ctype, iconv, intl, pdo_mysql, zip, bcmath, gd, curl, sqlite3
+        coverage: none
         
-    - name: Setup Node.js via NVM
-      run: |
-        # NVM laden
-        export NVM_DIR="$HOME/.nvm"
-        [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-        
-        # Node.js 20 verwenden
-        nvm use 20
-        
-        # PATH für nachfolgende Steps setzen
-        echo "$HOME/.nvm/versions/node/v20.19.2/bin" >> $GITHUB_PATH
-        
-        # Versionen überprüfen
-        node -v
-        npm -v
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
         
     - name: Copy .env file and configure for testing
       run: |
-        if [ ! -f .env ]; then
-          cp .env.example .env
-        fi
-        
-        # Spezielle Test-Konfiguration setzen
+        cp .env.example .env
         echo "APP_ENV=testing" >> .env
         echo "APP_DEBUG=true" >> .env
         echo "DB_CONNECTION=sqlite" >> .env
@@ -55,97 +41,31 @@ jobs:
     - name: Install Composer dependencies
       run: composer install --prefer-dist --no-progress
       
-    - name: Debug Laravel setup
-      run: |
-        echo "🔍 Debugging Laravel setup..."
-        echo "Current directory: $(pwd)"
-        echo "PHP Version: $(php -v)"
-        echo "Laravel files:"
-        ls -la artisan
-        echo ".env file exists: $(test -f .env && echo 'YES' || echo 'NO')"
-        echo "Bootstrap cache directory:"
-        ls -la bootstrap/cache/ || echo "bootstrap/cache directory doesn't exist"
-        echo "Vendor directory:"
-        ls -la vendor/ | head -5
-        
-        echo "Testing basic PHP..."
-        php -r "echo 'PHP works\n';"
-        
-        echo "Testing Laravel autoloader..."
-        php -r "require 'vendor/autoload.php'; echo 'Autoloader works\n';"
-        
     - name: Generate application key
-      run: |
-        echo "🔑 Generating application key..."
-        if grep -q "APP_KEY=$" .env || grep -q "APP_KEY=\"\"" .env; then
-          php artisan key:generate --force
-        else
-          echo "APP_KEY already set"
-        fi
-        
-        echo "Verifying .env file:"
-        grep "APP_KEY" .env || echo "No APP_KEY found!"
+      run: php artisan key:generate --force
         
     - name: Create SQLite database for testing
       run: |
         mkdir -p database
         touch database/testing.sqlite
         
-    - name: Install npm dependencies (for frontend tests)
+    - name: Install npm dependencies
       run: |
         if [ -f package.json ]; then
-          echo "Installing npm dependencies for frontend testing..."
           npm ci
-        else
-          echo "No package.json found, skipping npm install"
         fi
-        
-    - name: Clear Laravel caches and prepare environment
-      run: |
-        # Alle Caches löschen
-        rm -rf bootstrap/cache/*.php
-        rm -rf storage/framework/cache/data/*
-        rm -rf storage/framework/sessions/*
-        rm -rf storage/framework/views/*
-        
-        # Verzeichnisse erstellen falls sie nicht existieren
-        mkdir -p bootstrap/cache
-        mkdir -p storage/framework/cache/data
-        mkdir -p storage/framework/sessions
-        mkdir -p storage/framework/views
-        mkdir -p storage/logs
-        
-        # Berechtigungen setzen
-        chmod -R 775 storage bootstrap/cache
         
     - name: Run Laravel tests
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/testing.sqlite
         APP_ENV: testing
-      run: |
-        echo "🧪 Running Laravel Test Suite..."
+      run: php artisan test
         
-        # PHP-Warnings nur für Extension-Loading unterdrücken
-        if php artisan test --help >/dev/null 2>&1; then
-          echo "Using php artisan test..."
-          php -d display_startup_errors=Off artisan test
-        else
-          echo "Artisan test failed, trying PHPUnit directly..."
-          php -d display_startup_errors=Off ./vendor/bin/phpunit
-        fi
-        
-    - name: Run frontend tests (if available)
+    - name: Run frontend tests (not yet integrated)
       run: |
         if [ -f package.json ] && npm run --silent test 2>/dev/null; then
-          echo "🧪 Running frontend tests..."
           npm test
         else
           echo "No frontend tests found, skipping..."
         fi
-        
-    - name: Test results summary
-      if: always()
-      run: |
-        echo "🎯 Test execution completed"
-        echo "📊 Check the logs above for detailed results"
