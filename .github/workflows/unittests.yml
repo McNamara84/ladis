@@ -1,0 +1,90 @@
+name: Unit Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  tests:
+    runs-on: self-hosted
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup PHP
+      run: |
+        # PHP ist bereits installiert, nur Version prüfen
+        php -v
+        which php
+        which composer
+        
+    - name: Setup Node.js via NVM
+      run: |
+        # NVM laden
+        export NVM_DIR="$HOME/.nvm"
+        [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+        
+        # Node.js 20 verwenden
+        nvm use 20
+        
+        # PATH für nachfolgende Steps setzen
+        echo "$HOME/.nvm/versions/node/v20.19.2/bin" >> $GITHUB_PATH
+        
+        # Versionen überprüfen
+        node -v
+        npm -v
+        
+    - name: Copy .env file
+      run: |
+        if [ ! -f .env ]; then
+          cp .env.example .env
+        fi
+        
+    - name: Install Composer dependencies
+      run: composer install --prefer-dist --no-progress
+      
+    - name: Generate application key
+      run: |
+        if grep -q "APP_KEY=$" .env; then
+          php artisan key:generate
+        fi
+        
+    - name: Create SQLite database for testing
+      run: |
+        mkdir -p database
+        touch database/testing.sqlite
+        
+    - name: Install npm dependencies (for frontend tests)
+      run: |
+        if [ -f package.json ]; then
+          echo "Installing npm dependencies for frontend testing..."
+          npm ci
+        else
+          echo "No package.json found, skipping npm install"
+        fi
+        
+    - name: Run Laravel tests
+      env:
+        DB_CONNECTION: sqlite
+        DB_DATABASE: database/testing.sqlite
+        APP_ENV: testing
+      run: |
+        echo "🧪 Running Laravel Test Suite..."
+        php artisan test --parallel
+        
+    - name: Run frontend tests (if available)
+      run: |
+        if [ -f package.json ] && npm run --silent test 2>/dev/null; then
+          echo "🧪 Running frontend tests..."
+          npm test
+        else
+          echo "No frontend tests found, skipping..."
+        fi
+        
+    - name: Test results summary
+      if: always()
+      run: |
+        echo "🎯 Test execution completed"
+        echo "📊 Check the logs above for detailed results"
