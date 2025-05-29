@@ -2,9 +2,6 @@ name: Deploy Laravel Application
 on:
   push:
     branches: [ main ]
-  # Die folgenden 2 Zeilen entfernen vor Merge
-  pull_request:
-    branches: [ main ]
 
 jobs:
   test:
@@ -18,20 +15,13 @@ jobs:
         php -v
         which php
         which composer
-
+        
     - name: Setup Node.js via NVM
       run: |
-        # NVM laden
         export NVM_DIR="$HOME/.nvm"
         [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-        
-        # Node.js 20 verwenden
         nvm use 20
-        
-        # PATH für nachfolgende Steps setzen
         echo "$HOME/.nvm/versions/node/v20.19.2/bin" >> $GITHUB_PATH
-        
-        # Versionen überprüfen
         node -v
         npm -v
         
@@ -56,7 +46,6 @@ jobs:
   deploy:
     needs: test
     runs-on: self-hosted
-    if: github.ref == 'refs/heads/main' || github.event_name == 'pull_request'
     
     steps:
     - uses: actions/checkout@v4
