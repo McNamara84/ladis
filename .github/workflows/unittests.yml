@@ -54,25 +54,6 @@ jobs:
         
     - name: Install Composer dependencies
       run: composer install --prefer-dist --no-progress
-      
-    - name: Debug Laravel setup
-      run: |
-        echo "🔍 Debugging Laravel setup..."
-        echo "Current directory: $(pwd)"
-        echo "PHP Version: $(php -v)"
-        echo "Laravel files:"
-        ls -la artisan
-        echo ".env file exists: $(test -f .env && echo 'YES' || echo 'NO')"
-        echo "Bootstrap cache directory:"
-        ls -la bootstrap/cache/ || echo "bootstrap/cache directory doesn't exist"
-        echo "Vendor directory:"
-        ls -la vendor/ | head -5
-        
-        echo "Testing basic PHP..."
-        php -r "echo 'PHP works\n';"
-        
-        echo "Testing Laravel autoloader..."
-        php -r "require 'vendor/autoload.php'; echo 'Autoloader works\n';"
         
     - name: Generate application key
       run: |
@@ -126,13 +107,13 @@ jobs:
       run: |
         echo "🧪 Running Laravel Test Suite..."
         
-        # Erste Methode: Artisan test (bevorzugt)
+        # PHP-Warnings nur für Extension-Loading unterdrücken
         if php artisan test --help >/dev/null 2>&1; then
           echo "Using php artisan test..."
-          php artisan test
+          php -d display_startup_errors=Off artisan test
         else
           echo "Artisan test failed, trying PHPUnit directly..."
-          ./vendor/bin/phpunit
+          php -d display_startup_errors=Off ./vendor/bin/phpunit
         fi
         
     - name: Run frontend tests (if available)
