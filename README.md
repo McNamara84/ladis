@@ -3,7 +3,7 @@
 ## Features
 ## Dependencies
 ## Installation
-### Devlopment
+### Development
 #### Setting up the development environment
 1. Clone the repository.
 2. Run `composer install` to install dependencies.
