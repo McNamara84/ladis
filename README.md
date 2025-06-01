@@ -32,7 +32,7 @@
 
 #### Commands for testing
 
-- `php artisan serve` to satrt test server for manual testing
+- `php artisan serve` to start test server for manual testing
 - `php artisan test` to execute the test suite.
 
 ### Production
