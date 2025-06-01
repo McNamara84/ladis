@@ -7,3 +7,7 @@
 - Lead Software Developer at GFZ Helmholtz Centre for Geosciences
 - Based in Potsdam-Babelsberg, Brandenburg
 - Born in Lörrach, Baden-Württemberg
+
+## Programming Languages
+
+- C, C++, C#, Bash, Assembler, PHP, JavaScript, Java, Python, Dart, R, XSLT
