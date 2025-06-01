@@ -8,17 +8,17 @@
 - Based in Potsdam-Babelsberg, Brandenburg
 - Born in Lörrach, Baden-Württemberg
 
-## Programming Languages
+### Programming Languages
 
-- C, C++, C#, Bash, Assembler, PHP, JavaScript, Java, Python, Dart, R, XSLT
+C, C++, C#, Bash, Assembler, PHP, JavaScript, Java, Python, Dart, R, XSLT
 
-## Role in this project
+### Role in this project
 
 - Full Stack Web Developer
 - Lead Developer
 - Maintainer
 
-## Other Projects
+### Other Projects
 
 - [ELMO (Enhanced Laboratory Metadata Optimizer)](https://github.com/McNamara84/ELMO-Enhanced-Laboratory-Metadata-Optimizer) - A metadata editor for research data management at GFZ Helmholtz Centre for Geosciences
 - [DataCite-XML-Updater](https://github.com/McNamara84/ELMO-DataCite-XML-Updater) - A migration tool for XML files in DataCite scheme 3.x to 4.6
