@@ -11,3 +11,9 @@
 ## Programming Languages
 
 - C, C++, C#, Bash, Assembler, PHP, JavaScript, Java, Python, Dart, R, XSLT
+
+## Role in this project
+
+- Full Stack Web Developer
+- Lead Developer
+- Maintainer
