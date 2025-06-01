@@ -1,10 +1,17 @@
 # Cleanup Laser Database
+
 ## Description
+
 ## Features
+
 ## Dependencies
+
 ## Installation
+
 ### Development
+
 #### Setting up the development environment
+
 1. Clone the repository.
 2. Run `composer install` to install dependencies.
 3. Copy `.env.example` to `.env` and configure your environment variables.
@@ -12,12 +19,22 @@
 5. Run `php artisan migrate` to set up the database.
 6. Run `php artisan serve` to start the development server.
 7. Access the application at `http://localhost:8000`.
-#### Other commands
-- `php artisan serve` to start the development server.
+
+#### Commands for database handling
+
 - `php artisan migrate` to run database migrations.
+
+#### Commands for testing
+
+- `php artisan serve` to satrt test server for manual testing
 - `php artisan test` to execute the test suite.
+
 ### Production
+
 This web application will be deployed automatically to the production server in VPN of University of Applied Sciences Potsdam using GitHub Actions. We will inform you about the public release later.
+
 ## Database
+
 ## Contributing
+
 ## Contact
