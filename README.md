@@ -18,7 +18,7 @@
 4. Run `php artisan key:generate` to generate the application key.
 5. Run `php artisan migrate` to set up the database.
 6. Run `php artisan serve` to start the development server.
-7. Access the application at `http://localhost:8000`.
+7. Access the application at [http://localhost:8000](http://localhost:8000).
 
 #### Commands for database handling
 
