@@ -22,7 +22,13 @@
 
 #### Commands for database handling
 
+- `php artisan make:migration create_TABLENAME_table` to add a new migration for adding a new table.
+- `php artisan migrate:status` to show which migrations have run thus far.
+- `php artisan migrate --pretend` to see the SQL statements that will be executed by the migrations without actually running them.
 - `php artisan migrate` to run database migrations.
+- `php artisan migrate:rollback` to roll back the last migration.
+- `php artisan migrate:reset` to reset all migrations.
+- `php artisan migrate:fresh` to reset all migrations and newly execute all migrations.
 
 #### Commands for testing
 
