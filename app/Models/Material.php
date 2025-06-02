@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Material extends Model
 {
@@ -48,5 +49,18 @@ class Material extends Model
         // Second parameter: the foreign key (optional if it follows the convention)
         // Third parameter: the primary key of the parent model (optional)
         return $this->belongsTo(Material::class, 'parent_id');
+    }
+
+    /**
+     * Relationship to the child materials
+     *
+     * HasMany relationship: this material "has many" child materials.
+     * The foreign key parent_id is in the child materials table.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function children(): HasMany
+    {
+        return $this->hasMany(Material::class, 'parent_id');
     }
 }
