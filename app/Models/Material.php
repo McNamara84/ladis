@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Material extends Model
 {
@@ -32,4 +33,20 @@ class Material extends Model
         'name',
         'parent_id',
     ];
+
+    /**
+     * Relationship to the parent material
+     *
+     * BelongsTo relationship: this material "belongs to" a parent material.
+     * The foreign key is parent_id in this table.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function parent(): BelongsTo
+    {
+        // First parameter: the related model
+        // Second parameter: the foreign key (optional if it follows the convention)
+        // Third parameter: the primary key of the parent model (optional)
+        return $this->belongsTo(Material::class, 'parent_id');
+    }
 }
