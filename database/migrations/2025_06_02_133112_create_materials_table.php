@@ -5,9 +5,9 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 /**
- * Migration für die Tabelle 'materials'
- * Demo für: Selbstreferenzierende Beziehung
- * Tabelle wurde erstellt mit dem Befehl: php artisan make:migration create_materials_table
+ * Migration for the 'materials' table
+ * Demo for: self-referencing relationship
+ * Table was created with the command: php artisan make:migration create_materials_table
  */
 return new class extends Migration
 {
@@ -17,24 +17,29 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('materials', function (Blueprint $table) {
-            // ID wird automatisch erstellt
+            // ID is created automatically
             $table->id();
-            // string() erstellt eine VARCHAR-Spalte mit Standardlänge 255
-            // Der erste Parameter ist der Spaltenname, der zweite die Länge
-            $table->string('name', 50)->unique(); // unique() fügt einen UNIQUE INDEX hinzu
-            // unsignedBigInteger() erstellt eine BIGINT UNSIGNED Spalte für Fremdschlüssel
-            // nullable() macht die Spalte optional (NULL erlaubt)
-            // Dies ermöglicht Materialien ohne Elternelement (oberste Hierarchieebene hat ja kein Elternelement)
+
+            // string() creates a VARCHAR column with default length 255
+            // The first parameter is the column name, the second the length
+            $table->string('name', 50)->unique(); // unique() adds a UNIQUE INDEX
+
+            // unsignedBigInteger() creates a BIGINT UNSIGNED column for foreign keys
+            // nullable() makes the column optional (NULL allowed)
+            // This allows materials without a parent element (top-level hierarchy has no parent)
             $table->unsignedBigInteger('parent_id')->nullable();
-            // foreign() definiert eine Fremdschlüsselbeziehung
-            // references() gibt die referenzierte Spalte an
-            // on() gibt die referenzierte Tabelle an
-            // onDelete('restrict') verhindert das Löschen von Elternelementen mit Kindern
+
+            // foreign() defines a foreign-key relationship
+            // references() specifies the referenced column
+            // on() specifies the referenced table
+            // onDelete('restrict') prevents deleting parent elements that still have children
             $table->foreign('parent_id')->references('id')->on('materials')->onDelete('restrict')->onUpdate('restrict');
-            // timestamps() werden automatisch erstellt
-            // Diese werden von Laravel automatisch verwaltet
+
+            // timestamps() are created automatically
+            // These are managed automatically by Laravel
             $table->timestamps();
-            // Index für bessere Performance bei Abfragen nach parent_id
+
+            // Index for better performance when querying by parent_id
             $table->index('parent_id', 'fk_material_material1_idx');
         });
     }
