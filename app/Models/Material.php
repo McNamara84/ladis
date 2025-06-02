@@ -19,4 +19,17 @@ class Material extends Model
      * @var string
      */
     protected $table = 'materials';
+
+    /**
+     * The attributes that are mass assignable
+     *
+     * Protection against mass-assignment vulnerabilities
+     * Only these fields can be set via create() or update()
+     *
+     * @var array<string>
+     */
+    protected $fillable = [
+        'name',
+        'parent_id',
+    ];
 }
