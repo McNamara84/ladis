@@ -41,6 +41,8 @@ This web application will be deployed automatically to the production server in 
 
 ## Database
 
+### Main tables
+
 - federal_states
 - cities
 
