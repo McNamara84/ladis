@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('federal_states', function (Blueprint $table) {
             $table->id();
+            // For federal states of Germany VARCHAR(23) is enough
+            // The longest state name is "Mecklenburg-Vorpommern" with 22 characters
+            $table->string('name', 23)->unique();
             $table->timestamps();
         });
     }
