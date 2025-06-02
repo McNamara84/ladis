@@ -18,6 +18,9 @@ return new class extends Migration
     {
         Schema::create('materials', function (Blueprint $table) {
             $table->id();
+            // string() erstellt eine VARCHAR-Spalte mit Standardlänge 255
+            // Der erste Parameter ist der Spaltenname, der zweite die Länge
+            $table->string('name', 50)->unique(); // unique() fügt einen UNIQUE INDEX hinzu
             $table->timestamps();
         });
     }
