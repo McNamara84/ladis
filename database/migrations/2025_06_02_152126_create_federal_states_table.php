@@ -8,6 +8,8 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     * The 1-side of the 1:n relationship
+     * between federal states and cities.
      */
     public function up(): void
     {

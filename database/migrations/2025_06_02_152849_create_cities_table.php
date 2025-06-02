@@ -8,6 +8,8 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     * This is the n-side of the 1:n relationship
+     * between federal states and cities.
      */
     public function up(): void
     {
@@ -18,6 +20,13 @@ return new class extends Migration
             // constrained() automatically creates the foreign-key relationship
             $table->foreignId('federal_state_id')->constrained('federal_states')->restrictOnDelete()->restrictOnUpdate();
             $table->string('name', 45);
+            // char() creates a fixed-length CHAR column
+            // Best for ZIP codes, which are always 5 characters
+            $table->char('postal_code', 5)->unique();
+            $table->timestamps();
+            // unique() on name was omitted because there can be
+            // cities with the same name in different federal states
+            // (different from the schema of phase 1 and 2)
         });
     }
 
