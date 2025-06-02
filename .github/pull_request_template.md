@@ -10,6 +10,7 @@
 - [ ] 📚 Dokumentation
 - [ ] ♻️ Refactoring
 - [ ] 🎨 UI/Styling
+- [ ] Dev Tooling
 
 ## 🔗 Issue
 Closes #
