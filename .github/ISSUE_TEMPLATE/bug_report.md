@@ -7,32 +7,45 @@ assignees: ''
 
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+# 🐛 Bug Report
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+## 📝 Beschreibung des Problems
+<!-- Beschreibe das Problem klar und präzise -->
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+## 🔄 Schritte zur Reproduktion
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+1.  
+2.  
+3.  
+4.  
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
+## ✅ Erwartetes Verhalten
+<!-- Was sollte eigentlich passieren? -->
 
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
+## ❌ Aktuelles Verhalten
+<!-- Was passiert stattdessen? -->
 
-**Additional context**
-Add any other context about the problem here.
+## 🌍 Umgebung
+
+- **PHP Version:**  
+- **Database:** (MySQL, PostgreSQL, etc.)
+- **Browser:** (falls relevant)
+- **OS:** (falls relevant)
+
+## 📄 Logs/Fehlerausgabe
+
+```
+Hier relevante Logs, Stacktraces oder Fehlermeldungen einfügen
+```
+
+## 📁 Betroffene Dateien/Routes
+<!-- Welche Controller, Models, Views sind betroffen? -->
+
+## 💡 Mögliche Ursache
+<!-- Falls du eine Vermutung hast -->
+
+## 📷 Screenshots
+<!-- Falls das Problem visuell ist -->
+
+## 🔧 Zusätzlicher Kontext
+<!-- Weitere hilfreiche Informationen -->
