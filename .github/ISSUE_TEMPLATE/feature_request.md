@@ -32,6 +32,7 @@ assignees: ''
 - [ ] API Endpoints
 - [ ] Middleware
 - [ ] Commands/Jobs
+- [ ] Dev Tooling
 
 ## 🔗 Verwandte Features
 <!-- Gibt es ähnliche Features oder Abhängigkeiten? -->
