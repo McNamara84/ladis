@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('devices', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('institution_id')->constrained()->restrictOnDelete();
+            // text() creates a TEXT column for longer texts
+            $table->text('description')->nullable();
+            $table->string('name', 50)->unique();
             $table->timestamps();
         });
     }
