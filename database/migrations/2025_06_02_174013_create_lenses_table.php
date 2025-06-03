@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('lenses', function (Blueprint $table) {
             $table->id();
+            // tinyInteger() creates a TINYINT column (-128 to 127)
+            // unsigned turns it into 0 to 255
+            $table->unsignedTinyInteger('size')->unique();
             $table->timestamps();
         });
     }
