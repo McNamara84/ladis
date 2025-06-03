@@ -9,6 +9,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Lens extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['size'];
+
+    protected $casts = [
+        'size' => 'integer',
+    ];
+
     /**
      * BelongsToMany relationship to devices
      *
