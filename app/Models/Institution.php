@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Device;
 
 class Institution extends Model
 {
@@ -38,5 +40,13 @@ class Institution extends Model
             self::TYPE_CONTRACTOR,
             self::TYPE_MANUFACTURER,
         ];
+    }
+
+    /**
+     * 1:n relationship to devices
+     */
+    public function devices(): HasMany
+    {
+        return $this->hasMany(Device::class);
     }
 }
