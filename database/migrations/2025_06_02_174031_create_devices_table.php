@@ -19,6 +19,9 @@ return new class extends Migration
             $table->text('description')->nullable();
             // year() creates a YEAR column (4-digit year)
             $table->year('year')->nullable();
+            // comment() adds a comment to the column in the database
+            // Useful for documentation directly in the DB
+            $table->unsignedTinyInteger('build')->nullable()->comment('0: Glasfaser, 1: Spiegelarm, 2: …?');
             $table->timestamps();
         });
     }
