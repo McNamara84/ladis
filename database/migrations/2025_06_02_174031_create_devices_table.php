@@ -42,6 +42,23 @@ return new class extends Migration
             $table->float('max_output')->unsigned()->nullable();
             $table->float('mean_output')->unsigned()->nullable();
             $table->float('max_wattage')->unsigned()->nullable();
+            $table->string('head', 50)->nullable();
+            $table->unsignedTinyInteger('emission_source')->nullable();
+            // Without nullable() the column is NOT NULL
+            $table->unsignedTinyInteger('beam_type')->comment('0: Punkt, 1: Zeile, 2: Fläche');
+            $table->string('beam_profile', 50)->nullable();
+            $table->float('wavelength')->unsigned()->nullable();
+            // For all min/max values
+            $table->float('min_spot_size')->unsigned()->nullable();
+            $table->float('max_spot_size')->unsigned()->nullable();
+            $table->float('min_pf')->unsigned()->nullable()->comment('pulse frequency');
+            $table->float('max_pf')->unsigned()->nullable();
+            $table->float('min_pw')->unsigned()->nullable()->comment('pulse width (duration)');
+            $table->float('max_pw')->unsigned()->nullable();
+            $table->float('min_scan_width')->unsigned()->nullable();
+            $table->float('max_scan_width')->unsigned()->nullable();
+            $table->float('min_focal_length')->unsigned()->nullable();
+            $table->float('max_focal_length')->unsigned()->nullable();
             $table->timestamps();
         });
     }
