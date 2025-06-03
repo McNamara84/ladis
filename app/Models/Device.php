@@ -52,6 +52,21 @@ class Device extends Model
     ];
 
     /**
+     * Constants for build types
+     */
+    const BUILD_FIBER = 0;
+    const BUILD_MIRROR_ARM = 1;
+
+    /**
+     * Constants for beam types
+     */
+    const BEAM_POINT = 0;
+    const BEAM_LINE  = 1;
+    const BEAM_AREA  = 2;
+
+    // TODO: Add methods hasBeamType() and hasBuildType() if we will need this for validations and dropdowns
+
+    /**
      * 1:n relationship to Institution (backwards)
      */
     public function institution(): BelongsTo
