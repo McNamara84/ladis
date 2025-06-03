@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Models\Institution;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use App\Models\Lens;
 
 /**
  * Device Model
@@ -72,5 +74,15 @@ class Device extends Model
     public function institution(): BelongsTo
     {
         return $this->belongsTo(Institution::class);
+    }
+
+    /**
+     * n:m relationship to Lenses
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function lenses(): BelongsToMany
+    {
+        return $this->belongsToMany(Lens::class)->withTimestamps(); // n:m with timestamps
     }
 }
