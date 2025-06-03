@@ -37,6 +37,11 @@ return new class extends Migration
             // In MySQL this is stored as TINYINT(1)
             $table->boolean('mounting')->nullable();
             $table->boolean('automation')->nullable();
+            // float() creates a FLOAT column for floating-point numbers
+            // Less precise than DECIMAL but more space-efficient
+            $table->float('max_output')->unsigned()->nullable();
+            $table->float('mean_output')->unsigned()->nullable();
+            $table->float('max_wattage')->unsigned()->nullable();
             $table->timestamps();
         });
     }
