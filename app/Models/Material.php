@@ -63,4 +63,61 @@ class Material extends Model
     {
         return $this->hasMany(Material::class, 'parent_id');
     }
+
+    /**
+     * Check if a material would create a circular reference
+     *
+     * This method checks if setting a new parent_id would create a circular relationship.
+     * It recursively checks the parent chain.
+     *
+     * @param int $parentId The ID of the potential new parent
+     * @return bool True if it would create a circular reference, false otherwise
+     */
+    public function wouldCreateCircularReference(int $proposedParentId): bool
+    {
+        // Check whether the proposed parent is a descendant of this material
+        $parent = static::find($proposedParentId);
+
+        if (!$parent) {
+            return false;
+        }
+
+        // Traverse the ancestors of the proposed parent
+        $current = $parent;
+        while ($current) {
+            // If we encounter ourselves, there is a cycle
+            if ($current->parent_id == $this->id) {
+                return true;
+            }
+            $current = $current->parent;
+        }
+
+        return false;
+    }
+
+
+    /**
+     * Boot method for model events
+     *
+     * Called automatically by Laravel
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        // Event listener: before saving (create & update)
+        static::saving(function (Material $material) {
+            // Prevent a material from being its own parent
+            if ($material->parent_id && $material->parent_id == $material->id) {
+                throw new \InvalidArgumentException('A material cannot be its own parent.');
+            }
+
+            // Prevent circular relationships
+            if ($material->parent_id && $material->exists) {
+                if ($material->wouldCreateCircularReference($material->parent_id)) {
+                    throw new \InvalidArgumentException('This change would create a circular relationship.');
+                }
+            }
+        });
+    }
 }
