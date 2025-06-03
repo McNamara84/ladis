@@ -33,6 +33,10 @@ return new class extends Migration
             $table->decimal('weight', 5, 2)->unsigned()->nullable();
             $table->decimal('fiber_length', 5, 2)->unsigned()->nullable();
             $table->unsignedTinyInteger('cooling')->nullable()->comment('0: intern, 1: extern');
+            // boolean() is an alias for tinyInteger(1)
+            // In MySQL this is stored as TINYINT(1)
+            $table->boolean('mounting')->nullable();
+            $table->boolean('automation')->nullable();
             $table->timestamps();
         });
     }
