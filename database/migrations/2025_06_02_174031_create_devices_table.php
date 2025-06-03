@@ -22,6 +22,11 @@ return new class extends Migration
             // comment() adds a comment to the column in the database
             // Useful for documentation directly in the DB
             $table->unsignedTinyInteger('build')->nullable()->comment('0: Glasfaser, 1: Spiegelarm, 2: …?');
+            // integer() creates an INT column
+            // unsingned turns it into positive only
+            $table->unsignedInteger('height')->nullable();
+            $table->unsignedInteger('width')->nullable();
+            $table->unsignedInteger('depth')->nullable();
             $table->timestamps();
         });
     }
