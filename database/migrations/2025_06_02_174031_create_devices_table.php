@@ -27,6 +27,12 @@ return new class extends Migration
             $table->unsignedInteger('height')->nullable();
             $table->unsignedInteger('width')->nullable();
             $table->unsignedInteger('depth')->nullable();
+            // decimal() creates a DECIMAL column
+            // First parameter: total number of digits
+            // Second parameter: decimal places
+            $table->decimal('weight', 5, 2)->unsigned()->nullable();
+            $table->decimal('fiber_length', 5, 2)->unsigned()->nullable();
+            $table->unsignedTinyInteger('cooling')->nullable()->comment('0: intern, 1: extern');
             $table->timestamps();
         });
     }
