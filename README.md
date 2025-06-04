@@ -42,6 +42,10 @@ This web application will be deployed automatically to the production server in 
 
 ## Database
 
+### Main tables
+
+- materials
+
 ## Contributing
 
 ## Contact
