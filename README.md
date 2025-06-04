@@ -2,6 +2,8 @@
 
 ## Description
 
+We are developing our own information system as part of the P11 laboratory. A specialist laser database is to be created for the “Restoration” department. This will be a contact point for restorers who want to find out about cleaning with a laser device. Among other things, information on the laser device, the material to be treated, the project and the location will be collected. In the first steps, we developed a data model and then tried to integrate existing information. Now the whole thing is to be implemented with code.
+
 ## Features
 
 ## Dependencies
