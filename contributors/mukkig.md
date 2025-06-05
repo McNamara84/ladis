@@ -1,19 +1,18 @@
-<!-- GitHub Handle -->
+### GitHub Handle
 https://github.com/mukkig
 
-
-<!-- Affiliation -->
+#### Zugehörigkeit
 University of Applied Sciences Potsdam
 
-<!-- Wohnort -->
+#### Wohnort
 Berlin
 
-<!-- Programmiersprachen -->
+#### Programmiersprachen
 Python
 
-<!-- Interessen -->
+#### Interessen
 eher Backend, habe aber auch Interesse an Frontend 
 
-<!-- Lieblingsprojekt -->
+#### Lieblingsprojekt 
 habe (noch) kein wirkliches "Lieblingsprojekt" an dem ich selber beteiligt war, aber generell alle Projekte oder Programmieraufgaben, die
 ich erfolgreich lösen konnte
