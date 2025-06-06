@@ -13,13 +13,19 @@
 #### Setting up the development environment
 
 1. Clone the repository.
-2. Run `composer install` to install PHP dependencies.
-3. Run `npm install` to install JavaScript dependencies.
-4. Copy `.env.example` to `.env` and configure your environment variables.
-5. Run `php artisan key:generate` to generate the application key.
-6. Run `php artisan migrate` to set up the database.
-7. Run `php artisan serve` to start the development server.
-8. Access the application at [http://localhost:8000](http://localhost:8000).
+2. In the local repository, manually copy exisiting `.env.example` to new `.env` and configure your environment variables:
+    *e.g. for SQLite:*
+    - DB_CONNECTION=sqlite
+    - DB_DATABASE=database/database.sqlite
+    - DB_USERNAME=
+    - DB_PASSWORD=
+3. Run `composer install` to install PHP dependencies.
+4. Run `npm install` to install JavaScript dependencies (will only work with [Node.js](https://nodejs.org/) installed).
+5. Run `npm run build` to generate the manifest file.
+6. Run `php artisan key:generate` to generate the application key.
+7. Run `php artisan migrate` to set up the database.
+8. Run `php artisan serve` to start the development server (will only work with the manifest file generated).
+9. Access the application at [http://localhost:8000](http://localhost:8000).
 
 #### Commands for database handling
 
