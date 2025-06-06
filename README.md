@@ -14,11 +14,13 @@
 
 1. Clone the repository.
 2. In the local repository, manually copy exisiting `.env.example` to new `.env` and configure your environment variables:
-    *e.g. for SQLite:*
-    - DB_CONNECTION=sqlite
-    - DB_DATABASE=database/database.sqlite
-    - DB_USERNAME=
-    - DB_PASSWORD=
+    *e.g. for MySQL:*
+    - DB_CONNECTION=mysql
+    - DB_HOST=localhost
+    - DB_PORT=3306
+    - DB_DATABASE=[name of your new / existing database (not server name!)]
+    - DB_USERNAME=[`root` or your own username]
+    - DB_PASSWORD=[root password or your own password]
 3. Run `composer install` to install PHP dependencies.
 4. Run `npm install` to install JavaScript dependencies (will only work with [Node.js](https://nodejs.org/) installed).
 5. Run `npm run build` to generate the manifest file.
