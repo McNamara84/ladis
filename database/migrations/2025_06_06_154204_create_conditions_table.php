@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('conditions', function (Blueprint $table) {
             // There is no need to implement a unique index for the primary key
             // since id() already provides a unique index. The same applies to autoIncrement() which is not needed.
-
             $table->id();
             $table->foreignId('damage_pattern_id')->constrained('damage_patterns');
             $table->float('wac')->unsigned();
