@@ -13,12 +13,13 @@
 #### Setting up the development environment
 
 1. Clone the repository.
-2. Run `composer install` to install dependencies.
-3. Copy `.env.example` to `.env` and configure your environment variables.
-4. Run `php artisan key:generate` to generate the application key.
-5. Run `php artisan migrate` to set up the database.
-6. Run `php artisan serve` to start the development server.
-7. Access the application at [http://localhost:8000](http://localhost:8000).
+2. Run `composer install` to install PHP dependencies.
+3. Run `npm install` to install JavaScript dependencies.
+4. Copy `.env.example` to `.env` and configure your environment variables.
+5. Run `php artisan key:generate` to generate the application key.
+6. Run `php artisan migrate` to set up the database.
+7. Run `php artisan serve` to start the development server.
+8. Access the application at [http://localhost:8000](http://localhost:8000).
 
 #### Commands for database handling
 
@@ -46,6 +47,7 @@ This web application will be deployed automatically to the production server in 
 - institutions
 - lenses
 - devices
+- materials
 
 ## Contributing
 
