@@ -1,4 +1,5 @@
 {
+    "name": "cleaning-laser-database",
     "private": true,
     "type": "module",
     "scripts": {
