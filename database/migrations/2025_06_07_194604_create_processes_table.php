@@ -15,12 +15,19 @@ return new class extends Migration
             $table->id();
             //added columns
             $table->foreignId('partial_surface_id')->constrained('partial_surface')
-                ->unique();
-            $table->foreignId('device_id')->constrained('device');
-            $table->foreignId('configuration_id')->constrained('configuration');
-            $table->enum('duration', [0, 1, 2, 3]);
-            $table->enum('wet', [0, 1]);
-            $table->text('description')->nullable();
+                ->unique()
+                ->onDelete('restrict')
+                ->onUpdate('restrict');
+            $table->foreignId('device_id')->constrained('device')
+                ->onDelete('restrict')
+                ->onUpdate('restrict');
+            $table->foreignId('configuration_id')->constrained('configuration')
+                ->onDelete('restrict')
+                ->onUpdate('restrict');
+            $table->enum('duration', [0, 1, 2, 3])
+                ->comment('0: 0-3 min; 1: 3-5 min; 2: 5-10 min; 3: 10+ min');
+            $table->enum('wet', [0, 1])->comment('0: dry; 1: wet');
+            $table->string('description')->nullable();
             //timestamps
             $table->timestamps();
         });

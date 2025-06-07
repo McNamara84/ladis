@@ -14,18 +14,18 @@ return new class extends Migration
         Schema::create('configurations', function (Blueprint $table) {
             $table->id();
             //added columns
-            $table->integer('lens_size')->unsigned();
-            $table->integer('focal_length')->unsigned();
-            $table->float('output', 2)->unsigned();
-            $table->integer('pw')->unsigned();
+            $table->unsignedInteger('lens_size')->comment('in mm');
+            $table->unsignedInteger('focal_length')->comment('in mm');
+            $table->float('output', 2)->unsigned()->comment('in J/s (W)');
+            $table->unsignedInteger('pw')->comment('in ns');
                 //pulse_width (pw)
-            $table->integer('pf')->unsigned();
+            $table->unsignedInteger('pf')->comment('in kHz');
                 //pulse_frequency (pf)
-            $table->integer('scan_frequency')->unsigned();
-            $table->float('scan_frequency', 1)->unsigned();
-            $table->float('spot_size', 1)->unsigned();
-            $table->float('fluence', 3)->unsigned();
-            $table->text('description')->nullable();
+            $table->unsignedInteger('scan_frequency')->comment('in Hz');
+            $table->float('scan_width', 1)->unsigned()->comment('in mm');
+            $table->float('spot_size', 1)->unsigned()->comment('in mm²');
+            $table->float('fluence', 3)->unsigned()->comment('in J/cm²');
+            $table->string('description')->nullable();
             //timestamps
             $table->timestamps();
         });

@@ -14,15 +14,25 @@ return new class extends Migration
         Schema::create('partial_surfaces', function (Blueprint $table) {
             $table->id();
             //added columns
-            $table->foreignId('sample_surface_id')->constrained('sample_surface');
-            $table->foreignId('foundation_material_id')->constrained('material');
-            $table->foreignId('coating_material_id')->constrained('material');
+            $table->foreignId('sample_surface_id')->constrained('sample_surface')
+                ->onDelete('restrict')
+                ->onUpdate('restrict');
+            $table->foreignId('foundation_material_id')->constrained('material')
+                ->onDelete('restrict')
+                ->onUpdate('restrict');
+            $table->foreignId('coating_material_id')->constrained('material')
+                ->onDelete('restrict')
+                ->onUpdate('restrict');
             $table->foreignId('condition_id')->constrained('condition')
-                ->unique();
+                ->unique()
+                ->onDelete('restrict')
+                ->onUpdate('restrict');
             $table->foreignId('result_id')->constrained('condition')
-                ->unique();
-            $table->text('description')->nullable();
-            $table->decimal('size', 5, 2)->unsigned();
+                ->unique()
+                ->onDelete('restrict')
+                ->onUpdate('restrict');
+            $table->string('description')->nullable();
+            $table->decimal('size', 5, 2)->unsigned()->comment('in cm²');
             //timestamps
             $table->timestamps();
         });
