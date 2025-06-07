@@ -44,6 +44,9 @@ This web application will be deployed automatically to the production server in 
 
 ### Main tables
 
+- institutions
+- lenses
+- devices
 - materials
 
 ## Contributing
