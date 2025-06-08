@@ -2,28 +2,23 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use App\Models\Location;
+use App\Models\Venue;
 
 /**
- * Venue Model
+ * Location Model
  *
- * - Belongs to a City (n:1)
- * - Has many Locations (1:n)
+ * - Belongs to a Venue (n:1)
  */
-class Venue extends Model
+class Location extends Model
 {
-    use HasFactory;
-
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    // protected $table = 'venues';
+    // protected $table = 'locations';
 
     /**
      * The primary key associated with the table.
@@ -39,7 +34,7 @@ class Venue extends Model
      */
     protected $fillable = [
         'name',
-        'city_id',
+        'venue_id',
     ];
 
     /**
@@ -49,22 +44,14 @@ class Venue extends Model
      */
     protected $casts = [
         'name' => 'string',
-        'city_id' => 'integer',
+        'venue_id' => 'integer',
     ];
 
     /**
-     * n:1 relationship to City (Venue belongs to City).
+     * n:1 relationship to Venue (Location belongs to Venue).
      */
-    public function city(): BelongsTo
+    public function venue(): BelongsTo
     {
-        return $this->belongsTo(City::class);
-    }
-
-    /**
-     * 1:n relationship to Location (Venue has many Locations).
-     */
-    public function locations(): HasMany
-    {
-        return $this->hasMany(Location::class);
+        return $this->belongsTo(Venue::class);
     }
 }
