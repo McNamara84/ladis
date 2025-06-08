@@ -42,7 +42,7 @@ class Venue extends Model
     /**
      * Attribute casting for stronger type safety.
      *
-     * @var list<string>
+     * @var array<string, mixed>
      */
     protected $casts = [
         'name' => 'string',
