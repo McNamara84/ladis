@@ -2,7 +2,7 @@
     "$schema": "https://getcomposer.org/schema.json",
     "name": "mcnamara84/cleaning-laser-database",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
+    "description": "Specialized laser database information system about laser cleaning devices, materials and projects for the Restoration department.",
     "keywords": [
         "laravel",
         "framework"
