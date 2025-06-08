@@ -12,6 +12,14 @@
         "information system",
         "devices"
     ],
+    "authors": [
+        {
+            "name": "Holger Ehrmann",
+            "email": "holgerehrmann@gmail.com",
+            "homepage": "https://fh-potsdam.de",
+            "role": "Maintainer"
+        }
+    ],
     "require": {
         "php": "^8.2",
         "laravel/framework": "^12.0",
