@@ -21,6 +21,7 @@
         }
     ],
     "homepage": "https://fh-potsdam.de",
+    "readme": "https://github.com/McNamara84/cleanup-laser-database/blob/main/README.md",
     "require": {
         "php": "^8.2",
         "laravel/framework": "^12.0",
