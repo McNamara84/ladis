@@ -7,7 +7,6 @@
         "laravel",
         "framework"
     ],
-    "license": "MIT",
     "require": {
         "php": "^8.2",
         "laravel/framework": "^12.0",
