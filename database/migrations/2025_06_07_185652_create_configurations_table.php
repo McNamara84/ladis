@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('configurations', function (Blueprint $table) {
             $table->id();
             //added columns
-            $table->unsignedInteger('lens_size')->comment('in mm');
+            $table->foreignId('lens_id')->constrained('lens');
             $table->unsignedInteger('focal_length')->comment('in mm');
             $table->float('output', 2)->unsigned()->comment('in J/s (W)');
-            $table->unsignedInteger('pw')->comment('in ns');
+            $table->unsignedInteger('pw')->comment('pulse width, in ns');
                 //pulse_width (pw)
-            $table->unsignedInteger('pf')->comment('in kHz');
+            $table->unsignedInteger('pf')->comment('pulse frequency, in kHz');
                 //pulse_frequency (pf)
             $table->unsignedInteger('scan_frequency')->comment('in Hz');
             $table->float('scan_width', 1)->unsigned()->comment('in mm');
