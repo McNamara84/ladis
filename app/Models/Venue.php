@@ -4,14 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+// use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\Location;
 
 /**
  * Venue Model
  *
- * - Belongs to a City (n:1)
+ * - SHOULD belong to a City (n:1)
  * - Has many Locations (1:n)
  */
 class Venue extends Model
@@ -38,7 +38,7 @@ class Venue extends Model
      * @var list<string>
      */
     protected $fillable = [
-        'city_id',
+        // 'city_id',
         'name',
     ];
 
@@ -48,17 +48,17 @@ class Venue extends Model
      * @var array<string, mixed>
      */
     protected $casts = [
-        'city_id' => 'integer',
+        // 'city_id' => 'integer',
         'name' => 'string',
     ];
 
     /**
      * n:1 relationship to City (Venue belongs to City).
      */
-    public function city(): BelongsTo
-    {
-        return $this->belongsTo(City::class);
-    }
+    // public function city(): BelongsTo
+    // {
+    //     return $this->belongsTo(City::class);
+    // }
 
     /**
      * 1:n relationship to Location (Venue has many Locations).
