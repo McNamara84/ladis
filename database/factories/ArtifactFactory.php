@@ -17,12 +17,12 @@ class ArtifactFactory extends Factory
     public function definition(): array
     {
         return [
+            'location_id' => 1,
             'name' => fake()->randomElement([
                 'Schrank',
                 'Treppe',
                 'Mosaik',
             ]),
-            'location_id' => 1,
             'inventory_number' => fake()->unique()->numerify('INV-#####'),
         ];
     }

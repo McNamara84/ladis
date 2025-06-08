@@ -22,8 +22,8 @@ class Artifact extends Model
      * @var list<string>
      */
     protected $fillable = [
-        'name',
         'location_id',
+        'name',
         'inventory_number'
     ];
 
@@ -33,8 +33,8 @@ class Artifact extends Model
      * @var array<string, mixed>
      */
     protected $casts = [
-        'name' => 'string',
         'location_id' => 'integer',
+        'name' => 'string',
         'inventory_number' => 'string',
     ];
 

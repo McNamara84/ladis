@@ -39,8 +39,8 @@ class Location extends Model
      * @var list<string>
      */
     protected $fillable = [
-        'name',
         'venue_id',
+        'name',
     ];
 
     /**
@@ -49,8 +49,8 @@ class Location extends Model
      * @var array<string, mixed>
      */
     protected $casts = [
-        'name' => 'string',
         'venue_id' => 'integer',
+        'name' => 'string',
     ];
 
     /**

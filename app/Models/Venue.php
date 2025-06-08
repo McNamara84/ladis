@@ -38,8 +38,8 @@ class Venue extends Model
      * @var list<string>
      */
     protected $fillable = [
-        'name',
         'city_id',
+        'name',
     ];
 
     /**
@@ -48,8 +48,8 @@ class Venue extends Model
      * @var array<string, mixed>
      */
     protected $casts = [
-        'name' => 'string',
         'city_id' => 'integer',
+        'name' => 'string',
     ];
 
     /**

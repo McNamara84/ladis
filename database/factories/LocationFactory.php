@@ -17,12 +17,12 @@ class LocationFactory extends Factory
     public function definition(): array
     {
         return [
+            'venue_id' => 1,
             'name' => fake()->randomElement([
                 'Kreuzgang',
                 'Kuppel',
                 'Krypta'
             ]),
-            'venue_id' => 1,
         ];
     }
 }
