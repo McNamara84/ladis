@@ -20,6 +20,7 @@
             "role": "Maintainer"
         }
     ],
+    "homepage": "https://fh-potsdam.de",
     "require": {
         "php": "^8.2",
         "laravel/framework": "^12.0",
