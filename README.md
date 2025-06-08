@@ -52,10 +52,13 @@ This web application will be deployed automatically to the production server in 
 
 ### Main tables
 
+- `artifacts`
 - institutions
 - lenses
+- `locations`
 - devices
 - materials
+- `venues`
 
 ## Contributing
 
