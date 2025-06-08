@@ -17,10 +17,10 @@ class VenueFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->company() . ' ' . fake()->randomElement([
+            'name' => fake()->randomElement([
                 'Kölner Dom',
                 'Schloss Bellevue',
-                'Brandenburger Tor '
+                'Brandenburger Tor'
             ]),
             'city_id' => 1,
         ];
