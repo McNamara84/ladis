@@ -5,7 +5,12 @@
     "description": "Specialized laser database information system about laser cleaning devices, materials and projects for the Restoration department.",
     "keywords": [
         "laravel",
-        "framework"
+        "framework",
+        "laser",
+        "restauration",
+        "database",
+        "information system",
+        "devices"
     ],
     "require": {
         "php": "^8.2",
