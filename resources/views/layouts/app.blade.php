@@ -31,15 +31,17 @@
             <div class="container">
                 <!-- Brand/Logo -->
                 <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
-                    <!-- Demo Logo (Laser-Symbol) -->
-                    <div class="bg-white rounded-circle p-2 me-2" style="width: 40px; height: 40px;">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
-                            class="text-primary">
+                    <!-- Laser-Symbol Logo -->
+                    <svg class="navbar-logo" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Background Circle -->
+                        <circle cx="20" cy="20" r="20" class="logo-bg" />
+                        <!-- Laser Icon (scaled and centered) -->
+                        <g transform="translate(8, 8)">
                             <path d="M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2Z"
-                                fill="currentColor" />
-                            <circle cx="12" cy="18" r="2" fill="currentColor" />
-                        </svg>
-                    </div>
+                                class="logo-icon" />
+                            <circle cx="12" cy="18" r="2" class="logo-icon" />
+                        </g>
+                    </svg>
                     <span class="fw-bold">Laser-Projekt</span>
                 </a>
 

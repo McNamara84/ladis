@@ -6,3 +6,19 @@
 
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
+
+// Custom Components
+
+// Navigation bar logo
+.navbar-logo {
+    inline-size: 2.222em;
+    margin-right: 0.5rem;
+
+    .logo-bg {
+        fill: currentColor;
+    }
+
+    .logo-icon {
+        fill: var(--bs-primary);
+    }
+}
