@@ -112,11 +112,11 @@
                 </div>
 
                 <!-- Development Info -->
-                <div class="mt-4 text-center">
-                    <p class="small text-muted">
-                        {{ $projectVersion }}
-                    </p>
-                </div>
+                <!-- <div class="mt-4 text-center">
+                        <p class="small text-muted">
+                            {{ $projectVersion }}
+                        </p>
+                    </div> -->
             </div>
         </div>
     </div>
