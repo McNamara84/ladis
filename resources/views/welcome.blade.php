@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-@section('title', 'Willkommen - Laser-Projekt')
-
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
@@ -20,7 +18,7 @@
                         </svg>
                     </div>
 
-                    <h1 class="display-4 fw-bold text-primary mb-3">Laser-Projekt</h1>
+                    <h1 class="display-4 fw-bold text-primary mb-3">{{ config('app.name') }}</h1>
                     <p class="lead text-muted">Datenbank zu Reinigungslasern in der Restaurierung</p>
                 </div>
 
@@ -38,7 +36,7 @@
                                 </svg>
                             </div>
 
-                            <h2 class="h4 fw-bold mb-4">Hier entsteht das Laser-Projekt</h2>
+                            <h2 class="h4 fw-bold mb-4">Hier entsteht das {{ config('app.name') }}</h2>
 
                             <p class="text-muted mb-4">
                                 Eine Datenbank zu Reinigungslasern und deren Einsatzmöglichkeiten in der Restaurierung.
