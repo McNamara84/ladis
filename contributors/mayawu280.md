@@ -17,7 +17,6 @@ Potsdam
 - HTML
 - CSS
 
-
 ## erwünschte Rollen
 Backend, Frontend, Dokumentation, Design
 
