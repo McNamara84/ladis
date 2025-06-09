@@ -114,7 +114,7 @@
                 <!-- Development Info -->
                 <div class="mt-4 text-center">
                     <p class="small text-muted">
-                        Version 0.1.0
+                        {{ $projectVersion }}
                     </p>
                 </div>
             </div>
