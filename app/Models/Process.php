@@ -17,25 +17,20 @@ use App\Models\Device;
  * - belongs to a partial surface (1:1)
  */
 
-class process extends Model
+class Process extends Model
 {
     use HasFactory;
-
-    protected $table = 'processes';
 
     protected $casts = [
         'partial_surface_id'    =>  'unsignedInteger',
         'device_id'             =>  'unsignedInteger',
         'configuration_id'      =>  'unsignedInteger',
-        'description'           =>  'string',
+        'description'           =>  'text',
+        'duration'              =>  'unsignedTinyInteger',
+        'wet'                   =>  'unsignedTinyInteger',
     ];
 
-    protected $fillable = [
-        'duration',
-        'wet',
-    ];
-    
-    protected $guarded = ['id'];
+   protected $guarded = ['id'];
 
     //possible values for the duration attribute
     const DURATION_0    =   '0';

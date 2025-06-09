@@ -13,22 +13,20 @@ return new class extends Migration
     {
         Schema::create('processes', function (Blueprint $table) {
             $table->id();
-            //added columns
-            $table->foreignId('partial_surface_id')->constrained('partial_surface')
+            $table->foreignId('partial_surface_id')->constrained('partial_surfaces')
                 ->unique()
                 ->onDelete('restrict')
                 ->onUpdate('restrict');
-            $table->foreignId('device_id')->constrained('device')
+            $table->foreignId('device_id')->constrained('devices')
                 ->onDelete('restrict')
                 ->onUpdate('restrict');
-            $table->foreignId('configuration_id')->constrained('configuration')
+            $table->foreignId('configuration_id')->constrained('configurations')
                 ->onDelete('restrict')
                 ->onUpdate('restrict');
             $table->enum('duration', [0, 1, 2, 3])
                 ->comment('0: 0-3 min; 1: 3-5 min; 2: 5-10 min; 3: 10+ min');
             $table->enum('wet', [0, 1])->comment('0: dry; 1: wet');
-            $table->string('description')->nullable();
-            //timestamps
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

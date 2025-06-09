@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use App\Models\SampleSurface;
 use App\Models\Process;
 use App\Models\Condition;
@@ -17,15 +18,13 @@ use App\Models\Material;
  * - belongs to a process (1:1)
  * - has a (pre-)condition (1:1)
  * - has a (result) condition (1:1)
- * - has a (foundation) material (1:1)
- * - has a (coating) material (1:1)
+ * - has a (foundation) material (n:1)
+ * - has a (coating) material (n:1)
  */
 
 class PartialSurface extends Model
 {
     use HasFactory;
-
-    protected $table = 'partial_surfaces';
 
     protected $casts = [
         'sample_surface_id'         =>  'unsignedInteger',
@@ -33,7 +32,7 @@ class PartialSurface extends Model
         'coating_material_id'       =>  'unsignedInteger',
         'condition_id'              =>  'unsignedInteger',
         'result_id'                 =>  'unsignedInteger',
-        'description'               =>  'string',
+        'description'               =>  'text',
         'size'                      =>  'decimal:2',
     ];
 
@@ -42,7 +41,7 @@ class PartialSurface extends Model
     /**
      * n:1 relationship to SampleSurface (backwards)
      */
-    public function sample_surface(): BelongsTo
+    public function sampleSurface(): BelongsTo
     {
         return $this->belongsTo(SampleSurface::class);
     }
@@ -50,9 +49,9 @@ class PartialSurface extends Model
     /**
      * 1:1 relationship to Process
      */
-    public function process(): BelongsTo
+    public function process(): HasOne
     {
-        return $this->belongsTo(Process::class);
+        return $this->hasOne(Process::class);
     }
 
     /**
@@ -72,17 +71,17 @@ class PartialSurface extends Model
     }
 
     /**
-     * 1:1 relationship to Material as the foundation material
+     * n:1 relationship to Material as the foundation material (backwards)
      */
-    public function foundation_material(): BelongsTo
+    public function foundationMaterial(): BelongsTo
     {
         return $this->belongsTo(Material::class, 'foundation_material_id');
     }
 
     /**
-     * 1:1 relationship to Material as the coating material
+     * n:1 relationship to Material as the coating material (backwards)
      */
-    public function coating_material(): BelongsTo
+    public function coatingMaterial(): BelongsTo
     {
         return $this->belongsTo(Material::class, 'coating_material_id');
     }

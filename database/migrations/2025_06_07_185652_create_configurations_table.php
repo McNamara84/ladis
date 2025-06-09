@@ -13,20 +13,18 @@ return new class extends Migration
     {
         Schema::create('configurations', function (Blueprint $table) {
             $table->id();
-            //added columns
-            $table->foreignId('lens_id')->constrained('lens');
-            $table->unsignedInteger('focal_length')->comment('in mm');
-            $table->float('output', 2)->unsigned()->comment('in J/s (W)');
-            $table->unsignedInteger('pw')->comment('pulse width, in ns');
+            $table->foreignId('lens_id')->constrained('lenses');
+            $table->float('focal_length')->unsigned()->comment('in mm');
+            $table->float('output')->unsigned()->comment('in J/s (W)');
+            $table->float('pw')->unsigned()->comment('pulse width, in ns');
                 //pulse_width (pw)
-            $table->unsignedInteger('pf')->comment('pulse frequency, in kHz');
+            $table->float('pf')->unsigned()->comment('pulse frequency, in kHz');
                 //pulse_frequency (pf)
-            $table->unsignedInteger('scan_frequency')->comment('in Hz');
-            $table->float('scan_width', 1)->unsigned()->comment('in mm');
-            $table->float('spot_size', 1)->unsigned()->comment('in mm²');
-            $table->float('fluence', 3)->unsigned()->comment('in J/cm²');
-            $table->string('description')->nullable();
-            //timestamps
+            $table->float('scan_frequency')->unsigned()->comment('in Hz');
+            $table->float('scan_width')->unsigned()->comment('in mm');
+            $table->float('spot_size')->unsigned()->comment('in mm²');
+            $table->float('fluence')->unsigned()->comment('in J/cm²');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }
