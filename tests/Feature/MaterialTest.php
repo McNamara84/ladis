@@ -63,4 +63,19 @@ class MaterialTest extends TestCase
         $this->expectException(\InvalidArgumentException::class);
         $material->save();
     }
+
+    /**
+     * Assigning a descendant as parent should trigger a validation error.
+     */
+    public function test_saving_descendant_as_parent_throws_exception(): void
+    {
+        $a = Material::create(['name' => 'A']);
+        $b = Material::create(['name' => 'B', 'parent_id' => $a->id]);
+        $c = Material::create(['name' => 'C', 'parent_id' => $b->id]);
+
+        $a->parent_id = $c->id;
+
+        $this->expectException(\InvalidArgumentException::class);
+        $a->save();
+    }
 }
