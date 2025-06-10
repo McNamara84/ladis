@@ -1,37 +1,37 @@
 # Pull Request
 
-## 📝 Was wurde geändert?
-<!-- Kurze Beschreibung der Änderungen -->
+## 📝 What was changed?
+<!-- Brief description of changes -->
 
-## 🏷️ Art der Änderung
+## 🏷️ Type of change
 - [ ] 🐛 Bug Fix
-- [ ] ✨ Neues Feature
+- [ ] ✨ New Feature
 - [ ] 💥 Breaking Change
-- [ ] 📚 Dokumentation
+- [ ] 📚 Documentation
 - [ ] ♻️ Refactoring
 - [ ] 🎨 UI/Styling
 - [ ] Dev Tooling
 
 ## 🔗 Issue
-Closes #
+<!-- Closed Issues: "- Closes #…" -->
 
-## 🧪 Getestet
-- [ ] Feature/Unit Tests laufen durch
-- [ ] Tests hinzugefügt/aktualisiert
-- [ ] Manuell getestet
-- [ ] Browser-kompatibel
-- [ ] Mobile-kompatibel
-- [ ] Definition of Done erfüllt
+## 🧪 Testing
+- [ ] Feature/Unit Tests pass
+- [ ] Tests added/updated
+- [ ] Manually tested
+- [ ] Browser compatible
+- [ ] Mobile compatible
+- [ ] Definition of Done fulfilled
 
-## 🚀 Laravel-spezifisch
-- [ ] Migrations hinzugefügt/geändert
-- [ ] Routes registriert
-- [ ] Config-Änderungen dokumentiert
-- [ ] Composer Dependencies aktualisiert
-- [ ] Artisan Commands funktionieren
+## 🚀 Laravel-specific
+- [ ] Migrations added/changed
+- [ ] Routes registered
+- [ ] Config changes documented
+- [ ] Composer dependencies updated
+- [ ] Artisan Commands work
 
 ## 📷 Screenshots
-<!-- Falls UI-Änderungen -->
+<!-- If UI changed -->
 
-## 💬 Notizen
-<!-- Zusätzliche Infos für Reviewer -->
+## 💬 Notes
+<!-- Additional info for reviewers -->
