@@ -34,4 +34,20 @@ class MaterialTest extends TestCase
         $this->assertFalse($b->wouldCreateCircularReference($a->id));
         $this->assertFalse($a->wouldCreateCircularReference(999));
     }
+
+    /**
+     * A material should know its children via the relation.
+     */
+    public function test_children_relationship_returns_child_materials(): void
+    {
+        $parent = Material::create(['name' => 'Parent']);
+        $child1 = Material::create(['name' => 'Child1', 'parent_id' => $parent->id]);
+        $child2 = Material::create(['name' => 'Child2', 'parent_id' => $parent->id]);
+
+        $children = $parent->children;
+
+        $this->assertCount(2, $children);
+        $this->assertTrue($children->contains($child1));
+        $this->assertTrue($children->contains($child2));
+    }
 }
