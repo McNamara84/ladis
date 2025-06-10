@@ -50,4 +50,17 @@ class MaterialTest extends TestCase
         $this->assertTrue($children->contains($child1));
         $this->assertTrue($children->contains($child2));
     }
+
+    /**
+     * A material cannot be its own parent.
+     */
+    public function test_saving_self_as_parent_throws_exception(): void
+    {
+        $material = Material::create(['name' => 'M']);
+
+        $material->parent_id = $material->id;
+
+        $this->expectException(\InvalidArgumentException::class);
+        $material->save();
+    }
 }
