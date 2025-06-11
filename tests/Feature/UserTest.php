@@ -6,6 +6,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Device;
 
 class UserTest extends TestCase
 {
@@ -23,5 +25,15 @@ class UserTest extends TestCase
         $array = $user->toArray();
         $this->assertArrayNotHasKey('password', $array);
         $this->assertArrayNotHasKey('remember_token', $array);
+    }
+
+    public function test_edited_devices_relationship(): void
+    {
+        $user = new User();
+        $relation = $user->editedDevices();
+
+        $this->assertInstanceOf(HasMany::class, $relation);
+        $this->assertInstanceOf(Device::class, $relation->getRelated());
+        $this->assertEquals('last_edit_by', $relation->getForeignKeyName());
     }
 }
