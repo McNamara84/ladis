@@ -58,4 +58,13 @@ class ArtifactTest extends TestCase
         $this->expectException(QueryException::class);
         Artifact::factory()->for($location)->create(['name' => 'Campus']);
     }
+
+    public function test_duplicate_inventory_number_in_same_location_is_not_allowed(): void
+    {
+        $location = $this->createLocation();
+        Artifact::factory()->for($location)->create(['inventory_number' => 'INV-002']);
+
+        $this->expectException(QueryException::class);
+        Artifact::factory()->for($location)->create(['inventory_number' => 'INV-002']);
+    }
 }
