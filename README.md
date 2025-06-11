@@ -54,14 +54,14 @@ This web application will be deployed automatically to the production server in 
 
 <!-- Introduction text for the db schema here -->
 
-### Core Tables
-
+- `federal_states`
+- `cities`
 - `artifacts`
-- institutions
-- lenses
+- `institutions`
+- `lenses`
 - `locations`
-- devices
-- materials
+- `devices`
+- `materials`
 - `venues`
 
 ## Contributing
