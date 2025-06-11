@@ -1,3 +1,5 @@
+![Test Coverage](./.github/coverage.svg)
+
 # Cleanup Laser Database
 
 <!-- Add project description here -->
