@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('configurations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('lens_id')->constrained('lenses');
+            $table->foreignId('lens_id')->constrained('lenses')
+                ->unsigned();
             $table->float('focal_length')->unsigned()->comment('in mm');
             $table->float('output')->unsigned()->comment('in J/s (W)');
             $table->float('pw')->unsigned()->comment('pulse width, in ns');

@@ -14,19 +14,24 @@ return new class extends Migration
         Schema::create('partial_surfaces', function (Blueprint $table) {
             $table->id();
             $table->foreignId('sample_surface_id')->constrained('sample_surfaces')
+                ->unsigned()
                 ->onDelete('restrict')
                 ->onUpdate('restrict');
             $table->foreignId('foundation_material_id')->constrained('materials')
+                ->unsigned()
                 ->onDelete('restrict')
                 ->onUpdate('restrict');
             $table->foreignId('coating_material_id')->constrained('materials')
+                ->unsigned()
                 ->onDelete('restrict')
                 ->onUpdate('restrict');
             $table->foreignId('condition_id')->constrained('conditions')
+                ->unsigned()
                 ->unique()
                 ->onDelete('restrict')
                 ->onUpdate('restrict');
             $table->foreignId('result_id')->constrained('conditions')
+                ->unsigned()
                 ->unique()
                 ->onDelete('restrict')
                 ->onUpdate('restrict');

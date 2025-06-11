@@ -25,7 +25,7 @@ class Configuration extends Model
     
     protected $casts = [
         'lens_id'           =>  'unsignedInteger',
-        'focal_length'      =>  'foat',
+        'focal_length'      =>  'float',
         'output'            =>  'float',
         'pw'                =>  'float',
         'pf'                =>  'float',

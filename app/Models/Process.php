@@ -22,12 +22,12 @@ class Process extends Model
     use HasFactory;
 
     protected $casts = [
-        'partial_surface_id'    =>  'unsignedInteger',
-        'device_id'             =>  'unsignedInteger',
-        'configuration_id'      =>  'unsignedInteger',
+        'partial_surface_id'    =>  'integer',
+        'device_id'             =>  'integer',
+        'configuration_id'      =>  'integer',
         'description'           =>  'text',
-        'duration'              =>  'unsignedTinyInteger',
-        'wet'                   =>  'unsignedTinyInteger',
+        'duration'              =>  'tinyInteger',
+        'wet'                   =>  'tinyInteger',
     ];
 
    protected $guarded = ['id'];
