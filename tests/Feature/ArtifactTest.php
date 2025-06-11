@@ -49,4 +49,13 @@ class ArtifactTest extends TestCase
 
         $this->assertTrue($artifact->location->is($location));
     }
+
+    public function test_duplicate_name_in_same_location_is_not_allowed(): void
+    {
+        $location = $this->createLocation();
+        Artifact::factory()->for($location)->create(['name' => 'Campus']);
+
+        $this->expectException(QueryException::class);
+        Artifact::factory()->for($location)->create(['name' => 'Campus']);
+    }
 }
