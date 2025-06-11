@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Device;
 
 class WelcomeController extends Controller
 {
@@ -13,6 +14,8 @@ class WelcomeController extends Controller
      */
     public function index()
     {
-        return view('welcome');
+        $deviceCount = Device::count();
+
+        return view('welcome', ['deviceCount' => $deviceCount]);
     }
 }

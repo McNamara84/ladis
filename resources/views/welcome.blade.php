@@ -20,6 +20,7 @@
 
                     <h1 class="display-4 fw-bold text-primary mb-3">{{ config('app.name') }}</h1>
                     <p class="lead text-muted">Datenbank zu Reinigungslasern in der Restaurierung</p>
+                    <p class="text-muted">Aktuell sind <strong>{{ $deviceCount }}</strong> Lasergeräte registriert.</p>
                 </div>
 
                 <!-- Main Content Card -->
