@@ -27,11 +27,11 @@ class PartialSurface extends Model
     use HasFactory;
 
     protected $casts = [
-        'sample_surface_id'         =>  'unsignedInteger',
-        'foundation_material_id'    =>  'unsignedInteger',
-        'coating_material_id'       =>  'unsignedInteger',
-        'condition_id'              =>  'unsignedInteger',
-        'result_id'                 =>  'unsignedInteger',
+        'sample_surface_id'         =>  'integer',
+        'foundation_material_id'    =>  'integer',
+        'coating_material_id'       =>  'integer',
+        'condition_id'              =>  'integer',
+        'result_id'                 =>  'integer',
         'description'               =>  'text',
         'size'                      =>  'decimal:2',
     ];

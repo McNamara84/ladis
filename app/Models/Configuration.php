@@ -24,7 +24,7 @@ class Configuration extends Model
     use HasFactory;
     
     protected $casts = [
-        'lens_id'           =>  'unsignedInteger',
+        'lens_id'           =>  'integer',
         'focal_length'      =>  'float',
         'output'            =>  'float',
         'pw'                =>  'float',
