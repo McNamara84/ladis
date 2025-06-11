@@ -41,4 +41,12 @@ class ArtifactTest extends TestCase
             'inventory_number' => 'INV-001',
         ]);
     }
+
+    public function test_location_relationship(): void
+    {
+        $location = $this->createLocation();
+        $artifact = Artifact::factory()->for($location)->create();
+
+        $this->assertTrue($artifact->location->is($location));
+    }
 }
