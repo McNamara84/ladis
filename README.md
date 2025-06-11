@@ -63,6 +63,8 @@ This web application will be deployed automatically to the production server in 
 - `devices`
 - `materials`
 - `venues`
+- `conditions`
+- `damage_patterns`
 
 ## Contributing
 
