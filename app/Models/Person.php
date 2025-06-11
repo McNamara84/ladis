@@ -4,33 +4,27 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Person extends Model
 {
     use HasFactory;
 
-    //Persons or people? Both of them can be used in English
-    protected $table = 'persons';
-
     protected $guarded = ['id'];
     
-    protected $cast = [
+    protected $casts = [
         'person_id' => 'integer',
         'name' => 'string', 
     ];
 
 
-    //1:1 relation: A Person belongs to an Institution
+    //1:1 relation: A Person belongs to an single Institution
 
-    public function persons(): BelongsTo
+    public function institutions(): BelongsTo
 {
-    return $this->belongsTo(Person::class);
-}
+    return $this->belongsTo(Institution::class);
 
-    //1:n relation: An Institution has many Persons
-    public function institution(): HasMany
-{
-    return $this->hasMany(Institution::class);
 }
 
 

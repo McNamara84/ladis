@@ -14,13 +14,13 @@ return new class extends Migration
         Schema::create('sample_surface', function (Blueprint $table) {
             $table->id();
 
-			$table->string('name', 50) -> unique() 
+			$table->string('name', 50) -> unique();
             $table->text('description');
             
             $table->timestamps();
 
-            // Foreign key refrences to the table object 
-            $table->foreignId('object_id')->constrained()->cascadeOnDelete();
+            // Foreign key references to the table object 
+            $table->foreignId('artifacts_id')->constrained()->cascadeOnDelete();
         });
     }
 

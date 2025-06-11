@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Vtiful\Kernel\Format;
+
 
 return new class extends Migration
 {
@@ -12,7 +12,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('project', function (Blueprint $table) {
+        Schema::create('projects', function (Blueprint $table) {
             $table->id();
 
             $table->string('name', 50)->unique();
@@ -27,12 +27,11 @@ return new class extends Migration
 
             $table->timestamps();
 
-            // Foreign key refrences to the table person 
+            // Foreign key references to the table person 
             $table->foreignId('person_id')->constrained()->cascadeOnDelete();
 
-            // Foreign key refrences to the table venue
+            // Foreign key references to the table venue
             $table->foreignId('venue_id')->constrained()->cascadeOnDelete();
-            )
         });
     }
 
@@ -41,7 +40,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('project');
+        Schema::dropIfExists('projects');
     }
 };
 
