@@ -11,4 +11,18 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+    // Silence Sass deprecation warnings.
+    // https://github.com/twbs/bootstrap/issues/40962
+    css: {
+        preprocessorOptions: {
+            scss: {
+                silenceDeprecations: [
+                    'import',
+                    'mixed-decls',
+                    'color-functions',
+                    'global-builtin',
+                ],
+            },
+        },
+    },
 });
