@@ -33,14 +33,14 @@ class Process extends Model
    protected $guarded = ['id'];
 
     //possible values for the duration attribute
-    const DURATION_0    =   '0';
-    const DURATION_1    =   '1';
-    const DURATION_2    =   '2';
-    const DURATION_3    =   '3';
+    const DURATION_0    =   0;
+    const DURATION_1    =   1;
+    const DURATION_2    =   2;
+    const DURATION_3    =   3;
 
     //possible values for the wet (wetness) attribute
-    const WET_DRY   =   '0';
-    const WET_WET   =   '1';
+    const WET_DRY   =   0;
+    const WET_WET   =   1;
 
     //all possible durations as an array
     public static function getDurations(): array
@@ -81,7 +81,7 @@ class Process extends Model
     /**
      * 1:1 relationship to PartialSurface
      */
-    public function partial_surface(): BelongsTo
+    public function partialSurface(): BelongsTo
     {
         return $this->belongsTo(PartialSurface::class);
     }
