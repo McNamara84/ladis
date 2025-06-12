@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 //use App\Models\SampleSurface; [model doesn't exist yet]
 use App\Models\Process;
-use App\Models\Condition;
+//use App\Models\Condition; [model doesn't exist yet]
 use App\Models\Material;
 
 /**
@@ -55,20 +55,22 @@ class PartialSurface extends Model
     }
 
     /**
-     * 1:1 relationship to Condition as the pre-condition
+     * 1:1 relationship to Condition as the pre-condition [model doesn't exist yet]
+     * 
+     * public function condition(): BelongsTo
+     * {
+     *   return $this->belongsTo(Condition::class, 'condition_id');
+     * }
      */
-    public function condition(): BelongsTo
-    {
-        return $this->belongsTo(Condition::class, 'condition_id');
-    }
-
-    /**
-     * 1:1 relationship to Condition as the result
+    
+     /**
+     * 1:1 relationship to Condition as the result [model doesn't exist yet]
+     * 
+     * public function result(): BelongsTo
+     * {
+     *    return $this->belongsTo(Condition::class, 'result_id');
+     * }
      */
-    public function result(): BelongsTo
-    {
-        return $this->belongsTo(Condition::class, 'result_id');
-    }
 
     /**
      * n:1 relationship to Material as the foundation material (backwards)
