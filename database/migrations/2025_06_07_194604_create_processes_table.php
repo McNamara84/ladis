@@ -14,16 +14,13 @@ return new class extends Migration
         Schema::create('processes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('partial_surface_id')->constrained('partial_surfaces')
-                ->unsigned()
                 ->unique()
                 ->onDelete('restrict')
                 ->onUpdate('restrict');
             $table->foreignId('device_id')->constrained('devices')
-                ->unsigned()
                 ->onDelete('restrict')
                 ->onUpdate('restrict');
             $table->foreignId('configuration_id')->constrained('configurations')
-                ->unsigned()
                 ->onDelete('restrict')
                 ->onUpdate('restrict');
             $table->enum('duration', [0, 1, 2, 3])
