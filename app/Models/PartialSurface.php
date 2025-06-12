@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use App\Models\SampleSurface;
+//use App\Models\SampleSurface; [model doesn't exist yet]
 use App\Models\Process;
 use App\Models\Condition;
 use App\Models\Material;
@@ -31,19 +31,20 @@ class PartialSurface extends Model
         'coating_material_id'       =>  'integer',
         'condition_id'              =>  'integer',
         'result_id'                 =>  'integer',
-        'description'               =>  'text',
+        'identifier'                =>  'text',
         'size'                      =>  'decimal:2',
     ];
 
-    protected $guarded = ['id'];
+    protected $guarded = ['id', 'timestamp',];
 
     /**
-     * n:1 relationship to SampleSurface (backwards)
+     * n:1 relationship to SampleSurface (backwards) [model doesn't exist yet]
+     * 
+     * public function sampleSurface(): BelongsTo
+     * {
+     *    return $this->belongsTo(SampleSurface::class);
+     * }
      */
-    public function sampleSurface(): BelongsTo
-    {
-        return $this->belongsTo(SampleSurface::class);
-    }
 
     /**
      * 1:1 relationship to Process
