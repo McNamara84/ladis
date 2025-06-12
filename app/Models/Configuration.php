@@ -25,18 +25,18 @@ class Configuration extends Model
     
     protected $casts = [
         'lens_id'           =>  'integer',
-        'focal_length'      =>  'float',
+        'focal_length'      =>  'smallInteger',
         'output'            =>  'float',
-        'pw'                =>  'float',
-        'pf'                =>  'float',
-        'scan_width'        =>  'float',
-        'scan_frequency'    =>  'float',
-        'spot_size'         =>  'float',
-        'fluence'           =>  'float',
+        'pw'                =>  'smallInteger',
+        'pf'                =>  'smallInteger',
+        'scan_width'        =>  'decimal:1',
+        'scan_frequency'    =>  'tinyInteger',
+        'spot_size'         =>  'decimal:1',
+        'fluence'           =>  'decimal:3',
         'description'       =>  'text',
     ];
     
-    protected $guarded = ['id'];
+    protected $guarded = ['id', 'timestamp',];
     
     /**
      * 1:n relationship to Process
