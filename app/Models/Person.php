@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Person extends Model
 {
@@ -19,7 +18,7 @@ class Person extends Model
     ];
 
 
-    //1:1 relation: A Person belongs to an single Institution
+    //1:1 relation: A Person belongs to an Institution
 
     public function institutions(): BelongsTo
 {
