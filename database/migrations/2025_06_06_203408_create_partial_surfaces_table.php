@@ -27,12 +27,10 @@ return new class extends Migration
                 ->onUpdate('restrict');
             $table->foreignId('condition_id')->constrained('conditions')
                 ->unsigned()
-                ->unique()
                 ->onDelete('restrict')
                 ->onUpdate('restrict');
             $table->foreignId('result_id')->constrained('conditions')
                 ->unsigned()
-                ->unique()
                 ->onDelete('restrict')
                 ->onUpdate('restrict');
             $table->text('description')->nullable();
