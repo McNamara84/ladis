@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use App\Models\SampleSurface;
 use App\Models\Process;
 use App\Models\Condition;
@@ -49,9 +48,9 @@ class PartialSurface extends Model
     /**
      * 1:1 relationship to Process
      */
-    public function process(): HasOne
+    public function process(): BelongsTo
     {
-        return $this->hasOne(Process::class);
+        return $this->belongsTo(Process::class);
     }
 
     /**
