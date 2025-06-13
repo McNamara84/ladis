@@ -23,10 +23,12 @@ class Condition extends Model
         'adhesion',
     ];
     protected $casts = [
+        'wac'=>'float', 
         // only two decimal places are allowed
         'lab_l'=>'decimal:2', 
         'lab_a'=>'decimal:2', 
         'lab_b'=>'decimal:2', 
+
 ];
 public function damagePattern(): BelongsTo
 {
