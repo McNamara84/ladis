@@ -13,6 +13,9 @@ class ChangelogController extends Controller
      */
     public function index()
     {
-        return view('changelog');
+        $pageTitle = 'Project Changelog';
+        $lastUpdated = '2025-06-12';
+        
+        return view('changelog', compact('pageTitle', 'lastUpdated'));
     }
 }
