@@ -1,7 +1,9 @@
 name: Coverage Badge
 on:
   push:
-    branches: [main]
+    # Debugging: Trigger on push to any branch
+    branches:
+      - '**'
 
 jobs:
   tests:
