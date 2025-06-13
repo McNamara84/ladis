@@ -22,9 +22,9 @@ class Condition extends Model
         'severity',
         'adhesion',
     ];
+    // LAB color values with only two decimal places allowed
     protected $casts = [
         'wac'=>'float', 
-        // only two decimal places are allowed
         'lab_l'=>'decimal:2', 
         'lab_a'=>'decimal:2', 
         'lab_b'=>'decimal:2', 
