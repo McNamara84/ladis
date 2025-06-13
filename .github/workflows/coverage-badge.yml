@@ -20,6 +20,12 @@ jobs:
       - name: Install Composer deps
         run: composer install --no-interaction --prefer-dist
 
+      - name: Copy .env file
+        run: cp .env.example .env
+
+      - name: Generate application key
+        run: php artisan key:generate --force
+
       # Laravel Tests with Clover Report
       - name: Run tests with coverage
         env:
