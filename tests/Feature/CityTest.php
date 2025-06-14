@@ -30,4 +30,15 @@ class CityTest extends TestCase
         $this->assertInstanceOf(FederalState::class, $relation->getRelated());
         $this->assertSame('federal_state_id', $relation->getForeignKeyName());
     }
+
+    public function test_postal_code_is_cast_to_string(): void
+    {
+        $city = new City([
+            'federal_state_id' => 1,
+            'name' => 'Potsdam',
+            'postal_code' => 14469,
+        ]);
+
+        $this->assertSame('14469', $city->postal_code);
+    }
 }
