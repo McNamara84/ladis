@@ -48,4 +48,13 @@ class CityTest extends TestCase
 
         $this->assertSame('Potsdam', $city->full_name);
     }
+
+    public function test_full_name_includes_federal_state_when_relationship_loaded(): void
+    {
+        $city = new City(['name' => 'Potsdam']);
+        $state = new FederalState(['name' => 'Brandenburg']);
+        $city->setRelation('federalState', $state);
+
+        $this->assertSame('Potsdam, Brandenburg', $city->full_name);
+    }
 }
