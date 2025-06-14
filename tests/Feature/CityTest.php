@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\City;
 use App\Models\FederalState;
