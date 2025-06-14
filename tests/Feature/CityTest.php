@@ -41,4 +41,11 @@ class CityTest extends TestCase
 
         $this->assertSame('14469', $city->postal_code);
     }
+
+    public function test_full_name_returns_only_city_name_when_relationship_not_loaded(): void
+    {
+        $city = new City(['name' => 'Potsdam']);
+
+        $this->assertSame('Potsdam', $city->full_name);
+    }
 }
