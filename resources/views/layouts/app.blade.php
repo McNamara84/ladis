@@ -10,10 +10,6 @@
 
     <title>@hasSection('title')@yield('title') | @endif{{ config('app.name') }}</title>
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=Nunito:400,600,700" rel="stylesheet">
-
     <!-- Scripts -->
     @if (app()->environment('testing'))
         <!-- Bootstrap CSS from CDN (für Tests) -->
