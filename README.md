@@ -1,4 +1,4 @@
-![Test Coverage](./.github/coverage.svg)
+![Test Coverage](https://github.com/McNamara84/cleanup-laser-database/blob/image-data/coverage.svg?raw=true)
 
 # Cleanup Laser Database
 
