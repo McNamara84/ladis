@@ -6,18 +6,23 @@ use Illuminate\Database\Eloquent\Model;
 
 class Image extends Model
 {
+    /**
+     * The attributes that aren't mass assignable.
+     *
+     * @var array<string>
+     */
     protected $guarded = ['id'];
 
     protected $casts = [
+        // 'project_id' => 'integer',
+        // 'condition_id' => 'integer',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
         'uri' => 'string',
         'description' => 'string',
         'alt_text' => 'string',
-        'timestamp' => 'integer',
+        'year_created' => 'integer',
         'creator' => 'string',
-        'project_id' => 'integer',
-        'condition_id' => 'integer',
     ];
 
     /*public function condition()

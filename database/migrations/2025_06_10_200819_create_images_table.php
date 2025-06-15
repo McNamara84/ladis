@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create(table: 'images', callback: function (Blueprint $table): void {
             $table->id();
+            // $table->foreignId('condition_id')->constrained('conditions')->restrictOnDelete()->nullable();
             // $table->foreignId('project_id')->constrained('projects')->restrictOnDelete();
-            $table->string(column: 'uri', length: 255);
-            $table->string(column: 'description', length: 255);
+            $table->string(column: 'uri', length: 255) ->unique();
+            $table->string(column: 'description', length: 255) ->nullable();
             $table->string(column: 'alt_text', length: 255);
-            $table->year(column: 'timestamp')->unsigned();
+            $table->year(column: 'year_created');
             $table->string(column: 'creator', length: 50);
-            // $table->foreignId('condition_id')->constrained('conditions')->restrictOnDelete();
             $table->timestamps();
         });
     }
