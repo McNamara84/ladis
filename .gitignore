@@ -23,3 +23,4 @@ yarn-error.log
 /.zed
 /.cursor
 .DS_Store
+storage/dusk-profile
