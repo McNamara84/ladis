@@ -14,7 +14,7 @@ class InstitutionTest extends TestCase
 
     /**
      * Tests whether the getTypes() method from the Institution model
-     * correctly returns the expected values used as enums for material types.
+     * correctly returns the expected values used as enums for institution types.
      */
     public function test_get_types_returns_all_expected_values(): void
     {
