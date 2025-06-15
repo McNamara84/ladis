@@ -22,6 +22,9 @@
 
 <body>
     <div id="app">
+        <!-- Skip to content -->
+        <a class="visually-hidden-focusable d-inline-flex p-2 m-1" href="#content">Springe zum Inhalt</a>
+
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg border-bottom">
             <div class="container">
@@ -107,7 +110,7 @@
         </nav>
 
         <!-- Main Content -->
-        <main class="py-4">
+        <main id="content" class="py-4">
             @yield('content')
         </main>
 
