@@ -35,7 +35,7 @@ class PartialSurface extends Model
         'size'                      =>  'decimal:2',
     ];
 
-    protected $guarded = ['id', 'timestamp',];
+    protected $guarded = ['id', 'created_at', 'updated_at'];
 
     /**
      * n:1 relationship to SampleSurface (backwards) [model doesn't exist yet]

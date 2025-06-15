@@ -36,7 +36,7 @@ class Configuration extends Model
         'description'       =>  'text',
     ];
     
-    protected $guarded = ['id', 'timestamp',];
+    protected $guarded = ['id', 'created_at', 'updated_at'];
     
     /**
      * 1:n relationship to Process

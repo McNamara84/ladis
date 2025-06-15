@@ -30,7 +30,7 @@ class Process extends Model
         'wet'                   =>  'tinyInteger',
     ];
 
-   protected $guarded = ['id', 'timestamp',];
+   protected $guarded = ['id', 'created_at', 'updated_at'];
 
     //possible values for the duration attribute
     const DURATION_0    =   0;
