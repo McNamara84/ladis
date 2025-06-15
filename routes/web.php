@@ -21,5 +21,5 @@ Route::get('/register', function () {
 // Routes for user with authentication
 Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('/advanced_search', [AdvancedSearchController::class, 'index'])->name('advanced_search');
+Route::get('/advanced_search', [AdvancedSearchController::class, 'index'])->name('advanced_search')->middleware('auth');
 
