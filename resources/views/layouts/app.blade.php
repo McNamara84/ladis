@@ -20,10 +20,10 @@
     @endif
 </head>
 
-<body class="bg-light">
+<body>
     <div id="app">
         <!-- Navigation -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow">
+        <nav class="navbar navbar-expand-lg border-bottom">
             <div class="container">
                 <!-- Brand/Logo -->
                 <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
@@ -112,7 +112,7 @@
         </main>
 
         <!-- Footer -->
-        <footer class="bg-dark text-light py-4 mt-5">
+        <footer class="py-4 mt-5 border-top">
             <div class="container">
                 <div class="row">
                     <div class="col-md-8">

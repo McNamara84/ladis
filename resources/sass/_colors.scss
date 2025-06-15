@@ -1,0 +1,13 @@
+// Enable color modes based on `prefers-color-scheme` media query
+// Site will adapt automatically to system and/or app settings.
+// - https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme
+// - https://getbootstrap.com/docs/5.3/customize/color-modes/#building-with-sass
+// We could use the data-theme attribute instead, but that would require JS.
+$color-mode-type: media-query;
+
+// Enable `light-dark` CSS function
+// - https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme
+// - https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/light-dark
+:root {
+    color-scheme: light dark;
+}
