@@ -11,7 +11,7 @@ class WelcomeTest extends DuskTestCase
     /**
      * A Dusk test example.
      */
-    public function testExample(): void
+    public function testProjectNameOnWelcomePage(): void
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/')
