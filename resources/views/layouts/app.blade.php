@@ -30,9 +30,10 @@
         <!-- Header -->
         <header class="navbar navbar-expand-lg sticky-top bg-secondary-subtle">
             <!-- Navigation -->
-            <nav class="container-fluid flex-wrap flex-lg-nowrap gx-5" aria-label="Hauptnavigation">
+            <nav class="container-fluid" aria-label="Hauptnavigation">
                 <!-- Brand/Logo -->
-                <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}" aria-label="" {{ config('app.name') }}>
+                <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}"
+                    aria-label="{{ config('app.name') }}">
                     <!-- Laser-Symbol Logo -->
                     <svg class="navbar-logo" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <!-- Background Circle -->
@@ -47,66 +48,78 @@
                 </a>
 
                 <!-- Mobile Toggle -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar"
+                    aria-label="Navigation ein-/ausblenden">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <!-- Left Side Navigation -->
-                    <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
-                            <a class="nav-link {{ request()->routeIs('welcome') || request()->is('/') ? 'active' : '' }}"
-                                href="{{ url('/') }}">
-                                Home
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" href="#" aria-disabled="true">
-                                Erweiterte Suche
-                            </a>
-                        </li>
-                    </ul>
-
-                    <!-- Right Side Navigation -->
-                    <ul class="navbar-nav">
-                        @guest
+                <!-- Offcanvas Menu -->
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
+                    aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas-header border-bottom">
+                        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Navigation</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
+                            aria-label="Navigation schließen"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <!-- Left Side Navigation -->
+                        <ul class="navbar-nav me-auto">
                             <li class="nav-item">
-                                <a class="nav-link {{ request()->routeIs('login') ? 'active' : '' }}"
-                                    href="{{ route('login') }}">
-                                    Login
+                                <a class="nav-link {{ request()->routeIs('welcome') || request()->is('/') ? 'active' : '' }}"
+                                    href="{{ url('/') }}">
+                                    Home
                                 </a>
                             </li>
-                            @if (Route::has('register'))
+                            <li class="nav-item">
+                                <a class="nav-link disabled" href="#" aria-disabled="true">
+                                    Erweiterte Suche
+                                </a>
+                            </li>
+                        </ul>
+
+                        <hr class="d-lg-none">
+
+                        <!-- Right Side Navigation -->
+                        <ul class="navbar-nav">
+                            @guest
                                 <li class="nav-item">
-                                    <a class="nav-link {{ request()->routeIs('register') ? 'active' : '' }}"
-                                        href="{{ route('register') }}">
-                                        Registrieren
+                                    <a class="nav-link {{ request()->routeIs('login') ? 'active' : '' }}"
+                                        href="{{ route('login') }}">
+                                        Login
                                     </a>
                                 </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    {{ Auth::user()->name }}
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-end">
-                                    <a class="dropdown-item" href="{{ route('home') }}">
-                                        Dashboard
+                                @if (Route::has('register'))
+                                    <li class="nav-item">
+                                        <a class="nav-link {{ request()->routeIs('register') ? 'active' : '' }}"
+                                            href="{{ route('register') }}">
+                                            Registrieren
+                                        </a>
+                                    </li>
+                                @endif
+                            @else
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        {{ Auth::user()->name }}
                                     </a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                        Logout
-                                    </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
+                                    <div class="dropdown-menu dropdown-menu-end">
+                                        <a class="dropdown-item" href="{{ route('home') }}">
+                                            Dashboard
+                                        </a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            Logout
+                                        </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
+                                    </div>
+                                </li>
+                            @endguest
+                        </ul>
+                    </div>
                 </div>
             </nav>
         </header>
