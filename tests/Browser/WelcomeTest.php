@@ -15,7 +15,8 @@ class WelcomeTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/')
-                    ->assertSee('Laser-Projekt');
+                ->waitForText('Laser-Projekt')
+                ->assertSee('Laser-Projekt');
         });
     }
 }
