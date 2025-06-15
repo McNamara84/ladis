@@ -4,6 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Theme Color: Should be set to the primary color of the website -->
+    <meta name="theme-color" content="#000">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -25,11 +27,12 @@
         <!-- Skip to content -->
         <a class="visually-hidden-focusable d-inline-flex p-2 m-1" href="#content">Springe zum Inhalt</a>
 
-        <!-- Navigation -->
-        <nav class="navbar navbar-expand-lg border-bottom">
-            <div class="container">
+        <!-- Header -->
+        <header class="navbar navbar-expand-lg sticky-top bg-secondary-subtle">
+            <!-- Navigation -->
+            <nav class="container-fluid flex-wrap flex-lg-nowrap gx-5" aria-label="Hauptnavigation">
                 <!-- Brand/Logo -->
-                <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
+                <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}" aria-label="" {{ config('app.name') }}>
                     <!-- Laser-Symbol Logo -->
                     <svg class="navbar-logo" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <!-- Background Circle -->
@@ -41,7 +44,6 @@
                             <circle cx="12" cy="18" r="2" class="logo-icon" />
                         </g>
                     </svg>
-                    <span class="fw-bold">{{ config('app.name') }}</span>
                 </a>
 
                 <!-- Mobile Toggle -->
@@ -106,8 +108,8 @@
                         @endguest
                     </ul>
                 </div>
-            </div>
-        </nav>
+            </nav>
+        </header>
 
         <!-- Main Content -->
         <main id="content" class="py-4">
