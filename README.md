@@ -47,6 +47,7 @@ Follow these steps to set up the development environment:
 
 - `php artisan serve` to start test server for manual testing
 - `php artisan test` to execute the test suite.
+- `php artisan dusk` to run the browser tests. A working Chrome browser and Chromedriver must be installed.
 
 ## Production Deployment
 
