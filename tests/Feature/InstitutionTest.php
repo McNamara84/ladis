@@ -33,9 +33,9 @@ class InstitutionTest extends TestCase
     public function test_devices_relationship_returns_devices(): void
     {
         $institution = Institution::create([
-            'name' => 'Foo',
-            'type' => Institution::TYPE_CLIENT,
-            'contact_information' => 'bar',
+            'name' => 'Laser Tec Inc.',
+            'type' => Institution::TYPE_MANUFACTURER,
+            'contact_information' => 'callme',
         ]);
 
         $device = new Device();
