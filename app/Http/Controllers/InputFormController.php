@@ -12,6 +12,6 @@ class InputFormController extends Controller
     {
         $pageTitle = 'Input Form - Laser-Projekt - FH Potsdam';
 
-        return view('input_form', compact('pageTitle'));
+        return view('inputform_device', compact('pageTitle'));
     }
 }
