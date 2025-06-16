@@ -9,7 +9,6 @@
             <div class="card">
                 <div class="card-body">
                     <h1 class="card-title text-primary">{{ $pageTitle }}</h1>
-                    <p class="text-muted small mb-4">Updated on: {{ $lastUpdated }}</p>
                     <p class="card-text">Welcome to the Advanced Search!</p>
                 </div>
             </div>
