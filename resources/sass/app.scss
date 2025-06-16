@@ -7,6 +7,11 @@
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
 
+// SVG Symbols
+symbol {
+    fill: currentColor;
+}
+
 // Bootstrap Icons
 .bi {
     display: inline-block;
@@ -21,16 +26,26 @@
     background-color: transparent;
 }
 
-// Navigation Bar Logo
-// [!] This is only temporary, we will replace it with the actual logo later.
-.navbar-logo {
-    inline-size: 2.2222em;
+// App Logo
+:root {
+    // Default size for the logo. Override in components.
+    --app-logo-size: 4em;
+}
 
-    .logo-bg {
-        fill: currentColor;
-    }
+.app-logo {
+    inline-size: var(--app-logo-size);
+    aspect-ratio: 1 / 1;
+    color: currentColor;
+}
 
-    .logo-icon {
-        fill: var(--bs-primary);
-    }
+.app-logo-bg {
+    fill: currentColor;
+}
+
+.app-logo-accent {
+    fill: var(--bs-primary);
+}
+
+.navbar .app-logo {
+    --app-logo-size: 2.2222em;
 }
