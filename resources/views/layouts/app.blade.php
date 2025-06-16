@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-100">
 
 <head>
     <meta charset="utf-8">
@@ -22,7 +22,7 @@
     @endif
 </head>
 
-<body>
+<body class="d-flex flex-column h-100">
     <!-- SVG Symbols Sprite -->
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
         <!-- Logo placeholder -->
@@ -58,7 +58,7 @@
         </symbol>
     </svg>
 
-    <div id="app">
+    <div id="app" class="d-flex flex-column min-vh-100">
         <!-- Skip to content -->
         <a class="visually-hidden-focusable d-inline-flex p-2 m-1" href="#content">Springe zum Inhalt</a>
 
@@ -180,12 +180,12 @@
         </header>
 
         <!-- Main Content -->
-        <main id="content" class="py-4">
+        <main id="content" class="flex-grow-1 py-4">
             @yield('content')
         </main>
 
         <!-- Footer -->
-        <footer class="py-4 mt-5 border-top">
+        <footer class="py-4 border-top">
             <div class="container">
                 <div class="row">
                     <div class="col-md-8">
