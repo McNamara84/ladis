@@ -14,8 +14,9 @@ class InputFormControllerTest extends TestCase
     public function test_input_form_view_is_displayed(): void
     {
         $response = $this->get('/input_form');
+        
         $response->assertStatus(200);
         $response->assertViewIs('input_form');
-        $response->assertSee($pageTitle);
+        $response->assertSee('Input Form - Laser-Projekt - FH Potsdam');
     }
 }
