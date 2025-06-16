@@ -7,9 +7,22 @@
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
 
-// Custom Components
+// Bootstrap Icons
+.bi {
+    display: inline-block;
+    vertical-align: -0.125em;
+    width: 1em;
+    height: 1em;
+}
 
-// Navigation bar logo
+// Mobile Navigation
+.navbar-toggler {
+    border: none;
+    background-color: transparent;
+}
+
+// Navigation Bar Logo
+// [!] This is only temporary, we will replace it with the actual logo later.
 .navbar-logo {
     inline-size: 2.2222em;
 

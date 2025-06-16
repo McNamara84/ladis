@@ -51,7 +51,12 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
                     data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar"
                     aria-label="Navigation ein-/ausblenden">
-                    <span class="navbar-toggler-icon"></span>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bi"
+                        height="24" width="24" aria-hidden="true">
+                        <path fill-rule="evenodd"
+                            d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z">
+                        </path>
+                    </svg> <span class="d-none fs-6 pe-1">Navigation ein-/ausblenden</span>
                 </button>
 
                 <!-- Offcanvas Menu -->
@@ -63,12 +68,26 @@
                             aria-label="Navigation schließen"></button>
                     </div>
                     <div class="offcanvas-body">
+                        <!-- Mobile Search -->
+                        <form class="d-flex d-lg-none" role="search">
+                            <input class="form-control me-2" type="search" placeholder="Suche..." aria-label="Suche">
+                            <button type="submit" class="btn btn-outline-secondary" aria-label="Suchen">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-search" viewBox="0 0 16 16" aria-hidden="true">
+                                    <path
+                                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0">
+                                    </path>
+                                </svg>
+                            </button>
+                        </form>
+
+                        <hr class="d-lg-none">
+
                         <!-- Left Side Navigation -->
                         <ul class="navbar-nav me-auto">
                             <li class="nav-item">
-                                <a class="nav-link {{ request()->routeIs('welcome') || request()->is('/') ? 'active' : '' }}"
-                                    href="{{ url('/') }}">
-                                    Home
+                                <a class="nav-link disabled" href="#" aria-disabled="true">
+                                    Hilfe
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -79,6 +98,23 @@
                         </ul>
 
                         <hr class="d-lg-none">
+
+                        <!-- Truly centered Search on Desktop -->
+                        <div class="position-absolute start-50 translate-middle-x d-none d-lg-block"
+                            style="width: 25vw">
+                            <form class="d-flex" role="search">
+                                <input class="form-control me-2" type="search" placeholder="Suche..."
+                                    aria-label="Suche">
+                                <button type="submit" class="btn btn-outline-secondary" aria-label="Suchen">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-search" viewBox="0 0 16 16" aria-hidden="true">
+                                        <path
+                                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0">
+                                        </path>
+                                    </svg>
+                                </button>
+                            </form>
+                        </div>
 
                         <!-- Right Side Navigation -->
                         <ul class="navbar-nav">
