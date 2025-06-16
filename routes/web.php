@@ -8,6 +8,8 @@ use App\Http\Controllers\HomeController;
 Route::get('/', function () {
     return view('welcome');
 });
+// Publicly accessible advanced search
+Route::get('/advanced_search', [AdvancedSearchController::class, 'index'])->name('advanced_search');
 
 // Login page with route name login
 Route::get('/login', function () {
@@ -21,5 +23,4 @@ Route::get('/register', function () {
 // Routes for user with authentication
 Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('/advanced_search', [AdvancedSearchController::class, 'index'])->name('advanced_search')->middleware('auth');
 
