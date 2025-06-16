@@ -11,13 +11,17 @@ class Image extends Model
      *
      * @var array<string>
      */
-    protected $guarded = ['id'];
+    protected $guarded = ['id', 'created_at','updated_at'];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array<string, string>
+     */
 
     protected $casts = [
         // 'project_id' => 'integer',
         // 'condition_id' => 'integer',
-        'created_at' => 'datetime',
-        'updated_at' => 'datetime',
         'uri' => 'string',
         'description' => 'string',
         'alt_text' => 'string',
