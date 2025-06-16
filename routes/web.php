@@ -20,3 +20,5 @@ Route::get('/register', function () {
 // Routes for user with authentication
 Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+Route::get('/inputform', [InputFormController::class, 'index']);
