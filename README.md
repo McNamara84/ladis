@@ -3,7 +3,7 @@
 ![MySQL 8](https://img.shields.io/badge/mysql-8.4-orange?logo=mysql&logoColor=white)
 ![Bootstrap 5.3](https://img.shields.io/badge/bootstrap-5.3-563d7c?logo=bootstrap)
 <!-- TODO: Add Badge for license -->
-![Test Coverage](./.github/coverage.svg)
+![Test Coverage](https://github.com/McNamara84/cleanup-laser-database/blob/image-data/coverage.svg?raw=true)
 
 # Cleanup Laser Database
 
@@ -64,12 +64,15 @@ This web application will be deployed automatically to the production server in 
 - `federal_states`
 - `cities`
 - `artifacts`
+- `images`
 - `institutions`
 - `lenses`
 - `locations`
 - `devices`
 - `materials`
 - `venues`
+- `conditions`
+- `damage_patterns`
 
 ## Contributing
 

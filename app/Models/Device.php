@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Models\Institution;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use App\Models\Lens;
+use App\Models\User;
 
 /**
  * Device Model
@@ -51,6 +52,7 @@ class Device extends Model
         'max_scan_width'  => 'float',
         'min_focal_length'=> 'float',
         'max_focal_length'=> 'float',
+        'last_edit_by'    => 'integer',
     ];
 
     /**
@@ -84,5 +86,13 @@ class Device extends Model
     public function lenses(): BelongsToMany
     {
         return $this->belongsToMany(Lens::class)->withTimestamps(); // n:m with timestamps
+    }
+
+    /**
+     * n:1 relationship to User who last edited the device
+     */
+    public function lastEditor(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'last_edit_by');
     }
 }
