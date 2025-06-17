@@ -70,12 +70,14 @@ jobs:
         APP_ENV: testing
       run: php artisan migrate --force
         
-    - name: Run Laravel tests
+    - name: Run Laravel tests (with debugging)
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/testing.sqlite
         APP_ENV: testing
-      run: php artisan test --verbose
+      run: |
+        php artisan test --verbose --debug
+        echo "Exit code: $?"
         
     - name: Run frontend tests (not yet integrated)
       run: |
