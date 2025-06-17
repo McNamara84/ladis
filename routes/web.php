@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InputFormController;
 
 // Landing page for guests
 Route::get('/', function () {
