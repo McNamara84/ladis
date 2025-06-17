@@ -57,12 +57,6 @@ jobs:
           npm ci
         fi
         
-    - name: Clear Laravel caches
-      run: |
-        php artisan config:clear
-        php artisan cache:clear
-        php artisan view:clear
-        
     - name: Run database migrations
       env:
         DB_CONNECTION: sqlite
