@@ -70,7 +70,7 @@ jobs:
         DB_DATABASE: database/testing.sqlite
         APP_ENV: testing
       run: |
-        php artisan test --verbose --debug
+        php artisan test --debug
         echo "Exit code: $?"
         
     - name: Run frontend tests (not yet integrated)
