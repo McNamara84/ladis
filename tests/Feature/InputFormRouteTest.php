@@ -11,7 +11,7 @@ class InputFormRouteTest extends TestCase
     /**
      * A basic feature test example.
      */
-    public function inputform_route_returns_successful_response(): void
+    public function test_inputform_route_returns_successful_response(): void
     {
         $response = $this->get('/inputform');
 
