@@ -13,10 +13,10 @@ class InputFormControllerTest extends TestCase
      */
     public function test_inputform_device_view_is_displayed(): void
     {
-        $response = $this->get('/inputform_device');
+        $response = $this->get('/inputform');
         
         $response->assertStatus(200);
         $response->assertViewIs('inputform_device');
-        $response->assertSee('Input Form - Laser-Projekt - FH Potsdam');
+        $response->assertSee('Neues Lasergerät hinzufügen');
     }
 }
