@@ -1,8 +1,7 @@
-![Laravel 12](https://img.shields.io/badge/laravel-12-red?logo=laravel&style=flat)
 ![PHP 8.4](https://img.shields.io/badge/php-8.4-blue?logo=php)
 ![MySQL 8](https://img.shields.io/badge/mysql-8.4-orange?logo=mysql&logoColor=white)
+![Laravel 12](https://img.shields.io/badge/laravel-12-red?logo=laravel&style=flat)
 ![Bootstrap 5.3](https://img.shields.io/badge/bootstrap-5.3-563d7c?logo=bootstrap)
-<!-- TODO: Add Badge for license -->
 ![Test Coverage](https://github.com/McNamara84/cleanup-laser-database/blob/image-data/coverage.svg?raw=true)
 
 # Cleanup Laser Database
