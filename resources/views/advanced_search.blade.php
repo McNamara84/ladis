@@ -21,7 +21,7 @@
                             </div>
                             <div class="d-flex justify-content-end">
                                 <button type="submit" class="btn btn-primary">
-                                    <i class="bi bi-plus-circle"></i> Search
+                                    <i class="bi bi-search"></i> Search
                                 </button>
                             </div>
                         </form>
