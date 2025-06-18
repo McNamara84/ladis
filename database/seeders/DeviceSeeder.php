@@ -12,6 +12,7 @@ class DeviceSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        // Don't forget to add 'institution_id' manually
+        // Don't forget to add 'last_edit_by' manually --> BOT user
     }
 }
