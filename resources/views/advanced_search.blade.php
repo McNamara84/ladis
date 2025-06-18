@@ -12,11 +12,11 @@
                     <p class="card-text">Welcome to the Advanced Search!</p>
                         <form>
                             <div class="mb-3"> 
-                                <label for="device_name" class="form-label"> device name:</label>
+                                <label for="device_name" class="form-label"> Device Name:</label>
                                 <input type="text" id="device_name" name="device_name" class="form-control" placeholder="Enter your search term here.">
                             </div>
                             <div class="mb-3">
-                                <label for="project_name" class="form-label"> project name:</label>
+                                <label for="project_name" class="form-label"> Project Name:</label>
                                 <input type="text" id="project_name" name="project_name" class="form-control" placeholder="Enter your search term here.">
                             </div>
                             <div class="d-flex justify-content-end">
