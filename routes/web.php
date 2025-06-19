@@ -20,3 +20,6 @@ Route::get('/register', function () {
 // Routes for user with authentication
 Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+// Route for the Datenschutz (Data Protection) page
+Route::get('/datenschutz', [App\Http\Controllers\DatenschutzController::class, 'index'])->name('datenschutz');
