@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InputFormController;
 
 // Landing page for guests
 Route::get('/', function () {
@@ -23,3 +24,5 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 // Route for the Datenschutz (Data Protection) page
 Route::get('/datenschutz', [App\Http\Controllers\DatenschutzController::class, 'index'])->name('datenschutz');
+
+Route::get('/inputform', [InputFormController::class, 'index']);
