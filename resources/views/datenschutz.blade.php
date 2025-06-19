@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-@section('title', 'Datenschutzerkläung')
+@section('title', $pageTitle)
 
 @section('content')
     <div>
-         <h1>Datenschutzerklärung zu der Webseite <em>Name</em></h1>
+         <h1>{{ $pageTitle }} zu der Webseite <em>{{ $websiteName }}</em></h1>
         <p>Wir verarbeiten personenbezogene Daten, die beim Besuch unserer Webseite erhoben werden, unter Beachtung der geltenden datenschutzrechtlichen Bestimmungen, insbesondere der EU-Datenschutz-Grundverordnung (DSGVO).</p>
         <h2>1. Verantwortlicher</h2>
         <p>Verantwortliche*r im Sinne der DSGVO und anderer nationaler Datenschutzgesetze der Mitgliedsstaaten sowie sonstiger datenschutzrechtlicher Bestimmungen ist die/der<br><em>Verantwortliche*r</em></br>
@@ -26,6 +26,6 @@
         <h2>5. Hosting</h2>
         <p>Die Webseite wird über Server der Fachhochschule Potsdam gehostet. Es besteht ein entsprechender Vertrag zur Auftragsverarbeitung gemäß Art. 28 DSGVO.</p>
         <h2>6. Änderungen dieser Datenschutzerklärung</h2>
-        <p>Wir behalten uns vor, diese Datenschutzerklärung zu ändern, um sie an geänderte rechtliche Rahmenbedingungen oder bei Änderungen des Dienstes anzupassen. Die aktuelle Version ist stets auf unserer Webseite verfügbar. Bitte informieren Sie sich regelmäßig über die geltenden Datenschutzbestimmungen.</p>
+        <p>Wir behalten uns vor, diese Datenschutzerklärung zu ändern, um sie an geänderte rechtliche Rahmenbedingungen oder bei Änderungen des Dienstes anzupassen. Die aktuelle Version wurde am {{ $lastUpdated }}ist stets auf unserer Webseite verfügbar. Bitte informieren Sie sich regelmäßig über die geltenden Datenschutzbestimmungen.</p>
     </div>
 @endsection
