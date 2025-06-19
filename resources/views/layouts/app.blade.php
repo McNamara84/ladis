@@ -20,6 +20,9 @@
     @else
         @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     @endif
+
+    <!-- Custom page styles -->
+    @stack('styles')
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -180,7 +183,7 @@
         </header>
 
         <!-- Main Content -->
-        <main id="content" class="flex-grow-1 py-4">
+        <main id="content" class="flex-grow-1">
             @yield('content')
         </main>
 
