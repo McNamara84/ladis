@@ -63,7 +63,7 @@
         <a class="visually-hidden-focusable d-inline-flex p-2 m-1" href="#content">Springe zum Inhalt</a>
 
         <!-- Header -->
-        <header class="navbar navbar-expand-lg sticky-top bg-secondary-subtle">
+        <header class="navbar navbar-expand-lg sticky-top bg-body-secondary">
             <!-- Navigation -->
             <nav class="container-fluid" aria-label="Hauptnavigation">
                 <!-- Brand/Logo -->
@@ -185,7 +185,7 @@
         </main>
 
         <!-- Footer -->
-        <footer class="py-4 border-top">
+        <footer class="py-4 bg-body-secondary">
             <div class="container">
                 <div class="row">
                     <div class="col-md-8">
