@@ -22,4 +22,12 @@ Route::get('/register', function () {
 Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
+// TODO: Setup authentication
+// Route for inputform with authentication
+
+// Route::middleware(['auth'])->group(function () {
+//    Route::get('/inputform', [InputFormController::class, 'index']);
+//});
+
+//Route for inputform without authentication
 Route::get('/inputform', [InputFormController::class, 'index']);
