@@ -7,12 +7,17 @@
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
 
-// SVG Symbols
+//
+// Custom Components
+//
+
+// Defaults for SVG-Sprite Elements
 symbol {
     fill: currentColor;
 }
 
-// Bootstrap Icons
+// Defaults for Bootstrap Icons
+// - https://icons.getbootstrap.com
 .bi {
     display: inline-block;
     vertical-align: -0.125em;
@@ -20,13 +25,9 @@ symbol {
     height: 1em;
 }
 
-// Mobile Navigation
-.navbar-toggler {
-    border: none;
-    background-color: transparent;
-}
-
-// App Logo
+//
+// App Logo (temporary)
+//
 :root {
     // Default size for the logo. Override in components.
     --app-logo-size: 4em;
@@ -46,6 +47,17 @@ symbol {
     fill: var(--bs-primary);
 }
 
+//
+// Navigation Bar
+//
+
+// Mobile Menu Button
+.navbar-toggler {
+    border: none;
+    background-color: transparent;
+}
+
+// Adjust logo size in navbar
 .navbar .app-logo {
     --app-logo-size: 2.2222em;
 }
