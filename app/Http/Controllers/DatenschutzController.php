@@ -8,7 +8,7 @@ class DatenschutzController extends Controller
 {
     public function index()
     {
-        return view('changelog');
+        return view('datenschutz');
     }
 }
 // This controller handles the display of the Datenschutz (Data Protection) page.
