@@ -54,4 +54,16 @@ class ConditionTest extends TestCase
         $this->assertInstanceOf(DamagePattern::class, $relation->getRelated());
         $this->assertSame('damage_pattern_id', $relation->getForeignKeyName());
     }
+
+    public function test_damage_pattern_relation_returns_associated_model(): void
+    {
+        $pattern = DamagePattern::create(['name' => 'Scratch']);
+        $condition = Condition::create([
+            'damage_pattern_id' => $pattern->id,
+            'severity' => 1,
+            'adhesion' => 1,
+        ]);
+
+        $this->assertTrue($condition->damagePattern->is($pattern));
+    }
 }
