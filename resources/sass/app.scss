@@ -61,3 +61,35 @@ symbol {
 .navbar .app-logo {
     --app-logo-size: 2.2222em;
 }
+
+//
+// Dark Mode
+//
+
+// Variables for Dark color mode are far from complete in BS.
+// So we have to use this thing:
+// @include color-mode(dark, true) {
+// styles for `:root` here …
+// }
+
+// Because Bootstrap defines many variables on sepcific selctors,
+// we can't just assign all of them to `:root` :(
+@include color-mode(dark) {
+
+    .navbar,
+    .navbar-nav,
+    .nav-link {
+        --bs-navbar-color: #{$light};
+        --bs-navbar-link-color: #{$light};
+        --bs-navbar-hover-color: #{$link-color-dark};
+        --bs-nav-link-hover-color: #{$link-color-dark};
+        --bs-navbar-disabled-color: #{$body-tertiary-color-dark};
+        --bs-nav-link-disabled-color: #{$body-tertiary-color-dark};
+    }
+
+    // Want to do this but it has many side effects:
+    // .btn,
+    // .btn-primary {
+    //     --bs-btn-color: #{$…};
+    // }
+}

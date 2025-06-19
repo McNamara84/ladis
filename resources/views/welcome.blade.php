@@ -8,15 +8,15 @@
                 <div class="text-center mb-5">
                     <!-- Laser-Icon -->
                     <!-- <div class="mx-auto mb-4 bg-primary rounded-circle d-flex align-items-center justify-content-center"
-                                            style="width: 100px; height: 100px;">
-                                            <svg width="50" height="50" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
-                                                class="text-white">
-                                                <path d="M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2Z"
-                                                    fill="currentColor" />
-                                                <circle cx="12" cy="18" r="2" fill="currentColor" />
-                                                <path d="M8 20H16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                                            </svg>
-                                        </div> -->
+                                                style="width: 100px; height: 100px;">
+                                                <svg width="50" height="50" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                                                    class="text-white">
+                                                    <path d="M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2Z"
+                                                        fill="currentColor" />
+                                                    <circle cx="12" cy="18" r="2" fill="currentColor" />
+                                                    <path d="M8 20H16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                                                </svg>
+                                            </div> -->
 
                     <h1 class="display-4 fw-bold text-primary mb-3">{{ config('app.name') }}</h1>
                     <p class="lead text-muted">Datenbank zu Reinigungslasern in der Restaurierung</p>
@@ -28,15 +28,15 @@
                     <div class="card-body p-5">
                         <div class="text-center">
                             <!-- Construction Icon
-                                                    <div class="mb-4">
-                                                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none"
-                                                            xmlns="http://www.w3.org/2000/svg" class="text-warning">
-                                                            <path d="M12 2L15.09 8.26L22 9L15.09 9.74L12 16L8.91 9.74L2 9L8.91 8.26L12 2Z"
-                                                                fill="currentColor" />
-                                                            <circle cx="12" cy="18" r="2" fill="currentColor" />
-                                                        </svg>
-                                                    </div>
-                                                    -->
+                                                        <div class="mb-4">
+                                                            <svg width="64" height="64" viewBox="0 0 24 24" fill="none"
+                                                                xmlns="http://www.w3.org/2000/svg" class="text-warning">
+                                                                <path d="M12 2L15.09 8.26L22 9L15.09 9.74L12 16L8.91 9.74L2 9L8.91 8.26L12 2Z"
+                                                                    fill="currentColor" />
+                                                                <circle cx="12" cy="18" r="2" fill="currentColor" />
+                                                            </svg>
+                                                        </div>
+                                                        -->
 
                             <h2 class="h4 fw-bold mb-4">Hier entsteht das {{ config('app.name') }}</h2>
 
