@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-100">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="min-vh-100">
 
 <head>
     <meta charset="utf-8">
@@ -22,7 +22,7 @@
     @endif
 </head>
 
-<body class="d-flex flex-column h-100">
+<body class="d-flex flex-column min-vh-100">
     <!-- SVG Symbols Sprite -->
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
         <!-- Logo placeholder -->
