@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Registrierung - Laser-Projekt')
+@section('title', 'Registrierung - LADIS')
 
 @section('content')
     <div class="container">
@@ -19,7 +19,7 @@
                         </svg>
                     </div>
                     <h1 class="h3 fw-bold text-success">Registrierung</h1>
-                    <p class="text-muted">Erstellen Sie Ihr Laser-Projekt Konto</p>
+                    <p class="text-muted">Erstellen Sie Ihr LADIS Konto</p>
                 </div>
 
                 <!-- Register Card -->
