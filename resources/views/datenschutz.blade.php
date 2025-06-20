@@ -4,7 +4,7 @@
     <div class="container">
         <h1>{{ $pageTitle }}</h1>
         <p>Wir verarbeiten personenbezogene Daten, die beim Besuch unserer Webseite erhoben werden, unter Beachtung der geltenden datenschutzrechtlichen Bestimmungen, insbesondere der EU-Datenschutz-Grundverordnung (DSGVO).</p>
-        <p>Diese Datenschutzhinweise (Stand:{{ $lastUpdated }}) gelten für folgende von der FH Potsdam betriebenen Seiten:</p>
+        <p>Diese Datenschutzhinweise (Stand: <time datetime="{{ $lastUpdated }}">{{ $lastUpdated }}</time>) gelten für folgende von der FH Potsdam betriebenen Seiten:</p>
         <ul>
             <li><a href="">{{ $URL }}</a></li>
         </ul>
@@ -45,13 +45,13 @@
             <strong>Dagmar Hartge</strong><br>
             Stahnsdorfer Damm 77<br>
             14532 Kleinmachnow<br>
-            <strong>E-mail: </strong><a href="mailto:">poststelle@LDA.brandenburg.de</a><br>
+            <strong>E-mail: </strong><a href="mailto:poststelle@LDA.brandenburg.de">poststelle@LDA.brandenburg.de</a><br>
         </address>
         <p>Weitere Informationen können Sie dem offiziellen Internetauftritt der Landesbeauftragten unter <a href="https://www.lda.brandenburg.de" title="Externer Link: Weitere Informationen können Sie dem offiziellen Internetauftritt der Landesbeauftragten unter www.lda.brandenburg.de (Öffnet neues Fenster)">www.lda.brandenburg.de</a> entnehmen.</p>
         <h2>5. Hosting</h2>
         <p>Die Webseite wird über Server der Fachhochschule Potsdam gehostet. Es besteht ein entsprechender Vertrag zur Auftragsverarbeitung gemäß Art. 28 DSGVO.</p>
         <h2>6. Änderungen dieser Datenschutzerklärung</h2>
-        <p>Wir behalten uns vor, diese Datenschutzerklärung zu ändern, um sie an geänderte rechtliche Rahmenbedingungen oder bei Änderungen des Dienstes anzupassen. Die aktuelle Version wurde am {{ $lastUpdated }} ist stets auf unserer Webseite verfügbar. Bitte informieren Sie sich regelmäßig über die geltenden Datenschutzbestimmungen.</p>
+        <p>Wir behalten uns vor, diese Datenschutzerklärung zu ändern, um sie an geänderte rechtliche Rahmenbedingungen oder bei Änderungen des Dienstes anzupassen. Die aktuelle Version wurde am <time datetime="{{ $lastUpdated }}">{{ $lastUpdated }}</time> ist stets auf unserer Webseite verfügbar. Bitte informieren Sie sich regelmäßig über die geltenden Datenschutzbestimmungen.</p>
         <h2>Technische Umsetzung</h2>
         <h3>Ansprechpartner*innen</h3>
         <h4>Verantwortliche Stelle ist:</h4>
