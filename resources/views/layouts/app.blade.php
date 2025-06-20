@@ -121,7 +121,8 @@
                         <h6 class="fw-bold">Laser-Projekt</h6>
                         <p class="small mb-0">
                             Datenbank zu Reinigungslasern in der Restaurierung<br>
-                            Fachhochschule Potsdam - Studentisches Projekt
+                            Fachhochschule Potsdam - Studentisches Projekt<>
+                            <a href="{{ route('datenschutz') }}">Datenschutzerklärung</a>
                         </p>
                     </div>
                     <div class="col-md-4 text-md-end">
