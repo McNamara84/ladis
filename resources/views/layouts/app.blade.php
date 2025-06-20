@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title', 'Laser-Projekt - FH Potsdam')</title>
+    <title>@yield('title', 'LADIS - FH Potsdam')</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
@@ -40,7 +40,7 @@
                             <circle cx="12" cy="18" r="2" fill="currentColor" />
                         </svg>
                     </div>
-                    <span class="fw-bold">Laser-Projekt</span>
+                    <span class="fw-bold">LADIS</span>
                 </a>
 
                 <!-- Mobile Toggle -->
@@ -123,7 +123,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-8">
-                        <h6 class="fw-bold">Laser-Projekt</h6>
+                        <h6 class="fw-bold">LADIS</h6>
                         <p class="small mb-0">
                             Datenbank zu Reinigungslasern in der Restaurierung<br>
                             Fachhochschule Potsdam - Studentisches Projekt
