@@ -1,2 +1,2 @@
 name;description;year;build;height;width;depth;weight;fiber_length;cooling;mounting;automation;max_output;mean_output;max_wattage;head;emission_source;beam_type;beam_profile;wavelenght;min_spot_size;max_spot_size;min_pf;max_pf;min_pw;max_pw;min_scan_width;max_scan_width;min_focal_length;max_focal_length;safety_class
-CL 20 BACKPACK;NULL;NULL;NULL;220;400;650;14.5;NULL;0;NULL;NULL;NULL;20;NULL;NULL;NULL;1;NULL;1064;NULL;NULL;NULL;NULL;NULL;NULL;NULL;NULL;NULL;NULL;NULL
+CL 20 BACKPACK;;;;220;400;650;14.5;;0;;;;20;;;;1;;1064;;;;;;;;;;;
