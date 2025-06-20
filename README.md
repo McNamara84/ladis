@@ -1,3 +1,5 @@
+![Test Coverage](https://github.com/McNamara84/cleanup-laser-database/blob/image-data/coverage.svg?raw=true)
+
 # Cleanup Laser Database
 
 <!-- Add project description here -->
@@ -54,15 +56,18 @@ This web application will be deployed automatically to the production server in 
 
 <!-- Introduction text for the db schema here -->
 
-### Core Tables
-
+- `federal_states`
+- `cities`
 - `artifacts`
-- institutions
-- lenses
+- `images`
+- `institutions`
+- `lenses`
 - `locations`
-- devices
-- materials
+- `devices`
+- `materials`
 - `venues`
+- `conditions`
+- `damage_patterns`
 
 ## Contributing
 

@@ -120,6 +120,11 @@
                                     Erweiterte Suche
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link disabled" href="#" aria-disabled="true">
+                                    Erweiterte Suche
+                                </a>
+                            </li>
                         </ul>
 
                         <hr class="d-lg-none">

@@ -21,7 +21,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('device__lens', function (Blueprint $table) {
+        Schema::create('device_lens', function (Blueprint $table) {
             // Foreign key as part of the composite primary key
             $table->foreignId('device_id')->constrained()->cascadeOnDelete(); // If a device is deleted, its links are deleted as well
             $table->foreignId('lens_id')->constrained('lenses')->cascadeOnDelete(); // Explicit table name because the plural lenses will not be detected automatically
