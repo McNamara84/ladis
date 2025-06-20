@@ -14,5 +14,6 @@ class DeviceSeeder extends Seeder
     {
         // Don't forget to add 'institution_id' manually
         // Don't forget to add 'last_edit_by' manually --> BOT user
+        // safety_class will be added to the migration later and should be defined later
     }
 }
