@@ -11,11 +11,12 @@ class DeviceSeeder extends Seeder
     /**
      * Run the device seeds.
      */
-    public function run(): void
-    {
-        $csv_file = fopen(base_path('database\data\devices\CL20_Backpack.csv'), 'r');
+
+    private function useDataFromCsvAndCreateDevice(string $path_to_csv, string $separator, int $institution_id, int $last_edit_by){
+
+    $csv_file = fopen(base_path($path_to_csv), 'r');
         $header = null;
-        while (($row = fgetcsv($csv_file, 2000, ";")) !== false) {
+        while (($row = fgetcsv($csv_file, 2000, $separator)) !== false) {
             if ($header == null) {
                 $header = $row;
             } else {
@@ -24,56 +25,20 @@ class DeviceSeeder extends Seeder
                     array_merge(
                         $data,
                         [
-                            'institution_id' => 2,
-                            'last_edit_by' => 1,
+                            'institution_id' => $institution_id,
+                            'last_edit_by' => $last_edit_by,
                         ]
                     )
                 );
             }
         }
         fclose($csv_file);
-
-
-        $csv_file = fopen(base_path('database\data\devices\THUNDER_COMPACT.csv'), 'r');
-        $header = null;
-        while (($row = fgetcsv($csv_file, 2000, ";")) !== false) {
-            if ($header == null) {
-                $header = $row;
-            } else {
-                $data = array_combine($header, $row);
-                Device::create(
-                    array_merge(
-                        $data,
-                        [
-                            'institution_id' => 1,
-                            'last_edit_by' => 1,
-                        ]
-                    )
-                );
-            }
-        }
-        fclose($csv_file);
-
-
-        $csv_file = fopen(base_path('database\data\devices\Infinito Laser_p_n _I054C1.csv'), 'r');
-        $header = null;
-        while (($row = fgetcsv($csv_file, 2000, ";")) !== false) {
-            if ($header == null) {
-                $header = $row;
-            } else {
-                $data = array_combine($header, $row);
-                Device::create(
-                    array_merge(
-                        $data,
-                        [
-                            'institution_id' => 1,
-                            'last_edit_by' => 1,
-                        ]
-                    )
-                );
-            }
-        }
-        fclose($csv_file);
-
     }
+
+       public function run(): void
+    { 
+        $this->useDataFromCsvAndCreateDevice('database\data\devices\CL20_Backpack.csv',';',2,1);
+        $this->useDataFromCsvAndCreateDevice('database\data\devices\THUNDER_COMPACT.csv',';',1,1);
+        $this->useDataFromCsvAndCreateDevice('database\data\devices\Infinito Laser_p_n _I054C1.csv',';',1,1);
+}
 }
