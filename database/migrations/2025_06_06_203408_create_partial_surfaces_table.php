@@ -28,7 +28,7 @@ return new class extends Migration
             $table->foreignId('result_id')->constrained('conditions')
                 ->onDelete('restrict')
                 ->onUpdate('restrict');
-            $table->text('identifier')->nullable();
+            $table->string('identifier')->nullable();
             $table->decimal('size', 5, 2)->unsigned()->comment('in cm²');
             $table->timestamps();
         });
