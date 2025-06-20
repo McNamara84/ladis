@@ -1,0 +1,2 @@
+name;description;year;build;height;width;depth;weight;fiber_length;cooling;mounting;automation;max_output;mean_output;max_wattage;head;emission_source;beam_type;beam_profile;wavelenght;min_spot_size;max_spot_size;min_pf;max_pf;min_pw;max_pw;min_scan_width;max_scan_width;min_focal_length;max_focal_length
+THUNDER COMPACT;NULL;NULL;NULL;24;79;92;60;NULL;NULL;NULL;NULL;NULL;NULL;NULL;NULL;NULL;0;Gaussian;1064;10;10;0.001;0.01;6;6;NULL;NULL;NULL;NULL
