@@ -32,5 +32,48 @@ class DeviceSeeder extends Seeder
             }
         }
         fclose($csv_file);
+
+
+        $csv_file = fopen(base_path('database\data\devices\THUNDER_COMPACT.csv'), 'r');
+        $header = null;
+        while (($row = fgetcsv($csv_file, 2000, ";")) !== false) {
+            if ($header == null) {
+                $header = $row;
+            } else {
+                $data = array_combine($header, $row);
+                Device::create(
+                    array_merge(
+                        $data,
+                        [
+                            'institution_id' => 1,
+                            'last_edit_by' => 1,
+                        ]
+                    )
+                );
+            }
+        }
+        fclose($csv_file);
+
+
+        $csv_file = fopen(base_path('database\data\devices\Infinito Laser_p_n _I054C1.csv'), 'r');
+        $header = null;
+        while (($row = fgetcsv($csv_file, 2000, ";")) !== false) {
+            if ($header == null) {
+                $header = $row;
+            } else {
+                $data = array_combine($header, $row);
+                Device::create(
+                    array_merge(
+                        $data,
+                        [
+                            'institution_id' => 1,
+                            'last_edit_by' => 1,
+                        ]
+                    )
+                );
+            }
+        }
+        fclose($csv_file);
+
     }
 }
