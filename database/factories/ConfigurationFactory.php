@@ -27,7 +27,7 @@ class ConfigurationFactory extends Factory
             'scan_frequency'    =>  10,
             'spot_size'         =>  100.0,
             'fluence'           =>  10.000,
-            'description'       =>  Str::random(10),
+            'description'       =>  Str::random(20),
         ];
     }
 }
