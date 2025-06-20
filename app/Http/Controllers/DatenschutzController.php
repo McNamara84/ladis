@@ -10,7 +10,7 @@ class DatenschutzController extends Controller
     {
         $pageTitle = 'Datenschutzerklärung';
         $lastUpdated = '2025-06-19';
-        $URL = 'https://www.example.com/datenschutz';
+        $URL = 'https://www.example.com';
 
         return view('datenschutz', ['pageTitle' => $pageTitle, 'lastUpdated' => $lastUpdated, 'URL' => $URL]);
     }
