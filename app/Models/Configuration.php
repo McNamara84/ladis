@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\AsStringable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -25,15 +26,15 @@ class Configuration extends Model
     
     protected $casts = [
         'lens_id'           =>  'integer',
-        'focal_length'      =>  'smallInteger',
+        'focal_length'      =>  'integer',
         'output'            =>  'float',
-        'pw'                =>  'smallInteger',
-        'pf'                =>  'smallInteger',
+        'pw'                =>  'integer',
+        'pf'                =>  'integer',
         'scan_width'        =>  'decimal:1',
-        'scan_frequency'    =>  'tinyInteger',
+        'scan_frequency'    =>  'integer',
         'spot_size'         =>  'decimal:1',
         'fluence'           =>  'decimal:3',
-        'description'       =>  'text',
+        'description'       =>  AsStringable::class,
     ];
     
     protected $guarded = ['id', 'created_at', 'updated_at'];
