@@ -59,6 +59,11 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/inputform') }}"> 
+                                Eingabemaske
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link disabled" href="#" aria-disabled="true">
                                 Erweiterte Suche
                             </a>
