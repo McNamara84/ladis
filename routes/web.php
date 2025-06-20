@@ -24,7 +24,19 @@ Route::get('/register', function () {
 Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
+
 // Route for the Datenschutz (Data Protection) page
 Route::get('/datenschutz', [DatenschutzController::class, 'index'])->name('datenschutz');
 
 Route::get('/inputform', [InputFormController::class, 'index']);
+
+// TODO: Setup authentication
+// Route for inputform with authentication
+
+// Route::middleware(['auth'])->group(function () {
+//    Route::get('/inputform', [InputFormController::class, 'index']);
+//});
+
+//Route for inputform without authentication
+Route::get('/inputform', [InputFormController::class, 'index']);
+
