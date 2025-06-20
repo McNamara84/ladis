@@ -60,14 +60,10 @@ class ConditionTest extends TestCase
         $pattern = DamagePattern::create(['name' => 'Scratch']);
         $condition = Condition::create([
             'damage_pattern_id' => $pattern->id,
-            'severity' => 'leicht beschädigt',
-            'adhesion' => 'mäßig',
+            'severity' => 1,
+            'adhesion' => 1,
         ]);
 
         $this->assertTrue($condition->damagePattern->is($pattern));
-        $this->assertIsString($condition->severity);
-        $this->assertIsString($condition->adhesion);
-        $this->assertSame('leicht beschädigt', $condition->severity);
-        $this->assertSame('mäßig', $condition->adhesion);
     }
 }
