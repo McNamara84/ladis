@@ -136,7 +136,7 @@
                                 <select class="form-control" id="device_automation" name="device_automation">
                                     <option disabled selected value="">Bitte wählen Sie aus
                                     </option>
-                                    <!-- the value options of automation is still unclear -->
+                                    <!-- TODO: the value options of automation is still unclear -->
                                     <option>Vorhanden</option>
                                     <option>Nicht vorhanden</option>
                                 </select>
@@ -148,7 +148,7 @@
                                     <div class="col-md-3 mb-3">
                                         <label for="device_max_output" class="form-label">Max. Stromleistung<span
                                                 class="text-danger">*</span></label>
-                                        <!-- The total number of digits and decimal places is unclear  -->
+                                        <!-- TODO: The total number of digits and decimal places is unclear  -->
                                         <input type="number" id="device_max_output" class="form-control" min="0" max=""
                                             name="device_max_output">
                                         <div class="form-text">
@@ -170,8 +170,8 @@
                                 <div class="col-md-3 mb-3">
                                     <label for="device_max_wattage" class="form-label">Max. Stromverbrauch <span
                                             class="text-danger">*</span></label>
-                                    <!-- The total number of digits and decimal places is unclear  -->
-                                    <!-- Which Unit?  -->
+                                    <!-- TODO: The total number of digits and decimal places is unclear  -->
+                                    <!-- TODO: Which Unit?  -->
                                     <input type="number" class="form-control" id="device_max_wattage" min="0" max=""
                                         name="device_max_wattage">
                                     <div class="form-text">
@@ -194,7 +194,7 @@
                                 <div class="col-md-5 mb-3">
                                     <label for="device_emission_source" class="form-label">Emissionsquelle <span
                                             class="text-danger">*</span></label>
-                                    <!-- The values for emission_source are unclear -->
+                                    <!-- TODO: The values for emission_source are unclear -->
                                     <select class="form-control" id="device_emission_source" name="device_emission_source">
                                         <option disabled selected value="">Bitte wählen Sie aus
                                         </option>
@@ -230,8 +230,8 @@
                                 <div class="col-md-2 mb-3">
                                     <label for="device_wavelength" class="form-label">Wellenlänge <span
                                             class="text-danger">*</span></label>
-                                    <!-- The total number of digits and decimal places is unclear  -->
-                                    <!-- Which Unit?  -->
+                                    <!-- TODO: The total number of digits and decimal places is unclear  -->
+                                    <!-- TODO: Which Unit?  -->
                                     <input type="number" class="form-control" id="device_wavelength" min="0" max=""
                                         name="device_wavelength">
                                     <div class="form-text">
@@ -247,7 +247,7 @@
                                     <div class="col-md-2 mb-3">
                                         <label for="device_min_spot_size" class="form-label">Min. Spotgröße<span
                                                 class="text-danger">*</span></label>
-                                        <!-- The total number of digits and decimal places is unclear  -->
+                                        <!-- TODO: The total number of digits and decimal places is unclear  -->
                                         <input type="number" id="device_min_spot_size" class="form-control" min="0" max=""
                                             name="device_min_spot_size">
                                         <div class="form-text">
@@ -269,7 +269,7 @@
                                             <div class="col-md-3 mb-3">
                                                 <label for="device_min_pf" class="form-label">Min. Pulsfrequenz<span
                                                         class="text-danger">*</span></label>
-                                                <!-- The total number of digits and decimal places is unclear  -->
+                                                <!-- TODO: The total number of digits and decimal places is unclear  -->
                                                 <input type="number" id="device_min_pf" class="form-control" min="0" max=""
                                                     name="device_min_pf">
                                                 <div class="form-text">
@@ -291,7 +291,7 @@
                                                     <div class="col-md-2 mb-3">
                                                         <label for="device_min_pw" class="form-label">Min. Pulsdauer<span
                                                                 class="text-danger">*</span></label>
-                                                        <!-- The total number of digits and decimal places is unclear  -->
+                                                        <!-- TODO: The total number of digits and decimal places is unclear  -->
                                                         <input type="number" id="device_min_pw" class="form-control" min="0"
                                                             max="" name="device_min_pw">
                                                         <div class="form-text">
@@ -313,7 +313,7 @@
                                                             <div class="col-md-2 mb-3">
                                                                 <label for="device_min_scan_width" class="form-label">Min.
                                                                     Scanbreite<span class="text-danger">*</span></label>
-                                                                <!-- The total number of digits and decimal places is unclear  -->
+                                                                <!-- TODO: The total number of digits and decimal places is unclear  -->
                                                                 <input type="number" id="device_min_scan_width"
                                                                     class="form-control" min="0" max=""
                                                                     name="device_min_scan_width">
@@ -338,8 +338,8 @@
                                                                         <label for="device_min_focal_length"
                                                                             class="form-label">Min. Brennweite<span
                                                                                 class="text-danger">*</span></label>
-                                                                        <!-- The total number of digits and decimal places is unclear  -->
-                                                                        <!-- Which Unit?  -->
+                                                                        <!-- TODO: The total number of digits and decimal places is unclear  -->
+                                                                        <!-- TODO: Which Unit?  -->
                                                                         <input type="number" id="device_min_focal_length"
                                                                             class="form-control" min="0" max=""
                                                                             name="device_min_focal_length">
@@ -400,10 +400,19 @@
 
                                                     </div>
 
-                                                    <div class="d-flex justify-content-end">
+                                                    <!-- Group container for the two buttons -->
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <button type="reset" class="btn btn-danger">
+                                                            <i class="bi bi-plus-circle"></i> Werte zurücksetzen
+                                                        </button>
+
+
+
                                                         <button type="submit" class="btn btn-primary">
                                                             <i class="bi bi-plus-circle"></i> Gerät hinzufügen
                                                         </button>
+
+
                                                     </div>
                         </form>
                     </div>
