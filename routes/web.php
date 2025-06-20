@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InputFormController;
 
 // Landing page for guests
 Route::get('/', function () {
@@ -20,3 +21,13 @@ Route::get('/register', function () {
 // Routes for user with authentication
 Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+// TODO: Setup authentication
+// Route for inputform with authentication
+
+// Route::middleware(['auth'])->group(function () {
+//    Route::get('/inputform', [InputFormController::class, 'index']);
+//});
+
+//Route for inputform without authentication
+Route::get('/inputform', [InputFormController::class, 'index']);
