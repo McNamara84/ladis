@@ -10,7 +10,7 @@ class InputFormController extends Controller
 
     public function index()
     {
-        $pageTitle = 'Input Form - Laser-Projekt - FH Potsdam';
+        $pageTitle = 'Input Form - LADIS - FH Potsdam';
 
         return view('inputform_device', compact('pageTitle'));
     }
