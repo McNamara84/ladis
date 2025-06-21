@@ -59,12 +59,15 @@ This web application will be deployed automatically to the production server in 
 - `federal_states`
 - `cities`
 - `artifacts`
+- `images`
 - `institutions`
 - `lenses`
 - `locations`
 - `devices`
 - `materials`
 - `venues`
+- `conditions`
+- `damage_patterns`
 
 ## Contributing
 
