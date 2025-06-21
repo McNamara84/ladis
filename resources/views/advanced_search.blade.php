@@ -29,33 +29,18 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="person_name" class="form-label">Projektleitung</label>
-                                <input type="text" list="person_names" class="form-control" id="person_name"
-                                    name="person_name" placeholder="Geben Sie den Namen der Projektleitung an">
-
-                                <datalist id="person_names">
-                                    <option value="Name1">
-                                    <option value="Name2">
-                                    <option value="Name3">
-                                    <option value="Sonstiges">
-                                </datalist>
-                            </div>
-
-
-                            <div class="mb-3">
-                                <label for="institution_name" class="form-label">Institution</label>
-                                <input type="text" list="institution_names" class="form-control" id="institution_name"
-                                    name="institution_name" placeholder="Geben Sie den Namen der Institution an">
-
-                                <datalist id="institution_names">
-                                    <option value="FH Potsdam">
-                                    <option value="Institution1">
-                                    <option value="Institution2">
-                                    <option value="Sonstiges">
-
-                                </datalist>
-                            </div>
-
+                                <label for="person_name" class="form-label">Projektleitung
+                                    <select class="form-control" id="person_name" name="person_name" size="3">
+                                        <option disabled selected value="">Bitte wählen Sie die Projektleitung aus
+                                        </option>
+                                        <option>Name1</option>
+                                        <option>Name2</option>
+                                        <option>Name3</option>
+                                        <option>Name4</option>
+                                        <option>Name5</option>
+                                        <option>Name5</option>
+                                    </select>
+                                    </div>
 
                             <div class="mb-3">
                                 <label for="device_name" class="form-label">Gerätename
@@ -68,25 +53,36 @@
                                         <option>Thunder Compact</option>
                                         <option>Soliton LT300</option>
                                         <option>Smart 300</option>
+                                        <option>Sonstiges</option>
                                     </select>
+                                    </div>
+
+
+                             <div class="mb-3">
+                                <label for="institution_name" class="form-label">Institution</label>
+                                <select class="form-control" id="institution_name" name="institution_name" size="3">
+                                    <option disabled selected value="">Bitte wählen Sie den Namen der Institution aus</option>
+                                    <option>FH Potsdam</option>
+                                    <option>Institution2</option>
+                                    <option>Institution3</option>
+                                    <option>Institution4</option>
+                                    <option>Institution5</option>
+                                    <option>Sonstiges</option>
+                                </select>
                             </div>
 
                             <div class="mb-3">
                                 <label for="material_name" class="form-label">Material</label>
-                                <input type="text" list="material_names" class="form-control" id="material_name"
-                                    name="material_name" placeholder="Geben Sie das Material an">
-
-                                <datalist id="material_names">
-                                    <option value="Holz">
-                                    <option value="Stein">
-                                    <option value="Material3">
-                                    <option value="Sonstiges">
-
-                                </datalist>
+                                <select class="form-control" id="material_name" name="material_name" size="3">
+                                    <option disabled selected value="">Bitte wählen Sie das Material aus</option>
+                                    <option>Holz</option>
+                                    <option>Stein</option>
+                                    <option>Material2</option>
+                                    <option>Material3</option>
+                                    <option>Material4</option>
+                                    <option>Sonstiges</option>
+                                </select>
                             </div>
-
-
-
 
 
                             <div class="d-flex justify-content-end">
