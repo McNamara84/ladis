@@ -7,7 +7,7 @@
         <p>Wir verarbeiten personenbezogene Daten, die beim Besuch unserer Webseite erhoben werden, unter Beachtung der geltenden datenschutzrechtlichen Bestimmungen, insbesondere der EU-Datenschutz-Grundverordnung (DSGVO).</p>
         <p>Diese Datenschutzhinweise (Stand: <time datetime="{{ $lastUpdated }}">{{ $lastUpdated }}</time>) gelten für folgende von der FH Potsdam betriebenen Seiten:</p>
         <ul>
-            <li><a href="">{{ $URL }}</a></li>
+            <li><a href="">{{ $url }}</a></li>
         </ul>
         <h2>1. Verantwortlicher</h2>
         <p>Verantwortliche*r im Sinne der DSGVO und anderer nationaler Datenschutzgesetze der Mitgliedsstaaten sowie sonstiger datenschutzrechtlicher Bestimmungen ist die <strong>Präsidentin Prof. Dr. Eva Schmitt-Rodermund</strong>.</p>
