@@ -77,9 +77,23 @@ class InputFormController extends Controller
         // TODO: Later we get this from Auth::user()
         $validatedData['last_edit_by'] = 1; // Temporarily hardcoded
 
-        // Create a new device record in the database
-        Device::create($validatedData);
+        // Catching errors during the database operation
+        try {
+            // Create a new device record in the database
+            $device = Device::create($validatedData);
+            
+            // If the device is successfully created, we redirect to the index route with a success message
+            return redirect()
+                ->route('inputform.index')
+                ->with('success', 'Lasergerät "' . $device->name . '" wurde erfolgreich hinzugefügt!');
+                
+        } catch (\Exception $e) {
 
-        return redirect()->back()->with('success', 'Device has been successfully added.');
+            // Error handling: If an error occurs during the database operation, we catch it and return an error message
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with('error', 'Fehler beim Speichern des Geräts: ' . $e->getMessage());
+        }
     }
 }
