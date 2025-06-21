@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 // This controller handles the display of the Privacy Policy page.
 class PrivacyPolicyController extends Controller
 {
