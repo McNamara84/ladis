@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class DatenschutzController extends Controller
+// This controller handles the display of the Privacy Policy page.
+class PrivacyPolicyController extends Controller
 {
     public function index()
     {
@@ -12,8 +13,6 @@ class DatenschutzController extends Controller
         $lastUpdated = '2025-06-19';
         $URL = 'https://www.example.com';
 
-        return view('datenschutz', ['pageTitle' => $pageTitle, 'lastUpdated' => $lastUpdated, 'URL' => $URL]);
+        return view('privacy-policy', ['pageTitle' => $pageTitle, 'lastUpdated' => $lastUpdated, 'URL' => $URL]);
     }
 }
-// This controller handles the display of the Datenschutz (Data Protection) page.
-// It returns the 'changelog' view when the index method is called.
