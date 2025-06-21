@@ -68,6 +68,14 @@ class InputFormController extends Controller
             'max_focal_length' => 'nullable|numeric|min:0',
         ]);
 
+        // Add Institution ID (temporarily hardcoded)
+        // TODO: Later we get this from form
+        $validatedData['institution_id'] = 1; // Temporarily hardcoded
+        
+        // Add User ID (temporarily hardcoded)
+        // TODO: Later we get this from Auth::user()
+        $validatedData['last_edit_by'] = 1; // Temporarily hardcoded
+
         return redirect()->back()->with('success', 'Device has been successfully added.');
     }
 }
