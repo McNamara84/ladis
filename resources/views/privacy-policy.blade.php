@@ -78,6 +78,5 @@
         <h4>Technische Umsetzung:</h4>
         <p>Der Web-Server für den Betrieb der Website wird technisch durch die <a href="https://www.fh-potsdam.de/campus-services/it-service">Zentrale IT der FH Potsdam</a> betrieben.</p>
         <p><strong>E-mail: </strong><a href="mailto:it-service@fh-potsdam.de">it-service@fh-potsdam.de</a></p>
-        </h3>
     </div>
 @endsection
