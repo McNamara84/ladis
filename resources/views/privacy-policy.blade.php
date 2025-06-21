@@ -2,7 +2,9 @@
 
 @section('content')
     <div class="container">
-        <h1>ENTWURF (bitte nicht verklagen, danke!)</h1>>
+        <div class="alert alert-warning" role="alert">
+            ENTWURF (bitte nicht verklagen, danke!)
+        </div>
         <h1>{{ $pageTitle }}</h1>
         <p>Wir verarbeiten personenbezogene Daten, die beim Besuch unserer Webseite erhoben werden, unter Beachtung der geltenden datenschutzrechtlichen Bestimmungen, insbesondere der EU-Datenschutz-Grundverordnung (DSGVO).</p>
         <p>Diese Datenschutzhinweise (Stand: <time datetime="{{ $lastUpdated }}">{{ $lastUpdated }}</time>) gelten für folgende von der FH Potsdam betriebenen Seiten:</p>
