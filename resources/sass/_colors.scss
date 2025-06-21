@@ -126,16 +126,18 @@ $body-bg: $light;
 
 $link-color: $primary;
 // $link-hover-color: shift-color($link-color, $link-shade-percentage) !default;
+// $link-decoration: none;
 $link-hover-decoration: underline;
 
 //
 // Dark Mode
 //
 
+$body-color-dark: $light;
 $body-secondary-color-dark: $teal;
 $body-secondary-bg-dark: $armor-wash;
 $body-tertiary-color-dark: $satin-deep-black;
-$link-color-dark: $primary;
+$link-color-dark: $body-secondary-color-dark;
 $link-hover-color-dark: $primary;
 $border-color-dark: $body-tertiary-color-dark;
 
