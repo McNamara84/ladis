@@ -21,6 +21,53 @@ class InputFormController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        // Storing validated data from the incoming data from request
+        // Note: The validation rules are defined here, you can adjust them as needed
+        // This is a basic example, you might want to customize the rules further
+        $validatedData = $request->validate([
+            // Basic values
+            'name' => 'required|string|max:50|unique:devices,name',
+            'year' => 'nullable|integer|min:1900|max:2099',
+            'build' => 'nullable|integer|in:0,1',
+            'description' => 'nullable|string',
+            
+            // Dimensions
+            'height' => 'nullable|integer|min:0',
+            'width' => 'nullable|integer|min:0', 
+            'depth' => 'nullable|integer|min:0',
+            'weight' => 'nullable|numeric|min:0|max:999.99',
+            'fiber_length' => 'nullable|numeric|min:0|max:999.99',
+            
+            // Systems
+            'cooling' => 'nullable|integer|in:0,1',
+            'mounting' => 'nullable|boolean',
+            'automation' => 'nullable|boolean',
+            
+            // Power
+            'max_output' => 'nullable|numeric|min:0',
+            'mean_output' => 'nullable|numeric|min:0',
+            'max_wattage' => 'nullable|numeric|min:0',
+            
+            // Technical deatials
+            'head' => 'nullable|string|max:50',
+            'emission_source' => 'nullable|integer',
+            'beam_type' => 'required|integer|in:0,1,2',
+            'beam_profile' => 'nullable|string|max:50',
+            'wavelength' => 'nullable|numeric|min:0',
+            
+            // Min/Max values
+            'min_spot_size' => 'nullable|numeric|min:0',
+            'max_spot_size' => 'nullable|numeric|min:0',
+            'min_pf' => 'nullable|numeric|min:0',
+            'max_pf' => 'nullable|numeric|min:0',
+            'min_pw' => 'nullable|numeric|min:0',
+            'max_pw' => 'nullable|numeric|min:0',
+            'min_scan_width' => 'nullable|numeric|min:0',
+            'max_scan_width' => 'nullable|numeric|min:0',
+            'min_focal_length' => 'nullable|numeric|min:0',
+            'max_focal_length' => 'nullable|numeric|min:0',
+        ]);
+
         return redirect()->back()->with('success', 'Device has been successfully added.');
     }
 }
