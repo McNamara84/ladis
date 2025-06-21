@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Casts\AsStringable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -34,7 +33,7 @@ class Configuration extends Model
         'scan_frequency'    =>  'integer',
         'spot_size'         =>  'decimal:1',
         'fluence'           =>  'decimal:3',
-        'description'       =>  AsStringable::class,
+        'description'       =>  'string',
     ];
     
     protected $guarded = ['id', 'created_at', 'updated_at'];

@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Casts\AsStringable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Models\Configuration;
@@ -26,7 +25,7 @@ class Process extends Model
         'partial_surface_id'    =>  'integer',
         'device_id'             =>  'integer',
         'configuration_id'      =>  'integer',
-        'description'           =>  AsStringable::class,
+        'description'           =>  'string',
         'duration'              =>  'integer',
         'wet'                   =>  'integer',
     ];
