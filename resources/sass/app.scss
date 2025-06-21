@@ -25,6 +25,13 @@ symbol {
     height: 1em;
 }
 
+.bi-fluid {
+    display: block;
+    width: auto;
+    height: auto;
+    aspect-ratio: 1 / 1;
+}
+
 //
 // App Logo (temporary)
 //
@@ -121,6 +128,11 @@ symbol {
 // Because Bootstrap defines many variables on sepcific selctors,
 // we can't just assign all of them to `:root` :(
 @include color-mode(dark) {
+    .text-secondary {
+        // Override the default color for secondary text
+        // The fact that we have to use `!important` tells a lot about the state of BS.
+        color: #{$teal} !important;
+    }
 
     .navbar,
     .navbar-nav,
