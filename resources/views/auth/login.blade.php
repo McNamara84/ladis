@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Login - LADIS')
+@section('title', 'Login')
 
 @section('content')
     <div class="container">
@@ -18,7 +18,7 @@
                         </svg>
                     </div>
                     <h1 class="h3 fw-bold text-primary">Anmeldung</h1>
-                    <p class="text-muted">Melden Sie sich in Ihrem LADIS Konto an</p>
+                    <p class="text-muted">Melden Sie sich in Ihrem {{ config('app.name') }} Konto an</p>
                 </div>
 
                 <!-- Login Card -->

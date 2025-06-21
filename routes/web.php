@@ -3,12 +3,12 @@
 use App\Http\Controllers\AdvancedSearchController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\InputFormController;
 
 // Landing page for guests
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [WelcomeController::class, 'index']);
+
 // Publicly accessible advanced search
 Route::get('/advanced_search', [AdvancedSearchController::class, 'index'])->name('advanced_search');
 

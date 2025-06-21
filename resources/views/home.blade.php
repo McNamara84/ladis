@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Dashboard - LADIS')
+@section('title', 'Dashboard')
 
 @section('content')
     <div class="container">
@@ -140,7 +140,7 @@
                             <circle cx="12" cy="18" r="2" fill="currentColor" />
                             <path d="M8 20H16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
                         </svg>
-                        <h3 class="h4 mb-3">Willkommen im LADIS!</h3>
+                        <h3 class="h4 mb-3">Willkommen im {{config('app.name')}}!</h3>
                         <p class="text-muted mb-4">
                             Beginnen Sie mit der Erfassung und Verwaltung von Reinigungslasern für Restaurierungsprojekte.
                             Das System befindet sich noch in der Entwicklung.
