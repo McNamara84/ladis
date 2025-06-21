@@ -28,9 +28,12 @@ symbol {
 //
 // App Logo (temporary)
 //
+
 :root {
-    // Default size for the logo. Override in components.
+    // Default size for the logo
     --app-logo-size: 4em;
+    // Logo size in the header naviation
+    --app-logo-size-nav: 2.2222em;
 }
 
 .app-logo {
@@ -59,7 +62,45 @@ symbol {
 
 // Adjust logo size in navbar
 .navbar .app-logo {
-    --app-logo-size: 2.2222em;
+    --app-logo-size: var(--app-logo-size-nav);
+}
+
+//
+// Generic container-like components
+//
+
+// Viewport Section
+.vh-section {
+    // Calculate the height
+    // To do: Do this in `:root`
+    min-height: calc(100vh - ($navbar-padding-y * 2) - ($navbar-brand-font-size / $font-size-base * var(--app-logo-size-nav)) - ($navbar-brand-padding-y * 2));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+// Content container
+// Restricts the width of the content to readable width
+.content {
+    max-width: 60ch;
+}
+
+//
+// Hero section – Flashy page intro component
+//
+
+.hero {
+    // Use a responsive font size relative to the viewport
+    font-size: clamp(1.25rem, 4vw, 2rem);
+    margin-block: 3em;
+}
+
+.hero-title {
+    font-size: 3em;
+    line-height: 1;
+    padding-block-end: .5em;
+    margin-block-end: .5em;
+    border-bottom: 1px solid;
 }
 
 //
@@ -87,7 +128,7 @@ symbol {
         --bs-nav-link-disabled-color: #{$body-tertiary-color-dark};
     }
 
-    // Want to do this but it has many side effects:
+    // Want to do this but it has too many side effects:
     // .btn,
     // .btn-primary {
     //     --bs-btn-color: #{$…};
