@@ -129,9 +129,9 @@
                         <!-- Truly centered Search on Desktop -->
                         <div class="position-absolute start-50 translate-middle-x d-none d-lg-block"
                             style="width: 25vw">
-                            <form class="d-flex" role="search">
-                                <input class="form-control me-2" type="search" placeholder="Suche..."
-                                    aria-label="Suche">
+                            <form id="nav-search-form" class="d-flex" role="search">
+                                <input id="nav-search-input" class="form-control me-2" type="search"
+                                    placeholder="Suche..." aria-label="Suche">
                                 <button type="submit" class="btn btn-outline-secondary" aria-label="Suchen">
                                     <svg class="bi" width="16" height="16" aria-hidden="true">
                                         <use xlink:href="#bi-search"></use>
