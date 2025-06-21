@@ -20,9 +20,6 @@
     @else
         @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     @endif
-
-    <!-- Custom page styles -->
-    @stack('styles')
 </head>
 
 <body class="d-flex flex-column min-vh-100">
