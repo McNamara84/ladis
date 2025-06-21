@@ -25,24 +25,21 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="person_name" class="form-label">Projektleitung
-                                    <select class="form-control" id="person_name" name="person_name" size="3">
-                                        <option disabled selected value="">Wählen Sie die Projektleitung aus
-                                        </option>
-                                        <option>Name1</option>
-                                        <option>Name2</option>
-                                        <option>Name3</option>
-                                        <option>Name4</option>
-                                        <option>Name5</option>
-                                        <option>Name5</option>
-                                    </select>
+                                <label for="person_name" class="form-label">Projektleitung</label>
+                                <select class="form-control" id="person_name" name="person_name" size="3">
+                                    <option disabled selected value="">Wählen Sie die Projektleitung aus</option>
+                                    <option>Name1</option>
+                                    <option>Name2</option>
+                                    <option>Name3</option>
+                                    <option>Name4</option>
+                                    <option>Name5</option>
+                                </select>
                             </div>
 
                             <div class="mb-3">
                                 <label for="institution_name" class="form-label">Institution</label>
                                 <select class="form-control" id="institution_name" name="institution_name" size="3">
-                                    <option disabled selected value="">Wählen Sie den Namen der Institution aus
-                                    </option>
+                                    <option disabled selected value="">Wählen Sie den Namen der Institution aus</option>
                                     <option>FH Potsdam</option>
                                     <option>Institution2</option>
                                     <option>Institution3</option>
