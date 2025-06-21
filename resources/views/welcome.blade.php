@@ -34,8 +34,24 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Laserreinigung</td>
-                                <td>100</td>
+                                <td>Projekte</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>Laser</td>
+                                <td>{{ $deviceCount }}</td>
+                            </tr>
+                            <tr>
+                                <td>Messreihen</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>Artefakte</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>…</td>
+                                <td>0</td>
                             </tr>
                         </tbody>
                     </table>
