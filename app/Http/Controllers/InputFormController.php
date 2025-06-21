@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use App\Models\Device;
 
 class InputFormController extends Controller
 {
@@ -75,6 +76,9 @@ class InputFormController extends Controller
         // Add User ID (temporarily hardcoded)
         // TODO: Later we get this from Auth::user()
         $validatedData['last_edit_by'] = 1; // Temporarily hardcoded
+
+        // Create a new device record in the database
+        Device::create($validatedData);
 
         return redirect()->back()->with('success', 'Device has been successfully added.');
     }
