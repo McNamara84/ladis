@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InputFormController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\DatenschutzController;
+use App\Http\Controllers\PrivacyPolicyController;
 
 // Landing page for guests
 Route::get('/', function () {
@@ -26,7 +27,7 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 
 // Route for the Datenschutz (Data Protection) page
-Route::get('/datenschutz', [DatenschutzController::class, 'index'])->name('datenschutz');
+Route::get('/datenschutz', [PrivacyPolicyController::class, 'index'])->name('datenschutz');
 
 Route::get('/inputform', [InputFormController::class, 'index']);
 
