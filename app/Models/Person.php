@@ -35,10 +35,15 @@ class Person extends Model
      * @var list<string>
      */
     protected $guarded = ['id'];
-    
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array<string, string>
+     */
     protected $casts = [
         'person_id' => 'integer',
-        'name' => 'string', 
+        'name' => 'string',
     ];
 
     /**

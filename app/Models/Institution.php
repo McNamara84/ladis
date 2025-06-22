@@ -48,7 +48,7 @@ class Institution extends Model
     }
 
     /**
-     * 1:n relation to Device: an Institution can have many Devices
+     * 1:n relation: An Institution can have many Devices
      *
      * @return HasMany
      */
@@ -58,7 +58,7 @@ class Institution extends Model
     }
 
     /**
-     * 1:n relation to Person: an Institution can have many Persons
+     * 1:n relation: An Institution can have many Persons
      *
      * @return HasMany
      */
