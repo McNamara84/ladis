@@ -14,15 +14,15 @@ class InstitutionSeeder extends Seeder
     public function run(): void
     {
         Institution::create([
-        'name' => 'EL.EN. S.p.A.',
-        'type' => Institution::TYPE_MANUFACTURER,
-        'contact_information' => 'https://elengroup.com/en/',
+            'name' => 'EL.EN. S.p.A.',
+            'type' => Institution::TYPE_MANUFACTURER,
+            'contact_information' => 'https://elengroup.com/en/',
         ]);
 
         Institution::create([
-        'name' => 'Clean-Lasersysteme GmbH',
-        'type' => Institution::TYPE_MANUFACTURER,
-        'contact_information' => 'https://www.cleanlaser.de/de/kontakt/',
+            'name' => 'Clean-Lasersysteme GmbH',
+            'type' => Institution::TYPE_MANUFACTURER,
+            'contact_information' => 'https://www.cleanlaser.de/de/kontakt/',
         ]);
     }
 }
