@@ -133,4 +133,28 @@ class DeviceFormTest extends TestCase
         $response->assertSessionHasErrors(['beam_type']);
         $this->assertDatabaseCount('devices', 0);
     }
+
+    public function test_fails_validation_when_device_name_already_exists(): void
+    {
+        // Create first Device
+        Device::factory()->create([
+            'name' => 'Unique Device',
+            'institution_id' => $this->institution->id,
+            'last_edit_by' => $this->user->id,
+        ]);
+
+        // Check if another device can be created with the same name
+        $deviceData = [
+            'name' => 'Unique Device', // Same name as first Device
+            'beam_type' => 0,
+        ];
+
+        $response = $this->post(route('inputform.store'), $deviceData);
+
+        $response->assertRedirect();
+        $response->assertSessionHasErrors(['name']);
+        
+        // Only first Device should be in database
+        $this->assertDatabaseCount('devices', 1);
+    }
 }
