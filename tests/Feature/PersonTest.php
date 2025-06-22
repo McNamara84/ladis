@@ -11,22 +11,27 @@ class PersonTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_person_record_can_be_created(): void
+    private function createInstitution(): Institution
     {
-        $institution_id = Institution::create([
+        return Institution::create([
             'name' => 'Insta',
             'type' => Institution::TYPE_CLIENT,
             'contact_information' => 'Send pigeon',
-        ])->id;
+        ]);
+    }
+
+    public function test_person_record_can_be_created(): void
+    {
+        $institution = $this->createInstitution();
 
         $person = Person::create([
             'name' => 'Alice',
-            'institution_id' => $institution_id,
+            'institution_id' => $institution->id,
         ]);
 
         $this->assertDatabaseHas('persons', [
             'name' => $person->name,
-            'institution_id' => $institution_id,
+            'institution_id' => $institution->id,
         ]);
     }
 }
