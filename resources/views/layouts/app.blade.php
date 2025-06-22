@@ -123,7 +123,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link disabled" href="#" aria-disabled="true">
+                                <a class="nav-link" href="{{url('/advanced_search') }}">
                                     Erweiterte Suche
                                 </a>
                             </li>
