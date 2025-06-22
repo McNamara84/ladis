@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Bach"
+  given-names: "Nicolai"
+  orcid: "https://orcid.org/0009-0000-0705-3322"
+- family-names: "Ehrmann"
+  given-names: "Holger"
+  orcid: "https://orcid.org/0009-0000-1235-6950"
+- family-names: "Graf"
+  given-names: "Michael"
+  orcid: "https://orcid.org/0009-0009-1489-7713"
+- family-names: "Kisa"
+  given-names: "Helin"
+- family-names: "Neufeld"
+  given-names: "Artur"
+  orcid: "https://orcid.org/0009-0004-7693-6267"
+- family-names: "Schendel"
+  given-names: "Maria"
+- family-names: "Widmann"
+  given-names: "Paula Charlotte"
+- family-names: "Wussow"
+  given-names: "Maya Lea"
+title: "LADIS"
+version: 0.1.0
+doi: 10.5880/xyz
+date-released: 2025-07-10
+url: "https://github.com/McNamara84/cleanup-laser-database"

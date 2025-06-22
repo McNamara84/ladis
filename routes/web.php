@@ -1,16 +1,19 @@
 <?php
 
+use App\Http\Controllers\AdvancedSearchController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\InputFormController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\DatenschutzController;
 use App\Http\Controllers\PrivacyPolicyController;
 
 // Landing page for guests
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [WelcomeController::class, 'index']);
+
+// Publicly accessible advanced search
+Route::get('/advanced_search', [AdvancedSearchController::class, 'index'])->name('advanced_search');
 
 // Login page with route name login
 Route::get('/login', function () {
@@ -22,7 +25,6 @@ Route::get('/register', function () {
 })->name('register');
 
 // Routes for user with authentication
-Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 
@@ -40,4 +42,3 @@ Route::get('/inputform', [InputFormController::class, 'index']);
 
 //Route for inputform without authentication
 Route::get('/inputform', [InputFormController::class, 'index']);
-
