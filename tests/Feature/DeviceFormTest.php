@@ -303,4 +303,25 @@ class DeviceFormTest extends TestCase
         $response->assertViewIs('inputform_device');
         $response->assertSee('Neues Lasergerät hinzufügen');
     }
+
+    public function test_handles_database_exceptions_gracefully(): void
+    {
+        // Simulate database error because of not existing institution_id
+        // This will throw an exception when trying to create a device
+        
+        // Delete all institutions if any exists
+        Institution::query()->delete();
+        
+        $deviceData = [
+            'name' => 'Exception Test',
+            'beam_type' => 0,
+        ];
+
+        $response = $this->post(route('inputform.store'), $deviceData);
+
+        // Check if we get redirected back with an error message
+        $response->assertRedirect();
+        $response->assertSessionHas('error');
+        $this->assertDatabaseCount('devices', 0);
+    }
 }
