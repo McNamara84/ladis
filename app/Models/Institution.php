@@ -25,15 +25,15 @@ class Institution extends Model
      * Corresponds to the ENUM in the database
      * Can be used for validation
      */
-    const TYPE_CLIENT = 'Auftraggeber';
-    const TYPE_CONTRACTOR = 'Auftragnehmer';
-    const TYPE_MANUFACTURER = 'Hersteller';
+    public const TYPE_CLIENT = 'Auftraggeber';
+    public const TYPE_CONTRACTOR = 'Auftragnehmer';
+    public const TYPE_MANUFACTURER = 'Hersteller';
 
     /**
      * All possible types as an array
      * This can be used for validation or dropdowns
      *
-     * @return array<string>
+     * @return list<string>
      */
     public static function getTypes(): array
     {
