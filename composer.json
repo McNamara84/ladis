@@ -1,13 +1,75 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "laravel/laravel",
+    "name": "mcnamara84/ladis",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
+    "description": "Specialized laser database information system about laser cleaning devices, materials and projects for the Restoration department.",
     "keywords": [
         "laravel",
-        "framework"
+        "framework",
+        "laser",
+        "restauration",
+        "database",
+        "information system",
+        "devices"
     ],
-    "license": "MIT",
+    "authors": [
+        {
+            "name": "Artur Neufeld",
+            "email": "art.neufeld@yandex.com",
+            "homepage": "https://fh-potsdam.de",
+            "role": "Developer"
+        },
+        {
+            "name": "Holger Ehrmann",
+            "email": "holgerehrmann@gmail.com",
+            "homepage": "https://fh-potsdam.de",
+            "role": "Maintainer"
+        },
+        {
+            "name": "Helin Kisa",
+            "email": "heloslisa@gmail.com",
+            "homepage": "https://fh-potsdam.de",
+            "role": "Developer"
+        },
+        {
+            "name": "Michael Graf",
+            "email": "michael-g-0@web.de",
+            "homepage": "https://fh-potsdam.de",
+            "role": "Developer"
+        },
+        {
+            "name": "Maya Lea Wussow",
+            "email": "maya.wussow@icloud.com",
+            "homepage": "https://fh-potsdam.de",
+            "role": "Developer"
+        },
+        {
+            "name": "Maria Schendel",
+            "email": "maria.schendel03@gmail.com",
+            "homepage": "https://fh-potsdam.de",
+            "role": "Developer"
+        },
+        {
+            "name": "Nicolai Bach",
+            "email": "nicolai.bach@fh-potsdam.de",
+            "homepage": "https://fh-potsdam.de",
+            "role": "Developer"
+        },
+        {
+            "name": "Paula Charlotte Widmann",
+            "email": "pc.widmann@gmail.com",
+            "homepage": "https://fh-potsdam.de",
+            "role": "Developer"
+        }
+    ],
+    "homepage": "https://fh-potsdam.de",
+    "readme": "https://github.com/McNamara84/cleanup-laser-database/blob/main/README.md",
+    "time": "2025-07-10",
+    "support": {
+        "email": "holgerehrmann@gmail.com",
+        "issues": "https://github.com/McNamara84/cleanup-laser-database/issues",
+        "wiki": "https://github.com/McNamara84/cleanup-laser-database/wiki"
+    },
     "require": {
         "php": "^8.2",
         "laravel/framework": "^12.0",
