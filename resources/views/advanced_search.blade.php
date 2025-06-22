@@ -9,13 +9,18 @@
                 <div class="card">
                     <div class="card-body">
                         <h1 class="card-title text-primary">Erweiterte Suche</h1>
-                        <p class="card-text">Willkommen zur erweiterten Suche!</p>
                         <form>
 
                             <div class="mb-3">
-                                <label for="federal_state_name" class="form-label"> Bundesland</label>
-                                <input type="text" id="federal_state_name" name="federal_state_name" class="form-control"
-                                    placeholder="Geben Sie das Bundesland an">
+                                <label for="federal_state_id" class="form-label">Bundesland</label>
+                                <select class="form-control" id="federal_state_id" name="federal_state_id">
+                                    <option disabled selected value="">Wählen Sie das Bundesland aus</option>
+                                    <option>Berlin</option>
+                                    <option>Brandenburg</option>
+                                    <option>Hamburg</option>
+                                    <option>Bremen</option>
+                                    <option>Sonstiges</option>
+                                </select>
                             </div>
 
                             <div class="mb-3">
@@ -25,20 +30,14 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="person_name" class="form-label">Projektleitung</label>
-                                <select class="form-control" id="person_name" name="person_name" size="3">
-                                    <option disabled selected value="">Wählen Sie die Projektleitung aus</option>
-                                    <option>Name1</option>
-                                    <option>Name2</option>
-                                    <option>Name3</option>
-                                    <option>Name4</option>
-                                    <option>Name5</option>
-                                </select>
+                                <label for="person_name" class="form-label"> Projektleitung</label>
+                                <input type="text" id="person_name" name="person_name" class="form-control"
+                                    placeholder="Geben Sie die Projektleitung an">
                             </div>
 
                             <div class="mb-3">
-                                <label for="institution_name" class="form-label">Institution</label>
-                                <select class="form-control" id="institution_name" name="institution_name" size="3">
+                                <label for="institution_id" class="form-label">Institution</label>
+                                <select class="form-control" id="institution_id" name="institution_id" size="3">
                                     <option disabled selected value="">Wählen Sie den Namen der Institution aus</option>
                                     <option>FH Potsdam</option>
                                     <option>Institution2</option>
@@ -50,8 +49,8 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="device_name" class="form-label">Gerätename
-                                    <select class="form-control" id="device_name" name="device_name">
+                                <label for="device_id" class="form-label">Gerätename
+                                    <select class="form-control" id="device_id" name="device_id">
                                         <option disabled selected value="">Wählen Sie den Namen des Lasergeräts aus
                                         </option>
                                         <option>CL20</option>
@@ -65,8 +64,8 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="material_name" class="form-label">Material</label>
-                                <select class="form-control" id="material_name" name="material_name" size="3">
+                                <label for="material_id" class="form-label">Material</label>
+                                <select class="form-control" id="material_id" name="material_id" size="3">
                                     <option disabled selected value="">Wählen Sie das Material aus</option>
                                     <option>Holz</option>
                                     <option>Stein</option>
@@ -77,10 +76,11 @@
                                 </select>
                             </div>
 
-
                             <div class="d-flex justify-content-end">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="bi bi-search"></i> Search
+                                <button type="submit" class="btn btn-outline-secondary">
+                                    <svg class="bi" width="16" height="16" aria-hidden="true">
+                                        <use xlink:href="#bi-search"></use>
+                                    </svg> Suchen
                                 </button>
                             </div>
                         </form>
