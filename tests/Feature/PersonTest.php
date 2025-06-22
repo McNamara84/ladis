@@ -20,18 +20,30 @@ class PersonTest extends TestCase
         ]);
     }
 
-    public function test_person_record_can_be_created(): void
+    private function createPerson($institution): Person
     {
-        $institution = $this->createInstitution();
-
-        $person = Person::create([
+        return Person::create([
             'name' => 'Alice',
             'institution_id' => $institution->id,
         ]);
+    }
+
+    public function test_person_record_can_be_created(): void
+    {
+        $institution = $this->createInstitution();
+        $person = $this->createPerson($institution);
 
         $this->assertDatabaseHas('persons', [
             'name' => $person->name,
             'institution_id' => $institution->id,
         ]);
+    }
+
+    public function test_person_institution_relationship(): void
+    {
+        $institution = $this->createInstitution();
+        $person = $this->createPerson($institution);
+
+        $this->assertTrue($person->institution->is($institution));
     }
 }
