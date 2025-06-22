@@ -239,4 +239,27 @@ class DeviceFormTest extends TestCase
         $this->assertEquals(1900, $device->year);
         $this->assertEquals(999.99, $device->weight);
     }
+
+    public function test_can_store_device_with_minimum_required_fields(): void
+    {
+        $deviceData = [
+            'name' => 'Minimal Device', // Reuqired field
+            'beam_type' => 1,           // Required field
+        ];
+
+        $response = $this->post(route('inputform.store'), $deviceData);
+
+        $response->assertRedirect(route('inputform.index'));
+        $response->assertSessionHas('success');
+        
+        $this->assertDatabaseHas('devices', [
+            'name' => 'Minimal Device',
+            'beam_type' => 1,
+        ]);
+        
+        $device = Device::first();
+        $this->assertNull($device->year);
+        $this->assertNull($device->weight);
+        $this->assertNull($device->description);
+    }
 }
