@@ -294,4 +294,13 @@ class DeviceFormTest extends TestCase
         $this->assertFalse($device2->mounting);
         $this->assertTrue($device2->automation);
     }
+
+    public function test_can_view_input_form(): void
+    {
+        $response = $this->get(route('inputform.index'));
+
+        $response->assertStatus(200);
+        $response->assertViewIs('inputform_device');
+        $response->assertSee('Neues Lasergerät hinzufügen');
+    }
 }
