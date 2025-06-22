@@ -215,4 +215,28 @@ class DeviceFormTest extends TestCase
         $response->assertSessionHasErrors(['name', 'head', 'beam_profile']);
         $this->assertDatabaseCount('devices', 0);
     }
+
+    public function test_accepts_boundary_values(): void
+    {
+        $deviceData = [
+            'name' => 'Boundary Test',
+            'year' => 1900,     // Min. allowed
+            'weight' => 999.99, // Max. allowed (decimal(5,2))
+            'beam_type' => 2,   // Max. allowed
+            'build' => 1,       // Max. allowed
+            'cooling' => 1,     // Max. allowed
+            'height' => 1,      // Min. > 0
+            'width' => 999999,  // Large value, but should be valid
+        ];
+
+        $response = $this->post(route('inputform.store'), $deviceData);
+
+        $response->assertRedirect(route('inputform.index'));
+        $response->assertSessionHas('success');
+        $this->assertDatabaseCount('devices', 1);
+        
+        $device = Device::first();
+        $this->assertEquals(1900, $device->year);
+        $this->assertEquals(999.99, $device->weight);
+    }
 }
