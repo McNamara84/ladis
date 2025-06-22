@@ -5,7 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
+/**
+ * Person Model
+ *
+ * Represents a person entity in the system
+ */
 class Person extends Model
 {
     use HasFactory;
@@ -19,15 +25,23 @@ class Person extends Model
         'name' => 'string',
     ];
 
-
-    //1:1 relation: A Person belongs to an Institution
-
-    public function institutions(): BelongsTo
+    /**
+     * n:1 relation: A Person belongs to one Institution
+     *
+     * @return BelongsTo
+     */
+    public function institution(): BelongsTo
     {
         return $this->belongsTo(Institution::class);
-
     }
 
-
-
+    /**
+     * 1:n relation: A Person can have many Projects
+     *
+     * @return HasMany
+     */
+    public function projects(): HasMany
+    {
+        return $this->hasMany(Project::class);
+    }
 }
