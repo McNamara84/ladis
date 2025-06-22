@@ -157,4 +157,22 @@ class DeviceFormTest extends TestCase
         // Only first Device should be in database
         $this->assertDatabaseCount('devices', 1);
     }
+
+    public function test_fails_validation_with_invalid_enum_values(): void
+    {
+        $deviceData = [
+            'name' => 'Test Device',
+            'build' => 99,      // Unallowed value (only 0,1 allowed)
+            'beam_type' => 99,  // Unallowed value (only 0,1,2 allowed)
+            'cooling' => 99,    // Unallowed value (only 0,1 allowed)
+        ];
+
+        $response = $this->post(route('inputform.store'), $deviceData);
+
+        $response->assertRedirect();
+        $response->assertSessionHasErrors(['build', 'beam_type', 'cooling']);
+
+        // Check if no DDevices with unallowed values were created
+        $this->assertDatabaseCount('devices', 0);
+    }
 }
