@@ -23,7 +23,7 @@ class DeviceSeeder extends Seeder
 
     $csv_file = fopen(base_path($path_to_csv), 'r');
         $header = null;
-        while (($row = fgetcsv($csv_file, $delimiter)) !== false) {
+        while (($row = fgetcsv($csv_file, null,$delimiter)) !== false) {
             if ($header == null) {
                 $header = $row;
             } else {
