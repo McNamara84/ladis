@@ -199,4 +199,20 @@ class DeviceFormTest extends TestCase
         ]);
         $this->assertDatabaseCount('devices', 0);
     }
+
+    public function test_fails_validation_with_too_long_strings(): void
+    {
+        $deviceData = [
+            'name' => str_repeat('A', 51),           // Max. 50 chars
+            'head' => str_repeat('B', 51),           // Max. 50 chars
+            'beam_profile' => str_repeat('C', 51),   // Max. 50 chars
+            'beam_type' => 0,
+        ];
+
+        $response = $this->post(route('inputform.store'), $deviceData);
+
+        $response->assertRedirect();
+        $response->assertSessionHasErrors(['name', 'head', 'beam_profile']);
+        $this->assertDatabaseCount('devices', 0);
+    }
 }
