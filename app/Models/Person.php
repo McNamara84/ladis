@@ -10,21 +10,23 @@ class Person extends Model
 {
     use HasFactory;
 
+    protected $table = 'persons';
+
     protected $guarded = ['id'];
-    
+
     protected $casts = [
         'person_id' => 'integer',
-        'name' => 'string', 
+        'name' => 'string',
     ];
 
 
     //1:1 relation: A Person belongs to an Institution
 
     public function institutions(): BelongsTo
-{
-    return $this->belongsTo(Institution::class);
+    {
+        return $this->belongsTo(Institution::class);
 
-}
+    }
 
 
 
