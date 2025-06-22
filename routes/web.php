@@ -32,6 +32,6 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 //});
 
 // GET route for inputform without authentication
-Route::get('/inputform', [InputFormController::class, 'index']);
+Route::get('/inputform', [InputFormController::class, 'index'])->name('inputform.index');
 // POST route for inputform submission
 Route::post('/inputform', [InputFormController::class, 'store'])->name('inputform.store');
