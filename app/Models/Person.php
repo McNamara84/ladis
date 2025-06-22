@@ -9,14 +9,34 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 /**
  * Person Model
  *
- * Represents a person entity in the system
+ * Represents a person entity in the system.
  */
 class Person extends Model
 {
+    /**
+     * The table associated with the model.
+     *
+     * Must be explicitly defined to prevent Eloquent from using 'people'
+     * instead of the actual 'persons' table name.
+     *
+     * @var string
+     */
     protected $table = 'persons';
 
+    /**
+     * The attributes that are not mass assignable.
+     *
+     * Protects the 'id' field from mass assignment for security.
+     *
+     * @var list<string>
+     */
     protected $guarded = ['id'];
 
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array<string, string>
+     */
     protected $casts = [
         'person_id' => 'integer',
         'name' => 'string',
