@@ -10,7 +10,8 @@ class DeviceSeeder extends Seeder
 {
 /**
  * This function loads Data from a CSV by combining the header row as keys and the rows after as values. This
- * data is then being used to create Devices. Also, values that are not included in the $data array are being added afterwards.
+ * data is then being used to create Devices. Also, values that are not included in the $data array are being added afterwards (such as 
+ * foreign keys)
  *
  * @param string $path_to_csv This is the path to the CSV file
  * @param string $delimiter   This is the delimiter that is being used in the CSV file
