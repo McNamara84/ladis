@@ -175,4 +175,28 @@ class DeviceFormTest extends TestCase
         // Check if no DDevices with unallowed values were created
         $this->assertDatabaseCount('devices', 0);
     }
+
+    public function test_fails_validation_with_negative_values(): void
+    {
+        $deviceData = [
+            'name' => 'Test Device',
+            'beam_type' => 0,
+            'year' => 1800,         // To low
+            'height' => -100,       // signed
+            'width' => -50,         // signed
+            'weight' => -10.5,      // signed
+            'fiber_length' => -5.0, // signed
+            'max_output' => -100,   // signed
+            'wavelength' => -1064,  // signed
+        ];
+
+        $response = $this->post(route('inputform.store'), $deviceData);
+
+        $response->assertRedirect();
+        $response->assertSessionHasErrors([
+            'year', 'height', 'width', 'weight', 
+            'fiber_length', 'max_output', 'wavelength'
+        ]);
+        $this->assertDatabaseCount('devices', 0);
+    }
 }
