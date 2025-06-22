@@ -102,4 +102,21 @@ class DeviceFormTest extends TestCase
         $this->assertTrue($device->mounting);
         $this->assertFalse($device->automation);
     }
+
+    public function test_fails_validation_when_name_is_missing(): void
+    {
+        $deviceData = [
+            // 'name' => 'Test Device', // Missing on purpose
+            'beam_type' => 0,
+        ];
+
+        $response = $this->post(route('inputform.store'), $deviceData);
+
+        // Check redirect and error message
+        $response->assertRedirect();
+        $response->assertSessionHasErrors(['name']);
+        
+        // Check if no Devices was created in database
+        $this->assertDatabaseCount('devices', 0);
+    }
 }
