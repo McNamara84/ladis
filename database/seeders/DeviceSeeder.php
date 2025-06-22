@@ -9,6 +9,11 @@ use Illuminate\Database\Seeder;
 class DeviceSeeder extends Seeder
 {
     /**
+     * Run the device seeds.
+     */
+
+     
+    /**
      * This function loads Data from a CSV by combining the header row as keys and the rows after as values. This
      * data is then being used to create Devices. Also, values that are not included in the $data array are being added afterwards (such as 
      * foreign keys)
