@@ -8,16 +8,19 @@
  * of advanced search forms and results.
  *
  * @package App\Http\Controllers
- * @author Laser Database Team
+ * @author FHP LADIS Team
  * @since 0.1.0
  */
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use App\Http\Controllers\Controller;
+use App\Models\FederalState;
 use App\Models\Device;
+use App\Models\Institution;
+use App\Models\Person;
 use App\Models\Project;
 use App\Models\Material;
 
@@ -33,9 +36,12 @@ class AdvancedSearchController extends Controller
      * @var array
      */
     private $acceptedQueryParameters = [
-        'device_name',
-        'project_name',
+        'federal_state_id',
+        'device_id',
+        'institution_id',
         'material_id',
+        'person_name',
+        'project_name',
     ];
 
     /**
@@ -77,7 +83,7 @@ class AdvancedSearchController extends Controller
      * If only one criterion is present, perform a simple search.
      * If multiple criteria are present, perform a combined search.
      *
-     * @todo Add parameter validation
+     * @todo Create a Request class for the search parameter validation
      *
      * @param Request $request The HTTP request containing query parameters
      * @return array Array of combined search results with relevance scores
@@ -100,7 +106,10 @@ class AdvancedSearchController extends Controller
 
         // If only one criterion, do simple search
         if (count($queryParameters) === 1) {
-            return $this->performSimpleSearch($queryParameters);
+            $parameter = array_keys($queryParameters)[0];
+            $value = $queryParameters[$parameter];
+            // @todo Consider redirecting to a dedicated view for the returned instance.
+            return $this->performSimpleSearch($parameter, $value);
         }
 
         // For multiple criteria, perform combined search
@@ -114,33 +123,71 @@ class AdvancedSearchController extends Controller
      * It's intentionally kept this way to make the code easier to understand
      * and to make it easier to adjust individual queries.
      *
-     * @todo Add pagination
+     * @todo Create a Service class for the actual search logic
      *
-     * @param array $queryParameters Search criteria array
-     * @return array Array of search results
+     * @param string $parameter Search parameter name
+     * @param mixed $value Search parameter value
+     * @return array Array of search results with consistent Collection structure
      */
-    private function performSimpleSearch(array $queryParameters): array
+    private function performSimpleSearch(string $parameter, mixed $value): array
     {
-        $results = [];
+        // Create a consistent structure for the results
+        $results = [
+            'type' => 'simple',
+            'fuzzy' => false,
+            'parameter' => $parameter,
+            'value' => $value,
+            'model' => '',
+            'records' => collect([]),
+        ];
 
-        if (isset($queryParameters['device_name'])) {
-            $results['devices'] = Device::where('name', 'LIKE', "%{$queryParameters['device_name']}%")
+        if ($parameter === 'federal_state_id') {
+            $results['model'] = FederalState::class;
+            $federalState = FederalState::find($value);
+            if ($federalState) {
+                $results['records'] = collect([$federalState]);
+            }
+        }
+
+        if ($parameter === 'project_name') {
+            $results['model'] = Project::class;
+            $results['fuzzy'] = true;
+            $results['records'] = Project::where('name', 'LIKE', "%{$value}%")
                 ->limit($this->defaultChunkSize)
                 ->get();
         }
 
-        if (isset($queryParameters['project_name'])) {
-            $results['projects'] = Project::where('name', 'LIKE', "%{$queryParameters['project_name']}%")
+        if ($parameter === 'person_name') {
+            $results['model'] = Person::class;
+            $results['fuzzy'] = true;
+            $results['records'] = Person::where('name', 'LIKE', "%{$value}%")
                 ->limit($this->defaultChunkSize)
                 ->get();
         }
 
-        // @todo Handle the case where the material is a parent or child
-        if (isset($queryParameters['material_id'])) {
-            $results['materials'] = Material::where('id', $queryParameters['material_id'])
-                ->get();
+        if ($parameter === 'institution_id') {
+            $results['model'] = Institution::class;
+            $institution = Institution::find($value);
+            if ($institution) {
+                $results['records'] = collect([$institution]);
+            }
         }
 
+        if ($parameter === 'device_id') {
+            $results['model'] = Device::class;
+            $device = Device::find($value);
+            if ($device) {
+                $results['records'] = collect([$device]);
+            }
+        }
+
+        if ($parameter === 'material_id') {
+            $results['model'] = Material::class;
+            $material = Material::find($value);
+            if ($material) {
+                $results['records'] = $material->children->prepend($material);
+            }
+        }
 
         return $results;
     }
@@ -150,6 +197,8 @@ class AdvancedSearchController extends Controller
      *
      * Since direct relationships are limited, we search for contextual matches
      * by looking for shared connections through venues, institutions, etc.
+     *
+     * @todo This is a placeholder for the actual combined search logic.
      *
      * @param array $queryParameters Search criteria array
      * @return array Array of combined search results
