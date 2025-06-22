@@ -119,4 +119,18 @@ class DeviceFormTest extends TestCase
         // Check if no Devices was created in database
         $this->assertDatabaseCount('devices', 0);
     }
+
+    public function test_fails_validation_when_beam_type_is_missing(): void
+    {
+        $deviceData = [
+            'name' => 'Test Device',
+            // 'beam_type' => 0, // Missing on purpose
+        ];
+
+        $response = $this->post(route('inputform.store'), $deviceData);
+
+        $response->assertRedirect();
+        $response->assertSessionHasErrors(['beam_type']);
+        $this->assertDatabaseCount('devices', 0);
+    }
 }
