@@ -262,4 +262,36 @@ class DeviceFormTest extends TestCase
         $this->assertNull($device->weight);
         $this->assertNull($device->description);
     }
+
+    public function test_boolean_fields_are_processed_correctly(): void
+    {
+        // Test case with mounting=true, automation=false
+        $deviceData = [
+            'name' => 'Boolean Test 1',
+            'beam_type' => 0,
+            'mounting' => 1,    // true
+            'automation' => 0,  // false
+        ];
+
+        $response = $this->post(route('inputform.store'), $deviceData);
+        $response->assertRedirect(route('inputform.index'));
+
+        $device = Device::where('name', 'Boolean Test 1')->first();
+        $this->assertTrue($device->mounting);
+        $this->assertFalse($device->automation);
+
+        // Test case with mounting=false, automation=true
+        $deviceData2 = [
+            'name' => 'Boolean Test 2', 
+            'beam_type' => 0,
+            'mounting' => 0,    // false
+            'automation' => 1,  // true
+        ];
+
+        $this->post(route('inputform.store'), $deviceData2);
+
+        $device2 = Device::where('name', 'Boolean Test 2')->first();
+        $this->assertFalse($device2->mounting);
+        $this->assertTrue($device2->automation);
+    }
 }
