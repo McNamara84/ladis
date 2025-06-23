@@ -33,16 +33,6 @@ class Person extends Model
     protected $guarded = ['id'];
 
     /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'person_id' => 'integer',
-        'name' => 'string',
-    ];
-
-    /**
      * n:1 relation: A Person belongs to one Institution
      *
      * @return BelongsTo
