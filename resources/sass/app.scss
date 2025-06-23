@@ -1,8 +1,153 @@
-// Fonts
-@import url('https://fonts.bunny.net/css?family=Nunito');
+// Colors
+@import 'colors';
 
 // Variables
 @import 'variables';
 
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
+
+//
+// Custom Components
+//
+
+// Defaults for SVG-Sprite Elements
+symbol {
+    fill: currentColor;
+}
+
+// Defaults for Bootstrap Icons
+// - https://icons.getbootstrap.com
+.bi {
+    display: inline-block;
+    vertical-align: -0.125em;
+    width: 1em;
+    height: 1em;
+}
+
+.bi-fluid {
+    display: block;
+    width: auto;
+    height: auto;
+    aspect-ratio: 1 / 1;
+}
+
+//
+// App Logo (temporary)
+//
+
+:root {
+    // Default size for the logo
+    --app-logo-size: 4em;
+    // Logo size in the header naviation
+    --app-logo-size-nav: 2.2222em;
+}
+
+.app-logo {
+    inline-size: var(--app-logo-size);
+    aspect-ratio: 1 / 1;
+    color: currentColor;
+}
+
+.app-logo-bg {
+    fill: currentColor;
+}
+
+.app-logo-accent {
+    fill: var(--bs-primary);
+}
+
+//
+// Navigation Bar
+//
+
+// Mobile Menu Button
+.navbar-toggler {
+    border: none;
+    background-color: transparent;
+}
+
+// Adjust logo size in navbar
+.navbar .app-logo {
+    --app-logo-size: var(--app-logo-size-nav);
+}
+
+//
+// Generic container-like components
+//
+
+// Viewport Section
+.vh-section {
+    // Calculate the height
+    // To do: Do this in `:root`
+    min-height: calc(100vh - ($navbar-padding-y * 2) - ($navbar-brand-font-size / $font-size-base * var(--app-logo-size-nav)) - ($navbar-brand-padding-y * 2));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+// Content container
+// Restricts the width of the content to readable width
+.content {
+    max-width: 60ch;
+}
+
+//
+// Hero section – Flashy page intro component
+//
+
+.hero {
+    // Use a responsive font size relative to the viewport
+    font-size: clamp(1.25rem, 4vw, 2rem);
+    margin-block: 3em;
+}
+
+.hero-title {
+    font-size: 3em;
+    line-height: 1;
+    padding-block-end: .5em;
+    margin-block-end: .5em;
+    border-bottom: 1px solid;
+}
+
+.hero .brand-name {
+    font-style: italic;
+    font-weight: 600;
+}
+
+//
+// Dark Mode
+//
+
+// Variables for Dark color mode are far from complete in BS.
+// So we have to use this thing:
+// @include color-mode(dark, true) {
+// styles for `:root` here …
+// }
+
+// Because Bootstrap defines many variables on sepcific selctors,
+// we can't just assign all of them to `:root` :(
+@include color-mode(dark) {
+    .text-secondary {
+        // Override the default color for secondary text
+        // The fact that we have to use `!important` tells a lot about the state of BS.
+        color: #{$teal} !important;
+    }
+
+    .navbar,
+    .navbar-nav,
+    .nav-link {
+        --bs-navbar-color: #{$light};
+        --bs-navbar-link-color: #{$light};
+        --bs-navbar-hover-color: #{$link-color-dark};
+        --bs-nav-link-hover-color: #{$link-color-dark};
+        --bs-navbar-disabled-color: #{$body-tertiary-color-dark};
+        --bs-nav-link-disabled-color: #{$body-tertiary-color-dark};
+    }
+
+    // Want to do this but it has too many side effects:
+    // .btn,
+    // .btn-primary {
+    //     --bs-btn-color: #{$…};
+    // }
+}
