@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\InputFormController;
+use App\Http\Controllers\LegalNoticeController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\PrivacyPolicyController;
 
@@ -41,3 +42,5 @@ Route::get('/inputform', [InputFormController::class, 'index']);
 
 //Route for inputform without authentication
 Route::get('/inputform', [InputFormController::class, 'index']);
+
+Route::get('/impressum', [LegalNoticeController::class, 'index'])->name('impressum');
