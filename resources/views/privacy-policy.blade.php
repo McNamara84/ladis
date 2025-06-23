@@ -30,7 +30,7 @@
             University of Applied Sciences</strong><br>
             Fachbereich 5 – Informationswissenschaften<br>
             Kiepenheuerallee 5<br>
-            14469 Potsdam<br>
+            14469 Potsdam
         </address>
         <h2>2. Zweck und Rechtsgrundlagen</h2>
         <p>Die personenbezogenen Daten (insbesondere E-Mail-Adresse und Benutzername) dienen zur Verifikation von Datensätzen, um nachvollziehen zu können, wer Inhalte erstellt hat und wer als Kontaktperson fungiert. Soweit Sie dieses Angebot nutzen, geschieht das auf freiwilliger Basis. Die entsprechende Rechtsgrundlage bildet Art. 6 Abs. 1 S. 1 lit. a DSGVO.</p>
@@ -55,12 +55,12 @@
         <h2>4. Ihre Rechte</h2>
         <p>Nach der Datenschutz-Grundverordnung stehen Ihnen zudem folgende Rechte zu: Werden Ihre personenbezogenen Daten verarbeitet, so haben Sie das Recht, Auskunft über die zu Ihrer Person gespeicherten Daten zu erhalten (Art. 15 DSGVO). Sollten unrichtige personenbezogene Daten verarbeitet werden, steht Ihnen ein Recht auf Berichtigung zu (Art. 16 DSGVO). Liegen die gesetzlichen Voraussetzungen vor, so können Sie die Löschung oder Einschränkung der Verarbeitung verlangen sowie Widerspruch gegen die Verarbeitung einlegen (Art. 17, 18 und 21 DSGVO). Wenn Sie in die Datenverarbeitung eingewilligt haben oder ein Vertrag zur Datenverarbeitung besteht und die Datenverarbeitung mithilfe automatisierter Verfahren durchgeführt wird, steht Ihnen gegebenenfalls ein Recht auf Datenübertragbarkeit zu (Art. 20 DSGVO). Sollten Sie von Ihren oben genannten Rechten Gebrauch machen, prüft die Fachhochschule Potsdam, ob die gesetzlichen Voraussetzungen hierfür erfüllt sind. Wenn Sie Fragen zum Webauftritt haben oder Ihre genannten Rechte ausüben wollen, wenden Sie sich gerne an die Stabsstelle Hochschulkommunikation (<a href="mailto:webredaktion@fh-potsdam.de">webredaktion@fh-potsdam.de</a>) oder an den Datenschutzbeauftragten (<a href="mailto:datenschutz@fh-potsdam.de">datenschutz@fh-potsdam.de</a>) der Hochschule. Jede betroffene Person hat das Recht auf Beschwerde bei der Aufsichtsbehörde, wenn sie der Ansicht ist, dass ihre personenbezogenen Daten rechtswidrig verarbeitet werden. Wenn Sie sich an die Landesbeauftragte für den Datenschutz und für das Recht auf Akteneinsicht wenden möchten, können Sie sie wie folgt kontaktieren:</p>
         <h4>Die Landesbeauftragte für den Datenschutz und für das Recht auf Akteneinsicht</h4>
-        <address>
+        <p>
             <strong>Dagmar Hartge</strong><br>
             Stahnsdorfer Damm 77<br>
             14532 Kleinmachnow<br>
             <strong>E-mail: </strong><a href="mailto:poststelle@LDA.brandenburg.de">poststelle@LDA.brandenburg.de</a><br>
-        </address>
+        </p>
         <p>Weitere Informationen können Sie dem offiziellen Internetauftritt der Landesbeauftragten unter <a href="https://www.lda.brandenburg.de" title="Externer Link: Weitere Informationen können Sie dem offiziellen Internetauftritt der Landesbeauftragten unter www.lda.brandenburg.de (Öffnet neues Fenster)">www.lda.brandenburg.de</a> entnehmen.</p>
         <h2>5. Hosting</h2>
         <p>Die Webseite wird über Server der Fachhochschule Potsdam gehostet. Es besteht ein entsprechender Vertrag zur Auftragsverarbeitung gemäß Art. 28 DSGVO.</p>
@@ -69,23 +69,23 @@
         <h2>Technische Umsetzung</h2>
         <h3>Ansprechpartner*innen</h3>
         <h4>Verantwortliche Stelle ist:</h4>
-        <address>
+        <p>
             <strong>Präsidentin<br>
             Prof. Dr. Eva Schmitt-Rodermund</strong><br>
             Fachhochschule Potsdam<br>
             Kiepenheuerallee 5<br>
             14469 Potsdam<br>
             <strong>E-mail: </strong><a href="mailto:praesidentin@fh-potsdam.de">praesidentin@fh-potsdam.de</a><br>
-        </address>
+        </p>
         <h4>Sie erreichen unseren behördlichen Datenschutzbeauftragten unter: </h4>
-        <address>
+        <p>
             <strong>Sven Hirsch</strong><br>
             Datenschutzbeauftragter<br>
             Fachhochschule Potsdam<br>
             Kiepenheuerallee 5<br>
             14469 Potsdam<br>
             <strong>E-mail: </strong><a href="mailto:datenschutz@fh-potsdam.de">datenschutz@fh-potsdam.de</a><br>
-        </address>
+        </p>
         <h4>Technische Umsetzung:</h4>
         <p>Der Web-Server für den Betrieb der Website wird technisch durch die <a href="https://www.fh-potsdam.de/campus-services/it-service">Zentrale IT der FH Potsdam</a> betrieben.</p>
         <p><strong>E-mail: </strong><a href="mailto:it-service@fh-potsdam.de">it-service@fh-potsdam.de</a></p>
