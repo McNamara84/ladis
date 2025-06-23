@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('artifacts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('location_id')->constrained()->restrictOnDelete();
+            $table->foreignId('location_id')->constrained()
+                ->restrictOnDelete()
+                ->restrictOnUpdate();
             $table->string('name', 50);
             $table->string('inventory_number', 25)->nullable();
             // name is unique only within the same location
