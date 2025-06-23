@@ -202,7 +202,8 @@
                         <h6 class="fw-bold">{{ config('app.name') }} Version {{ $projectVersion }}</h6>
                         <p class="small mb-0">
                             Datenbank zu Reinigungslasern in der Restaurierung<br>
-                            Fachhochschule Potsdam - Studentisches Projekt
+                            Fachhochschule Potsdam - Studentisches Projekt<br>
+                            <a href="{{ route('datenschutz') }}">Datenschutzerklärung</a>
                         </p>
                     </div>
                     <div class="col-md-4 text-md-end">
