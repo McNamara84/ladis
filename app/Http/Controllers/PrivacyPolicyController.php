@@ -9,8 +9,7 @@ class PrivacyPolicyController extends Controller
     {
         $pageTitle = 'Datenschutzerklärung';
         $lastUpdated = '2025-06-21T00:00:00Z';
-        $url = 'https://www.example.com';
 
-        return view('privacy-policy', ['pageTitle' => $pageTitle, 'lastUpdated' => $lastUpdated, 'url' => $url]);
+        return view('privacy-policy', ['pageTitle' => $pageTitle, 'lastUpdated' => $lastUpdated]);
     }
 }
