@@ -5,7 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Image;
+use App\Models\Person;
+use App\Models\Venue;
 
+/**
+ * Project Model:
+ * 
+ * - has many Images (1:n)
+ * - belongs to Person (n:1)
+ * - belongs to Venue (n:1)
+ */
 class Project extends Model
 {
     use HasFactory;
@@ -28,12 +39,27 @@ class Project extends Model
         'ended_at' => 'date',
     ];
 
-
-    //1:1 relation: A Person belongs to an Project
-
-    public function projects(): BelongsTo
+    /**
+     * 1:n relationship to Images
+     */
+    public function images(): HasMany
     {
-        return $this->belongsTo(Project::class);
+        return $this->hasMany(Image::class);
     }
 
+    /**
+     * n:1 relationship to Person (backwards)
+     */
+    public function person(): BelongsTo
+    {
+        return $this->belongsTo(Person::class);
+    }
+
+    /**
+     * n:1 relationship to Venue (backwards)
+     */
+    public function venue(): BelongsTo
+    {
+        return $this->belongsTo(Venue::class);
+    }
 }
