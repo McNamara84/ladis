@@ -3,7 +3,19 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use App\Models\Condition;
+use App\Models\Project;
 
+/**
+ * Image Model:
+ *
+ * - belongs to Condition (n:1)
+ * - belongs to Project (n:1)
+ * - has one Project (as cover image) (1:1)
+ * - has one Project (as thumbnail image) (1:1)
+ */
 class Image extends Model
 {
     /**
@@ -20,8 +32,8 @@ class Image extends Model
      */
 
     protected $casts = [
-        // 'project_id' => 'integer',
-        // 'condition_id' => 'integer',
+        'project_id' => 'integer',
+        'condition_id' => 'integer',
         'uri' => 'string',
         'description' => 'string',
         'alt_text' => 'string',
@@ -29,23 +41,23 @@ class Image extends Model
         'creator' => 'string',
     ];
 
-    /*public function condition()
-    *{
-    *    return $this->belongsTo(Condition::class);
-    }*/
+    public function condition()
+    {
+        return $this->belongsTo(Condition::class);
+    }
 
-    /* public function project()
-    *{
-    *    return $this->belongsTo(Project::class);
-    }*/
+    public function project()
+    {
+        return $this->belongsTo(Project::class);
+    }
 
-    /*public function coverOf()
-    *{
-    *    return $this->hasOne(Project::class, 'cover_image_id');
-    }*/
+    public function coverOf()
+    {
+        return $this->hasOne(Project::class, 'cover_image_id');
+    }
 
-    /*public function thumbnailOf()
-    *{
-    *    return $this->hasOne(Project::class, 'thumbnail_image_id');
-    }*/
+    public function thumbnailOf()
+    {
+        return $this->hasOne(Project::class, 'thumbnail_image_id');
+    }
 }
