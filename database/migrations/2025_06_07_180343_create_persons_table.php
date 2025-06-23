@@ -18,9 +18,7 @@ return new class extends Migration {
             $table->timestamps();
 
             // Foreign key references to the table institution 
-            $table->foreignId('institution_id')->constrained('institutions')
-                ->restrictOnDelete()
-                ->restrictOnUpdate();
+            $table->foreignId('institution_id')->constrained('institutions');
         });
     }
 

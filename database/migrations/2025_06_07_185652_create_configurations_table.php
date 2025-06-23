@@ -13,9 +13,7 @@ return new class extends Migration
     {
         Schema::create('configurations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('lens_id')->constrained('lenses')
-                ->restrictOnDelete()    
-                ->restrictOnUpdate();
+            $table->foreignId('lens_id')->constrained('lenses');
             $table->smallInteger('focal_length')->unsigned()
                 ->digitsBetween(1, 3)
                 ->comment('in mm');
