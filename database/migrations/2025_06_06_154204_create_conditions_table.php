@@ -21,8 +21,8 @@ return new class extends Migration
             $table->decimal('lab_l', 5, 2)->unsigned()->nullable();
             $table->decimal('lab_a', 5, 2)->nullable();
             $table->decimal('lab_b', 5, 2)->nullable();
-            $table->tinyInteger('severity')->unsigned();
-            $table->tinyInteger('adhesion')->unsigned();
+            $table->text('severity')->nullable();
+            $table->text('adhesion')->nullable();
             $table->timestamps();
         });
     }
