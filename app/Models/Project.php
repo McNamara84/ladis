@@ -21,10 +21,6 @@ class Project extends Model
     ];
 
     protected $casts = [
-        'project_id' => 'integer',
-        'name' => 'string',
-        'description' => 'string',
-        'url' => 'string',
         'started_at' => 'date',
         'ended_at' => 'date',
     ];
