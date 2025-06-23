@@ -6,7 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\Device;
+use App\Models\Person;
 
+/**
+ * Institution Model:
+ *
+ * - has many Devices (1:n)
+ * - has many Persons (1:n)
+ */
 class Institution extends Model
 {
     use HasFactory;
@@ -43,10 +50,18 @@ class Institution extends Model
     }
 
     /**
-     * 1:n relationship to devices
+     * 1:n relationship to Device
      */
     public function devices(): HasMany
     {
         return $this->hasMany(Device::class);
+    }
+
+    /**
+     * 1:n relationship to Person
+     */
+    public function persons(): HasMany
+    {
+        return $this->hasMany(Person::class);
     }
 }
