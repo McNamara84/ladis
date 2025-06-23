@@ -6,7 +6,6 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\InputFormController;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\DatenschutzController;
 use App\Http\Controllers\PrivacyPolicyController;
 
 // Landing page for guests
