@@ -1,3 +1,14 @@
+@php
+    use Carbon\Carbon;
+
+    function format_date($date, $format = 'd. F Y', $timezone = 'Europe/Berlin')
+    {
+        return Carbon::parse($date)
+            ->timezone($timezone)
+            ->format($format);
+    }
+@endphp
+
 @extends('layouts.app')
 
 @section('content')
@@ -7,7 +18,7 @@
         </div>
         <h1>{{ $pageTitle }}</h1>
         <p>Wir verarbeiten personenbezogene Daten, die beim Besuch unserer Webseite erhoben werden, unter Beachtung der geltenden datenschutzrechtlichen Bestimmungen, insbesondere der EU-Datenschutz-Grundverordnung (DSGVO).</p>
-        <p>Diese Datenschutzhinweise (Stand: <time datetime="{{ $lastUpdated }}">{{ $lastUpdated }}</time>) gelten für folgende von der FH Potsdam betriebenen Seiten:</p>
+        <p>Diese Datenschutzhinweise (Stand: <time datetime="{{ $lastUpdated }}">{{ format_date($lastUpdated) }}</time>) gelten für folgende von der FH Potsdam betriebenen Seiten:</p>
         <ul>
             <li><a href="{{ config('app.url') }}">{{ config('app.url') }}</a></li>
         </ul>
