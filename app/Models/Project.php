@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use App\Models\Image;
 use App\Models\Person;
 use App\Models\Venue;
@@ -45,6 +46,22 @@ class Project extends Model
     public function images(): HasMany
     {
         return $this->hasMany(Image::class);
+    }
+
+    /**
+     * 1:1 relationship to Image (as cover image)
+     */
+    public function coverImage(): HasOne
+    {
+        return $this->hasOne(Image::class, 'cover_image_id');
+    }
+
+    /**
+     * 1:1 relationship to Image (as thumbnail image)
+     */
+    public function thumbnailImage(): HasOne
+    {
+        return $this->hasOne(Image::class, 'thumbnail_image_id');
     }
 
     /**
