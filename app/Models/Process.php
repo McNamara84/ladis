@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\hasOne;
 use App\Models\Configuration;
 use App\Models\PartialSurface;
 use App\Models\Device;
@@ -82,8 +81,8 @@ class Process extends Model
     /**
      * 1:1 relationship to PartialSurface
      */
-    public function partialSurface(): HasOne
+    public function partialSurface(): BelongsTo
     {
-        return $this->hasOne(PartialSurface::class);
+        return $this->belongsTo(PartialSurface::class);
     }
 }
