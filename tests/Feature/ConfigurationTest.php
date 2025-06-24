@@ -8,6 +8,7 @@ use Tests\TestCase;
 use App\Models\Configuration;
 use App\Models\Lens;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class ConfigurationTest extends TestCase
 {
@@ -66,5 +67,14 @@ class ConfigurationTest extends TestCase
         ]);
 
         $this->assertTrue($config->lens->is($lens));
+    }
+
+    public function test_processes_relationship_is_has_many(): void
+    {
+        $config = new Configuration();
+        $relation = $config->processes();
+
+        $this->assertInstanceOf(HasMany::class, $relation);
+        $this->assertEquals('configuration_id', $relation->getForeignKeyName());
     }
 }
