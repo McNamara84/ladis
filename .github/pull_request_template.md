@@ -6,15 +6,18 @@
 ## 🔗 Issue
 <!-- Closed Issues: "- Closes #…" -->
 
-## 🧪 Testing
-- [ ] Feature/Unit Tests pass
-- [ ] Tests added/updated
+## 🧪 Definition of Done erfüllt?
+
+- [ ] User story fulfilled
+- [ ] Documentation updated
+- [ ] New code is covered by unit tests
+- [ ] Unit tests locally pass
 - [ ] Manually tested
 - [ ] Browser compatible
 - [ ] Mobile compatible
-- [ ] Definition of Done fulfilled
 
 ## 🚀 Laravel-specific
+
 - [ ] Migrations added/changed
 - [ ] Routes registered
 - [ ] Config changes documented
