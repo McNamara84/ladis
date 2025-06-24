@@ -12,7 +12,7 @@ class DeviceSeeder extends Seeder
      * Run the device seeds.
      */
 
-     
+
     /**
      * This function loads Data from a CSV by combining the header row as keys and the rows after as values. This
      * data is then being used to create Devices. Also, values that are not included in the $data array are being added afterwards (such as 
@@ -29,6 +29,12 @@ class DeviceSeeder extends Seeder
     {
 
         $csv_file = fopen(base_path($path_to_csv), 'r');
+
+        if ($csv_file === false) {
+            throw new \RuntimeException("Failed to open CSV file at path: $path_to_csv");
+        }
+
+
         $header_row = null;
         while (($row = fgetcsv($csv_file, null, $delimiter)) !== false) {
             if ($header_row == null) {
