@@ -49,4 +49,22 @@ class ConfigurationTest extends TestCase
         $this->assertInstanceOf(Lens::class, $relation->getRelated());
         $this->assertSame('lens_id', $relation->getForeignKeyName());
     }
+
+    public function test_lens_relation_returns_associated_model(): void
+    {
+        $lens = Lens::create(['size' => 42]);
+        $config = Configuration::create([
+            'lens_id' => $lens->id,
+            'focal_length' => 100,
+            'output' => 10,
+            'pw' => 100,
+            'pf' => 10,
+            'scan_width' => 2.0,
+            'scan_frequency' => 5,
+            'spot_size' => 0.5,
+            'fluence' => 1.234,
+        ]);
+
+        $this->assertTrue($config->lens->is($lens));
+    }
 }
