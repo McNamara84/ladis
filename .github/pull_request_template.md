@@ -19,10 +19,13 @@
 ## 🚀 Laravel-specific
 
 - [ ] Migrations added/changed
+- [ ] Models added/changed
+- [ ] Views added/changed
 - [ ] Routes registered
-- [ ] Config changes documented
+- [ ] Seeder added/changed
+- [ ] Config changed
 - [ ] Composer dependencies updated
-- [ ] Artisan Commands work
+- [ ] Artisan Commands added/changed
 
 ## 📷 Screenshots
 <!-- If UI changed -->
