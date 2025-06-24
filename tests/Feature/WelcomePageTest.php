@@ -9,10 +9,7 @@ class WelcomePageTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * Tests if the landing page will return a successful response.
-     */
-    public function test_the_application_returns_a_successful_response(): void
+    public function test_the_welcome_page_returns_a_successful_response(): void
     {
         $response = $this->get('/');
 
