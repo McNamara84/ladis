@@ -22,4 +22,11 @@ class WelcomePageTest extends TestCase
 
         $response->assertViewIs('welcome');
     }
+
+    public function test_welcome_page_displays_application_name(): void
+    {
+        $response = $this->get('/');
+
+        $response->assertSee(config('app.name'));
+    }
 }
