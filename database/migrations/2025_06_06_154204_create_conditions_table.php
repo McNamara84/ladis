@@ -16,8 +16,8 @@ return new class extends Migration
             // since id() already provides a unique index. The same applies to autoIncrement() which is not needed.
             $table->id();
             $table->foreignId('damage_pattern_id')->constrained('damage_patterns')
-                ->cascadeOnDelete()
-                ->cascadeOnUpdate();
+                ->restrictOnDelete()
+                ->restrictOnUpdate();
             $table->float('wac')->unsigned()->nullable();
             $table->text('description')->nullable();
             $table->decimal('lab_l', 5, 2)->unsigned()->nullable();
