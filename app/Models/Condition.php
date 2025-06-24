@@ -59,10 +59,18 @@ public function images(): HasMany
 }
 
 /**
-* 1:1 relationship to PartialSurface
+* 1:1 relationship to PartialSurface (being a pre-condition)
 */
-public function partialSurface(): HasOne
+public function conditionOf(): HasOne
 {
-    return $this->hasOne(PartialSurface::class);
+    return $this->hasOne(PartialSurface::class, 'condition_id');
+}
+
+/**
+* 1:1 relationship to PartialSurface (being a result)
+*/
+public function resultOf(): HasOne
+{
+    return $this->hasOne(PartialSurface::class, 'result_id');
 }
 }
