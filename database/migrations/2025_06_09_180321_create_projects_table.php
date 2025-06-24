@@ -33,6 +33,14 @@ return new class extends Migration {
             $table->foreignId('venue_id')->constrained('venues')
                 ->restrictOnDelete()
                 ->restrictOnUpdate();
+            
+            // Foreign key references to the table image
+            $table->foreignId('cover_image_id')->nullable()->constrained('images')
+                ->restrictOnDelete()
+                ->restrictOnUpdate();
+            $table->foreignId('thumbnail_image_id')->nullable()->constrained('images')
+                ->restrictOnDelete()
+                ->restrictOnUpdate();
         });
     }
 
