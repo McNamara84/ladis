@@ -15,4 +15,11 @@ class WelcomePageTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    public function test_welcome_page_uses_welcome_view(): void
+    {
+        $response = $this->get('/');
+
+        $response->assertViewIs('welcome');
+    }
 }
