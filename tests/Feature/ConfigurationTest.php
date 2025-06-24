@@ -6,6 +6,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\Configuration;
+use App\Models\Lens;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ConfigurationTest extends TestCase
 {
@@ -36,5 +38,15 @@ class ConfigurationTest extends TestCase
         $this->assertSame('0.5', $config->spot_size);
         $this->assertSame('3.457', $config->fluence);
         $this->assertIsString($config->description);
+    }
+
+    public function test_lens_relationship_is_belongsto(): void
+    {
+        $config = new Configuration();
+        $relation = $config->lens();
+
+        $this->assertInstanceOf(BelongsTo::class, $relation);
+        $this->assertInstanceOf(Lens::class, $relation->getRelated());
+        $this->assertSame('lens_id', $relation->getForeignKeyName());
     }
 }
