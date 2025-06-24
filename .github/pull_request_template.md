@@ -3,15 +3,6 @@
 ## 📝 What was changed?
 <!-- Brief description of changes -->
 
-## 🏷️ Type of change
-- [ ] 🐛 Bug Fix
-- [ ] ✨ New Feature
-- [ ] 💥 Breaking Change
-- [ ] 📚 Documentation
-- [ ] ♻️ Refactoring
-- [ ] 🎨 UI/Styling
-- [ ] Dev Tooling
-
 ## 🔗 Issue
 <!-- Closed Issues: "- Closes #…" -->
 
