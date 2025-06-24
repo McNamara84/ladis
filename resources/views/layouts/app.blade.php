@@ -89,7 +89,7 @@
             <!-- Navigation -->
             <nav class="container-fluid" aria-label="Hauptnavigation">
                 <!-- Brand/Logo -->
-                <a class="navbar-brand d-flex align-items-center" href="{{ url('http://localhost:8000/') }}"
+                <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}"
                     aria-label="{{ config('app.name') }}">
                     <svg class="app-logo">
                         <use xlink:href="#ladis-logo"></use>
