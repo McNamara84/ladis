@@ -56,17 +56,17 @@ class PartialSurface extends Model
     /**
      * 1:1 relationship to Condition as the pre-condition
      */
-    public function condition(): HasOne
+    public function condition(): BelongsTo
     {
-      return $this->hasOne(Condition::class, 'condition_id');
+      return $this->belongsTo(Condition::class, 'condition_id');
     }
     
      /**
      * 1:1 relationship to Condition as the result
      */
-    public function result(): HasOne
+    public function result(): BelongsTo
     {
-       return $this->hasOne(Condition::class, 'result_id');
+       return $this->belongsTo(Condition::class, 'result_id');
     }
     
     /**
