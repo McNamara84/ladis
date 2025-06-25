@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -12,13 +11,12 @@ use App\Models\Project;
 /**
  * Person Model:
  *
- * - belongs to Institution (n:1)
+ * - represents a person entity in the system
+ * - belongs to an Institution (n:1)
  * - has many Projects (1:n)
  */
 class Person extends Model
 {
-    use HasFactory;
-
     /**
      * The table associated with the model.
      *
@@ -29,6 +27,13 @@ class Person extends Model
      */
     protected $table = 'persons';
 
+    /**
+     * The attributes that are not mass assignable.
+     *
+     * Protects the 'id' field from mass assignment for security.
+     *
+     * @var list<string>
+     */
     protected $guarded = ['id'];
     
     protected $casts = [
@@ -36,22 +41,23 @@ class Person extends Model
         'name' => 'string', 
     ];
 
-/**
- * n:1 relationship to Institution (backwards)
- */
+    /**
+     * n:1 relation to Institution: a Person belongs to one Institution
+     *
+     * @return BelongsTo
+     */
     public function institution(): BelongsTo
-{
-    return $this->belongsTo(Institution::class);
+    {
+        return $this->belongsTo(Institution::class);
+    }
 
-}
-
-/**
- * 1:n relationship to Project
- */
+    /**
+     * 1:n relation to Project: a Person can have many Projects
+     *
+     * @return HasMany
+     */
     public function projects(): HasMany
-{
-    return $this->hasMany(Project::class);
-
-}
-
+    {
+        return $this->hasMany(Project::class);
+    }
 }
