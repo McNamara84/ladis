@@ -18,10 +18,6 @@ Route::get('/advanced_search', [AdvancedSearchController::class, 'index'])->name
 Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
-// Registration page with route name register
-Route::get('/register', function () {
-    return view('auth.register');
-})->name('register');
 
 // Routes for user with authentication
 Route::get('/home', [HomeController::class, 'index'])->name('home');
