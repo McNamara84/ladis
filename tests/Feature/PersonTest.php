@@ -7,6 +7,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\Models\Person;
 use App\Models\Project;
+use App\Models\Venue;
+
 class PersonTest extends TestCase
 {
     use RefreshDatabase;
@@ -20,14 +22,17 @@ class PersonTest extends TestCase
         ]);
     }
 
-    private function createProject($name, $person): Project
+    private function createProject($person): Project
     {
+        $venue = Venue::factory()->create();
+
         $project = new Project([
-            'name' => $name,
+            'name' => fake()->name(),
             'description' => 'Description of the project',
             'url' => 'https://foo.none',
             'started_at' => fake()->date(),
             'ended_at' => fake()->date(),
+            'venue_id' => $venue->id,
         ]);
 
         // Assign the person relationship in a separate step
@@ -43,10 +48,10 @@ class PersonTest extends TestCase
 
         return [
             // Associated with the person
-            $this->createProject('Project Number 7', $person),
-            $this->createProject('Project E', $person),
+            $this->createProject($person),
+            $this->createProject($person),
             // Not associated with the person
-            $this->createProject('Project 2501', $other_person),
+            $this->createProject($other_person),
         ];
     }
 
