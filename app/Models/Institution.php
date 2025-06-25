@@ -3,14 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\Device;
 
+/**
+ * Institution Model
+ *
+ * Represents an institution entity in the system
+ */
 class Institution extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
         'name',
         'type',
@@ -23,15 +25,15 @@ class Institution extends Model
      * Corresponds to the ENUM in the database
      * Can be used for validation
      */
-    const TYPE_CLIENT      = 'Auftraggeber';
-    const TYPE_CONTRACTOR  = 'Auftragnehmer';
-    const TYPE_MANUFACTURER = 'Hersteller';
+    public const TYPE_CLIENT = 'Auftraggeber';
+    public const TYPE_CONTRACTOR = 'Auftragnehmer';
+    public const TYPE_MANUFACTURER = 'Hersteller';
 
     /**
      * All possible types as an array
      * This can be used for validation or dropdowns
      *
-     * @return array<string>
+     * @return list<string>
      */
     public static function getTypes(): array
     {
@@ -43,10 +45,22 @@ class Institution extends Model
     }
 
     /**
-     * 1:n relationship to devices
+     * 1:n relation: An Institution can have many Devices
+     *
+     * @return HasMany
      */
     public function devices(): HasMany
     {
         return $this->hasMany(Device::class);
+    }
+
+    /**
+     * 1:n relation: An Institution can have many Persons
+     *
+     * @return HasMany
+     */
+    public function persons(): HasMany
+    {
+        return $this->hasMany(Person::class);
     }
 }
