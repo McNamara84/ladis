@@ -17,7 +17,7 @@ class FederalStateFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->randomElement([
+            'name' => fake()->unique()->randomElement([
                 'Baden-Württemberg',
                 'Bayern',
                 'Berlin',
