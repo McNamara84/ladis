@@ -2,3 +2,8 @@
 !private/
 !public/
 !.gitignore
+!/storage/
+!/storage/app/
+!/storage/app/CL20_Backpack.csv
+!/storage/app/Infinito Laser_p_n _I054C1.csv
+!/storage/app/THUNDER_COMPACT.csv
