@@ -38,7 +38,7 @@ class DeviceSeeder extends Seeder
                 $data = array_combine($header_row, $row);
                 if ($data===false){
                     Log::error("Combining attributes to corresponding values has failed at: $path_to_csv");
-                    continue;
+                    return;
                 }
                 $data = array_map(
                     function ($value) {
