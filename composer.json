@@ -115,7 +115,7 @@
         ],
         "dev": [
             "Composer\\Config::disableProcessTimeout",
-            "APP_VERSION=$(git describe --tags --abbrev=0 2>/dev/null || echo '0.0.0') npx concurrently -c \"#93c5fd,#c4b5fd,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1\" \"npm run dev\" --names='server,queue,vite'"
+            "node dev-server.js"
         ],
         "test": [
             "@php artisan config:clear --ansi",
