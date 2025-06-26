@@ -5,11 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\Device;
+use App\Models\Person;
 
 /**
- * Institution Model
+ * Institution Model:
  *
- * Represents an institution entity in the system
+ * - represents an institution entity in the system
+ * - has many Devices (1:n)
+ * - has many Persons (1:n)
  */
 class Institution extends Model
 {
@@ -45,7 +48,7 @@ class Institution extends Model
     }
 
     /**
-     * 1:n relation: An Institution can have many Devices
+     * 1:n relation to Device: an Institution can have many Devices
      *
      * @return HasMany
      */
@@ -55,7 +58,7 @@ class Institution extends Model
     }
 
     /**
-     * 1:n relation: An Institution can have many Persons
+     * 1:n relation to Person: an Institution can have many Persons
      *
      * @return HasMany
      */

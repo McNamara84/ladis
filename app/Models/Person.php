@@ -5,11 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Institution;
+use App\Models\Project;
 
 /**
- * Person Model
+ * Person Model:
  *
- * Represents a person entity in the system.
+ * - represents a person entity in the system
+ * - belongs to an Institution (n:1)
+ * - has many Projects (1:n)
  */
 class Person extends Model
 {
@@ -31,9 +35,14 @@ class Person extends Model
      * @var list<string>
      */
     protected $guarded = ['id'];
+    
+    protected $casts = [
+        'person_id' => 'integer',
+        'name' => 'string', 
+    ];
 
     /**
-     * n:1 relation: A Person belongs to one Institution
+     * n:1 relation to Institution: a Person belongs to one Institution
      *
      * @return BelongsTo
      */
@@ -43,7 +52,7 @@ class Person extends Model
     }
 
     /**
-     * 1:n relation: A Person can have many Projects
+     * 1:n relation to Project: a Person can have many Projects
      *
      * @return HasMany
      */
