@@ -44,8 +44,7 @@ class DeviceSeeder extends Seeder
                 );
                 Device::create(
                     $data
-                )
-                ;
+                );
             }
         }
         fclose($csv_file);
