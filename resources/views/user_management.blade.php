@@ -20,16 +20,18 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($users as $user)
                     <tr>
-                        <td>PH 1</td>
-                        <td>PH Max Mustermann</td>
-                        <td>PH example@test.de</td>
-                        <td>PH 02.03.2025 11:22</td>
+                        <td>{{ $user->id }}</td>
+                        <td>{{ $user->name }}</td>
+                        <td>{{ $user->email }}</td>
+                        <td>{{ $user->created_at->format('d.m.Y H:i') }}</td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
-        <div class="col-auto">
+        <div class="col-auto text-center">
             <a href="#" class="btn btn-primary">Neuen Account erstellen</a>
         </div>
     </div>
