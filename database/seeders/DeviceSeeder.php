@@ -9,10 +9,6 @@ use Illuminate\Support\Facades\Storage;
 
 class DeviceSeeder extends Seeder
 {
-    /**
-     * Run the device seeds.
-     */
-
 
     /**
      * This function loads Data from a CSV by combining the header row as keys and the rows after as values. This
@@ -54,6 +50,19 @@ class DeviceSeeder extends Seeder
         }
         fclose($csv_file);
     }
+
+    /**
+     * Run the device seeds.
+     * 
+     * This function loads all CSV files from the 'devices' directory on the 'local' storage disk,
+     * reads each file and creates Device records based on the CSV data.
+     *
+     * Assumes that the files are stored in /storage/app/private/devices/
+     * according to the configuration of the 'local' disk.
+     * 
+     * @return void                no value is being returned
+     */
+
 
     public function run(): void
     {
