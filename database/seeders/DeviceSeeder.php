@@ -14,7 +14,8 @@ class DeviceSeeder extends Seeder
     /**
      * This function loads data from a CSV by combining the header row as keys and the subsequent rows as values.
      * The data is then used to create Devices. Error handling is implemented to ensure that all attributes
-     * without given values are transformed to null.
+     * without given values are transformed to null. If a ValueError 
+     * occurs (e.g., mismatched columns), the current file is skipped.
      *
      * @param string $path_to_csv This is the path to the CSV file
      * @param string $delimiter   This is the delimiter that is being used in the CSV file
