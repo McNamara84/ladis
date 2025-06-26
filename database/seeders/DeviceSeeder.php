@@ -71,9 +71,11 @@ class DeviceSeeder extends Seeder
         foreach ($files as $file) {
             $path = storage_path('app/private/' . $file);
             if (str_ends_with($path, '.csv')) {
-                $this->useDataFromCsvAndCreateDevice($path, ';');
-            } else {
-                continue;
+                try {
+                    $this->useDataFromCsvAndCreateDevice($path, ';');
+                } catch (\Exception $e) {
+                    Log::error($e->getMessage());
+                }
             }
         }
     }
