@@ -22,7 +22,7 @@ Route::get('/login', function () {
 
 // Routes for user with authentication
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('/user-management', [UserManagementController::class, 'index']);
+Route::get('/user-management', [UserManagementController::class, 'index'])->name('user-management');
 
 
 // Route for the Datenschutz (Data Protection) page
