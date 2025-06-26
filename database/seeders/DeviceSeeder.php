@@ -66,10 +66,9 @@ class DeviceSeeder extends Seeder
 
     public function run(): void
     {
-        $files = Storage::disk('local')->allFiles('devices');
+        $files = Storage::disk('local')->files('devices');
         foreach ($files as $file) {
-            $path = storage_path('app/' . $file);
-            info($path);
+            $path = storage_path('app/private/' . $file);
             $this->useDataFromCsvAndCreateDevice($path, ';', 2, 1);
         }
     }
