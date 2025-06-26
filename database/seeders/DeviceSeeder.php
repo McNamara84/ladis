@@ -31,30 +31,33 @@ class DeviceSeeder extends Seeder
         }
 
         $header_row = null;
-        while (($row = fgetcsv($csv_file, null, $delimiter)) !== false) {
-            if ($header_row == null) {
-                $header_row = $row;
-            } else {
-                try {
-                    $data = array_combine($header_row, $row);
-                } catch (\ValueError $e) {
-                    Log::error("ValueError in file $path_to_csv: " . $e->getMessage());
-                    return;
+        try {
+            while (($row = fgetcsv($csv_file, null, $delimiter)) !== false) {
+                if ($header_row == null) {
+                    $header_row = $row;
+                } else {
+                    try {
+                        $data = array_combine($header_row, $row);
+                    } catch (\ValueError $e) {
+                        Log::error("ValueError in file $path_to_csv: " . $e->getMessage());
+                        return;
+                    }
+                    $data = array_map(
+                        function ($value) {
+                            if ($value === '')
+                                $value = null;
+                            return $value;
+                        },
+                        $data
+                    );
+                    Device::create(
+                        $data
+                    );
                 }
-                $data = array_map(
-                    function ($value) {
-                        if ($value === '')
-                            $value = null;
-                        return $value;
-                    },
-                    $data
-                );
-                Device::create(
-                    $data
-                );
             }
+        } finally {
+            fclose($csv_file);
         }
-        fclose($csv_file);
     }
 
     /**
