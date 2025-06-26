@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use App\Models\SampleSurface;
 use App\Models\Process;
 use App\Models\Condition;
@@ -14,13 +13,14 @@ use App\Models\Material;
 /**
  * PartialSurface Model:
  * 
- * - belongs to SampleSurface (n:1)
- * - has one Process (1:1)
- * - has one (pre-)Condition (1:1)
- * - has one (result) Condition (1:1)
- * - belongs to (foundation) Material (n:1)
- * - belongs to (coating) Material (n:1)
+ * - belongs to a sample_surface (n:1)
+ * - belongs to a process (1:1)
+ * - has a (pre-)condition (1:1)
+ * - has a (result) condition (1:1)
+ * - has a (foundation) material (n:1)
+ * - has a (coating) material (n:1)
  */
+
 class PartialSurface extends Model
 {
     use HasFactory;
@@ -48,9 +48,9 @@ class PartialSurface extends Model
     /**
      * 1:1 relationship to Process
      */
-    public function process(): HasOne
+    public function process(): BelongsTo
     {
-        return $this->hasOne(Process::class);
+        return $this->belongsTo(Process::class);
     }
 
     /**
@@ -69,6 +69,7 @@ class PartialSurface extends Model
        return $this->belongsTo(Condition::class, 'result_id');
     }
     
+
     /**
      * n:1 relationship to Material as the foundation material (backwards)
      */

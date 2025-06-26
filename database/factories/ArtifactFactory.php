@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\Location;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Artifact>
@@ -18,7 +17,7 @@ class ArtifactFactory extends Factory
     public function definition(): array
     {
         return [
-            'location_id' => Location::factory(),
+            'location_id' => 1,
             'name' => fake()->randomElement([
                 'Schrank',
                 'Treppe',

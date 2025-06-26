@@ -6,15 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use App\Models\PartialSurface;
 
-/**
- * Material Model:
- *
- * - belongs to (parent) Material (n:1)
- * - has many (children) Materials (1:n)
- * - has many PartialSurfaces (1:n)
- */
 class Material extends Model
 {
     // HasFactory enables the use of model factories for testing
@@ -44,7 +36,7 @@ class Material extends Model
     ];
 
     /**
-     * Relationship to the parent material (n:1)
+     * Relationship to the parent material
      *
      * BelongsTo relationship: this material "belongs to" a parent material.
      * The foreign key is parent_id in this table.
@@ -60,7 +52,7 @@ class Material extends Model
     }
 
     /**
-     * Relationship to the child materials (1:n)
+     * Relationship to the child materials
      *
      * HasMany relationship: this material "has many" child materials.
      * The foreign key parent_id is in the child materials table.
@@ -70,14 +62,6 @@ class Material extends Model
     public function children(): HasMany
     {
         return $this->hasMany(Material::class, 'parent_id');
-    }
-
-    /**
-     * Relationship to PartialSurface (1:n)
-     */
-    public function partialSurfaces(): HasMany
-    {
-        return $this->hasMany(PartialSurface::class);
     }
 
     /**

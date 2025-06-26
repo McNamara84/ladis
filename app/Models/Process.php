@@ -12,9 +12,9 @@ use App\Models\Device;
 /**
  * Process Model:
  * 
- * - belongs to Device (n:1)
- * - belongs to Configuration (n:1)
- * - has one PartialSurface (1:1)
+ * - has a device (n:1)
+ * - has a configuration (n:1)
+ * - belongs to a partial surface (1:1)
  */
 
 class Process extends Model

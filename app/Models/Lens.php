@@ -5,16 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use App\Models\Configuration;
-use App\Models\Device;
 
-/**
- * Lens Model:
- *
- * - has many Configurations (1:n)
- * - belongs to many Devices (m:n)
- */
 class Lens extends Model
 {
     use HasFactory;
@@ -24,19 +15,6 @@ class Lens extends Model
     protected $casts = [
         'size' => 'integer',
     ];
-
-    /**
-     * HasMany relationship to configurations
-     *
-     * A lens can be used in many configurations,
-     * and a configuration can have one lens.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function configurations(): HasMany
-    {
-        return $this->hasMany(Configuration::class);
-    }
 
     /**
      * BelongsToMany relationship to devices

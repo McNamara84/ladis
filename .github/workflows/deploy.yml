@@ -6,16 +6,16 @@ on:
 jobs:
   test:
     runs-on: self-hosted
-
+    
     steps:
     - uses: actions/checkout@v4
-
+    
     - name: Setup PHP
       run: |
         php -v
         which php
         which composer
-
+        
     - name: Setup Node.js via NVM
       run: |
         export NVM_DIR="$HOME/.nvm"
@@ -24,37 +24,32 @@ jobs:
         echo "$HOME/.nvm/versions/node/v20.19.2/bin" >> $GITHUB_PATH
         node -v
         npm -v
-
+        
     - name: Copy .env file
       run: |
         if [ ! -f .env ]; then
           cp .env.example .env
         fi
-
+        
     - name: Install Composer dependencies
       run: composer install --prefer-dist --no-progress
-
+      
     - name: Generate application key
       run: |
         if grep -q "APP_KEY=$" .env; then
           php artisan key:generate
         fi
-
+        
     - name: Run tests
       run: php artisan test
 
   deploy:
     needs: test
     runs-on: self-hosted
-
+    
     steps:
     - uses: actions/checkout@v4
-
-    - name: Determine version from Git tag
-      run: |
-        echo "Found tag: $(git describe --tags --abbrev=0)"
-        echo "APP_VERSION=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
-
+    
     - name: Setup PHP
       run: |
         php -v
@@ -66,20 +61,20 @@ jobs:
         # NVM laden
         export NVM_DIR="$HOME/.nvm"
         [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-
+        
         # Node.js 20 verwenden
         nvm use 20
-
+        
         # PATH für nachfolgende Steps setzen
         echo "$HOME/.nvm/versions/node/v20.19.2/bin" >> $GITHUB_PATH
-
+        
         # Versionen überprüfen
         node -v
         npm -v
-
+        
     - name: Install/Update Composer dependencies
       run: composer install --no-dev --optimize-autoloader --no-progress
-
+      
     - name: Create deployment directory
       run: |
         TIMESTAMP=$(date +%Y%m%d_%H%M%S)
@@ -88,12 +83,12 @@ jobs:
         echo "TIMESTAMP=$TIMESTAMP" >> $GITHUB_ENV
         sudo mkdir -p $DEPLOY_PATH
         sudo chown user:www-data $DEPLOY_PATH
-
+        
     - name: Copy application files
       run: |
         cp -R . $DEPLOY_PATH/
         cd $DEPLOY_PATH
-
+        
     - name: Copy production environment file
       run: |
         cd $DEPLOY_PATH
@@ -102,19 +97,19 @@ jobs:
         else
           cp .env.example .env
         fi
-
+        
     - name: Generate application key (if needed)
       run: |
         cd $DEPLOY_PATH
         if grep -q "APP_KEY=$" .env; then
           php artisan key:generate
         fi
-
+        
     - name: Run database migrations
       run: |
         cd $DEPLOY_PATH
         php artisan migrate --force
-
+        
     - name: Clear and cache configuration
       run: |
         cd $DEPLOY_PATH
@@ -122,13 +117,13 @@ jobs:
         php artisan config:cache
         php artisan route:cache
         php artisan view:cache
-
+        
     - name: Install Node.js dependencies (if needed)
       run: |
         cd $DEPLOY_PATH
         if [ -f package.json ]; then
           echo "package.json found, installing npm dependencies..."
-
+          
           # Überprüfen ob npm verfügbar ist
           if command -v npm >/dev/null 2>&1; then
             echo "✅ npm found: $(npm -v)"
@@ -144,18 +139,18 @@ jobs:
         else
           echo "No package.json found, skipping npm steps"
         fi
-
+        
     - name: Set proper permissions
       run: |
         cd $DEPLOY_PATH
         sudo chown -R www-data:www-data storage bootstrap/cache
         sudo chmod -R 775 storage bootstrap/cache
-
+        
     - name: Create symbolic link for storage
       run: |
         cd $DEPLOY_PATH
         php artisan storage:link
-
+        
     - name: Switch to new deployment
       run: |
         # Backup current deployment
@@ -165,20 +160,20 @@ jobs:
         elif [ -d /var/www/laser ]; then
           sudo mv /var/www/laser /var/www/deployments/backup-$(date +%Y%m%d_%H%M%S)
         fi
-
+        
         # Create symbolic link to new deployment
         sudo ln -sfn $DEPLOY_PATH /var/www/laser
-
+        
     - name: Reload PHP-FPM and Nginx
       run: |
         sudo systemctl reload php8.4-fpm
         sudo systemctl reload nginx
-
+        
     - name: Clean up old deployments (keep last 5)
       run: |
         cd /var/www/deployments
         sudo find . -maxdepth 1 -name "laser-*" -type d | sort -r | tail -n +6 | xargs -r sudo rm -rf
-
+        
     - name: Health check
       run: |
         sleep 5
@@ -189,7 +184,7 @@ jobs:
           echo "❌ Deployment may have issues. HTTP Code: $HTTP_CODE"
           exit 1
         fi
-
+        
     - name: Deployment notification
       run: |
         echo "🚀 Laravel application deployed successfully!"

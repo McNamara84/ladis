@@ -5,16 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\FederalState;
-use App\Models\Venue;
 
-/**
- * City Model:
- *
- * - belongs to FederalState (n:1)
- * - has many Venues (1:n)
- */
 class City extends Model
 {
     use HasFactory;
@@ -45,18 +37,6 @@ class City extends Model
     public function federalState(): BelongsTo
     {
         return $this->belongsTo(FederalState::class);
-    }
-
-    /**
-     * HasMany relation to Venue
-     * 
-     * One City has many Venues.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function venues(): HasMany
-    {
-        return $this->hasMany(Venue::class);
     }
 
     /**
