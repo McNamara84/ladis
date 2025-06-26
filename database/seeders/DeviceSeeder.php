@@ -16,17 +16,14 @@ class DeviceSeeder extends Seeder
 
     /**
      * This function loads Data from a CSV by combining the header row as keys and the rows after as values. This
-     * data is then being used to create Devices. Also, values that are not included in the $data array are being added afterwards (such as 
-     * foreign keys)
+     * data is then being used to create Devices.
      *
      * @param string $path_to_csv This is the path to the CSV file
      * @param string $delimiter   This is the delimiter that is being used in the CSV file
-     * @param int    $institution_id This is the ID of the institution which manufactured the device
-     * @param int    $last_edit_by This is the ID of the user that has edited the dataset last
      *
      * @return void                no value is being returned
      */
-    private function useDataFromCsvAndCreateDevice(string $path_to_csv, string $delimiter, int $institution_id, int $last_edit_by)
+    private function useDataFromCsvAndCreateDevice(string $path_to_csv, string $delimiter)
     {
 
         $csv_file = fopen($path_to_csv, 'r');
@@ -51,14 +48,9 @@ class DeviceSeeder extends Seeder
                     $data
                 );
                 Device::create(
-                    array_merge(
-                        $data,
-                        [
-                            'institution_id' => $institution_id,
-                            'last_edit_by' => $last_edit_by,
-                        ]
-                    )
-                );
+                    $data
+                )
+                ;
             }
         }
         fclose($csv_file);
