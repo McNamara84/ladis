@@ -6,6 +6,7 @@ use App\Models\Device;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 
 class DeviceSeeder extends Seeder
 {
@@ -25,7 +26,8 @@ class DeviceSeeder extends Seeder
         $csv_file = fopen($path_to_csv, 'r');
 
         if ($csv_file === false) {
-            throw new \RuntimeException("Failed to open CSV file at path: $path_to_csv");
+            Log::error("Failed to open CSV file at path: $path_to_csv");
+            return;
         }
 
         $header_row = null;
