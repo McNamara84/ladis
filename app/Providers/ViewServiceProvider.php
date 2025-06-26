@@ -26,6 +26,6 @@ class ViewServiceProvider extends ServiceProvider
         // Share project version number as a global variable.
         // This MUST be kept in sync with the version in the
         // `package.json` and `composer.json` files.
-        View::share('projectVersion', '0.1.0');
+        View::share('projectVersion', config('app.version'));
     }
 }
