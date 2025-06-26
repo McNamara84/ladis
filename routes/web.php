@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdvancedSearchController;
+use App\Http\Controllers\InputFormProjectController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\WelcomeController;
@@ -31,6 +32,9 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/datenschutz', [PrivacyPolicyController::class, 'index'])->name('datenschutz');
 
 Route::get('/inputform', [InputFormController::class, 'index']);
+
+// Route for the inputform project
+Route::get('/inputform_project', [InputFormProjectController::class, 'index'])
 
 // TODO: Setup authentication
 // Route for inputform with authentication
