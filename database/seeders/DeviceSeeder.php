@@ -11,8 +11,9 @@ class DeviceSeeder extends Seeder
 {
 
     /**
-     * This function loads Data from a CSV by combining the header row as keys and the rows after as values. This
-     * data is then being used to create Devices.
+     * This function loads data from a CSV by combining the header row as keys and the subsequent rows as values.
+     * The data is then used to create Devices. Error handling is implemented to ensure that all attributes
+     * without given values are transformed to null.
      *
      * @param string $path_to_csv This is the path to the CSV file
      * @param string $delimiter   This is the delimiter that is being used in the CSV file
@@ -21,7 +22,6 @@ class DeviceSeeder extends Seeder
      */
     private function useDataFromCsvAndCreateDevice(string $path_to_csv, string $delimiter)
     {
-
         $csv_file = fopen($path_to_csv, 'r');
 
         if ($csv_file === false) {
