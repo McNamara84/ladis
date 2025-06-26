@@ -13,4 +13,9 @@ class UserManagementController extends Controller
 
         return view('user_management', compact('users'));
     }
+
+    public function create()
+    {
+        return view('create_user');
+    }
 }
