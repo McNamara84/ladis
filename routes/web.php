@@ -34,7 +34,7 @@ Route::get('/datenschutz', [PrivacyPolicyController::class, 'index'])->name('dat
 Route::get('/inputform', [InputFormController::class, 'index']);
 
 // Route for the inputform project
-Route::get('/inputform_project', [InputFormProjectController::class, 'index'])
+Route::get('/inputform_project', [InputFormProjectController::class, 'index']);
 
 // TODO: Setup authentication
 // Route for inputform with authentication
