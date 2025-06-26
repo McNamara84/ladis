@@ -72,10 +72,5 @@ class DeviceSeeder extends Seeder
             info($path);
             $this->useDataFromCsvAndCreateDevice($path, ';', 2, 1);
         }
-
-
-        # $this->useDataFromCsvAndCreateDevice(implode(DIRECTORY_SEPARATOR, ['storage', 'app','devices', 'CL20_Backpack.csv']), ';', 2, 1);
-        #$this->useDataFromCsvAndCreateDevice(implode(DIRECTORY_SEPARATOR, ['database', 'data', 'devices', 'THUNDER_COMPACT.csv']), ';', 1, 1);
-        #$this->useDataFromCsvAndCreateDevice(implode(DIRECTORY_SEPARATOR, ['database', 'data', 'devices', 'Infinito Laser_p_n _I054C1.csv']), ';', 1, 1);
     }
 }
