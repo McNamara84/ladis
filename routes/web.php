@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdvancedSearchController;
+use App\Http\Controllers\UserManagementController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\WelcomeController;
@@ -21,6 +22,7 @@ Route::get('/login', function () {
 
 // Routes for user with authentication
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/user-management', [UserManagementController::class, 'index']);
 
 
 // Route for the Datenschutz (Data Protection) page
