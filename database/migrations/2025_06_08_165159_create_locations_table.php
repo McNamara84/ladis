@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('locations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('venue_id')->constrained()->restrictOnDelete();
+            $table->foreignId('venue_id')->constrained()
+                ->restrictOnDelete()
+                ->restrictOnUpdate();
             $table->string('name', 50);
             // name is unique only within the same venue
             $table->unique(['venue_id', 'name']);

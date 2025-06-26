@@ -3,9 +3,19 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use App\Models\Condition;
 use App\Models\Project;
 
+/**
+ * Image Model:
+ *
+ * - belongs to Condition (n:1)
+ * - belongs to Project (n:1)
+ * - has one Project (being a cover image) (1:1)
+ * - has one Project (being a thumbnail image) (1:1)
+ */
 class Image extends Model
 {
     /**
@@ -31,22 +41,34 @@ class Image extends Model
         'creator' => 'string',
     ];
 
-    public function condition()
+    /**
+    * n:1 relationship to Condition (backwards)
+    */
+    public function condition(): BelongsTo
     {
         return $this->belongsTo(Condition::class);
     }
 
-    public function project()
+    /**
+    * n:1 relationship to Project (backwards)
+    */
+    public function project(): BelongsTo
     {
         return $this->belongsTo(Project::class);
     }
 
-    public function coverOf()
+    /**
+    * 1:1 relationship to Project (being a cover Image)
+    */
+    public function coverOf(): HasOne
     {
         return $this->hasOne(Project::class, 'cover_image_id');
     }
 
-    public function thumbnailOf()
+    /**
+    * 1:1 relationship to Project (being a thumbmail image)
+    */
+    public function thumbnailOf(): HasOne
     {
         return $this->hasOne(Project::class, 'thumbnail_image_id');
     }
