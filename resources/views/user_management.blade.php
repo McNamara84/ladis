@@ -32,7 +32,7 @@
             </table>
         </div>
         <div class="col-auto text-center">
-            <a href="#" class="btn btn-primary">Neuen Account erstellen</a>
+            <a href="{{ route('user-management.create') }}" class="btn btn-primary">Neuen Account erstellen</a>
         </div>
     </div>
 @endsection
