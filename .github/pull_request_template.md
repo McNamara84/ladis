@@ -3,32 +3,29 @@
 ## 📝 What was changed?
 <!-- Brief description of changes -->
 
-## 🏷️ Type of change
-- [ ] 🐛 Bug Fix
-- [ ] ✨ New Feature
-- [ ] 💥 Breaking Change
-- [ ] 📚 Documentation
-- [ ] ♻️ Refactoring
-- [ ] 🎨 UI/Styling
-- [ ] Dev Tooling
-
 ## 🔗 Issue
 <!-- Closed Issues: "- Closes #…" -->
 
-## 🧪 Testing
-- [ ] Feature/Unit Tests pass
-- [ ] Tests added/updated
+## 🧪 Definition of Done erfüllt?
+
+- [ ] User story fulfilled
+- [ ] Documentation updated
+- [ ] New code is covered by unit tests
+- [ ] Unit tests locally pass
 - [ ] Manually tested
 - [ ] Browser compatible
 - [ ] Mobile compatible
-- [ ] Definition of Done fulfilled
 
 ## 🚀 Laravel-specific
+
 - [ ] Migrations added/changed
+- [ ] Models added/changed
+- [ ] Views added/changed
 - [ ] Routes registered
-- [ ] Config changes documented
+- [ ] Seeder added/changed
+- [ ] Config changed
 - [ ] Composer dependencies updated
-- [ ] Artisan Commands work
+- [ ] Artisan Commands added/changed
 
 ## 📷 Screenshots
 <!-- If UI changed -->

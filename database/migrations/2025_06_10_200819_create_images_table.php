@@ -13,8 +13,12 @@ return new class extends Migration
     {
         Schema::create(table: 'images', callback: function (Blueprint $table): void {
             $table->id();
-            // $table->foreignId('condition_id')->constrained('conditions')->restrictOnDelete()->nullable();
-            // $table->foreignId('project_id')->constrained('projects')->restrictOnDelete();
+            $table->foreignId('condition_id')->nullable()->constrained('conditions')
+                ->restrictOnDelete()
+                ->restrictOnUpdate();
+            $table->foreignId('project_id')->constrained('projects')
+                ->restrictOnDelete()
+                ->restrictOnUpdate();
             $table->string(column: 'uri', length: 255) ->unique();
             $table->string(column: 'description', length: 255) ->nullable();
             $table->string(column: 'alt_text', length: 255);
