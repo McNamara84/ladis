@@ -32,7 +32,6 @@ class DeviceSeeder extends Seeder
             throw new \RuntimeException("Failed to open CSV file at path: $path_to_csv");
         }
 
-
         $header_row = null;
         while (($row = fgetcsv($csv_file, null, $delimiter)) !== false) {
             if ($header_row == null) {
