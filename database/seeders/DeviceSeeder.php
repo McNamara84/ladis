@@ -5,6 +5,7 @@ use App\Models\Device;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Storage;
 
 class DeviceSeeder extends Seeder
 {
@@ -28,7 +29,7 @@ class DeviceSeeder extends Seeder
     private function useDataFromCsvAndCreateDevice(string $path_to_csv, string $delimiter, int $institution_id, int $last_edit_by)
     {
 
-        $csv_file = fopen(base_path($path_to_csv), 'r');
+        $csv_file = fopen($path_to_csv, 'r');
 
         if ($csv_file === false) {
             throw new \RuntimeException("Failed to open CSV file at path: $path_to_csv");
@@ -65,8 +66,16 @@ class DeviceSeeder extends Seeder
 
     public function run(): void
     {
-        $this->useDataFromCsvAndCreateDevice(implode(DIRECTORY_SEPARATOR, ['database', 'data', 'devices', 'CL20_Backpack.csv']), ';', 2, 1);
-        $this->useDataFromCsvAndCreateDevice(implode(DIRECTORY_SEPARATOR, ['database', 'data', 'devices', 'THUNDER_COMPACT.csv']), ';', 1, 1);
-        $this->useDataFromCsvAndCreateDevice(implode(DIRECTORY_SEPARATOR, ['database', 'data', 'devices', 'Infinito Laser_p_n _I054C1.csv']), ';', 1, 1);
+        $files = Storage::disk('local')->allFiles('devices');
+        foreach ($files as $file) {
+            $path = storage_path('app/' . $file);
+            info($path);
+            $this->useDataFromCsvAndCreateDevice($path, ';', 2, 1);
+        }
+
+
+        # $this->useDataFromCsvAndCreateDevice(implode(DIRECTORY_SEPARATOR, ['storage', 'app','devices', 'CL20_Backpack.csv']), ';', 2, 1);
+        #$this->useDataFromCsvAndCreateDevice(implode(DIRECTORY_SEPARATOR, ['database', 'data', 'devices', 'THUNDER_COMPACT.csv']), ';', 1, 1);
+        #$this->useDataFromCsvAndCreateDevice(implode(DIRECTORY_SEPARATOR, ['database', 'data', 'devices', 'Infinito Laser_p_n _I054C1.csv']), ';', 1, 1);
     }
 }
