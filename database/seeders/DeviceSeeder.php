@@ -41,6 +41,14 @@ class DeviceSeeder extends Seeder
                 $header_row = $row;
             } else {
                 $data = array_combine($header_row, $row);
+                $data = array_map(
+                    function ($value) {
+                        if ($value === '')
+                            $value = null;
+                        return $value;
+                    },
+                    $data
+                );
                 Device::create(
                     array_merge(
                         $data,
