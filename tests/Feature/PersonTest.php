@@ -32,7 +32,6 @@ class PersonTest extends TestCase
             'url' => fake()->url(),
             'started_at' => fake()->date(),
             'ended_at' => fake()->date(),
-            'venue_id' => $venue->id,
         ]);
 
         // Assign relationships in a separate step because they are not fillable
@@ -229,5 +228,23 @@ class PersonTest extends TestCase
 
         $this->assertEquals($originalCreatedAt, $person->created_at);
         $this->assertGreaterThan($originalCreatedAt, $person->updated_at);
+    }
+
+    public function test_person_can_not_be_deleted_when_projects_exist(): void
+    {
+        $institution = $this->createInstitution();
+        $person = $this->createPerson($institution);
+        $project = $this->createProject($person);
+
+        // Verify person exists in database
+        // $this->assertDatabaseHas('persons', [
+        //     'id' => $person->id,
+        //     'name' => $person->name,
+        //     'institution_id' => $institution->id,
+        // ]);
+
+        // Delete the person should fail
+        $this->expectException(\Illuminate\Database\QueryException::class);
+        $person->delete();
     }
 }
