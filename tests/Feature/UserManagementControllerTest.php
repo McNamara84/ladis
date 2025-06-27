@@ -49,4 +49,15 @@ class UserManagementControllerTest extends TestCase
         $user = User::where('email', 'max.mustermann@fh-potsdam.de')->first();
         $this->assertNotNull($user->password);
     }
+
+    public function test_destroy_deletes_user_and_redirects(): void
+    {
+        User::factory()->create(['id' => 1]);
+        $user = User::factory()->create();
+
+        $response = $this->delete(route('user-management.destroy', $user));
+
+        $response->assertRedirect(route('user-management.index'));
+        $this->assertModelMissing($user);
+    }
 }
