@@ -60,4 +60,15 @@ class UserManagementControllerTest extends TestCase
         $response->assertRedirect(route('user-management.index'));
         $this->assertModelMissing($user);
     }
+
+    public function test_admin_user_cannot_be_deleted(): void
+    {
+        $admin = User::factory()->create(['id' => 1]);
+
+        $response = $this->delete(route('user-management.destroy', $admin));
+
+        $response->assertRedirect(route('user-management.index'));
+        $response->assertSessionHas('error');
+        $this->assertModelExists($admin);
+    }
 }
