@@ -15,7 +15,7 @@
                 <!-- Form Card -->
                 <div class="card border-0 shadow">
                     <div class="card-body p-4">
-                        <form method="POST" action="#">
+                        <form method="POST" action="{{ route('user-management.store') }}">
                             @csrf
 
                             <!-- Name -->
