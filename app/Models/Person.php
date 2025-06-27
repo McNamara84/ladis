@@ -42,7 +42,7 @@ class Person extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'person_id' => 'integer',
+        'institution_id' => 'integer',
         'name' => 'string',
     ];
 
