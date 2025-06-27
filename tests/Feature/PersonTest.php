@@ -92,4 +92,26 @@ class PersonTest extends TestCase
         $this->assertTrue($person->projects->contains($projects[1]));
         $this->assertFalse($person->projects->contains($projects[2]));
     }
+
+    public function test_person_name_must_be_unique(): void
+    {
+        $institution1 = $this->createInstitution();
+        $institution2 = $this->createInstitution();
+
+        $personName = 'Dr. John Doe';
+
+        // Create first person with the name
+        Person::create([
+            'name' => $personName,
+            'institution_id' => $institution1->id,
+        ]);
+
+        // Attempt to create second person with the same name should fail
+        $this->expectException(\Illuminate\Database\QueryException::class);
+
+        Person::create([
+            'name' => $personName,
+            'institution_id' => $institution2->id,
+        ]);
+    }
 }
