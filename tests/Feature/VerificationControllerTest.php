@@ -7,6 +7,7 @@ use Tests\TestCase;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Models\User;
+use Illuminate\Support\Facades\URL;
 
 class VerificationControllerTest extends TestCase
 {
@@ -49,5 +50,24 @@ class VerificationControllerTest extends TestCase
         $response = $this->actingAs($user)->get('/email/verify');
 
         $response->assertRedirect('/home');
+    }
+
+    public function test_verify_marks_user_email_as_verified_and_redirects_home(): void
+    {
+        $user = User::factory()->unverified()->create();
+
+        $url = URL::temporarySignedRoute(
+            'verification.verify',
+            now()->addMinutes(60),
+            [
+                'id' => $user->id,
+                'hash' => sha1($user->email),
+            ]
+        );
+
+        $response = $this->actingAs($user)->get($url);
+
+        $response->assertRedirect('/home');
+        $this->assertTrue($user->fresh()->hasVerifiedEmail());
     }
 }
