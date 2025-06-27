@@ -156,4 +156,14 @@ class PersonTest extends TestCase
             'institution_id' => $institution->id,
         ]);
     }
+
+    public function test_institution_id_is_required(): void
+    {
+        // Attempt to create person without institution_id should fail
+        $this->expectException(\Illuminate\Database\QueryException::class);
+
+        Person::create([
+            'name' => 'Dr. Jane Smith',
+        ]);
+    }
 }
