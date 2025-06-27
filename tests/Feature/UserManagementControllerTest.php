@@ -9,6 +9,7 @@ use App\Models\User;
 
 class UserManagementControllerTest extends TestCase
 {
+    use RefreshDatabase;
     public function test_index_displays_user_management_view(): void
     {
         $user = User::factory()->create();
