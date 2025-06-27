@@ -27,10 +27,12 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // Routes for user with authentication
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('/user-management', [UserManagementController::class, 'index'])->name('user-management.index');
-Route::get('/user-management/create', [UserManagementController::class, 'create'])->name('user-management.create');
-Route::post('/user-management/create', [UserManagementController::class, 'store'])->name('user-management.store');
-Route::delete('/user-management/{user}', [UserManagementController::class, 'destroy'])->name('user-management.destroy');
+Route::middleware('auth')->group(function () {
+    Route::get('/user-management', [UserManagementController::class, 'index'])->name('user-management.index');
+    Route::get('/user-management/create', [UserManagementController::class, 'create'])->name('user-management.create');
+    Route::post('/user-management/create', [UserManagementController::class, 'store'])->name('user-management.store');
+    Route::delete('/user-management/{user}', [UserManagementController::class, 'destroy'])->name('user-management.destroy');
+});
 Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
 Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
 Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
