@@ -32,4 +32,21 @@ class UserManagementControllerTest extends TestCase
         $response->assertViewIs('create_user');
         $response->assertSee('Neuen Account erstellen');
     }
+
+    public function test_store_creates_user_and_redirects(): void
+    {
+        $response = $this->post('/user-management/create', [
+            'name' => 'Max Mustermann',
+            'email' => 'max.mustermann@fh-potsdam.de',
+        ]);
+
+        $response->assertRedirect(route('user-management.index'));
+        $this->assertDatabaseHas('users', [
+            'name' => 'Max Mustermann',
+            'email' => 'max.mustermann@fh-potsdam.de',
+        ]);
+
+        $user = User::where('email', 'max.mustermann@fh-potsdam.de')->first();
+        $this->assertNotNull($user->password);
+    }
 }
