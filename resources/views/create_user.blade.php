@@ -44,27 +44,6 @@
                                 @enderror
                             </div>
 
-                            <!-- Password -->
-                            <div class="mb-3">
-                                <label for="password" class="form-label fw-semibold">
-                                    Passwort
-                                </label>
-                                <input id="password" type="password" class="form-control form-control-lg @error('password') is-invalid @enderror" name="password" autocomplete="new-password" placeholder="Mindestens 8 Zeichen">
-                                @error('password')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-
-                            <!-- Confirm Password -->
-                            <div class="mb-4">
-                                <label for="password-confirm" class="form-label fw-semibold">
-                                    Passwort bestätigen
-                                </label>
-                                <input id="password-confirm" type="password" class="form-control form-control-lg" name="password_confirmation" autocomplete="new-password" placeholder="Passwort wiederholen">
-                            </div>
-
                             <!-- Submit Button -->
                             <div class="d-grid mb-3">
                                 <button type="submit" class="btn btn-primary btn-lg">
