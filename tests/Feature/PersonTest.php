@@ -205,4 +205,29 @@ class PersonTest extends TestCase
         $this->assertIsInt($person->id);
         $this->assertGreaterThan(0, $person->id);
     }
+
+    public function test_timestamps_are_set_automatically(): void
+    {
+        $institution = $this->createInstitution();
+
+        // Create person and verify timestamps are set
+        $person = Person::create([
+            'name' => 'Dr. Timestamp Test',
+            'institution_id' => $institution->id,
+        ]);
+
+        $this->assertNotNull($person->created_at);
+        $this->assertNotNull($person->updated_at);
+        $this->assertEquals($person->created_at, $person->updated_at);
+
+        // Sleep briefly to ensure timestamp difference
+        sleep(1);
+
+        // Update person and verify updated_at changes while created_at remains the same
+        $originalCreatedAt = $person->created_at;
+        $person->update(['name' => 'Dr. Updated Name']);
+
+        $this->assertEquals($originalCreatedAt, $person->created_at);
+        $this->assertGreaterThan($originalCreatedAt, $person->updated_at);
+    }
 }
