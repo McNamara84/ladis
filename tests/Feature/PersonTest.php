@@ -188,4 +188,21 @@ class PersonTest extends TestCase
 
         $institution->delete();
     }
+
+    public function test_id_field_is_protected_from_mass_assignment(): void
+    {
+        $institution = $this->createInstitution();
+
+        // Attempt to create person with explicit ID value
+        $person = Person::create([
+            'id' => 999,
+            'name' => 'Dr. Test Person',
+            'institution_id' => $institution->id,
+        ]);
+
+        // The ID should be auto-assigned by database, not the value we tried to set
+        $this->assertNotEquals(999, $person->id);
+        $this->assertIsInt($person->id);
+        $this->assertGreaterThan(0, $person->id);
+    }
 }
