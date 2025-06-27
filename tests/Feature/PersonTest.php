@@ -166,4 +166,15 @@ class PersonTest extends TestCase
             'name' => 'Dr. Jane Smith',
         ]);
     }
+
+    public function test_invalid_institution_id_is_rejected(): void
+    {
+        // Attempt to create person with non-existent institution_id should fail
+        $this->expectException(\Illuminate\Database\QueryException::class);
+
+        Person::create([
+            'name' => 'Dr. John Smith',
+            'institution_id' => 999, // Non-existent institution ID
+        ]);
+    }
 }
