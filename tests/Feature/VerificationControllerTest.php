@@ -41,4 +41,13 @@ class VerificationControllerTest extends TestCase
         $response->assertViewIs('auth.verify');
         $response->assertSee('Verify Your Email Address');
     }
+
+    public function test_show_redirects_verified_user_to_home(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/email/verify');
+
+        $response->assertRedirect('/home');
+    }
 }
