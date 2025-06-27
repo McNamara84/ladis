@@ -8,6 +8,7 @@ use Tests\TestCase;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Http\Controllers\Auth\ConfirmPasswordController;
+use Illuminate\Support\Facades\Hash;
 
 class ConfirmPasswordControllerTest extends TestCase
 {
@@ -35,5 +36,19 @@ class ConfirmPasswordControllerTest extends TestCase
         $response->assertStatus(200);
         $response->assertViewIs('auth.passwords.confirm');
         $response->assertSee('Confirm Password');
+    }
+
+    public function test_confirm_with_valid_password_redirects_to_home(): void
+    {
+        $user = User::factory()->create([
+            'password' => Hash::make('StrengGeheim!'),
+        ]);
+
+        $response = $this->actingAs($user)->post('/password/confirm', [
+            'password' => 'StrengGeheim!',
+        ]);
+
+        $response->assertRedirect('/home');
+        $this->assertNotNull(session('auth.password_confirmed_at'));
     }
 }
