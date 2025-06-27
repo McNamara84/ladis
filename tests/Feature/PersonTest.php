@@ -114,4 +114,34 @@ class PersonTest extends TestCase
             'institution_id' => $institution2->id,
         ]);
     }
+
+    public function test_name_length_behavior_by_database_type(): void
+    {
+        $institution = $this->createInstitution();
+
+        // Create a name that exceeds 50 characters
+        $longName = str_repeat('A', 51); // 51 characters
+
+        $dbConnection = config('database.default');
+
+        if ($dbConnection === 'sqlite') {
+            // SQLite allows strings longer than VARCHAR length specification
+            $person = Person::create([
+                'name' => $longName,
+                'institution_id' => $institution->id,
+            ]);
+
+            // In SQLite, the full 51-character name is stored (no truncation)
+            $this->assertEquals(51, strlen($person->fresh()->name));
+            $this->assertEquals($longName, $person->fresh()->name);
+        } else {
+            // MySQL/PostgreSQL should enforce length constraints
+            $this->expectException(\Illuminate\Database\QueryException::class);
+
+            Person::create([
+                'name' => $longName,
+                'institution_id' => $institution->id,
+            ]);
+        }
+    }
 }
