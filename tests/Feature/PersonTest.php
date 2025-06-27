@@ -177,4 +177,15 @@ class PersonTest extends TestCase
             'institution_id' => 999, // Non-existent institution ID
         ]);
     }
+
+    public function test_institution_cannot_be_deleted_when_persons_exist(): void
+    {
+        $institution = $this->createInstitution();
+        $person = $this->createPerson($institution);
+
+        // Attempt to delete institution with associated persons should fail
+        $this->expectException(\Illuminate\Database\QueryException::class);
+
+        $institution->delete();
+    }
 }
