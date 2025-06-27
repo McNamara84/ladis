@@ -5,16 +5,21 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\User;
 
 class UserManagementControllerTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     */
-    public function test_example(): void
+    public function test_index_displays_user_management_view(): void
     {
-        $response = $this->get('/');
+        $user = User::factory()->create();
+
+        $response = $this->get('/user-management');
 
         $response->assertStatus(200);
+        $response->assertViewIs('user_management');
+        $response->assertSee($user->name);
+        $response->assertViewHas('users', function ($users) use ($user) {
+            return $users->contains('id', $user->id);
+        });
     }
 }
