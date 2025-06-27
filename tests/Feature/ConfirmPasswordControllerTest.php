@@ -51,4 +51,21 @@ class ConfirmPasswordControllerTest extends TestCase
         $response->assertRedirect('/home');
         $this->assertNotNull(session('auth.password_confirmed_at'));
     }
+
+    public function test_confirm_with_invalid_password_redirects_back_with_errors(): void
+    {
+        $user = User::factory()->create([
+            'password' => Hash::make('secret'),
+        ]);
+
+        $response = $this->actingAs($user)
+            ->from('/password/confirm')
+            ->post('/password/confirm', [
+                'password' => 'wrong-password',
+            ]);
+
+        $response->assertRedirect('/password/confirm');
+        $response->assertSessionHasErrors('password');
+        $this->assertNull(session('auth.password_confirmed_at'));
+    }
 }
