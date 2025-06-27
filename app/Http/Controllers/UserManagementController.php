@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Device;
 
 class UserManagementController extends Controller
 {
@@ -40,5 +41,18 @@ class UserManagementController extends Controller
         // TODO: Send invitation email with set password link
 
         return redirect()->route('user-management.index')->with('success', 'Benutzer wurde erstellt.');
+    }
+
+    public function destroy(User $user)
+    {
+        if ($user->id === 1) {
+            return redirect()->route('user-management.index')->with('error', 'Der Admin-Account kann nicht gel\u00f6scht werden.');
+        }
+
+        Device::where('last_edit_by', $user->id)->update(['last_edit_by' => 1]);
+
+        $user->delete();
+
+        return redirect()->route('user-management.index')->with('success', 'Benutzer wurde gel\u00f6scht.');
     }
 }

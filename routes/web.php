@@ -28,6 +28,7 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/user-management', [UserManagementController::class, 'index'])->name('user-management.index');
 Route::get('/user-management/create', [UserManagementController::class, 'create'])->name('user-management.create');
 Route::post('/user-management/create', [UserManagementController::class, 'store'])->name('user-management.store');
+Route::delete('/user-management/{user}', [UserManagementController::class, 'destroy'])->name('user-management.destroy');
 
 // Route for the Datenschutz (Data Protection) page
 Route::get('/datenschutz', [PrivacyPolicyController::class, 'index'])->name('datenschutz');
