@@ -32,4 +32,17 @@ class LoginControllerTest extends TestCase
         $response->assertRedirect('/home');
         $this->assertAuthenticatedAs($user);
     }
+
+    public function test_user_cannot_login_with_invalid_credentials(): void
+    {
+        $user = User::factory()->create(['email' => 'max.mustermann@fh-potsdam.de']);
+
+        $response = $this->from('/login')->post('/login', [
+            'email' => $user->email,
+            'password' => 'not-the-right-password',
+        ]);
+
+        $response->assertRedirect('/login');
+        $this->assertGuest();
+    }
 }
