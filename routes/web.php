@@ -8,6 +8,7 @@ use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\InputFormController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\PrivacyPolicyController;
+use App\Http\Controllers\Auth\LoginController;
 
 // Landing page for guests
 Route::get('/', [WelcomeController::class, 'index']);
@@ -19,6 +20,8 @@ Route::get('/advanced_search', [AdvancedSearchController::class, 'index'])->name
 Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
+Route::post('/login', [LoginController::class, 'login'])->name('login');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // Routes for user with authentication
 Route::get('/home', [HomeController::class, 'index'])->name('home');
