@@ -51,4 +51,19 @@ class RegisterControllerTest extends TestCase
         $this->assertNotNull($user);
         $this->assertAuthenticatedAs($user);
     }
+
+    public function test_user_cannot_register_with_invalid_data(): void
+    {
+        $response = $this->from('/register')->post('/register', [
+            'name' => '',
+            'email' => 'invalid-email',
+            'password' => 'short',
+            'password_confirmation' => 'different'
+        ]);
+
+        $response->assertRedirect('/register');
+        $response->assertSessionHasErrors(['name', 'email', 'password']);
+        $this->assertGuest();
+        $this->assertDatabaseCount('users', 0);
+    }
 }
