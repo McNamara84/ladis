@@ -13,7 +13,7 @@ class UserManagementControllerTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $response = $this->get('/user-management');
+        $response = $this->actingAs($user)->get('/user-management');
 
         $response->assertStatus(200);
         $response->assertViewIs('user_management');
@@ -25,7 +25,7 @@ class UserManagementControllerTest extends TestCase
 
     public function test_create_displays_create_user_view(): void
     {
-        $response = $this->get('/user-management/create');
+        $response = $this->actingAs(User::factory()->create())->get('/user-management/create');
 
         $response->assertStatus(200);
         $response->assertViewIs('create_user');
@@ -34,6 +34,7 @@ class UserManagementControllerTest extends TestCase
 
     public function test_store_creates_user_and_redirects(): void
     {
+        $this->actingAs(User::factory()->create());
         $response = $this->post('/user-management/create', [
             'name' => 'Max Mustermann',
             'email' => 'max.mustermann@fh-potsdam.de',
@@ -52,9 +53,10 @@ class UserManagementControllerTest extends TestCase
     public function test_destroy_deletes_user_and_redirects(): void
     {
         User::factory()->create(['id' => 1]);
+        $actingUser = User::factory()->create();
         $user = User::factory()->create();
 
-        $response = $this->delete(route('user-management.destroy', $user));
+        $response = $this->actingAs($actingUser)->delete(route('user-management.destroy', $user));
 
         $response->assertRedirect(route('user-management.index'));
         $this->assertModelMissing($user);
@@ -64,7 +66,7 @@ class UserManagementControllerTest extends TestCase
     {
         $admin = User::factory()->create(['id' => 1]);
 
-        $response = $this->delete(route('user-management.destroy', $admin));
+        $response = $this->actingAs(User::factory()->create())->delete(route('user-management.destroy', $admin));
 
         $response->assertRedirect(route('user-management.index'));
         $response->assertSessionHas('error');
