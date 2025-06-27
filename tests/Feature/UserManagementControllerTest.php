@@ -22,4 +22,13 @@ class UserManagementControllerTest extends TestCase
             return $users->contains('id', $user->id);
         });
     }
+
+    public function test_create_displays_create_user_view(): void
+    {
+        $response = $this->get('/user-management/create');
+
+        $response->assertStatus(200);
+        $response->assertViewIs('create_user');
+        $response->assertSee('Neuen Account erstellen');
+    }
 }
