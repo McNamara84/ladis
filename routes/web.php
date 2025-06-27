@@ -9,6 +9,8 @@ use App\Http\Controllers\InputFormController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\PrivacyPolicyController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 
 // Landing page for guests
 Route::get('/', [WelcomeController::class, 'index']);
@@ -29,6 +31,10 @@ Route::get('/user-management', [UserManagementController::class, 'index'])->name
 Route::get('/user-management/create', [UserManagementController::class, 'create'])->name('user-management.create');
 Route::post('/user-management/create', [UserManagementController::class, 'store'])->name('user-management.store');
 Route::delete('/user-management/{user}', [UserManagementController::class, 'destroy'])->name('user-management.destroy');
+Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
 
 // Route for the Datenschutz (Data Protection) page
 Route::get('/datenschutz', [PrivacyPolicyController::class, 'index'])->name('datenschutz');

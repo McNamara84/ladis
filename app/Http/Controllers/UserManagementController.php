@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Device;
+use Illuminate\Support\Facades\Password;
 
 class UserManagementController extends Controller
 {
@@ -27,18 +28,15 @@ class UserManagementController extends Controller
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['nullable', 'string', 'min:8', 'confirmed'],
         ]);
 
-        $password = $validated['password'] ?? Str::random(16);
-
-        User::create([
+        $user = User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
-            'password' => Hash::make($password),
+            'password' => Hash::make(Str::random(16)),
         ]);
 
-        // TODO: Send invitation email with set password link
+        Password::sendResetLink(['email' => $user->email]);
 
         return redirect()->route('user-management.index')->with('success', 'Benutzer wurde erstellt.');
     }
