@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Models\User;
 
 class RegisterControllerTest extends TestCase
 {
@@ -33,5 +34,21 @@ class RegisterControllerTest extends TestCase
         $response->assertStatus(200);
         $response->assertViewIs('auth.register');
         $response->assertSee('Registrierung');
+    }
+
+    public function test_user_can_register_with_valid_data(): void
+    {
+        $response = $this->post('/register', [
+            'name' => 'Max Mustermann',
+            'email' => 'max.mustermann@fh-potsdam.de',
+            'password' => 'StrengGeheim!',
+            'password_confirmation' => 'StrengGeheim!'
+        ]);
+
+        $response->assertRedirect('/home');
+
+        $user = User::where('email', 'max.mustermann@fh-potsdam.de')->first();
+        $this->assertNotNull($user);
+        $this->assertAuthenticatedAs($user);
     }
 }
