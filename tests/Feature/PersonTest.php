@@ -28,15 +28,16 @@ class PersonTest extends TestCase
 
         $project = new Project([
             'name' => fake()->name(),
-            'description' => 'Description of the project',
-            'url' => 'https://foo.none',
+            'description' => fake()->sentence(),
+            'url' => fake()->url(),
             'started_at' => fake()->date(),
             'ended_at' => fake()->date(),
             'venue_id' => $venue->id,
         ]);
 
-        // Assign the person relationship in a separate step
+        // Assign relationships in a separate step because they are not fillable
         $project->person()->associate($person);
+        $project->venue()->associate($venue);
         $project->save();
 
         return $project;
