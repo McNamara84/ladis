@@ -9,10 +9,24 @@ use App\Models\Person;
 use App\Models\Project;
 use App\Models\Venue;
 
+/**
+ * PersonTest
+ *
+ * Tests for the Person model functionality including:
+ * - CRUD operations
+ * - Relationships with Institution and Project models
+ * - Validation rules and constraints
+ * - Database integrity constraints
+ */
 class PersonTest extends TestCase
 {
     use RefreshDatabase;
 
+    /**
+     * Create a test institution
+     *
+     * @return Institution
+     */
     private function createInstitution(): Institution
     {
         return Institution::create([
@@ -22,7 +36,13 @@ class PersonTest extends TestCase
         ]);
     }
 
-    private function createProject($person): Project
+    /**
+     * Create a test project associated with a person
+     *
+     * @param Person $person
+     * @return Project
+     */
+    private function createProject(Person $person): Project
     {
         $venue = Venue::factory()->create();
 
@@ -42,7 +62,13 @@ class PersonTest extends TestCase
         return $project;
     }
 
-    private function createProjects($person): array
+    /**
+     * Create multiple test projects with different person associations
+     *
+     * @param Person $person
+     * @return array<Project>
+     */
+    private function createProjects(Person $person): array
     {
         $other_person = $this->createPerson($this->createInstitution());
 
@@ -55,7 +81,13 @@ class PersonTest extends TestCase
         ];
     }
 
-    private function createPerson($institution): Person
+    /**
+     * Create a test person associated with an institution
+     *
+     * @param Institution $institution
+     * @return Person
+     */
+    private function createPerson(Institution $institution): Person
     {
         return Person::create([
             'name' => fake()->name(),
@@ -63,6 +95,9 @@ class PersonTest extends TestCase
         ]);
     }
 
+    /**
+     * Test that a person record can be created successfully
+     */
     public function test_person_record_can_be_created(): void
     {
         $institution = $this->createInstitution();
@@ -74,6 +109,9 @@ class PersonTest extends TestCase
         ]);
     }
 
+    /**
+     * Test the relationship between person and institution
+     */
     public function test_person_institution_relationship(): void
     {
         $institution = $this->createInstitution();
@@ -82,6 +120,9 @@ class PersonTest extends TestCase
         $this->assertTrue($person->institution->is($institution));
     }
 
+    /**
+     * Test the relationship between person and projects
+     */
     public function test_person_projects_relationship(): void
     {
         $person = $this->createPerson($this->createInstitution());
@@ -92,6 +133,9 @@ class PersonTest extends TestCase
         $this->assertFalse($person->projects->contains($projects[2]));
     }
 
+    /**
+     * Test that person names must be unique
+     */
     public function test_person_name_must_be_unique(): void
     {
         $institution1 = $this->createInstitution();
@@ -114,6 +158,9 @@ class PersonTest extends TestCase
         ]);
     }
 
+    /**
+     * Test name length validation behavior differs by database type
+     */
     public function test_name_length_behavior_by_database_type(): void
     {
         $institution = $this->createInstitution();
@@ -144,6 +191,9 @@ class PersonTest extends TestCase
         }
     }
 
+    /**
+     * Test that name field is required
+     */
     public function test_name_is_required(): void
     {
         $institution = $this->createInstitution();
@@ -156,6 +206,9 @@ class PersonTest extends TestCase
         ]);
     }
 
+    /**
+     * Test that institution_id field is required
+     */
     public function test_institution_id_is_required(): void
     {
         // Attempt to create person without institution_id should fail
@@ -166,6 +219,9 @@ class PersonTest extends TestCase
         ]);
     }
 
+    /**
+     * Test that invalid institution_id values are rejected
+     */
     public function test_invalid_institution_id_is_rejected(): void
     {
         // Attempt to create person with non-existent institution_id should fail
@@ -177,6 +233,9 @@ class PersonTest extends TestCase
         ]);
     }
 
+    /**
+     * Test that institutions cannot be deleted when persons exist
+     */
     public function test_institution_cannot_be_deleted_when_persons_exist(): void
     {
         $institution = $this->createInstitution();
@@ -188,6 +247,9 @@ class PersonTest extends TestCase
         $institution->delete();
     }
 
+    /**
+     * Test that id field is protected from mass assignment
+     */
     public function test_id_field_is_protected_from_mass_assignment(): void
     {
         $institution = $this->createInstitution();
@@ -205,6 +267,9 @@ class PersonTest extends TestCase
         $this->assertGreaterThan(0, $person->id);
     }
 
+    /**
+     * Test that timestamps are set automatically
+     */
     public function test_timestamps_are_set_automatically(): void
     {
         $institution = $this->createInstitution();
@@ -230,20 +295,16 @@ class PersonTest extends TestCase
         $this->assertGreaterThan($originalCreatedAt, $person->updated_at);
     }
 
-    public function test_person_can_not_be_deleted_when_projects_exist(): void
+    /**
+     * Test that persons cannot be deleted when projects exist
+     */
+    public function test_person_cannot_be_deleted_when_projects_exist(): void
     {
         $institution = $this->createInstitution();
         $person = $this->createPerson($institution);
         $project = $this->createProject($person);
 
-        // Verify person exists in database
-        // $this->assertDatabaseHas('persons', [
-        //     'id' => $person->id,
-        //     'name' => $person->name,
-        //     'institution_id' => $institution->id,
-        // ]);
-
-        // Delete the person should fail
+        // Attempt to delete person with associated projects should fail
         $this->expectException(\Illuminate\Database\QueryException::class);
         $person->delete();
     }
