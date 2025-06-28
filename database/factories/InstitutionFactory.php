@@ -66,13 +66,13 @@ class InstitutionFactory extends Factory
     }
 
     /**
-     * Generate a realistic German institution name base
+     * Get all possible prefixes for German institution names
      *
-     * @return string
+     * @return array<string>
      */
-    private function generateInstitutionName(): string
+    private static function getInstitutionPrefixes(): array
     {
-        $prefixes = [
+        return [
             'Institut für',
             'Zentrum für',
             'Forschungsinstitut',
@@ -82,8 +82,33 @@ class InstitutionFactory extends Factory
             'Berliner',
             'Münchener',
         ];
+    }
 
-        $subjects = [
+    /**
+     * Get all possible suffixes for German institution names
+     *
+     * @return array<string>
+     */
+    private static function getInstitutionSuffixes(): array
+    {
+        return [
+            'GmbH',
+            'e.V.',
+            'Institut',
+            'Zentrum',
+            'Gesellschaft',
+            'Forschung',
+        ];
+    }
+
+    /**
+     * Get all possible subjects for German institution names
+     *
+     * @return array<string>
+     */
+    private static function getInstitutionSubjects(): array
+    {
+        return [
             'Denkmalpflege',
             'Restaurierung',
             'Kulturerbe',
@@ -93,19 +118,33 @@ class InstitutionFactory extends Factory
             'Konservierung',
             'Kunstgeschichte',
         ];
+    }
 
-        $suffixes = [
-            'GmbH',
-            'e.V.',
-            'Institut',
-            'Zentrum',
-            'Gesellschaft',
-            'Forschung',
-        ];
+    /**
+     * Get all possible German institutional elements that can appear in generated names
+     * This is used for testing to ensure generated names contain German elements
+     *
+     * @return array<string>
+     */
+    public static function getGermanInstitutionalElements(): array
+    {
+        // Return unique elements from prefixes and suffixes (not subjects, as they're content-specific)
+        return array_unique(array_merge(
+            self::getInstitutionPrefixes(),
+            self::getInstitutionSuffixes()
+        ));
+    }
 
-        $prefix = $this->faker->randomElement($prefixes);
-        $subject = $this->faker->randomElement($subjects);
-        $suffix = $this->faker->randomElement($suffixes);
+    /**
+     * Generate a realistic German institution name base
+     *
+     * @return string
+     */
+    private function generateInstitutionName(): string
+    {
+        $prefix = $this->faker->randomElement(self::getInstitutionPrefixes());
+        $subject = $this->faker->randomElement(self::getInstitutionSubjects());
+        $suffix = $this->faker->randomElement(self::getInstitutionSuffixes());
 
         return "$prefix $subject $suffix";
     }
