@@ -88,9 +88,11 @@ class InstitutionFactory extends Factory
             'Forschung',
         ];
 
-        return $this->faker->randomElement($prefixes) . ' ' .
-            $this->faker->randomElement($subjects) . ' ' .
-            $this->faker->randomElement($suffixes);
+        $prefix = $this->faker->randomElement($prefixes);
+        $subject = $this->faker->randomElement($subjects);
+        $suffix = $this->faker->randomElement($suffixes);
+
+        return "$prefix $subject $suffix";
     }
 
     /**
@@ -104,17 +106,17 @@ class InstitutionFactory extends Factory
 
         // Add address
         $contactParts[] = $this->faker->streetAddress;
-        $contactParts[] = $this->faker->postcode . ' ' . $this->faker->city;
+        $contactParts[] = "{$this->faker->postcode} {$this->faker->city}";
 
         // Add phone
-        $contactParts[] = 'Tel: ' . $this->faker->phoneNumber;
+        $contactParts[] = "Tel: {$this->faker->phoneNumber}";
 
         // Add email
-        $contactParts[] = 'E-Mail: ' . $this->faker->safeEmail;
+        $contactParts[] = "E-Mail: {$this->faker->safeEmail}";
 
         // Optionally add website
         if ($this->faker->boolean(70)) {
-            $contactParts[] = 'Web: ' . $this->faker->url;
+            $contactParts[] = "Web: {$this->faker->url}";
         }
 
         return implode("\n", $contactParts);
