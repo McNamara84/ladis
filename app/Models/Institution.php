@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\Device;
 use App\Models\Person;
@@ -16,6 +17,7 @@ use App\Models\Person;
  */
 class Institution extends Model
 {
+    use HasFactory;
     protected $fillable = [
         'name',
         'type',
