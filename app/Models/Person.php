@@ -35,10 +35,10 @@ class Person extends Model
      * @var list<string>
      */
     protected $guarded = ['id'];
-    
+
     protected $casts = [
-        'person_id' => 'integer',
-        'name' => 'string', 
+        'institution_id' => 'integer',
+        'name' => 'string',
     ];
 
     /**
