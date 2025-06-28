@@ -11,7 +11,7 @@ use App\Models\Venue;
 
 /**
  * Project Model:
- *
+ * 
  * - represents a project entity in the system
  * - has many Images (1:n)
  * - belongs to a Person (n:1)
