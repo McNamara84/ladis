@@ -150,7 +150,14 @@ class InstitutionFactory extends Factory
     }
 
     /**
-     * Generate realistic contact information
+     * Generate realistic contact information with varying completeness
+     *
+     * Can be empty or contain different combinations of:
+     * - Address (street + city)
+     * - Phone number
+     * - Email address
+     * - Website URL
+     * - Fax number
      *
      * @return string
      */
@@ -158,19 +165,72 @@ class InstitutionFactory extends Factory
     {
         $contactParts = [];
 
-        // Add address
-        $contactParts[] = $this->faker->streetAddress;
-        $contactParts[] = "{$this->faker->postcode} {$this->faker->city}";
+        // 10% chance of completely empty contact information
+        if ($this->faker->boolean(10)) {
+            return '';
+        }
 
-        // Add phone
-        $contactParts[] = "Tel: {$this->faker->phoneNumber}";
+        // Each contact element has its own probability of being included
 
-        // Add email
-        $contactParts[] = "E-Mail: {$this->faker->safeEmail}";
-
-        // Optionally add website
+        // Address (70% chance) - if included, always has both street and city
         if ($this->faker->boolean(70)) {
-            $contactParts[] = "Web: {$this->faker->url}";
+            $contactParts[] = $this->faker->streetAddress;
+            $contactParts[] = "{$this->faker->postcode} {$this->faker->city}";
+        }
+
+        // Phone number (60% chance)
+        if ($this->faker->boolean(60)) {
+            $phoneFormats = [
+                "Tel: {$this->faker->phoneNumber}",
+                "Telefon: {$this->faker->phoneNumber}",
+                "Tel.: {$this->faker->phoneNumber}",
+            ];
+            $contactParts[] = $this->faker->randomElement($phoneFormats);
+        }
+
+        // Email address (75% chance)
+        if ($this->faker->boolean(75)) {
+            $emailFormats = [
+                "E-Mail: {$this->faker->safeEmail}",
+                "Email: {$this->faker->safeEmail}",
+                "Mail: {$this->faker->safeEmail}",
+            ];
+            $contactParts[] = $this->faker->randomElement($emailFormats);
+        }
+
+        // Website (45% chance)
+        if ($this->faker->boolean(45)) {
+            $webFormats = [
+                "Web: {$this->faker->url}",
+                "Website: {$this->faker->url}",
+                "Internet: {$this->faker->url}",
+                $this->faker->url, // Just the URL without prefix
+            ];
+            $contactParts[] = $this->faker->randomElement($webFormats);
+        }
+
+        // Fax number (25% chance) - less common nowadays
+        if ($this->faker->boolean(25)) {
+            $faxFormats = [
+                "Fax: {$this->faker->phoneNumber}",
+                "Telefax: {$this->faker->phoneNumber}",
+            ];
+            $contactParts[] = $this->faker->randomElement($faxFormats);
+        }
+
+        // Mobile number (30% chance) - additional to landline
+        if ($this->faker->boolean(30)) {
+            $mobileFormats = [
+                "Mobil: {$this->faker->phoneNumber}",
+                "Mobile: {$this->faker->phoneNumber}",
+                "Handy: {$this->faker->phoneNumber}",
+            ];
+            $contactParts[] = $this->faker->randomElement($mobileFormats);
+        }
+
+        // If somehow no contact parts were added (very unlikely), add at least email
+        if (empty($contactParts)) {
+            $contactParts[] = "E-Mail: {$this->faker->safeEmail}";
         }
 
         return implode("\n", $contactParts);
