@@ -44,14 +44,29 @@ class InstitutionFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->generateInstitutionName(),
+            'name' => $this->generateUniqueInstitutionName(),
             'type' => $this->faker->randomElement(Institution::getTypes()),
             'contact_information' => $this->generateContactInformation(),
         ];
     }
 
     /**
-     * Generate a realistic German institution name
+     * Generate a unique realistic German institution name
+     *
+     * @return string
+     */
+    private function generateUniqueInstitutionName(): string
+    {
+        $baseName = $this->generateInstitutionName();
+
+        // Add unique identifier to ensure uniqueness
+        $uniqueId = $this->faker->unique()->numberBetween(1, 9999);
+
+        return "$baseName ($uniqueId)";
+    }
+
+    /**
+     * Generate a realistic German institution name base
      *
      * @return string
      */
