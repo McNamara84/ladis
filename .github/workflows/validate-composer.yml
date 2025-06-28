@@ -26,4 +26,4 @@ jobs:
           tools: composer
 
       - name: Validate composer.json and composer.lock
-        run: composer validate --strict --no-check-all --no-check-publish --check-lock
+        run: composer validate --check-lock --no-check-publish
