@@ -5,6 +5,8 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\Models\User;
+use Illuminate\Support\Facades\Password;
+use Exception;
 
 class UserManagementControllerTest extends TestCase
 {
@@ -72,5 +74,25 @@ class UserManagementControllerTest extends TestCase
         $response->assertRedirect(route('user-management.index'));
         $response->assertSessionHas('error');
         $this->assertModelExists($admin);
+    }
+
+    public function test_store_deletes_user_when_reset_link_fails(): void
+    {
+        Password::shouldReceive('sendResetLink')
+            ->once()
+            ->andThrow(new Exception('mail failed'));
+
+        $this->actingAs(User::factory()->create());
+
+        $response = $this->post('/user-management/create', [
+            'name' => 'Max Mustermann',
+            'email' => 'max.mustermann@fh-potsdam.de',
+        ]);
+
+        $response->assertRedirect();
+        $response->assertSessionHas('error');
+        $this->assertDatabaseMissing('users', [
+            'email' => 'max.mustermann@fh-potsdam.de',
+        ]);
     }
 }
