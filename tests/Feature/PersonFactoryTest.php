@@ -78,4 +78,34 @@ class PersonFactoryTest extends TestCase
         $this->assertEquals($institution->id, $person->institution_id);
         $this->assertTrue($person->institution->is($institution));
     }
+
+    /**
+     * Test the withClientInstitution() state method
+     */
+    public function test_with_client_institution_creates_person_with_client_institution(): void
+    {
+        $person = Person::factory()->withClientInstitution()->create();
+
+        $this->assertEquals(Institution::TYPE_CLIENT, $person->institution->type);
+    }
+
+    /**
+     * Test the withContractorInstitution() state method
+     */
+    public function test_with_contractor_institution_creates_person_with_contractor_institution(): void
+    {
+        $person = Person::factory()->withContractorInstitution()->create();
+
+        $this->assertEquals(Institution::TYPE_CONTRACTOR, $person->institution->type);
+    }
+
+    /**
+     * Test the withManufacturerInstitution() state method
+     */
+    public function test_with_manufacturer_institution_creates_person_with_manufacturer_institution(): void
+    {
+        $person = Person::factory()->withManufacturerInstitution()->create();
+
+        $this->assertEquals(Institution::TYPE_MANUFACTURER, $person->institution->type);
+    }
 }
