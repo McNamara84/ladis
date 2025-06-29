@@ -108,4 +108,21 @@ class PersonFactoryTest extends TestCase
 
         $this->assertEquals(Institution::TYPE_MANUFACTURER, $person->institution->type);
     }
+
+    /**
+     * Test that factory creates persons with different institutions
+     */
+    public function test_factory_creates_persons_with_varied_institutions(): void
+    {
+        $persons = Person::factory()->count(20)->create();
+        $institutionIds = $persons->pluck('institution_id')->toArray();
+
+        // Should have multiple different institutions
+        $uniqueInstitutionIds = array_unique($institutionIds);
+        $this->assertGreaterThan(
+            1,
+            count($uniqueInstitutionIds),
+            'Factory should create persons with different institutions'
+        );
+    }
 }
