@@ -9,8 +9,13 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * Person Factory
  *
- * Generates fake data for Person model instances.
+ * Generates fake data for Person model instances with unique names.
  * Used for testing and seeding.
+ *
+ * Features:
+ * - Generates unique names using Faker's firstName and lastName methods
+ * - Includes optional academic titles (Dr., Prof., M.A., etc.)
+ * - Creates associated institutions automatically
  *
  * Usage examples:
  * ```php
@@ -20,7 +25,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  * // Create a person for an existing institution
  * Person::factory()->for($institution)->create();
  *
- * // Create multiple persons
+ * // Create multiple unique persons
  * Person::factory()->count(5)->create();
  *
  * // Create a person with a specific institution type
@@ -47,17 +52,20 @@ class PersonFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->generateGermanName(),
+            'name' => $this->generateUniqueName(),
             'institution_id' => Institution::factory(),
         ];
     }
 
     /**
-     * Generate a realistic German name with academic titles
+     * Generate a unique name with optional academic titles
+     *
+     * Uses Faker's firstName and lastName methods combined with
+     * custom titles to ensure consistent formatting and uniqueness.
      *
      * @return string
      */
-    private function generateGermanName(): string
+    private function generateUniqueName(): string
     {
         $titles = [
             'Dr.',
@@ -65,81 +73,25 @@ class PersonFactory extends Factory
             'Dipl.-Ing.',
             'M.A.',
             'B.A.',
-            '', // No title
+            'M.Sc.',
+            'Ph.D.',
             '', // No title (more common)
             '', // No title (more common)
+            '', // No title (more common)
         ];
 
-        $firstNames = [
-            'Andreas',
-            'Barbara',
-            'Christian',
-            'Diana',
-            'Erik',
-            'Franziska',
-            'Georg',
-            'Hannah',
-            'Ingmar',
-            'Julia',
-            'Klaus',
-            'Laura',
-            'Martin',
-            'Nina',
-            'Oliver',
-            'Petra',
-            'Robert',
-            'Sabine',
-            'Thomas',
-            'Ursula',
-            'Viktor',
-            'Waltraud',
-            'Xaver',
-            'Yvonne',
-            'Zoe'
-        ];
-
-        $lastNames = [
-            'Müller',
-            'Schmidt',
-            'Schneider',
-            'Fischer',
-            'Weber',
-            'Meyer',
-            'Wagner',
-            'Becker',
-            'Schulz',
-            'Hoffmann',
-            'Schäfer',
-            'Koch',
-            'Bauer',
-            'Richter',
-            'Klein',
-            'Wolf',
-            'Schröder',
-            'Neumann',
-            'Schwarz',
-            'Zimmermann',
-            'Braun',
-            'Krüger',
-            'Hofmann',
-            'Hartmann',
-            'Lange',
-            'Schmitt',
-            'Werner',
-            'Schmitz',
-            'Krause',
-            'Meier'
-        ];
-
+        // Generate unique first and last names separately to avoid title conflicts
+        $firstName = $this->faker->unique()->firstName();
+        $lastName = $this->faker->lastName();
         $title = $this->faker->randomElement($titles);
-        $firstName = $this->faker->randomElement($firstNames);
-        $lastName = $this->faker->randomElement($lastNames);
+
+        $fullName = "$firstName $lastName";
 
         if (empty($title)) {
-            return "$firstName $lastName";
+            return $fullName;
         }
 
-        return "$title $firstName $lastName";
+        return "$title $fullName";
     }
 
     /**
