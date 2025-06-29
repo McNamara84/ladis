@@ -18,6 +18,14 @@ use App\Models\Person;
 class Institution extends Model
 {
     use HasFactory;
+
+    /**
+     * The attributes that are not mass assignable.
+     *
+     * Protects the 'id' field from mass assignment for security.
+     *
+     * @var list<string>
+     */
     protected $fillable = [
         'name',
         'type',
