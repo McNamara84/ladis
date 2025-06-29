@@ -35,10 +35,11 @@ class UserManagementControllerTest extends TestCase
     public function test_store_creates_user_and_redirects(): void
     {
         $this->actingAs(User::factory()->create());
-        $response = $this->post('/user-management/create', [
-            'name' => 'Max Mustermann',
-            'email' => 'max.mustermann@fh-potsdam.de',
-        ]);
+        $response = $this->withHeader('referer', '/user-management/create')
+            ->post('/user-management/create', [
+                'name' => 'Max Mustermann',
+                'email' => 'max.mustermann@fh-potsdam.de',
+            ]);
 
         $response->assertRedirect(route('user-management.index'));
         $this->assertDatabaseHas('users', [

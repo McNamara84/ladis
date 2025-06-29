@@ -36,7 +36,20 @@ class UserManagementController extends Controller
             'password' => Hash::make(Str::random(16)),
         ]);
 
-        Password::sendResetLink(['email' => $user->email]);
+        try {
+            $response = Password::sendResetLink(['email' => $user->email]);
+
+            if ($response !== Password::RESET_LINK_SENT) {
+                throw new \RuntimeException($response);
+            }
+        } catch (\Throwable $e) {
+            $user->delete();
+
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with('error', 'Fehler beim Versenden der Benachrichtigungs-E-Mail.');
+        }
 
         return redirect()->route('user-management.index')->with('success', 'Benutzer wurde erstellt.');
     }
