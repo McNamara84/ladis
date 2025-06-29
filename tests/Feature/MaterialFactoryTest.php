@@ -126,4 +126,34 @@ class MaterialFactoryTest extends TestCase
         // Verify parent has all children
         $this->assertCount($childCount, $parentMaterial->children);
     }
+
+    /**
+     * Test that any() method creates valid materials (single creation)
+     */
+    public function test_any_method_creates_valid_material(): void
+    {
+        $material = Material::factory()->any()->create();
+
+        // Verify the material was created
+        $this->assertInstanceOf(Material::class, $material);
+        $this->assertNotEmpty($material->name);
+
+        // Material should be either a parent or child
+        if ($material->parent_id === null) {
+            // This is a parent material
+            $this->assertContains($material->name, MaterialFactory::getParentMaterials());
+        } else {
+            // This is a child material
+            $this->assertNotNull($material->parent);
+            $this->assertInstanceOf(Material::class, $material->parent);
+
+            // Verify child name matches parent's hierarchy
+            $expectedChildMaterials = MaterialFactory::getChildMaterials($material->parent->name);
+            $this->assertContains($material->name, $expectedChildMaterials);
+
+            // Verify parent is a valid parent material
+            $this->assertContains($material->parent->name, MaterialFactory::getParentMaterials());
+            $this->assertNull($material->parent->parent_id);
+        }
+    }
 }
