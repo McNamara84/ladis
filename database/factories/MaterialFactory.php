@@ -51,19 +51,6 @@ class MaterialFactory extends Factory
     }
 
     /**
-     * Reset the unique generator for material names
-     *
-     * Useful for extensive testing scenarios where you need to create
-     * many materials and might exhaust the unique pool
-     *
-     * @return void
-     */
-    public static function resetUnique(): void
-    {
-        fake()->unique(true);
-    }
-
-    /**
      * Define the model's default state.
      *
      * @return array<string, mixed>
