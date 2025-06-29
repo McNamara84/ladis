@@ -96,7 +96,7 @@ class MaterialFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->randomElement(self::getParentMaterials()),
+            'name' => fake()->unique()->randomElement(self::getParentMaterials()),
             'parent_id' => null,
         ];
     }
