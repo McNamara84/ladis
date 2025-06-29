@@ -35,42 +35,42 @@ class Condition extends Model
     ];
     // LAB color values with only two decimal places allowed
     protected $casts = [
-        'wac' => 'float',
-        'lab_l' => 'decimal:2',
-        'lab_a' => 'decimal:2',
-        'lab_b' => 'decimal:2',
+        'wac'=>'float', 
+        'lab_l'=>'decimal:2', 
+        'lab_a'=>'decimal:2', 
+        'lab_b'=>'decimal:2', 
 
-    ];
+];
 
-    /**
-     * n:1 relationship to DamagePattern (backwards)
-     */
-    public function damagePattern(): BelongsTo
-    {
-        return $this->belongsTo(DamagePattern::class);
-    }
+/**
+* n:1 relationship to DamagePattern (backwards)
+*/
+public function damagePattern(): BelongsTo
+{
+    return $this->belongsTo(DamagePattern::class);
+}
 
-    /**
-     * 1:n relationship to Image
-     */
-    public function images(): HasMany
-    {
-        return $this->hasMany(Image::class);
-    }
+/**
+* 1:n relationship to Image
+*/
+public function images(): HasMany
+{
+    return $this->hasMany(Image::class);
+}
 
-    /**
-     * 1:1 relationship to PartialSurface (being a pre-condition)
-     */
-    public function conditionOf(): HasOne
-    {
-        return $this->hasOne(PartialSurface::class, 'condition_id');
-    }
+/**
+* 1:1 relationship to PartialSurface (being a pre-condition)
+*/
+public function conditionOf(): HasOne
+{
+    return $this->hasOne(PartialSurface::class, 'condition_id');
+}
 
-    /**
-     * 1:1 relationship to PartialSurface (being a result)
-     */
-    public function resultOf(): HasOne
-    {
-        return $this->hasOne(PartialSurface::class, 'result_id');
-    }
+/**
+* 1:1 relationship to PartialSurface (being a result)
+*/
+public function resultOf(): HasOne
+{
+    return $this->hasOne(PartialSurface::class, 'result_id');
+}
 }
