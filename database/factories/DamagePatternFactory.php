@@ -8,7 +8,14 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\DamagePattern>
  */
 class DamagePatternFactory extends Factory
-{
+{    
+    public static array $patterns = [
+        'Auflagerungskruste',
+        'Graffiti',
+        'Verrußung',
+        'Umwandlungskruste',
+        'biogener Bewuchs'
+    ];
     /**
      * Define the model's default state.
      *
@@ -17,13 +24,7 @@ class DamagePatternFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->unique()->randomElement([
-                'Auflagerungskruste',
-                'Graffitti',
-                'Verrußung',
-                'Umwandlungskruste',
-                'biogener Bewuchs'
-            ])
+            'name' => fake()->unique()->randomElement(self::$patterns)
         ];
     }
 }
