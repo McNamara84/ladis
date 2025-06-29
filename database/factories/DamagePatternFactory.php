@@ -17,7 +17,13 @@ class DamagePatternFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->unique()->randomElement([
+                'Auflagerungskruste',
+                'Grafitti',
+                'Verrußung',
+                'Umwandlungskruste',
+                'biogener Bewuchs'
+            ])
         ];
     }
 }
