@@ -16,18 +16,39 @@ use App\Models\Material;
 class MaterialFactory extends Factory
 {
     /**
-     * List of parent material names in German
+     * Hierarchical material structure with parent materials and their children
      *
-     * @var array<string>
+     * @var array<string, array<string>>
      */
-    public const PARENT_MATERIALS = [
-        'Holz',
-        'Stein',
-        'Metall',
-        'Keramik',
-        'Glas',
-        'Textil',
+    public const MATERIAL_HIERARCHY = [
+        'Holz' => ['Eiche', 'Buche', 'Kiefer', 'Tanne', 'Fichte', 'Birke'],
+        'Stein' => ['Sandstein', 'Marmor', 'Granit', 'Kalkstein', 'Schiefer', 'Basalt'],
+        'Metall' => ['Bronze', 'Eisen', 'Kupfer', 'Zinn', 'Silber', 'Gold'],
+        'Keramik' => ['Terrakotta', 'Porzellan', 'Steingut', 'Fayence', 'Majolika'],
+        'Glas' => ['Bleiglas', 'Kalkglas', 'Borosilikatglas', 'Kristallglas'],
+        'Textil' => ['Seide', 'Wolle', 'Leinen', 'Baumwolle', 'Samt'],
     ];
+
+    /**
+     * Get list of parent material names derived from hierarchy keys
+     *
+     * @return array<string>
+     */
+    public static function getParentMaterials(): array
+    {
+        return array_keys(self::MATERIAL_HIERARCHY);
+    }
+
+    /**
+     * Get list of child material names for a given parent material name
+     *
+     * @param string $parentMaterialName
+     * @return array<string>
+     */
+    public static function getChildMaterials(string $parentMaterialName): array
+    {
+        return self::MATERIAL_HIERARCHY[$parentMaterialName] ?? [];
+    }
 
     /**
      * Define the model's default state.
@@ -37,7 +58,7 @@ class MaterialFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->randomElement(self::PARENT_MATERIALS),
+            'name' => fake()->randomElement(self::getParentMaterials()),
             'parent_id' => null,
         ];
     }
@@ -52,5 +73,30 @@ class MaterialFactory extends Factory
         return $this->state(fn(array $attributes) => [
             'parent_id' => null,
         ]);
+    }
+
+    /**
+     * Create a child material with a parent
+     *
+     * @param Material|null $parent Optional parent material, if null creates a random parent
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    public function child(?Material $parent = null): Factory
+    {
+        return $this->state(function (array $attributes) use ($parent) {
+            // If no parent is provided, create a random parent
+            if (!$parent) {
+                $parent = Material::factory()->parent()->create();
+            }
+
+            // Get child materials for the parent type
+            $childMaterials = self::getChildMaterials($parent->name);
+            $childName = fake()->randomElement($childMaterials);
+
+            return [
+                'parent_id' => $parent->id,
+                'name' => $childName,
+            ];
+        });
     }
 }
