@@ -41,4 +41,16 @@ class MaterialFactory extends Factory
             'parent_id' => null,
         ];
     }
+
+    /**
+     * Explicitly create a parent material (no parent_id)
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    public function parent(): Factory
+    {
+        return $this->state(fn(array $attributes) => [
+            'parent_id' => null,
+        ]);
+    }
 }
