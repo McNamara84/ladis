@@ -58,7 +58,7 @@ class MaterialFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->unique()->randomElement(self::getParentMaterials()),
+            'name' => fake()->randomElement(self::getParentMaterials()),
             'parent_id' => null,
         ];
     }
@@ -105,30 +105,12 @@ class MaterialFactory extends Factory
      */
     public function any(): Factory
     {
-        return $this->state(function (array $attributes) {
-            $allMaterials = [];
+        $isParent = fake()->boolean();
 
-            // Add all parent materials
-            foreach (self::getParentMaterials() as $parent) {
-                $allMaterials[] = ['name' => $parent, 'parent_id' => null];
-            }
+        if ($isParent) {
+            return $this->parent();
+        }
 
-            // Add all child materials with their parent relationships
-            foreach (self::MATERIAL_HIERARCHY as $parentName => $children) {
-                foreach ($children as $childName) {
-                    $allMaterials[] = ['name' => $childName, 'parent_name' => $parentName];
-                }
-            }
-
-            $randomMaterial = fake()->randomElement($allMaterials);
-
-            if (isset($randomMaterial['parent_name'])) {
-                // Congratulations, it's a child material!
-                $parent = Material::firstOrCreate(['name' => $randomMaterial['parent_name']]);
-                return ['name' => $randomMaterial['name'], 'parent_id' => $parent->id];
-            }
-
-            return $randomMaterial;
-        });
+        return $this->child();
     }
 }
