@@ -2,13 +2,6 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="min-vh-100">
 
 <head>
-    <!-- Favicons -->
-    <link rel="icon" href="/favicon/favicon.ico" sizes="32x32"><!-- 32×32 -->
-    <link rel="icon" href="/favicon/favicon.ico" sizes="16x16"><!-- 16×16 -->
-    <link rel="icon" href="/favicon/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png"><!-- 180×180 -->
-    <link rel="manifest" href="/favicon/manifest.webmanifest">
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Theme Color: Should be set to the primary color of the website -->
@@ -27,6 +20,12 @@
     @else
         @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     @endif
+
+    <!-- Favicons -->
+    <link rel="manifest" href="/favicon/site.webmanifest">
+    <link rel="icon" href="/favicon/icon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon/favicon.ico" sizes="16x16 32x32 48x48">
+    <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png"><!-- 180×180 -->
 </head>
 
 <body class="d-flex flex-column min-vh-100">
