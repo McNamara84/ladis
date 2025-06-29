@@ -4,10 +4,7 @@ namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\VerificationController;
 use App\Models\User;
-use Illuminate\Support\Facades\URL;
 
 class VerificationControllerTest extends TestCase
 {
