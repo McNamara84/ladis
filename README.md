@@ -12,7 +12,7 @@ We are developing our own information system as part of the P11 laboratory. A sp
 
 ## Features
 
-<!-- Add key features here -->
+- User-friendly input form for entering materials.
 
 ## Prerequisites
 
