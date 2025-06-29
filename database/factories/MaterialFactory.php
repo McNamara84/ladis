@@ -12,6 +12,44 @@ use App\Models\Material;
  * Uses German terminology consistent with the project.
  *
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Material>
+ *
+ * @example Basic material creation (creates random parent material)
+ * $material = Material::factory()->create();
+ * // Creates: Material { name: 'Holz', parent_id: null }
+ *
+ * @example Create specific parent material
+ * $woodMaterial = Material::factory()->parent()->create(['name' => 'Holz']);
+ * // Creates: Material { name: 'Holz', parent_id: null }
+ *
+ * @example Create child material with specific parent
+ * $parent = Material::factory()->parent()->create(['name' => 'Holz']);
+ * $child = Material::factory()->child($parent)->create();
+ * // Creates: Material { name: 'Eiche', parent_id: 1 } (random child of Holz)
+ *
+ * @example Create child material with auto-generated parent
+ * $child = Material::factory()->child()->create();
+ * // Creates parent first, then child with relationship
+ *
+ * @example Create multiple materials of same type
+ * $parents = Material::factory()->parent()->count(3)->create();
+ * // Creates 3 different parent materials
+ *
+ * @example Create complete material family
+ * $stoneMaterial = Material::factory()->parent()->create(['name' => 'Stein']);
+ * $stoneTypes = Material::factory()->child($stoneMaterial)->count(6)->create();
+ * // Creates 'Stein' parent with all 6 child materials (Sandstein, Marmor, etc.)
+ *
+ * @example Create random materials (parent or child)
+ * $materials = Material::factory()->any()->count(10)->create();
+ * // Creates mix of parent and child materials randomly
+ *
+ * @example Seeding scenario - create all materials from hierarchy
+ * foreach (MaterialFactory::getParentMaterials() as $parentName) {
+ *     $parent = Material::factory()->parent()->create(['name' => $parentName]);
+ *     foreach (MaterialFactory::getChildMaterials($parentName) as $childName) {
+ *         Material::factory()->child($parent)->create(['name' => $childName]);
+ *     }
+ * }
  */
 class MaterialFactory extends Factory
 {
