@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\DamagePattern>
  */
 class DamagePatternFactory extends Factory
-{    
+{
     public static array $patterns = [
         'Auflagerungskruste',
         'Graffiti',
