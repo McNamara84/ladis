@@ -1,8 +1,8 @@
 {
 	"name": "LADIS",
 	"icons": [
-		{ "src": "/favicon/icon-192.png", "type": "image/png", "sizes": "192x192" },
-		{ "src": "/favicon/icon-mask.png", "type": "image/png", "sizes": "512x512", "purpose": "maskable" },
-		{ "src": "/favicon/icon-512.png", "type": "image/png", "sizes": "512x512" }
+		{ "src": "/icon-192.png", "type": "image/png", "sizes": "192x192" },
+		{ "src": "/icon-mask.png", "type": "image/png", "sizes": "512x512", "purpose": "maskable" },
+		{ "src": "/icon-512.png", "type": "image/png", "sizes": "512x512" }
 	]
 }
