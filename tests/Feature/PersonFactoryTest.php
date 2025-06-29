@@ -36,4 +36,21 @@ class PersonFactoryTest extends TestCase
         $this->assertNotNull($person->institution_id);
         $this->assertInstanceOf(Institution::class, $person->institution);
     }
+
+    /**
+     * Test that multiple persons have unique names
+     */
+    public function test_factory_generates_unique_person_names(): void
+    {
+        $persons = Person::factory()->count(25)->create();
+        $names = $persons->pluck('name')->toArray();
+
+        // All names should be unique due to database constraint
+        $uniqueNames = array_unique($names);
+        $this->assertEquals(
+            count($names),
+            count($uniqueNames),
+            'All person names should be unique'
+        );
+    }
 }
