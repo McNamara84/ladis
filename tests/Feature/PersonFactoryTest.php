@@ -53,4 +53,29 @@ class PersonFactoryTest extends TestCase
             'All person names should be unique'
         );
     }
+
+    /**
+     * Test that persons are associated with institutions
+     */
+    public function test_factory_creates_persons_with_institution_relationship(): void
+    {
+        $person = Person::factory()->create();
+
+        // Should have an institution relationship
+        $this->assertNotNull($person->institution_id);
+        $this->assertInstanceOf(Institution::class, $person->institution);
+        $this->assertDatabaseHas('institutions', ['id' => $person->institution_id]);
+    }
+
+    /**
+     * Test that persons can be created for existing institutions
+     */
+    public function test_factory_can_create_person_for_existing_institution(): void
+    {
+        $institution = Institution::factory()->create();
+        $person = Person::factory()->for($institution)->create();
+
+        $this->assertEquals($institution->id, $person->institution_id);
+        $this->assertTrue($person->institution->is($institution));
+    }
 }
