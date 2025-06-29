@@ -51,6 +51,19 @@ class MaterialFactory extends Factory
     }
 
     /**
+     * Reset the unique generator for material names
+     *
+     * Useful for extensive testing scenarios where you need to create
+     * many materials and might exhaust the unique pool
+     *
+     * @return void
+     */
+    public static function resetUnique(): void
+    {
+        fake()->unique(true);
+    }
+
+    /**
      * Define the model's default state.
      *
      * @return array<string, mixed>
@@ -58,7 +71,7 @@ class MaterialFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->randomElement(self::getParentMaterials()),
+            'name' => fake()->unique()->randomElement(self::getParentMaterials()),
             'parent_id' => null,
         ];
     }
@@ -91,7 +104,7 @@ class MaterialFactory extends Factory
 
             // Get child materials for the parent type
             $childMaterials = self::getChildMaterials($parent->name);
-            $childName = fake()->randomElement($childMaterials);
+            $childName = fake()->unique()->randomElement($childMaterials);
 
             return [
                 'parent_id' => $parent->id,

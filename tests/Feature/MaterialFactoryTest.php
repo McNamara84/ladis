@@ -38,30 +38,27 @@ class MaterialFactoryTest extends TestCase
     }
 
     /**
-     * Test that getParentMaterials method returns expected parent materials
-     */
-    public function test_get_parent_materials_returns_expected_materials(): void
-    {
-        // TODO: Implement parent materials test
-        $this->markTestIncomplete('Test not yet implemented');
-    }
-
-    /**
-     * Test that getChildMaterials method returns expected child materials
-     */
-    public function test_get_child_materials_returns_expected_materials(): void
-    {
-        // TODO: Implement child materials test
-        $this->markTestIncomplete('Test not yet implemented');
-    }
-
-    /**
      * Test creating parent materials explicitly
      */
     public function test_parent_material_creation(): void
     {
-        // TODO: Implement parent material creation test
-        $this->markTestIncomplete('Test not yet implemented');
+        $parentMaterial = Material::factory()->parent()->create();
+
+        // Verify the parent material has no parent
+        $this->assertNull($parentMaterial->parent_id);
+
+        // Verify the name is one of the expected parent materials
+        $this->assertContains($parentMaterial->name, MaterialFactory::getParentMaterials());
+
+        // Test creating multiple parent materials
+        $count = 3;
+        $materials = Material::factory()->parent()->count($count)->create();
+
+        $this->assertCount($count, $materials);
+        foreach ($materials as $material) {
+            $this->assertNull($material->parent_id);
+            $this->assertContains($material->name, MaterialFactory::getParentMaterials());
+        }
     }
 
     /**
