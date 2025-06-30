@@ -16,7 +16,7 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 Route::get('/', [WelcomeController::class, 'index']);
 
 // Publicly accessible advanced search
-Route::get('/advanced_search', [AdvancedSearchController::class, 'index'])->name('advanced_search');
+Route::get('/adv-search', [AdvancedSearchController::class, 'index'])->name('advanced_search');
 
 // Login page with route name login
 Route::get('/login', function () {
