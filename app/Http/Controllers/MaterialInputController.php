@@ -25,6 +25,15 @@ class MaterialInputController extends Controller
             'name' => $request['material_name'],
         ]);
         
-        return redirect ()->route('inputform_material')->with('success','Material wurde gespeichert');
+
+        try {
+            $material = Material::create($validatedData);
+
+             return redirect ()->route('inputform_material')->with('success','Material wurde gespeichert');
+
+        } catch (\Exception $e) {
+
+            return redirect()->back()->withInput()->with('error', 'Fehler beim Speichern des Materials: ' . $e->getMessage());
+        }
     }
 }
