@@ -10,14 +10,15 @@
                     <div class="card-header">
                         <h4 class="mb-0">Neues Material hinzufügen</h4>
                     </div>
-                    <form message="POST" action="{{ route('inputform_material.store') }}">
+                    <form method="POST" action="{{ route('inputform_material.store') }}">
+                        @csrf
                         <div class="card-body">
 
                             <div class="mb-3">
                                 <label for="material_name" class="form-label">Material <span
                                         class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="material_name" name="material_name"
-                                       value="{{ old('material_name') }}" required placeholder="Materialname"/>
+                                    value="{{ old('material_name') }}" required placeholder="Materialname" />
                                 <div class="form-text">
                                     Bitte wählen Sie ein Material aus der Liste.
                                 </div>
