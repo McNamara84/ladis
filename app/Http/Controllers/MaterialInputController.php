@@ -16,7 +16,11 @@ class MaterialInputController extends Controller
     }
      public function store(Request $request)
     {
-       $material = Material::create([
+       $validated = $request->validate([
+        'name'=> ['required', 'string', 'max:50',]
+       ]);
+
+        $material = Material::create([
             'name' => $request['material_name'],
         ]);
         
