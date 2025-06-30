@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\Device;
 use App\Models\Person;
@@ -16,6 +17,15 @@ use App\Models\Person;
  */
 class Institution extends Model
 {
+    use HasFactory;
+
+    /**
+     * The attributes that are not mass assignable.
+     *
+     * Protects the 'id' field from mass assignment for security.
+     *
+     * @var list<string>
+     */
     protected $fillable = [
         'name',
         'type',
