@@ -46,4 +46,17 @@ class InstitutionTest extends TestCase
 
         $this->assertTrue($institution->devices->contains($device));
     }
+
+    /**
+     * Test that database enforces unique name constraint
+     */
+    public function test_database_enforces_unique_name_constraint(): void
+    {
+        $name = 'Test Institution';
+        Institution::factory()->create(['name' => $name]);
+
+        // Attempting to create another institution with the same name should fail
+        $this->expectException(\Illuminate\Database\QueryException::class);
+        Institution::factory()->create(['name' => $name]);
+    }
 }

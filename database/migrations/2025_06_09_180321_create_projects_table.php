@@ -34,13 +34,10 @@ return new class extends Migration {
                 ->restrictOnDelete()
                 ->restrictOnUpdate();
             
-            // Foreign key references to the table image
-            $table->foreignId('cover_image_id')->nullable()->constrained('images')
-                ->restrictOnDelete()
-                ->restrictOnUpdate();
-            $table->foreignId('thumbnail_image_id')->nullable()->constrained('images')
-                ->restrictOnDelete()
-                ->restrictOnUpdate();
+            // Image references are added in a later migration to avoid
+            // circular foreign key dependencies during table creation
+            $table->foreignId('cover_image_id')->nullable();
+            $table->foreignId('thumbnail_image_id')->nullable();
         });
     }
 
