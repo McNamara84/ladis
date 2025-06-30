@@ -16,6 +16,6 @@ class MaterialFormRouteTest extends TestCase
         $response = $this->get('xxx/');
 
         $response->assertStatus(200);
-        $response->assertViewIs('xxx');
+        $response->assertViewIs('inputform_material');
         }
 }
