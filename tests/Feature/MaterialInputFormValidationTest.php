@@ -45,4 +45,19 @@ class MaterialInputFormValidationTest extends TestCase
         ]);
     }
 
+        public function test_store_checks_valid_input(): void
+    {
+        $name_non_valid = 'BeispielstringBeispielstringBeispielstringBeispiels';
+
+        $response = $this->withHeader('referer', '/inputform_material')
+            ->post('/inputform_material', [
+                'material_name' => $name_non_valid,
+            ]);
+        $response->assertRedirect('/inputform_material');
+        $response->assertSessionHasErrors('material_name');
+        $this->assertDatabaseMissing('materials', [
+            'name' => $name_non_valid,
+        ]);
+    }
+
 }
