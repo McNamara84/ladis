@@ -71,6 +71,8 @@ symbol {
     --bs-navbar-hover-color: #{$link-color};
     --bs-navbar-link-color: var(--bs-body-color);
     --bs-navbar-link-hover-color: #{$link-color};
+    --bs-navbar-brand-color: var(--bs-body-color);
+    --bs-navbar-brand-hover-color: #{$link-color};
 }
 
 // Mobile Menu Button
