@@ -21,13 +21,13 @@ class SampleSurface extends Model
     use HasFactory;
 
     protected $fillable = [
-        'artifact_id',
+        'sample_surface_id',
         'name',
         'description',
     ];
 
     protected $cast = [
-        'artifact_id' => 'integer',
+        'sample_surface_id' => 'integer',
         'name' => 'string',
         'description' => 'string',
     ];
