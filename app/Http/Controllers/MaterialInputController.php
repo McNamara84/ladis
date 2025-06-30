@@ -18,13 +18,22 @@ class MaterialInputController extends Controller
      public function store(Request $request)
     {
        $validated = $request->validate([
-        'name'=> ['required', 'string', 'max:50',]
+        'material_name'=> ['required', 'string', 'max:50',]
        ]);
 
         $material = Material::create([
             'name' => $request['material_name'],
         ]);
         
-        return redirect ()->route('inputform_material')->with('success','Material wurde gespeichert');
+
+        try {
+            $material = Material::create($validated);
+
+             return redirect ()->route('inputform_material')->with('success','Material wurde gespeichert');
+
+        } catch (\Exception $e) {
+
+            return redirect()->back()->withInput()->with('error', 'Fehler beim Speichern des Materials: ' . $e->getMessage());
+        }
     }
 }
