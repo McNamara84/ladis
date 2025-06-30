@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('devices', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('institution_id')->constrained()->restrictOnDelete();
+            $table->foreignId('institution_id')->constrained()
+                ->restrictOnDelete()
+                ->restrictOnUpdate();
             $table->string('name', 50)->unique();
             // text() creates a TEXT column for longer texts
             $table->text('description')->nullable();

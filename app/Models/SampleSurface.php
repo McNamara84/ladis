@@ -4,8 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Artifact;
+use App\Models\PartialSurface;
 
+/**
+ * SampleSurface Model:
+ * 
+ * - belongs to Artifact (n:1)
+ * - has many PartialSurfaces (1:n)
+ */
 class SampleSurface extends Model
 {
 
@@ -17,18 +26,25 @@ class SampleSurface extends Model
         'description',
     ];
 
-
     protected $cast = [
         'sample_surface_id' => 'integer',
         'name' => 'string',
         'description' => 'string',
     ];
 
-    //1:n relation: A SampleSurface belongs to an Artifact
-
-    public function artifacts(): HasMany
+    /**
+     * n:1 relationship to Artifact
+     */
+    public function artifact(): BelongsTo
     {
-        return $this->hasMany(Artifact::class);
+        return $this->belongsTo(Artifact::class);
     }
 
+    /**
+     * 1:n relationship to PartialSurface
+     */
+    public function partialSurfaces(): HasMany
+    {
+        return $this->hasMany(PartialSurface::class);
+    }
 }

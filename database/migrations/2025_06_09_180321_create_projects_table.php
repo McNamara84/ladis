@@ -22,15 +22,22 @@ return new class extends Migration {
             // Default format for the datatype date is "YYYY-MM-DD" 
             $table->date(column: 'started_at');
             $table->date(column: 'ended_at');
-
-
             $table->timestamps();
 
             // Foreign key references to the table person 
-            $table->foreignId('person_id')->constrained('persons');
+            $table->foreignId('person_id')->constrained('persons')
+                ->restrictOnDelete()
+                ->restrictOnUpdate();
 
             // Foreign key references to the table venue
-            $table->foreignId('venue_id')->constrained('venues');
+            $table->foreignId('venue_id')->constrained('venues')
+                ->restrictOnDelete()
+                ->restrictOnUpdate();
+            
+            // Image references are added in a later migration to avoid
+            // circular foreign key dependencies during table creation
+            $table->foreignId('cover_image_id')->nullable();
+            $table->foreignId('thumbnail_image_id')->nullable();
         });
     }
 

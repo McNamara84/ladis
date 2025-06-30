@@ -93,7 +93,7 @@
                         Recherchen.
                     </p>
                     <p>
-                        <a class="btn btn-outline-primary" href="{{ url('/search-advanced') }}">→ Recherche starten</a>
+                        <a class="btn btn-outline-primary" href="{{ url('/advanced_search') }}">→ Recherche starten</a>
                     </p>
                 </div>
                 <div class="col-lg-4 mb-5 text-secondary">

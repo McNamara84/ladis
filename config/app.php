@@ -30,6 +30,23 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Application Version
+    |--------------------------------------------------------------------------
+    |
+    | This value is the current version of the application, automatically
+    | injected at build time from the Git tag via the `APP_VERSION` environment
+    | variable. It's also injected into the Composer `dev` command.
+    | You can use this to display or log the exact release version in your
+    | views, headers, or API responses. Defaults to `0.0.0` when no tag and no
+    | environment variable is available. We strip any leading `v` so tags like
+    | `v1.2.3` become `1.2.3`.
+    |
+    */
+
+    'version' => env('APP_VERSION', '0.0.0'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Debug Mode
     |--------------------------------------------------------------------------
     |
