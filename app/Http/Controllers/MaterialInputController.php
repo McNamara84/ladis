@@ -11,8 +11,9 @@ class MaterialInputController extends Controller
     public function index()
     {
         $pageTitle = 'Materialeingabe';
+        $materials = Material::all();
 
-        return view('inputform_material', compact('pageTitle'));
+        return view('inputform_material', compact('pageTitle','materials'));
     }
      public function store(Request $request)
     {
