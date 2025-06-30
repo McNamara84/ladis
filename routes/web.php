@@ -41,3 +41,6 @@ Route::get('/inputform', [InputFormController::class, 'index']);
 
 //Route for inputform without authentication
 Route::get('/inputform', [InputFormController::class, 'index']);
+
+//Route for inputform for the materials
+Route::get('/inputform_material', [InputFormController::class, 'index']);
