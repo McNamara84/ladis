@@ -18,8 +18,8 @@ return new class extends Migration {
 
             $table->timestamps();
 
-            // Foreign key reference to the artifacts table
-            $table->foreignId('artifact_id')->constrained('artifacts')
+            // Foreign key references to the table object 
+            $table->foreignId('artifacts_id')->constrained('artifacts')
                 ->restrictOnDelete()
                 ->restrictOnUpdate();
         });
