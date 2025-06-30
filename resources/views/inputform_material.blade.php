@@ -22,6 +22,11 @@
                             </div>
                         </div>
 
+                         <div class="d-flex justify-content-end gap-2">
+                            <button type="submit" class="btn btn-primary">Speichern</button>
+                            <a href="{{ url()->previous() }}" class="btn btn-secondary">Abbrechen</a>
+                        </div>
+
 
                     </div>
                 </div>
