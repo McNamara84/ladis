@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdvancedSearchController;
-use App\Http\Controllers\UserManagementController;
+use App\Http\Controllers\MaterialInputController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\WelcomeController;
@@ -54,4 +54,4 @@ Route::get('/inputform', [InputFormController::class, 'index']);
 Route::get('/inputform', [InputFormController::class, 'index']);
 
 //Route for inputform for the materials
-Route::get('/inputform_material', [InputFormController::class, 'index']);
+Route::get('/inputform_material', [MaterialInputController::class, 'index']);
