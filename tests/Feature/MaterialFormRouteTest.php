@@ -11,10 +11,11 @@ class MaterialFormRouteTest extends TestCase
     /**
      * A basic feature test example.
      */
-    public function test_example(): void
+    public function test_inputform_material_view_is_displayed(): void
     {
-        $response = $this->get('/');
+        $response = $this->get('xxx/');
 
         $response->assertStatus(200);
-    }
+        $response->assertViewIs('xxx');
+        }
 }
