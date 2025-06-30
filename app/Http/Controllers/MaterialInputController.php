@@ -13,4 +13,12 @@ class MaterialInputController extends Controller
 
         return view('inputform_material', compact('pageTitle'));
     }
+     public function store(Request $request)
+    {
+       $material = Material::create([
+            'name' => $request['material_name'],
+        ]);
+        
+        return redirect ()->route('inputform_material')->with('success','Material wurde gespeichert');
+    }
 }
