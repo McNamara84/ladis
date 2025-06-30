@@ -11,6 +11,7 @@ use App\Http\Controllers\PrivacyPolicyController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\UserManagementController;
 
 // Landing page for guests
 Route::get('/', [WelcomeController::class, 'index']);
@@ -55,4 +56,4 @@ Route::get('/inputform', [InputFormController::class, 'index']);
 
 //Route for inputform for the materials
 Route::get('/inputform_material', [MaterialInputController::class, 'index']);
-Route::post('/inputform_material', [MaterialInputController::class, 'store']);
+Route::post('/inputform_material', [MaterialInputController::class, 'store'])->name('inputform_material.store');
