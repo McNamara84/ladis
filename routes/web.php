@@ -55,3 +55,4 @@ Route::get('/inputform', [InputFormController::class, 'index']);
 
 //Route for inputform for the materials
 Route::get('/inputform_material', [MaterialInputController::class, 'index']);
+Route::post('/inputform_material', [MaterialInputController::class, 'store']);
