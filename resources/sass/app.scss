@@ -33,8 +33,10 @@ symbol {
 }
 
 //
-// App Logo (temporary)
+// App Logo
 //
+
+// Usage: <svg class="app-logo"><use xlink:href="#ladis-logo"></use></svg>
 
 :root {
     // Default size for the logo
@@ -49,7 +51,7 @@ symbol {
     color: currentColor;
 }
 
-.app-logo-bg {
+.app-logo-primary {
     fill: currentColor;
 }
 
