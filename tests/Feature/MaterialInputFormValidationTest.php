@@ -28,4 +28,21 @@ class MaterialInputFormValidationTest extends TestCase
         $material = Material::where('name', $name)->first();
         $this->assertNotNull($material);
     }
+
+    public function test_store_does_not_create_material_and_redirects(): void
+    {
+        $name_non = '';
+
+        $response = $this->withHeader('referer', '/inputform_material')
+            ->post('/inputform_material', [
+                'material_name' => $name_non,
+            ]);
+
+        $response->assertRedirect('/inputform_material');
+        $response->assertSessionHasErrors('material_name');
+        $this->assertDatabaseMissing('materials', [
+            'name' => $name_non,
+        ]);
+    }
+
 }
