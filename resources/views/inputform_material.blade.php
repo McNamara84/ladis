@@ -10,7 +10,7 @@
                     <div class="card-header">
                         <h4 class="mb-0">Neues Material hinzufügen</h4>
                     </div>
-                    <form message="POST" action="{{ route('material.store') }}">
+                    <form message="POST" action="{{ route('inputform_material.store') }}">
                         <div class="card-body">
 
                             <div class="mb-3">
