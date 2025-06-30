@@ -18,7 +18,7 @@ class MaterialInputController extends Controller
      public function store(Request $request)
     {
        $validated = $request->validate([
-        'name'=> ['required', 'string', 'max:50',]
+        'material_name'=> ['required', 'string', 'max:50',]
        ]);
 
         $material = Material::create([
@@ -27,7 +27,7 @@ class MaterialInputController extends Controller
         
 
         try {
-            $material = Material::create($validatedData);
+            $material = Material::create($validated);
 
              return redirect ()->route('inputform_material')->with('success','Material wurde gespeichert');
 
