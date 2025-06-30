@@ -10,18 +10,14 @@
                     <div class="card-header">
                         <h4 class="mb-0">Neues Material hinzufügen</h4>
                     </div>
-                    <form>
+                    <form message="POST" action="{{ route('material.store') }}">
                         <div class="card-body">
 
                             <div class="mb-3">
                                 <label for="material_name" class="form-label">Material <span
                                         class="text-danger">*</span></label>
-                                <select class="form-control" id="name_build" name="name_build">
-                                    <option disabled selected value="">Bitte wählen Sie ein Material</option>
-                                    @foreach($materials as $material)
-                                        <option value="{{ $material->id }}">{{ $material->name }}</option>
-                                    @endforeach
-                                </select>
+                                <input type="text" class="form-control" id="material_name" name="material_name"
+                                       value="{{ old('material_name') }}" required placeholder="Materialname"/>
                                 <div class="form-text">
                                     Bitte wählen Sie ein Material aus der Liste.
                                 </div>
