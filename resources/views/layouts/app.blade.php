@@ -163,8 +163,8 @@
                         <ul class="navbar-nav">
                             @guest
                                 <li class="nav-item">
-                                    <a class="nav-link {{ request()->routeIs('inputform_material    ') ? 'active' : '' }}"
-                                        href="{{ route('inputform_material') }}">
+                                    <a class="nav-link {{ request()->routeIs('inputform_material.index') ? 'active' : '' }}"
+                                        href="{{ route('inputform_material.index') }}">
                                         + Material
                                     </a>
                                 </li>
