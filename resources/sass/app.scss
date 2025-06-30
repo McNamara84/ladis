@@ -63,6 +63,16 @@ symbol {
 // Navigation Bar
 //
 
+// Nabvar Light Mode Colors
+.navbar,
+.navbar-nav,
+.nav-link {
+    --bs-navbar-color: var(--bs-body-color);
+    --bs-navbar-hover-color: #{$link-color};
+    --bs-navbar-link-color: var(--bs-body-color);
+    --bs-navbar-link-hover-color: #{$link-color};
+}
+
 // Mobile Menu Button
 .navbar-toggler {
     border: none;
