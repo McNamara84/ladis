@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use App\Models\FederalState;
-use database\Factories\FederalStateFactory;
+use Database\Factories\FederalStateFactory;
 
 return new class extends Migration
 {
