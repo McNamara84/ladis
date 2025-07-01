@@ -11,12 +11,14 @@ use App\Http\Controllers\PrivacyPolicyController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\SearchController;
 
 // Landing page for guests
 Route::get('/', [WelcomeController::class, 'index']);
 
 // Publicly accessible advanced search
 Route::get('/advanced_search', [AdvancedSearchController::class, 'index'])->name('advanced_search');
+Route::get('/adv-search/result', [SearchController::class, 'search'])->name('search_results');
 
 // Login page with route name login
 Route::get('/login', function () {
