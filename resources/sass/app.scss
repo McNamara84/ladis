@@ -50,6 +50,7 @@ symbol {
     --app-logo-accent-color: var(--app-logo-color);
 }
 
+// Base styles for the app logo
 .app-logo {
     inline-size: var(--app-logo-size);
     aspect-ratio: 1 / 1;
@@ -57,10 +58,12 @@ symbol {
     transition: color 0.3s ease;
 }
 
+// Styles for the logo ring
 .app-logo-primary {
     color: var(--app-logo-primary-color);
 }
 
+// Styles for the logo spark
 .app-logo-accent {
     color: var(--app-logo-accent-color);
 }
