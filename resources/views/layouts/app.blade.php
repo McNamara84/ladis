@@ -5,7 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Theme Color: Should be set to the primary color of the website -->
-    <meta name="theme-color" content="#000">
+    <meta name="theme-color" content="#f5f4f3" />
+    <meta name="theme-color" content="#141414" media="(prefers-color-scheme: dark)" />
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
