@@ -19,5 +19,6 @@ class AdvancedSearchControllerTest extends TestCase
         $states = $response->viewData('states');
         $this->assertCount(16, $states);
         $this->assertTrue($states->contains('name', 'Berlin'));
+        $response->assertSee('Brandenburg');
     }
 }
