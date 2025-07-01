@@ -22,8 +22,10 @@
         @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     @endif
 
-    <!-- Favicons -->
+    <!-- Metadata associated with the site in web application context -->
     <link rel="manifest" href="/site.webmanifest">
+
+    <!-- Favicons -->
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png"><!-- 180×180 -->
