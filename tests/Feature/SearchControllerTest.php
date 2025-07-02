@@ -38,4 +38,24 @@ class SearchControllerTest extends TestCase
         $response->assertStatus(200);
         $response->assertSee('CL50');
     }
+
+    public function test_search_returns_by_institution_name(): void
+    {
+        $institution = Institution::create([
+            'name' => 'Laser Lab',
+            'type' => Institution::TYPE_MANUFACTURER,
+            'contact_information' => 'info@laser.lab',
+        ]);
+
+        $device = new Device();
+        $device->institution_id = $institution->id;
+        $device->name = 'UniMax';
+        $device->beam_type = Device::BEAM_POINT;
+        $device->save();
+
+        $response = $this->get('/adv-search/result?q=Laser');
+
+        $response->assertStatus(200);
+        $response->assertSee('UniMax');
+    }
 }
