@@ -9,11 +9,12 @@ class SearchController extends Controller
 {
     public function search(Request $request)
     {
-        $query = "Testdevice";
+        $query = $request->input('q');
 
         $devices = [];
-
-        // TODO: Implement search functionality
+        if ($query) {
+            $devices = Device::where('name', 'like', "%" . $query . "%")->get();
+        }
 
         $pageTitle = 'Suchergebnisse';
 
