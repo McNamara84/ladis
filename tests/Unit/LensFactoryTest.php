@@ -1,16 +1,21 @@
 <?php
 
 namespace Tests\Unit;
-
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
+use App\Models\Lens;
 
 class LensFactoryTest extends TestCase
 {
     /**
      * A basic unit test example.
      */
-    public function test_example(): void
+    public function lens_gets_created_with_valid_values(): void
     {
-        $this->assertTrue(true);
+        $lens = Lens::factory()->create();
+
+        $this->assertNotNull($lens);
+        $this->assertIsInt($lens->size);
+        $this->assertGreaterThanOrEqual(1, $lens->size);
+        $this->assertLessThanOrEqual(255, $lens->size);
     }
 }
