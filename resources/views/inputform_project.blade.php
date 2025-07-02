@@ -63,11 +63,11 @@
 
                             <!-- Group container for the two buttons -->
                             <div class="d-flex justify-content-between align-items-center">
-                                <button type="reset" class="btn btn-danger">
+                                <button type="reset" class="btn btn-danger text-center">
                                     <i class="bi bi-plus-circle"></i> Werte zurücksetzen
                                 </button>
 
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary text-center">
                                     <i class="bi bi-plus-circle"></i> Projekt hinzufügen
                                 </button>
 

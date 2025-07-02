@@ -23,19 +23,12 @@ class ProjectInputController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $validatedData = $request->validate([
-            // Values
             'name' => 'required|string|max:50|unique:projects,name',
             'description' => 'nullable|string',
             'url' => 'required|string|max:255|unique:projects,url',
             'started_at' => 'nullable|date',
             'ended_at' => 'nullable|date'
         ]);
-
-        // Adding Foreign-IDs
-        $validatedData['person_id'] = 1;
-        $validatedData['venue_id'] = 1;
-        $validatedData['cover_image_id'] = 1;
-        $validatedData['thumbnail_image_id'] = 1;
 
         // Catching errors during the database operation
         try {
