@@ -24,7 +24,7 @@ class Project extends Model
         'name' => 'string',
         'description' => 'string',
         'url' => 'string',
-        'started_at' => 'date',  
+        'started_at' => 'date',
         'ended_at' => 'date',
     ];
 
