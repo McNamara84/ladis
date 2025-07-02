@@ -17,7 +17,9 @@ class LensFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            // Size must be a unique unsigned tiny integer (1–255), based on migration and data model
+            // Creation of lenses with size 0 is intentionally excluded
+            'size' => fake()->unique()->numberBetween(1 ,255),
         ];
     }
 }
