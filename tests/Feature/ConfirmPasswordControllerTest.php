@@ -54,7 +54,7 @@ class ConfirmPasswordControllerTest extends TestCase
     public function test_confirm_with_invalid_password_redirects_back_with_errors(): void
     {
         $user = User::factory()->create([
-            'password' => Hash::make('secret'),
+            'password' => Hash::make('secret'), # ggignore
         ]);
 
         $response = $this->actingAs($user)
