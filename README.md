@@ -79,8 +79,7 @@ This web application will be deployed automatically to the production server in 
 
 Seeders are used to populate the database with initial or sample data. To run all seeders, execute:
 
-```bash
-php artisan db:seed
+`php artisan db:seed`
 
 ### Available Seeders
 
