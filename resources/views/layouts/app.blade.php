@@ -76,12 +76,12 @@
 
     <div id="app" class="d-flex flex-column min-vh-100">
         <!-- Skip to content -->
-        <a class="visually-hidden-focusable d-inline-flex p-2 m-1" href="#content">Springe zum Inhalt</a>
+        <a class="visually-hidden-focusable d-inline-flex p-2 m-1" href="#content">{{ __("Springe zum Inhalt") }}</a>
 
         <!-- Header -->
         <header class="navbar navbar-expand-lg sticky-top bg-body-secondary">
             <!-- Navigation -->
-            <nav class="container-fluid" aria-label="Hauptnavigation">
+            <nav class="container-fluid" aria-label="{{ __("Hauptnavigation") }}">
                 <!-- Brand/Logo -->
                 <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}"
                     aria-label="{{ config('app.name') }}">
@@ -98,22 +98,22 @@
                     <svg width="24" height="24" aria-hidden="true">
                         <use xlink:href="#bi-menu"></use>
                     </svg>
-                    <span class="d-none fs-6 pe-1">Navigation ein-/ausblenden</span>
+                    <span class="d-none fs-6 pe-1">{{ __("Navigation ein-/ausblenden") }}</span>
                 </button>
 
                 <!-- Offcanvas Menu -->
                 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
                     aria-labelledby="offcanvasNavbarLabel">
                     <div class="offcanvas-header border-bottom">
-                        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Navigation</h5>
+                        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">{{ __("Navigation") }}</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
                             aria-label="Navigation schließen"></button>
                     </div>
                     <div class="offcanvas-body">
                         <!-- Mobile Search -->
                         <form class="d-flex d-lg-none" role="search">
-                            <input class="form-control me-2" type="search" placeholder="Suche..." aria-label="Suche">
-                            <button type="submit" class="btn btn-outline-secondary" aria-label="Suchen">
+                            <input class="form-control me-2" type="search" placeholder="{{ __("Suche …") }}" aria-label="{{ __("Suche") }}">
+                            <button type="submit" class="btn btn-outline-secondary" aria-label="{{ __("Suchen") }}">
                                 <svg class="bi" width="16" height="16" aria-hidden="true">
                                     <use xlink:href="#bi-search"></use>
                                 </svg>
@@ -125,19 +125,13 @@
                         <!-- Left Side Navigation -->
                         <ul class="navbar-nav me-auto">
                             <li class="nav-item">
-                                <a class="nav-link disabled" href="#" aria-disabled="true">
-                                    Hilfe
-                                </a>
+                                <a class="nav-link disabled" href="#" aria-disabled="true">{{ __("Hilfe") }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/inputform') }}">
-                                    Eingabemaske
-                                </a>
+                                <a class="nav-link" href="{{ url('/inputform') }}">{{ __("Eingabemaske") }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{url('/advanced_search') }}">
-                                    Erweiterte Suche
-                                </a>
+                                <a class="nav-link" href="{{url('/advanced_search') }}">{{ __("Erweiterte Suche") }}</a>
                             </li>
                         </ul>
 
@@ -148,8 +142,8 @@
                             style="width: 25vw">
                             <form id="nav-search-form" class="d-flex" role="search">
                                 <input id="nav-search-input" class="form-control me-2" type="search"
-                                    placeholder="Suche..." aria-label="Suche">
-                                <button type="submit" class="btn btn-outline-secondary" aria-label="Suchen">
+                                    placeholder="{{ __("Suche …") }}" aria-label="{{ __("Suche") }}">
+                                <button type="submit" class="btn btn-outline-secondary" aria-label="{{ __("Suchen") }}">
                                     <svg class="bi" width="16" height="16" aria-hidden="true">
                                         <use xlink:href="#bi-search"></use>
                                     </svg>
@@ -163,14 +157,14 @@
                                 <li class="nav-item">
                                     <a class="nav-link {{ request()->routeIs('login') ? 'active' : '' }}"
                                         href="{{ route('login') }}">
-                                        Login
+                                        {{ __("Login") }}
                                     </a>
                                 </li>
                                 @if (Route::has('register'))
                                     <li class="nav-item">
                                         <a class="nav-link {{ request()->routeIs('register') ? 'active' : '' }}"
                                             href="{{ route('register') }}">
-                                            Registrieren
+                                            {{ __("Registrieren") }}
                                         </a>
                                     </li>
                                 @endif
@@ -182,12 +176,12 @@
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-end">
                                         <a class="dropdown-item" href="{{ route('home') }}">
-                                            Dashboard
+                                            {{ __("Dashboard") }}
                                         </a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                            Logout
+                                            {{ __("Logout") }}
                                         </a>
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                             @csrf
@@ -213,16 +207,13 @@
                     <div class="col-md-8">
                         <h6 class="fw-bold">{{ config('app.name') }} {{ $appVersion }}</h6>
                         <p class="small mb-0">
-                            Datenbank zu Reinigungslasern in der Restaurierung<br>
-                            Fachhochschule Potsdam - Studentisches Projekt<br>
-                            <a href="{{ route('datenschutz') }}">Datenschutzerklärung</a>
+                            {!! __("messages.000", ["link00" => route("datenschutz")]) !!}
                         </p>
                     </div>
                     <div class="col-md-4 text-md-end">
                         <p class="small mb-0">
-                            LIZENZ {{ date('Y') }} FH Potsdam<br>
-                            Vorname Nachname, Vorname Nachname, ...<br>
-                            Vorname Nachname, Vorname Nachname, ...
+                            {{ __("LIZENZ") }} {{ date('Y') }} {{ __("FH Potsdam") }}<br>
+                            {!! __("messages.001") !!}
                         </p>
                     </div>
                 </div>
