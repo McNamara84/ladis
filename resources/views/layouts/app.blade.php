@@ -20,6 +20,12 @@
     @else
         @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     @endif
+
+    <!-- Favicons -->
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png"><!-- 180×180 -->
 </head>
 
 <body class="d-flex flex-column min-vh-100">

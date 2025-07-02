@@ -74,6 +74,20 @@ This web application will be deployed automatically to the production server in 
 - `conditions`
 - `damage_patterns`
 
+## Database Seeding
+
+<!-- Introduction text for the db schema here -->
+
+Seeders are used to populate the database with initial or sample data. To run all seeders, execute:
+
+`php artisan db:seed`
+
+### Available Seeders
+
+- `DeviceSeeder`
+- `InstitutionSeeder`
+- `UserSeeder`
+
 ## Contributing
 
 <!-- Summarized conributing guidelines here -->
