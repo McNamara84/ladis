@@ -13,7 +13,7 @@
                     <h1 class="h4">Suchergebnisse für "{{ $query }}"</h1>
                 @endif
                 @forelse($devices as $device)
-                    Placeholder for single results <!-- TODO: Implement serach result cards as template -->
+                    @include('search._result', ['device' => $device])
                 @empty
                     <p>Keine Ergebnisse gefunden.</p>
                 @endforelse
