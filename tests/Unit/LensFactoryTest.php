@@ -15,9 +15,11 @@ class LensFactoryTest extends TestCase
 
         foreach($lenses as $lens){
         $this->assertNotNull($lens);
+
         $this->assertGreaterThan(0,$lens->size);
         $this->assertGreaterThanOrEqual(1, $lens->size);
         $this->assertLessThanOrEqual(255, $lens->size);
+        $this->assertEquals($lenses->count(),$lenses->unique('size')->count());
         }
     }
 }
