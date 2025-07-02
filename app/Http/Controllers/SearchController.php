@@ -13,7 +13,11 @@ class SearchController extends Controller
 
         $devices = [];
         if ($query) {
-            $devices = Device::where('name', 'like', "%" . $query . "%")->get();
+            $devices = Device::where('name', 'like', "%{$query}%")
+            ->orWhereHas('institution', function ($q) use ($query) {
+                $q->where('name', 'like', "%{$query}%");
+            })
+            ->get();
         }
 
         $pageTitle = 'Suchergebnisse';
