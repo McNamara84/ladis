@@ -40,11 +40,11 @@ class ConfirmPasswordControllerTest extends TestCase
     public function test_confirm_with_valid_password_redirects_to_home(): void
     {
         $user = User::factory()->create([
-            'password' => Hash::make('StrengGeheim!'),
+            'password' => Hash::make('StrengGeheim!'), # ggignore
         ]);
 
         $response = $this->actingAs($user)->post('/password/confirm', [
-            'password' => 'StrengGeheim!',
+            'password' => 'StrengGeheim!', # ggignore
         ]);
 
         $response->assertRedirect('/home');
@@ -60,7 +60,7 @@ class ConfirmPasswordControllerTest extends TestCase
         $response = $this->actingAs($user)
             ->from('/password/confirm')
             ->post('/password/confirm', [
-                'password' => 'wrong-password',
+                'password' => 'wrong-password', # ggignore
             ]);
 
         $response->assertRedirect('/password/confirm');
