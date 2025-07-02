@@ -31,8 +31,6 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 // Route for the Datenschutz (Data Protection) page
 Route::get('/datenschutz', [PrivacyPolicyController::class, 'index'])->name('datenschutz');
 
-Route::get('/inputform', [InputFormController::class, 'index']);
-
 // TODO: Setup authentication
 // Route for inputform with authentication
 
