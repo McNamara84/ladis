@@ -19,7 +19,7 @@ class MaterialInputController extends Controller
     {
         $validated = $request->validate([
             'material_name' => 'nullable|string|max:50|unique:materials,name',
-            'parent_id' => 'nullable|exists:materials,id',
+            'material_parent_id' => 'nullable|exists:materials,id',
         ]);
 
 
