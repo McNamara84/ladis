@@ -60,4 +60,16 @@ class MaterialInputFormValidationTest extends TestCase
         ]);
     }
 
+        public function test_required_data_is_missing_material_and_redirects(): void
+    {
+        $name_non = '';
+
+        $response = $this->withHeader('referer', '/inputform_material')
+            ->post('/inputform_material', [
+                'material_name' => $name_non,
+            ]);
+
+        $response->assertRedirect('/inputform_material');
+        $response->assertSessionHasErrors('material_name');
+    }
 }
