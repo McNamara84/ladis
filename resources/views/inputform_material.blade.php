@@ -22,13 +22,16 @@
                             @endif
 
                             <div class="mb-5">
-                                <label for="material_parent_id" class="form-label">Kategorie</label>
+                                <label for="material_parent_id" class="form-label">Übergeordnetes Material</label>
                                 <select class="form-select" id="material_parent_id" name="material_parent_id">
-                                    <option value="">Bitte wählen Sie ein Material aus der Liste.</option>
+                                    <option value="">-</option>
                                     @foreach($materials as $material)
                                         <option value="{{ $material->id }}">{{ $material->name }}</option>
                                     @endforeach
                                 </select>
+                                <div class="form-text">
+                                    Ohne Auswahl wird das neue Material als eigenständiges Material angelegt.
+                                </div>
                             </div>
 
                             <div class="mb-5">
