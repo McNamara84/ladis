@@ -107,4 +107,16 @@ class MaterialTest extends TestCase
         $this->expectException(\InvalidArgumentException::class);
         $parent->save();
     }
+
+    public function test_assigning_parent_with_parent_throws_exception(): void
+    {
+        $grand = Material::create(['name' => 'Grand']);
+        $parent = Material::create(['name' => 'Parent', 'parent_id' => $grand->id]);
+        $child = Material::create(['name' => 'Child']);
+
+        $child->parent_id = $parent->id;
+
+        $this->expectException(\InvalidArgumentException::class);
+        $child->save();
+    }
 }
