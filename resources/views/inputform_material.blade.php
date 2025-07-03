@@ -10,14 +10,16 @@
                     <div class="card-header">
                         <h4 class="mb-0">Neues Material hinzufügen</h4>
                     </div>
-                    @if ($error)
-                        <div class="alert alert-danger">
-                            {{ $error }}
-                        </div>
-                    @endif
+
                     <form method="POST" action="{{ route('inputform_material.store') }}">
                         @csrf
                         <div class="card-body">
+
+                            @if(session('error'))
+                                <div class="alert alert-danger">
+                                    {{ session('error') }}
+                                </div>
+                            @endif
 
                             <div class="mb-3">
                                 <label for="material_name" class="form-label">Material <span
