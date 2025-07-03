@@ -74,7 +74,10 @@ class MaterialTest extends TestCase
     {
         $a = Material::create(['name' => 'A']);
         $b = Material::create(['name' => 'B', 'parent_id' => $a->id]);
-        $c = Material::create(['name' => 'C', 'parent_id' => $b->id]);
+        // create third level material bypassing events
+        $c = Material::withoutEvents(function () use ($b) {
+            return Material::create(['name' => 'C', 'parent_id' => $b->id]);
+        });
 
         $a->parent_id = $c->id;
 
