@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center m-5">
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
@@ -21,14 +21,28 @@
                                 </div>
                             @endif
 
+                            @if(session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
+
                             <div class="mb-5">
-                                <label for="material_parent_id" class="form-label">Kategorie</label>
+                                <label for="material_parent_id" class="form-label">Übergeordnetes Material</label>
                                 <select class="form-select" id="material_parent_id" name="material_parent_id">
-                                    <option value="">Bitte wählen Sie ein Material aus der Liste.</option>
+                                    <option value="">-</option>
                                     @foreach($materials as $material)
                                         <option value="{{ $material->id }}">{{ $material->name }}</option>
                                     @endforeach
                                 </select>
+                                <div class="form-text">
+                                    Ohne Auswahl wird das neue Material als eigenständiges Material angelegt.
+                                </div>
+                                @error('material_parent_id')
+                                    <div class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                @enderror
                             </div>
 
                             <div class="mb-5">
@@ -39,6 +53,11 @@
                                 <div class="form-text">
                                     Bitte wählen Sie ein Material aus der Liste.
                                 </div>
+                                @error('material_name')
+                                    <div class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                @enderror
                             </div>
 
                             <div class="d-flex justify-content-end gap-2">

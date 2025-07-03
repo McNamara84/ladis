@@ -2,12 +2,14 @@
 
 namespace Tests\Feature;
 
-//use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 //use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class MaterialInputFormRouteTest extends TestCase
 {
+
+    use RefreshDatabase;
     /**
      * This method tests whether a view is displayed whenever the defined route is called.
      */
