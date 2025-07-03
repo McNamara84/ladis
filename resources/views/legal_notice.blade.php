@@ -18,7 +18,7 @@
             ENTWURF (bitte nicht verklagen, danke!)
         </div>
         <h1>{{ $pageTitle }}</h1>
-        <p>Diese Impressum wurde zuletzt am <time datetime="{{ $lastUpdated }}">{{ format_date($lastUpdated) }}</time>) bearbeitet.</p>
+        <p>Diese Impressum wurde zuletzt am <time datetime="{{ $lastUpdated }}">{{ format_date($lastUpdated) }}</time> bearbeitet.</p>
         <h2>Zuständige Institutionen</h2>
         <h3>Fachhochschule Potsdam</h3>
         <p>Die Fachhochschule Potsdam ist eine Körperschaft des Öffentlichen Rechts. Sie wird durch die amtierende Präsidentin / den amtierenden Präsidenten vertreten. Inhaltlich verantwortlich für die Inhalte dieses Webauftritts ist der Studiengang „Konservierung und Restaurierung“ der Fachhochschule Potsdam.</p>
