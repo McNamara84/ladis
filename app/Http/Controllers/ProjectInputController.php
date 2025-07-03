@@ -12,7 +12,7 @@ class ProjectInputController extends Controller
     // Display the input form for a project
     public function index()
     {
-        $pageTitle = 'Input Form - Project';
+        $pageTitle = 'Input Form - Projekt';
 
         return view('inputform_project', compact('pageTitle'));
     }
@@ -26,8 +26,8 @@ class ProjectInputController extends Controller
             'name' => 'required|string|max:50|unique:projects,name',
             'description' => 'nullable|string',
             'url' => 'required|string|max:255|unique:projects,url',
-            'started_at' => 'nullable|date',
-            'ended_at' => 'nullable|date'
+            'started_at' => 'required|date',
+            'ended_at' => 'required|date'
         ]);
 
         // Catching errors during the database operation

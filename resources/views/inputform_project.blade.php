@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-@section('title', 'Eingabeformular Project')
+@section('title', 'Eingabeformular Projekt')
 
 @section('content')
     <div class="container">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center m-5">
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
@@ -64,14 +64,12 @@
                             <!-- Group container for the two buttons -->
                             <div class="d-flex justify-content-between align-items-center">
                                 <button type="reset" class="btn btn-danger text-center">
-                                    <i class="bi bi-plus-circle"></i> Werte zurücksetzen
+                                    Werte zurücksetzen
                                 </button>
 
                                 <button type="submit" class="btn btn-primary text-center">
-                                    <i class="bi bi-plus-circle"></i> Projekt hinzufügen
+                                    Projekt hinzufügen
                                 </button>
-
-
                             </div>
 
 
