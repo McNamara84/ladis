@@ -21,7 +21,26 @@
                                 </div>
                             @endif
 
-                            <div class="mb-3">
+                            @if(session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
+
+                            <div class="mb-5">
+                                <label for="material_parent_id" class="form-label">Übergeordnetes Material</label>
+                                <select class="form-select" id="material_parent_id" name="material_parent_id">
+                                    <option value="">-</option>
+                                    @foreach($materials as $material)
+                                        <option value="{{ $material->id }}">{{ $material->name }}</option>
+                                    @endforeach
+                                </select>
+                                <div class="form-text">
+                                    Ohne Auswahl wird das neue Material als eigenständiges Material angelegt.
+                                </div>
+                            </div>
+
+                            <div class="mb-5">
                                 <label for="material_name" class="form-label">Material <span
                                         class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="material_name" name="material_name"
@@ -35,6 +54,7 @@
                                 <button type="submit" class="btn btn-primary">Speichern</button>
                                 <a href="{{ url()->previous() }}" class="btn btn-secondary">Abbrechen</a>
                             </div>
+
                         </form>
                     </div>
                 </div>
