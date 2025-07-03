@@ -62,7 +62,7 @@ class MaterialInputFormValidationTest extends TestCase
 
         public function test_required_data_is_missing_material_and_redirects(): void
     {
-        $name_non = '';
+        $name_non = null;
 
         $response = $this->withHeader('referer', '/inputform_material')
             ->post('/inputform_material', [
