@@ -21,6 +21,12 @@
                                 </div>
                             @endif
 
+                            @if(session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
+
                             <div class="mb-5">
                                 <label for="material_parent_id" class="form-label">Übergeordnetes Material</label>
                                 <select class="form-select" id="material_parent_id" name="material_parent_id">
