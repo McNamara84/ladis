@@ -134,6 +134,21 @@ class Material extends Model
                     throw new \InvalidArgumentException('This change would create a circular relationship.');
                 }
             }
+
+            // Ensure hierarchy depth of maximum two levels
+            if ($material->parent_id) {
+                $parent = static::find($material->parent_id);
+
+                // Parent must exist and must not itself have a parent
+                if ($parent && $parent->parent_id) {
+                    throw new \InvalidArgumentException('Only top level materials can be selected as parent.');
+                }
+
+                // Material with a parent cannot also have children
+                if ($material->exists && $material->children()->exists()) {
+                    throw new \InvalidArgumentException('A material with a parent cannot also be a parent.');
+                }
+            }
         });
     }
 }
