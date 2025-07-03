@@ -11,9 +11,9 @@
                         <h4 class="mb-0">Neues Material hinzufügen</h4>
                     </div>
 
-                    <form method="POST" action="{{ route('inputform_material.store') }}">
-                        @csrf
-                        <div class="card-body">
+                    <div class="card-body">
+                        <form method="POST" action="{{ route('inputform_material.store') }}">
+                            @csrf
 
                             @if(session('error'))
                                 <div class="alert alert-danger">
@@ -35,8 +35,8 @@
                                 <button type="submit" class="btn btn-primary">Speichern</button>
                                 <a href="{{ url()->previous() }}" class="btn btn-secondary">Abbrechen</a>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
