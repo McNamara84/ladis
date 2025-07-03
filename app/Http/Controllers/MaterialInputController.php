@@ -13,23 +13,22 @@ class MaterialInputController extends Controller
         $pageTitle = 'Materialeingabe';
         $materials = Material::all();
 
-        return view('inputform_material', compact('pageTitle','materials'));
+        return view('inputform_material', compact('pageTitle', 'materials'));
     }
-     public function store(Request $request)
+    public function store(Request $request)
     {
-       $validated = $request->validate([
-        'material_name'=> ['required', 'string', 'max:50',]
-       ]);
-
-        $material = Material::create([
-            'name' => $request['material_name'],
+        $validated = $request->validate([
+            'material_name' => 'required|string|max:50|unique:materials,name',
+            'parent_id' => 'nullable|exists:materials,id',
         ]);
-        
+
+
+
 
         try {
-            $material = Material::create($validated);
+            Material::create($validated);
 
-             return redirect ()->route('inputform_material')->with('success','Material wurde gespeichert');
+            return redirect()->route('inputform_material')->with('success', 'Material wurde gespeichert');
 
         } catch (\Exception $e) {
 
