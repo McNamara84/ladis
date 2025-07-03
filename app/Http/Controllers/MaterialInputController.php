@@ -18,7 +18,7 @@ class MaterialInputController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'material_name' => 'required|string|max:50|unique:materials,name',
+            'material_name' => 'nullable|string|max:50|unique:materials,name',
             'parent_id' => 'nullable|exists:materials,id',
         ]);
 
