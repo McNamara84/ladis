@@ -17,7 +17,10 @@ class MaterialTest extends TestCase
     {
         $a = Material::create(['name' => 'A']);
         $b = Material::create(['name' => 'B', 'parent_id' => $a->id]);
-        $c = Material::create(['name' => 'C', 'parent_id' => $b->id]);
+        // create a third level material bypassing model events to test the method
+        $c = Material::withoutEvents(function () use ($b) {
+            return Material::create(['name' => 'C', 'parent_id' => $b->id]);
+        });
 
         $this->assertTrue($a->wouldCreateCircularReference($b->id));
         $this->assertTrue($a->wouldCreateCircularReference($c->id));
