@@ -87,6 +87,11 @@ Seeders are used to populate the database with initial or sample data. To run al
 - `InstitutionSeeder`
 - `UserSeeder`
 
+### Available Factories
+
+- `Lensfactory`
+
+
 ## Contributing
 
 <!-- Summarized conributing guidelines here -->
