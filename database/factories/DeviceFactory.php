@@ -25,6 +25,7 @@ class DeviceFactory extends Factory
             'description' => $this->faker->optional()->paragraph(),
             'year' => $this->faker->numberBetween(2000, 2024),
             'build' => $this->faker->randomElement([Device::BUILD_FIBER, Device::BUILD_MIRROR_ARM]),
+            'safety_class' => $this->faker->numberBetween(1, 4),
             'height' => $this->faker->numberBetween(500, 2000),
             'width' => $this->faker->numberBetween(300, 1500),
             'depth' => $this->faker->numberBetween(200, 1000),
