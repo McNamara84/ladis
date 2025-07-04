@@ -32,6 +32,7 @@ class Device extends Model
         'description', 
         'year',
         'build',
+        'safety_class',
         'height',
         'width', 
         'depth',
