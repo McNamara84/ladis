@@ -15,11 +15,9 @@
                                 <label for="federal_state_id" class="form-label">Bundesland</label>
                                 <select class="form-control" id="federal_state_id" name="federal_state_id">
                                     <option disabled selected value="">Wählen Sie das Bundesland aus</option>
-                                    <option>Berlin</option>
-                                    <option>Brandenburg</option>
-                                    <option>Hamburg</option>
-                                    <option>Bremen</option>
-                                    <option>Sonstiges</option>
+                                    @foreach ($states as $state)
+                                        <option value="{{ $state->id }}">{{ $state->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
 
