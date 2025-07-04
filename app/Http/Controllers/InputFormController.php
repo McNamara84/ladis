@@ -50,7 +50,7 @@ class InputFormController extends Controller
             'mean_output' => 'nullable|numeric|min:0',
             'max_wattage' => 'nullable|numeric|min:0',
             
-            // Technical deatials
+            // Technical details
             'head' => 'nullable|string|max:50',
             'emission_source' => 'nullable|integer',
             'beam_type' => 'required|integer|in:0,1,2',
