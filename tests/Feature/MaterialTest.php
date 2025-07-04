@@ -47,7 +47,7 @@ class MaterialTest extends TestCase
         $child1 = Material::create(['name' => 'Child1', 'parent_id' => $parent->id]);
         $child2 = Material::create(['name' => 'Child2', 'parent_id' => $parent->id]);
 
-        $children = $parent->children;
+        $children = $parent->children()->get();
 
         $this->assertCount(2, $children);
         $this->assertTrue($children->contains($child1));
