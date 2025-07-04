@@ -30,6 +30,7 @@ class InputFormController extends Controller
             'name' => 'required|string|max:50|unique:devices,name',
             'year' => 'nullable|integer|min:1900|max:2099',
             'build' => 'nullable|integer|in:0,1',
+            'safety_class' => 'nullable|integer|min:1|max:4',
             'description' => 'nullable|string',
             
             // Dimensions
