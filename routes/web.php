@@ -18,7 +18,7 @@ use App\Http\Controllers\UserManagementController;
 Route::get('/', [WelcomeController::class, 'index']);
 
 // Publicly accessible advanced search
-Route::get('/advanced_search', [AdvancedSearchController::class, 'index'])->name('advanced_search');
+Route::get('/adv-search', [AdvancedSearchController::class, 'index'])->name('advanced_search');
 Route::get('/adv-search/result', [SearchController::class, 'search'])->name('search_results');
 
 // Login page with route name login

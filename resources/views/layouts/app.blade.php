@@ -136,7 +136,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{url('/advanced_search') }}">
+                                <a class="nav-link" href="{{ route('advanced_search') }}">
                                     Erweiterte Suche
                                 </a>
                             </li>
