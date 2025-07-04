@@ -15,7 +15,7 @@ class LensFactoryTest extends TestCase
      * A basic feature test example.
      */
 
-    public function test_lens_gets_created_with_valid_values(): void
+    public function test_lenses_gets_created_with_valid_values(): void
     {
         $lenses = Lens::factory()->count(10)->create();
         $this->assertEquals($lenses->count(), $lenses->unique('size')->count());
