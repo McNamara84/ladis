@@ -131,7 +131,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{url('/advanced_search') }}">
+                                <a class="nav-link" href="{{ route('advanced_search') }}">
                                     Erweiterte Suche
                                 </a>
                             </li>
@@ -156,6 +156,12 @@
                         <!-- Right Side Navigation -->
                         <ul class="navbar-nav">
                             @guest
+                                <li class="nav-item">
+                                    <a class="nav-link {{ request()->routeIs('inputform_material.index') ? 'active' : '' }}"
+                                        href="{{ route('inputform_material.index') }}">
+                                        + Material
+                                    </a>
+                                </li>
                                 <li class="nav-item">
                                     <a class="nav-link {{ request()->routeIs('login') ? 'active' : '' }}"
                                         href="{{ route('login') }}">
