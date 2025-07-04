@@ -95,7 +95,7 @@ Factories automatically generate sample data for models to simplify testing and 
 
 ### Available Factories
 
-- `Lensfactory`
+- `LensFactory`
 
 
 ## Contributing
