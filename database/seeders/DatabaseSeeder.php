@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             InstitutionSeeder::class,
             DeviceSeeder::class,
+            MaterialSeeder::class
         ]);
     }
 }
