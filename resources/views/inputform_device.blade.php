@@ -60,6 +60,17 @@
                                         </select>
                                     </div>
 
+                                    <div class="form-group mb-3">
+                                        <label for="safety_class" class="form-label">Sicherheitsklasse</label>
+                                        <select class="form-control @error('safety_class') is-invalid @enderror" id="safety_class" name="safety_class">
+                                            <option value="">Bitte wählen Sie die Sicherheitsklasse aus</option>
+                                            <option value="1" {{ old('safety_class') == '1' ? 'selected' : '' }}>1</option>
+                                            <option value="2" {{ old('safety_class') == '2' ? 'selected' : '' }}>2</option>
+                                            <option value="3" {{ old('safety_class') == '3' ? 'selected' : '' }}>3</option>
+                                            <option value="4" {{ old('safety_class') == '4' ? 'selected' : '' }}>4</option>
+                                        </select>
+                                    </div>
+
                                     {{-- Masses --}}
                                     <div class="form-group mb-3">
                                         <fieldset>
