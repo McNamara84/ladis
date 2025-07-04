@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdvancedSearchController;
-use App\Http\Controllers\UserManagementController;
+use App\Http\Controllers\MaterialInputController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\WelcomeController;
@@ -11,6 +11,7 @@ use App\Http\Controllers\PrivacyPolicyController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\UserManagementController;
 
 // Landing page for guests
 Route::get('/', [WelcomeController::class, 'index']);
@@ -54,3 +55,7 @@ Route::get('/inputform', [InputFormController::class, 'index']);
 Route::get('/inputform', [InputFormController::class, 'index'])->name('inputform.index');
 // POST route for inputform submission
 Route::post('/inputform', [InputFormController::class, 'store'])->name('inputform.store');
+
+//Route for inputform for the materials
+Route::get('/inputform_material', [MaterialInputController::class, 'index'])->name('inputform_material.index');
+Route::post('/inputform_material', [MaterialInputController::class, 'store'])->name('inputform_material.store');
