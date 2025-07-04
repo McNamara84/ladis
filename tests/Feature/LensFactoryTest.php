@@ -1,14 +1,20 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Feature;
+
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\Models\Lens;
 
+
 class LensFactoryTest extends TestCase
 {
+    
+    use RefreshDatabase;
     /**
-     * A basic unit test example.
+     * A basic feature test example.
      */
+
     public function lens_gets_created_with_valid_values(): void
     {
         $lenses = Lens::factory()->count(10)->create();
@@ -21,4 +27,5 @@ class LensFactoryTest extends TestCase
             $this->assertDatabaseHas('lenses', ['id' => $lens->id]);
         }
     }
+    
 }
