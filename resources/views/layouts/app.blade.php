@@ -162,24 +162,16 @@
                                     <div class="vr d-none d-lg-flex h-100 mx-lg-2"></div>
                                     <hr class="d-lg-none">
                                 </li>
-                                <li class="nav-item dropdown">
-                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        {{ Auth::user()->name }}
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-end">
-                                        <a class="dropdown-item" href="{{ route('home') }}">
-                                            Dashboard
-                                        </a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="{{ route('logout') }}"
-                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                            @csrf
-                                        </form>
-                                    </div>
+                                <li class="nav-item">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="nav-link" aria-label="Logout">
+                                            <span class="d-lg-none pe-2">Logout</span>
+                                            <svg class="bi" width="16" height="16" aria-hidden="true">
+                                                <use xlink:href="#bi-box-arrow-right"></use>
+                                            </svg>
+                                        </button>
+                                    </form>
                                 </li>
                             @endguest
                         </ul>
