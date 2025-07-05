@@ -50,7 +50,7 @@ Route::get('/datenschutz', [PrivacyPolicyController::class, 'index'])->name('dat
 //});
 
 //Route for inputform without authentication
-Route::get('/inputform', [InputFormController::class, 'index']);
+Route::get('/inputform', [InputFormController::class, 'index'])->name('inputform');
 
 //Route for inputform for the materials
 Route::get('/inputform_material', [MaterialInputController::class, 'index'])->name('inputform_material.index');
