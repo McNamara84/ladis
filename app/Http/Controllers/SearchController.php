@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Device;
+use App\Models\Institution;
 
 class SearchController extends Controller
 {
@@ -12,35 +13,57 @@ class SearchController extends Controller
         $query = $request->input('q');
         $advanced = $request->boolean('advanced'); // Check if the request is comming from the advanced search
         $institution = $request->input('institution_id');
+        $filterInstitution = $request->input('filter_institution_id');
+        $weightMin = $request->input('weight_min');
+        $weightMax = $request->input('weight_max');
 
-        $devices = [];
+        $devices = collect();
+        $devicesQuery = Device::query();
+        $hasConditions = false;
+
         if ($advanced && ($query || $institution)) {
-            $devices = Device::query();
-
             if ($query) {
-                $devices->where('name', 'like', "%{$query}%");
+                $devicesQuery->where('name', 'like', "%{$query}%");
+                $hasConditions = true;
             }
 
             if ($institution) {
-                $devices->orWhereHas('institution', function ($q) use ($institution) {
+                $devicesQuery->whereHas('institution', function ($q) use ($institution) {
                     $q->where('name', 'like', "%{$institution}%");
                 });
+                $hasConditions = true;
+            }
+        } elseif ($query) {
+            $devicesQuery->where(function ($q) use ($query) {
+                $q->where('name', 'like', "%{$query}%")
+                    ->orWhereHas('institution', function ($q2) use ($query) {
+                        $q2->where('name', 'like', "%{$query}%");
+                    });
+            });
+            $hasConditions = true;
+        }
+
+        if ($hasConditions) {
+            if ($filterInstitution) {
+                $devicesQuery->where('institution_id', $filterInstitution);
             }
 
-            $devices = $devices->get();
+            if ($weightMin !== null && $weightMin !== '') {
+                $devicesQuery->where('weight', '>=', $weightMin);
+            }
 
-        } elseif ($query) {
-            $devices = Device::where('name', 'like', "%{$query}%")
-            ->orWhereHas('institution', function ($q) use ($query) {
-                $q->where('name', 'like', "%{$query}%");
-            })
-            // TODO: Implement simple search other strings togehter with the device names and institution names
-            ->get();
-        
+            if ($weightMax !== null && $weightMax !== '') {
+                $devicesQuery->where('weight', '<=', $weightMax);
+            }
+
+            $devices = $devicesQuery->get();
         }
 
         $pageTitle = 'Suchergebnisse';
+        $institutions = Institution::orderBy('name')->get();
+        $minWeight = Device::min('weight');
+        $maxWeight = Device::max('weight');
 
-        return view('search.index', compact('devices', 'query', 'pageTitle'));
+        return view('search.index', compact('devices', 'query', 'pageTitle', 'institutions', 'minWeight', 'maxWeight'));
     }
 }
