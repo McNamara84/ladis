@@ -107,8 +107,10 @@
                     </div>
                     <div class="offcanvas-body">
                         <!-- Mobile Search -->
-                        <form class="d-flex d-lg-none" role="search" action="{{ route('search_results') }}" method="GET">
-                            <input class="form-control me-2" type="search" name="q" placeholder="Suche..." aria-label="Suche">
+                        <form class="d-flex d-lg-none" role="search" action="{{ route('search_results') }}"
+                            method="GET">
+                            <input class="form-control me-2" type="search" name="q" placeholder="Suche..."
+                                aria-label="Suche">
                             <button type="submit" class="btn btn-outline-secondary" aria-label="Suchen">
                                 <svg class="bi" width="16" height="16" aria-hidden="true">
                                     <use xlink:href="#bi-search"></use>
@@ -121,7 +123,6 @@
                         <!-- Left Side Navigation -->
                         <ul class="navbar-nav me-auto">
                             <x-nav.item route="help" text="Hilfe" :disabled="true" />
-                            <x-nav.item route="inputform" text="Eingabemaske" />
                             <x-nav.item route="advanced_search" text="Erweiterte Suche" />
                         </ul>
 
@@ -130,7 +131,8 @@
                         <!-- Truly centered Search on Desktop -->
                         <div class="position-absolute start-50 translate-middle-x d-none d-lg-block"
                             style="width: 25vw">
-                            <form id="nav-search-form" class="d-flex" role="search" action="{{ route('search_results') }}" method="GET">
+                            <form id="nav-search-form" class="d-flex" role="search"
+                                action="{{ route('search_results') }}" method="GET">
                                 <input id="nav-search-input" class="form-control me-2" type="search" name="q"
                                     placeholder="Suche..." aria-label="Suche">
                                 <button type="submit" class="btn btn-outline-secondary" aria-label="Suchen">
@@ -144,9 +146,10 @@
                         <!-- Right Side Navigation -->
                         <ul class="navbar-nav">
                             @guest
-                                <x-nav.item route="inputform_material.index" text="+ Material" />
                                 <x-nav.item route="login" text="Login" />
                             @else
+                                <x-nav.item route="inputform" text="Eingabemaske" />
+                                <x-nav.item route="inputform_material.index" text="+ Material" />
                                 <li class="nav-item dropdown">
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
