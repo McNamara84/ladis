@@ -10,6 +10,8 @@ class SearchController extends Controller
     public function search(Request $request)
     {
         $query = $request->input('q');
+        // Check if the request is comming from the advanced search
+        $advanced = $request->boolean('advanced');
 
         $devices = [];
         if ($query) {
