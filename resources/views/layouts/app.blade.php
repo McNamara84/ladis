@@ -163,15 +163,13 @@
                                     <hr class="d-lg-none">
                                 </li>
                                 <li class="nav-item">
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                                        @csrf
-                                        <button type="submit" class="nav-link" aria-label="Logout">
-                                            <span class="d-lg-none me-2">Logout</span>
-                                            <svg class="bi" width="16" height="16" aria-hidden="true">
-                                                <use xlink:href="#bi-box-arrow-right"></use>
-                                            </svg>
-                                        </button>
-                                    </form>
+                                    <button type="button" class="nav-link" aria-label="Logout" data-bs-toggle="modal"
+                                        data-bs-target="#logout-modal">
+                                        <span class="d-lg-none me-2">Logout</span>
+                                        <svg class="bi" width="16" height="16" aria-hidden="true">
+                                            <use xlink:href="#bi-box-arrow-right"></use>
+                                        </svg>
+                                    </button>
                                 </li>
                             @endguest
                         </ul>
@@ -179,6 +177,32 @@
                 </div>
             </nav>
         </header>
+
+        @auth
+            <!-- Logout Confirmation Modal
+                This MUST NOT be inside the header because of z-index issues! -->
+            <div class="modal fade" id="logout-modal" tabindex="-1" aria-labelledby="logout-modal-label" aria-hidden="true"
+                role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="logout-modal-label">Logout</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schließen"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Sind Sie sicher, dass Sie sich abmelden möchten?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Abbrechen</button>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-danger">Logout</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endauth
 
         <!-- Main Content -->
         <main id="content" class="flex-grow-1">
