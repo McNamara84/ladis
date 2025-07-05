@@ -163,6 +163,7 @@
                                 <x-nav.item route="home" text="Dashboard" />
                                 <x-nav.item route="inputform" text="Eingabemaske" />
                                 <x-nav.item route="inputform_material.index" text="+ Material" />
+                                <x-nav.item route="user-management.index" text="Benutzerverwaltung" />
                                 <li class="nav-item">
                                     <div class="vr d-none d-lg-flex h-100 mx-lg-2"></div>
                                     <hr class="d-lg-none">
@@ -185,7 +186,7 @@
 
         @auth
             <!-- Logout Confirmation Modal
-                                            This MUST NOT be inside the header because of z-index issues! -->
+                                                This MUST NOT be inside the header because of z-index issues! -->
             <div class="modal fade" id="logout-modal" tabindex="-1" aria-labelledby="logout-modal-label" aria-hidden="true"
                 role="dialog">
                 <div class="modal-dialog">
