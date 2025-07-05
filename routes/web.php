@@ -6,52 +6,85 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\InputFormController;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\PrivacyPolicyController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\UserManagementController;
 
-// Landing page for guests
+// TODO/Conventions:
+// - Prefix all routes for authenticated users with /app
+// - Maintain a clear separation between public and private routes
+// - Consistently use controller classes for routes (no anonymous functions)
+// - Name all routes for consistency
+// - Scope routes by logic (e.g. login, logout, password, etc.)
+//   - Example: /app -> Index page for authenticated users
+//   - Example: /app/user-management -> User management page
+// - Decide on the naming convention for routes
+//   - Example: /user-management
+//   - Example: /inputform_material
+// - Decide whether to use /app prefix for account related routes
+//   - Current: /password
+//   - Example: /app/account/password
+// - Apply consistent auth middleware for all routes either in the controller OR in the route definition
+//   - Example: User management authentication is handled here
+//   - Example: Login authentication is handled at the controller level
+//   - Recommendation: Apply auth middleware in routes definition
+//     - Centralized in one place
+//     - Easy to maintain
+
+// ----------------------------
+// Public routes for reguluar pages
+// ----------------------------
+
+// Landing page
 Route::get('/', [WelcomeController::class, 'index']);
 
-// Publicly accessible advanced search
+// Advanced search
 Route::get('/adv-search', [AdvancedSearchController::class, 'index'])->name('advanced_search');
 
-// Login page with route name login
-Route::get('/login', function () {
-    return view('auth.login');
-})->name('login');
+// Privacy policy
+Route::get('/datenschutz', [PrivacyPolicyController::class, 'index'])->name('datenschutz');
+
+// ----------------------------
+// Login and logout routes
+// ----------------------------
+
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-// Routes for user with authentication
+// ----------------------------
+// Password reset routes
+// ----------------------------
+
+Route::get('/password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('/password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('/password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('/password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
+
+// ----------------------------
+// Routes for authenticated users
+// ----------------------------
+// NOTE: These routes redirect to the login page if the user is not authenticated
+
+// Dashboard
+// TODO: This is the index page for authenticated users and should be renamed to /app
+// NOTE: Authentication is handled in the controller
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+
 Route::middleware('auth')->group(function () {
+    // User management
     Route::get('/user-management', [UserManagementController::class, 'index'])->name('user-management.index');
     Route::get('/user-management/create', [UserManagementController::class, 'create'])->name('user-management.create');
     Route::post('/user-management/create', [UserManagementController::class, 'store'])->name('user-management.store');
     Route::delete('/user-management/{user}', [UserManagementController::class, 'destroy'])->name('user-management.destroy');
+
+    // Device management
+    // TODO: Name this appropiately instead of the current generic name
+    Route::get('/inputform', [InputFormController::class, 'index'])->name('inputform');
+
+    // Material management
+    Route::get('/inputform_material', [MaterialInputController::class, 'index'])->name('inputform_material.index');
+    Route::post('/inputform_material', [MaterialInputController::class, 'store'])->name('inputform_material.store');
 });
-Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
-Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
-Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
-Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
-
-// Route for the Datenschutz (Data Protection) page
-Route::get('/datenschutz', [PrivacyPolicyController::class, 'index'])->name('datenschutz');
-
-// TODO: Setup authentication
-// Route for inputform with authentication
-
-// Route::middleware(['auth'])->group(function () {
-//    Route::get('/inputform', [InputFormController::class, 'index']);
-//});
-
-//Route for inputform without authentication
-Route::get('/inputform', [InputFormController::class, 'index'])->name('inputform');
-
-//Route for inputform for the materials
-Route::get('/inputform_material', [MaterialInputController::class, 'index'])->name('inputform_material.index');
-Route::post('/inputform_material', [MaterialInputController::class, 'store'])->name('inputform_material.store');
