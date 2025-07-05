@@ -21,6 +21,7 @@ class Item extends Component
      * @param string $route The route name
      * @param string $text The display text
      * @param bool $disabled Whether the item is disabled
+     * @param string $class Additional CSS classes
      */
     public function __construct(
         public string $route,
@@ -28,6 +29,26 @@ class Item extends Component
         public bool $disabled = false,
         public string $class = '',
     ) {
+    }
+
+    /**
+     * Get the href for the nav item
+     *
+     * @return string
+     */
+    public function href(): string
+    {
+        return $this->disabled ? '#' : route($this->route);
+    }
+
+    /**
+     * Check if the nav item is active
+     *
+     * @return bool
+     */
+    public function isActive(): bool
+    {
+        return request()->routeIs($this->route);
     }
 
     /**
