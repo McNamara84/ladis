@@ -5,16 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use App\Models\Institution;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Institution;
 use App\Models\Lens;
+use App\Models\Process;
 use App\Models\User;
 
 /**
  * Device Model
  *
- * - Belongs to an institution (n:1)
- * - Has many lenses (n:m)
+ * - belongs to Institution (n:1)
+ * - has many Processes (1:n)
+ * - belongs to many Lenses (n:m)
  */
 class Device extends Model
 {
@@ -71,11 +74,19 @@ class Device extends Model
     // TODO: Add methods hasBeamType() and hasBuildType() if we will need this for validations and dropdowns
 
     /**
-     * 1:n relationship to Institution (backwards)
+     * n:1 relationship to Institution (backwards)
      */
     public function institution(): BelongsTo
     {
         return $this->belongsTo(Institution::class);
+    }
+
+    /**
+     * 1:n relationship to Process
+     */
+    public function processes(): HasMany
+    {
+        return $this->hasMany(Process::class);
     }
 
     /**

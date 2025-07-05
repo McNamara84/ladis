@@ -6,7 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\PartialSurface;
 
+/**
+ * Material Model:
+ *
+ * - belongs to (parent) Material (n:1)
+ * - has many (children) Materials (1:n)
+ * - has many PartialSurfaces (1:n)
+ */
 class Material extends Model
 {
     // HasFactory enables the use of model factories for testing
@@ -36,7 +44,7 @@ class Material extends Model
     ];
 
     /**
-     * Relationship to the parent material
+     * Relationship to the parent material (n:1)
      *
      * BelongsTo relationship: this material "belongs to" a parent material.
      * The foreign key is parent_id in this table.
@@ -52,7 +60,7 @@ class Material extends Model
     }
 
     /**
-     * Relationship to the child materials
+     * Relationship to the child materials (1:n)
      *
      * HasMany relationship: this material "has many" child materials.
      * The foreign key parent_id is in the child materials table.
@@ -62,6 +70,14 @@ class Material extends Model
     public function children(): HasMany
     {
         return $this->hasMany(Material::class, 'parent_id');
+    }
+
+    /**
+     * Relationship to PartialSurface (1:n)
+     */
+    public function partialSurfaces(): HasMany
+    {
+        return $this->hasMany(PartialSurface::class);
     }
 
     /**
@@ -116,6 +132,21 @@ class Material extends Model
             if ($material->parent_id && $material->exists) {
                 if ($material->wouldCreateCircularReference($material->parent_id)) {
                     throw new \InvalidArgumentException('This change would create a circular relationship.');
+                }
+            }
+
+            // Ensure hierarchy depth of maximum two levels
+            if ($material->parent_id) {
+                $parent = static::find($material->parent_id);
+
+                // Parent must exist and must not itself have a parent
+                if ($parent && $parent->parent_id) {
+                    throw new \InvalidArgumentException('Only top level materials can be selected as parent.');
+                }
+
+                // Material with a parent cannot also have children
+                if ($material->exists && $material->children()->exists()) {
+                    throw new \InvalidArgumentException('A material with a parent cannot also be a parent.');
                 }
             }
         });

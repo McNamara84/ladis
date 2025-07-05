@@ -31,81 +31,22 @@ $break-the-ice: #b4ebf1;
 // Generic colors
 //
 
+// Note: BS uses more generic colors and we did not define all, yet
+
 $blue: $blue-bikni;
-// $indigo:;
-// $purple:;
-// $pink:;
 $red: $neon-fuchsia;
-// $orange:;
-// $yellow:;
-// $green:;
 $teal: $break-the-ice;
 $cyan: $aqua;
 
 //
 // Grayscale colors
 //
-// Do we need 50 shades of gray? So much visual noise …
 
-// Please leave all these comments here for reference.
-// We'll delete them eventually.
+// Note: BS grayscale colors from 100-900 affect the color system in various ways.
+// Override with cuation.
 
-// $white: #fff !default;
-// -> $body-bg
-// $black: #000 !default;
-
-// $gray-100: $lighthouse;
-// -> $light
-// -> $light-bg-subtle (mixed with $white)
-// -> $body-tertiary-bg
-// -> $light-text-emphasis-dark
-
-// $gray-200:;
-// -> $light-border-subtle
-// -> $body-secondary-bg
-
-// $gray-300:;
-// -> $border-color
-// -> $dropdown-dark-color
-// -> $dark-text-emphasis-dark
-// -> $body-color-dark
-
-// $gray-400: #ced4da !default;
-// -> $dark-bg-subtle
-
-// $gray-500: #adb5bd !default;
-// -> $dark-border-subtle
-// -> $dropdown-dark-link-disabled-color
-// -> $dropdown-dark-header-color
-
-// $gray-600: $c-onyx;
-// -> $gray
-// -> $secondary
-// -> $blockquote-footer-color
-// -> $btn-link-disabled-color
-// -> $form-floating-label-disabled-color
-// -> $dropdown-header-color
-
-// $gray-700: $c-onyx;
-// -> $light-text-emphasis
-// -> $dark-text-emphasis
-// -> $light-border-subtle-dark
-// -> $border-color-dark
-
-// $gray-800: #343a40 !default;
-// -> $gray-dark
-// -> $form-select-indicator-color
-// -> $dropdown-dark-bg
-// -> $light-bg-subtle-dark
-// -> $dark-bg-subtle-dark (WTF?) (mixed with $black)
-// -> $dark-border-subtle-dark
-// -> $body-secondary-bg-dark
-// -> $body-tertiary-bg-dark (mixed with $gray-900)
-
+// 900 Affects `$dark`, `$body-color` and `$body-bg-dark`
 $gray-900: $sooty;
-// -> $dark
-// -> $body-color
-// -> $body-bg-dark
 
 //
 // Theme Colors
@@ -114,7 +55,6 @@ $gray-900: $sooty;
 $light: $lighthouse;
 $dark: $sooty;
 $primary: $blue;
-// $secondary: $armor-wash;
 
 //
 // Light Mode
@@ -125,13 +65,13 @@ $primary: $blue;
 $body-bg: $light;
 
 $link-color: $primary;
-// $link-hover-color: shift-color($link-color, $link-shade-percentage) !default;
-// $link-decoration: none;
 $link-hover-decoration: underline;
 
 //
 // Dark Mode
 //
+
+// Note: Also see CSS custom properties for the media query in `app.scss`.
 
 $body-color-dark: $light;
 $body-secondary-color-dark: $teal;
@@ -140,5 +80,3 @@ $body-tertiary-color-dark: $satin-deep-black;
 $link-color-dark: $body-secondary-color-dark;
 $link-hover-color-dark: $primary;
 $border-color-dark: $body-tertiary-color-dark;
-
-// Also see CSS custom properties for the media query in `app.scss`.

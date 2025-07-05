@@ -8,6 +8,7 @@
             <div class="col-md-6 col-lg-5">
                 <!-- Header -->
                 <div class="text-center mb-4">
+                    <!-- Logo placeholder
                     <div class="mx-auto mb-3 bg-primary rounded-circle d-flex align-items-center justify-content-center"
                         style="width: 80px; height: 80px;">
                         <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -16,7 +17,11 @@
                                 fill="currentColor" />
                             <circle cx="12" cy="18" r="2" fill="currentColor" />
                         </svg>
-                    </div>
+                    </div> -->
+                    <!-- LADIS Logo -->
+                    <svg class="app-logo-bg">
+                        <use xlink:href="#ladis-logo"></use>
+                    </svg>
                     <h1 class="h3 fw-bold text-primary">Anmeldung</h1>
                     <p class="text-muted">Melden Sie sich in Ihrem {{ config('app.name') }} Konto an</p>
                 </div>

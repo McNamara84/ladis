@@ -5,12 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\SampleSurface;
 use App\Models\Location;
 
 /**
- * Artifact Model
+ * Artifact Model:
  *
- * - Belongs to a Location (n:1)
+ * - belongs to Location (n:1)
+ * - has many SampleSurfaces (1:n)
  */
 class Artifact extends Model
 {
@@ -39,10 +42,18 @@ class Artifact extends Model
     ];
 
     /**
-     * n:1 relationship to Location (Artifact belongs to Location).
+     * n:1 relationship to Location (backwards)
      */
     public function location(): BelongsTo
     {
         return $this->belongsTo(Location::class);
+    }
+
+    /**
+     * 1:n relationship to SampleSurface
+     */
+    public function sampleSurfaces(): HasMany
+    {
+        return $this->hasMany(SampleSurface::class);
     }
 }
