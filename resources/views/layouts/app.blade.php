@@ -150,6 +150,10 @@
                             @else
                                 <x-nav.item route="inputform" text="Eingabemaske" />
                                 <x-nav.item route="inputform_material.index" text="+ Material" />
+                                <li class="nav-item">
+                                    <div class="vr d-none d-lg-flex h-100 mx-lg-2"></div>
+                                    <hr class="d-lg-none">
+                                </li>
                                 <li class="nav-item dropdown">
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
