@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\AdvancedSearchController;
-use App\Http\Controllers\MaterialInputController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\WelcomeController;
@@ -11,13 +10,17 @@ use App\Http\Controllers\PrivacyPolicyController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserManagementController;
+use App\Http\Controllers\ProjectInputController;
+use App\Http\Controllers\MaterialInputController;
 
 // Landing page for guests
 Route::get('/', [WelcomeController::class, 'index']);
 
 // Publicly accessible advanced search
-Route::get('/advanced_search', [AdvancedSearchController::class, 'index'])->name('advanced_search');
+Route::get('/adv-search', [AdvancedSearchController::class, 'index'])->name('advanced_search');
+Route::get('/adv-search/result', [SearchController::class, 'search'])->name('search_results');
 
 // Login page with route name login
 Route::get('/login', function () {
@@ -42,7 +45,6 @@ Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('
 // Route for the Datenschutz (Data Protection) page
 Route::get('/datenschutz', [PrivacyPolicyController::class, 'index'])->name('datenschutz');
 
-Route::get('/inputform', [InputFormController::class, 'index']);
 
 // TODO: Setup authentication
 // Route for inputform with authentication
@@ -55,6 +57,10 @@ Route::get('/inputform', [InputFormController::class, 'index']);
 Route::get('/inputform', [InputFormController::class, 'index'])->name('inputform.index');
 // POST route for inputform submission
 Route::post('/inputform', [InputFormController::class, 'store'])->name('inputform.store');
+
+
+// Route for the inputform project without authentication
+Route::get('/inputform_project', [ProjectInputController::class, 'index']);
 
 //Route for inputform for the materials
 Route::get('/inputform_material', [MaterialInputController::class, 'index'])->name('inputform_material.index');

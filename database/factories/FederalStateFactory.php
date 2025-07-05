@@ -14,27 +14,39 @@ class FederalStateFactory extends Factory
      *
      * @return array<string, mixed>
      */
+    public static array $federalStates = [
+        'Baden-Württemberg',
+        'Bayern',
+        'Berlin',
+        'Brandenburg',
+        'Bremen',
+        'Hamburg',
+        'Hessen',
+        'Mecklenburg-Vorpommern',
+        'Niedersachsen',
+        'Nordrhein-Westfalen',
+        'Rheinland-Pfalz',
+        'Saarland',
+        'Sachsen',
+        'Sachsen-Anhalt',
+        'Schleswig-Holstein',
+        'Thüringen',
+    ];
+
     public function definition(): array
     {
         return [
-            'name' => fake()->unique()->randomElement([
-                'Baden-Württemberg',
-                'Bayern',
-                'Berlin',
-                'Brandenburg',
-                'Bremen',
-                'Hamburg',
-                'Hessen',
-                'Mecklenburg-Vorpommern',
-                'Niedersachsen',
-                'Nordrhein-Westfalen',
-                'Rheinland-Pfalz',
-                'Saarland',
-                'Sachsen',
-                'Sachsen-Anhalt',
-                'Schleswig-Holstein',
-                'Thüringen'
-            ]),
+            'name' => 'TestState ' . fake()->unique()->numerify('###'),
         ];
+    }
+
+    /**
+     * Sequence through all federal states for seeding.
+     */
+    public function germanStates(): self
+    {
+        return $this->sequence(
+            fn ($sequence) => ['name' => self::$federalStates[$sequence->index]]
+        );
     }
 }
