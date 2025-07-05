@@ -78,4 +78,24 @@ class SearchControllerTest extends TestCase
         $response->assertStatus(200);
         $response->assertSee('SuperLaser');
     }
+
+    public function test_advanced_search_returns_by_device_name(): void
+    {
+        $institution = Institution::create([
+            'name' => 'Däßler Center',
+            'type' => Institution::TYPE_MANUFACTURER,
+            'contact_information' => 'info@daessler-laser.de',
+        ]);
+
+        $device = new Device();
+        $device->institution_id = $institution->id;
+        $device->name = 'CL60';
+        $device->beam_type = Device::BEAM_POINT;
+        $device->save();
+
+        $response = $this->get('/adv-search/result?advanced=1&q=CL60');
+
+        $response->assertStatus(200);
+        $response->assertSee('CL60');
+    }
 }
