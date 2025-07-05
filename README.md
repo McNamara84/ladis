@@ -89,6 +89,15 @@ Seeders are used to populate the database with initial or sample data. To run al
 - `InstitutionSeeder`
 - `UserSeeder`
 
+## Factories
+
+Factories automatically generate sample data for models to simplify testing and development.
+
+### Available Factories
+
+- `LensFactory`
+
+
 ## Contributing
 
 <!-- Summarized conributing guidelines here -->
