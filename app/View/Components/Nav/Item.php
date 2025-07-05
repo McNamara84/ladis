@@ -26,6 +26,7 @@ class Item extends Component
         public string $route,
         public string $text,
         public bool $disabled = false,
+        public string $class = '',
     ) {
     }
 
