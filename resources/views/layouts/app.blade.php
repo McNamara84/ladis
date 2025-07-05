@@ -126,11 +126,7 @@
 
                         <!-- Left Side Navigation -->
                         <ul class="navbar-nav me-auto">
-                            <li class="nav-item">
-                                <a class="nav-link disabled" href="#" aria-disabled="true">
-                                    Hilfe
-                                </a>
-                            </li>
+                            <x-nav.item route="help" text="Hilfe" :disabled="true" />
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/inputform') }}">
                                     Eingabemaske

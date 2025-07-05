@@ -11,6 +11,7 @@ use Illuminate\View\Component;
  *
  * @param string $route The route name
  * @param string $text The display text
+ * @param bool $disabled Whether the item is disabled
  */
 class Item extends Component
 {
@@ -19,10 +20,12 @@ class Item extends Component
      *
      * @param string $route The route name
      * @param string $text The display text
+     * @param bool $disabled Whether the item is disabled
      */
     public function __construct(
         public string $route,
         public string $text,
+        public bool $disabled = false,
     ) {
     }
 
