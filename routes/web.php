@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\InputFormController;
+use App\Http\Controllers\LegalNoticeController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\PrivacyPolicyController;
 use App\Http\Controllers\Auth\LoginController;
@@ -45,7 +46,6 @@ Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('
 // Route for the Datenschutz (Data Protection) page
 Route::get('/datenschutz', [PrivacyPolicyController::class, 'index'])->name('datenschutz');
 
-
 // TODO: Setup authentication
 // Route for inputform with authentication
 
@@ -57,6 +57,7 @@ Route::get('/datenschutz', [PrivacyPolicyController::class, 'index'])->name('dat
 //Route for inputform without authentication
 Route::get('/inputform', [InputFormController::class, 'index']);
 
+Route::get('/impressum', [LegalNoticeController::class, 'index'])->name('impressum');
 
 // Route for the inputform project without authentication
 Route::get('/inputform_project', [ProjectInputController::class, 'index']);
