@@ -3,17 +3,21 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\User;
 
 class InputFormRouteTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * A basic feature test example.
      */
     public function test_inputform_route_returns_successful_response(): void
     {
-        $response = $this->get('/inputform');
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/inputform');
 
         $response->assertStatus(200);
     }
