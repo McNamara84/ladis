@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\AdvancedSearchController;
-use App\Http\Controllers\MaterialInputController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\WelcomeController;
@@ -10,7 +9,10 @@ use App\Http\Controllers\PrivacyPolicyController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserManagementController;
+use App\Http\Controllers\ProjectInputController;
+use App\Http\Controllers\MaterialInputController;
 
 // TODO/Conventions:
 // - Prefix all routes for authenticated users with /app
@@ -42,6 +44,7 @@ Route::get('/', [WelcomeController::class, 'index']);
 
 // Advanced search
 Route::get('/adv-search', [AdvancedSearchController::class, 'index'])->name('advanced_search');
+Route::get('/adv-search/result', [SearchController::class, 'search'])->name('search_results');
 
 // Privacy policy
 Route::get('/datenschutz', [PrivacyPolicyController::class, 'index'])->name('datenschutz');
