@@ -166,7 +166,7 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST">
                                         @csrf
                                         <button type="submit" class="nav-link" aria-label="Logout">
-                                            <span class="d-lg-none pe-2">Logout</span>
+                                            <span class="d-lg-none me-2">Logout</span>
                                             <svg class="bi" width="16" height="16" aria-hidden="true">
                                                 <use xlink:href="#bi-box-arrow-right"></use>
                                             </svg>
