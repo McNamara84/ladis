@@ -38,12 +38,9 @@
                                 <label for="institution_id" class="form-label">Institution</label>
                                 <select class="form-control" id="institution_id" name="institution_id" size="3">
                                     <option disabled selected value="">Wählen Sie den Namen der Institution aus</option>
-                                    <option>FH Potsdam</option>
-                                    <option>Institution2</option>
-                                    <option>Institution3</option>
-                                    <option>Institution4</option>
-                                    <option>Institution5</option>
-                                    <option>Sonstiges</option>
+                                    @foreach ($institutions as $institution)
+                                        <option value="{{ $institution->name }}">{{ $institution->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
 
