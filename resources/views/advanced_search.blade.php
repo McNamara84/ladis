@@ -9,7 +9,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h1 class="card-title text-primary">Erweiterte Suche</h1>
-                        <form>
+                        <form action="{{ route('search_results') }}" method="GET">
 
                             <div class="mb-3">
                                 <label for="federal_state_id" class="form-label">Bundesland</label>
