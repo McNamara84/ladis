@@ -12,7 +12,9 @@ We are developing our own information system as part of the P11 laboratory. A sp
 
 ## Features
 
+- **User-friendly input form*** for entering materials, ...
 - **Admin Tools:** Create new Accounts via UI or enter `php artisan newuser <name> <email> <password>` in server terminal for easy user creation.
+- **Simple Search:** The simple search function in the main menu allows you to quickly search for device names, institution names, ...
 
 ## Prerequisites
 
@@ -72,6 +74,29 @@ This web application will be deployed automatically to the production server in 
 - `venues`
 - `conditions`
 - `damage_patterns`
+
+## Database Seeding
+
+<!-- Introduction text for the db schema here -->
+
+Seeders are used to populate the database with initial or sample data. To run all seeders, execute:
+
+`php artisan db:seed`
+
+### Available Seeders
+
+- `DeviceSeeder`
+- `InstitutionSeeder`
+- `UserSeeder`
+
+## Factories
+
+Factories automatically generate sample data for models to simplify testing and development.
+
+### Available Factories
+
+- `LensFactory`
+
 
 ## Contributing
 
