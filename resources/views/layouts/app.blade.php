@@ -185,8 +185,8 @@
         </header>
 
         @auth
-            <!-- Logout Confirmation Modal
-                                                This MUST NOT be inside the header because of z-index issues! -->
+            <!-- Logout Confirmation Modal -->
+            <!-- This MUST NOT be inside the header because of z-index issues! -->
             <div class="modal fade" id="logout-modal" tabindex="-1" aria-labelledby="logout-modal-label" aria-hidden="true"
                 role="dialog">
                 <div class="modal-dialog">
