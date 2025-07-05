@@ -163,7 +163,7 @@
                                 <x-nav.item route="home" text="Dashboard" />
                                 <x-nav.item route="inputform" text="Eingabemaske" />
                                 <x-nav.item route="inputform_material.index" text="+ Material" />
-                                <x-nav.item route="user-management.index" text="Benutzerverwaltung" />
+                                <x-nav.item route="user-management.index" text="Benutzerverwaltung" icon="bi-person-gear" />
                                 <li class="nav-item">
                                     <div class="vr d-none d-lg-flex h-100 mx-lg-2"></div>
                                     <hr class="d-lg-none">
