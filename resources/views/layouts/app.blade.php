@@ -115,6 +115,7 @@
                         <!-- Mobile Search -->
                         <form class="d-flex d-lg-none" role="search" action="{{ route('search_results') }}" method="GET">
                             <input class="form-control me-2" type="search" name="q" placeholder="Suche..." aria-label="Suche">
+                            <button type="submit" class="btn btn-outline-secondary" aria-label="Suchen">
                                 <svg class="bi" width="16" height="16" aria-hidden="true">
                                     <use xlink:href="#bi-search"></use>
                                 </svg>
