@@ -12,6 +12,7 @@ use Illuminate\View\Component;
  * @param string $route The route name
  * @param string $text The display text
  * @param bool $disabled Whether the item is disabled
+ * @param string $class Additional CSS classes
  */
 class Item extends Component
 {
