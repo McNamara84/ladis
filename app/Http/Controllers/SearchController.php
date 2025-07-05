@@ -14,12 +14,19 @@ class SearchController extends Controller
         $advanced = $request->boolean('advanced');
 
         $devices = [];
-        if ($query) {
+        if ($advanced && $query) {
+            // Search for devices by name
+            $devices = Device::where('name', 'like', "%{$query}%")->get();
+            // TODO: Implement advanced search for institutions
+            
+        } elseif ($query) {
             $devices = Device::where('name', 'like', "%{$query}%")
             ->orWhereHas('institution', function ($q) use ($query) {
                 $q->where('name', 'like', "%{$query}%");
             })
+            // TODO: Implement simple search other strings togehter with the device names and institution names
             ->get();
+        
         }
 
         $pageTitle = 'Suchergebnisse';
