@@ -162,12 +162,7 @@
                         <!-- Right Side Navigation -->
                         <ul class="navbar-nav">
                             @guest
-                                <li class="nav-item">
-                                    <a class="nav-link {{ request()->routeIs('inputform_material.index') ? 'active' : '' }}"
-                                        href="{{ route('inputform_material.index') }}">
-                                        + Material
-                                    </a>
-                                </li>
+                                <x-nav.item route="inputform_material.index" text="+ Material" />
                                 <li class="nav-item">
                                     <a class="nav-link {{ request()->routeIs('login') ? 'active' : '' }}"
                                         href="{{ route('login') }}">
