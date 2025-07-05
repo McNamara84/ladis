@@ -12,9 +12,9 @@ We are developing our own information system as part of the P11 laboratory. A sp
 
 ## Features
 
-
 - **User-friendly input form*** for entering materials, ...
 - **Admin Tools:** Create new Accounts via UI or enter `php artisan newuser <name> <email> <password>` in server terminal for easy user creation.
+- **Simple Search:** The simple search function in the main menu allows you to quickly search for device names, institution names, ...
 
 ## Prerequisites
 
