@@ -127,16 +127,8 @@
                         <!-- Left Side Navigation -->
                         <ul class="navbar-nav me-auto">
                             <x-nav.item route="help" text="Hilfe" :disabled="true" />
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/inputform') }}">
-                                    Eingabemaske
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('advanced_search') }}">
-                                    Erweiterte Suche
-                                </a>
-                            </li>
+                            <x-nav.item route="inputform" text="Eingabemaske" />
+                            <x-nav.item route="advanced_search" text="Erweiterte Suche" />
                         </ul>
 
                         <hr class="d-lg-none">
@@ -159,12 +151,7 @@
                         <ul class="navbar-nav">
                             @guest
                                 <x-nav.item route="inputform_material.index" text="+ Material" />
-                                <li class="nav-item">
-                                    <a class="nav-link {{ request()->routeIs('login') ? 'active' : '' }}"
-                                        href="{{ route('login') }}">
-                                        Login
-                                    </a>
-                                </li>
+                                <x-nav.item route="login" text="Login" />
                             @else
                                 <li class="nav-item dropdown">
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
