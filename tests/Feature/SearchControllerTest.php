@@ -132,6 +132,14 @@ class SearchControllerTest extends TestCase
         $response->assertDontSee('OtherDevice');
     }
 
+    public function test_simple_search_with_empty_query_displays_no_results(): void
+    {
+        $response = $this->get('/adv-search/result?q=');
+
+        $response->assertStatus(200);
+        $response->assertSee('Keine Ergebnisse gefunden.');
+    }
+
     public function test_advanced_search_with_empty_fields_displays_no_results(): void
     {
         $response = $this->get('/adv-search/result?advanced=1');
