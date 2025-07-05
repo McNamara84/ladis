@@ -47,18 +47,9 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="device_id" class="form-label">Gerätename
-                                    <select class="form-control" id="device_id" name="device_id">
-                                        <option disabled selected value="">Wählen Sie den Namen des Lasergeräts aus
-                                        </option>
-                                        <option>CL20</option>
-                                        <option>CL50</option>
-                                        <option>Infinito Laser p/n I054C1</option>
-                                        <option>Thunder Compact</option>
-                                        <option>Soliton LT300</option>
-                                        <option>Smart 300</option>
-                                        <option>Sonstiges</option>
-                                    </select>
+                                <label for="device_name" class="form-label">Gerätename</label>
+                                <input type="search" id="device_name" name="q" class="form-control"
+                                    placeholder="Geben Sie den Namen des Lasergeräts ein">
                             </div>
 
                             <div class="mb-3">
