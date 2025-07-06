@@ -1,6 +1,3 @@
-<div>
-    <!-- Act only according to that maxim whereby you can, at the same time, will that it should become a universal law. - Immanuel Kant -->
-</div>
 @php
     use App\Models\Institution;
 @endphp
@@ -65,3 +62,16 @@
                                             Bitte geben Sie eine Kontaktinformation ein, wie z.B. einen Webseitenlink.
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="form-group mt-4">
+                                <button type="reset" class="btn btn-secondary">Werte zurücksetzen</button>
+                                <button type="submit" class="btn btn-primary">Hinzufügen</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
