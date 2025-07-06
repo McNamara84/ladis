@@ -43,5 +43,9 @@ class InputFormInstitutionController extends Controller
             // Create a new institution record in the database
             $institution = Institution::create($validatedData);
 
+            // If the institution is successfully created, we redirect to the index route with a success message
+            return redirect()
+                ->route('inputform_institution.index')
+                ->with('success', 'Institution "' . $institution->name . '" wurde erfolgreich hinzugefügt!');
 
 }
