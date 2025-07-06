@@ -35,6 +35,7 @@ class DeviceSeederTest extends TestCase
      * A basic feature test example.
      */
     public function test_example(): void
+    public function test_device_seeder_does_not_create_records_with_non_csv_files(): void
     {
         $response = $this->get('/');
 
