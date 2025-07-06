@@ -1,6 +1,10 @@
 <div>
     <!-- Act only according to that maxim whereby you can, at the same time, will that it should become a universal law. - Immanuel Kant -->
 </div>
+@php
+    use App\Models\Institution;
+@endphp
+
 @extends('layouts.app')
 @section('title', 'Eingabeformular Institution')
 @section('content')
