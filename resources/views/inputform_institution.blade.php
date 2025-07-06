@@ -46,6 +46,7 @@
                                             Bitte geben Sie eine eindeutige Bezeichnung Institution ein.
                                         </div>
                                     </div>
+
                                     <div class="form-group mb-3">
                                         <label for="type" class="form-label">Typ</label>
                                         <select class="form-control @error('type') is-invalid @enderror" id="type" name="type" required>
@@ -54,4 +55,13 @@
                                             <option value="{{ Institution::TYPE_CONTRACTOR}}" {{ old('type') == Institution::TYPE_CONTRACTOR ? 'selected' : '' }}>Auftragnehmer</option>
                                             <option value="{{ Institution::TYPE_MANUFACTURER}}" {{ old('type') == Institution::TYPE_MANUFACTURER ? 'selected' : '' }}>Hersteller</option>
                                         </select>
+                                    </div>
+
+                                    <div class="form-group mb-3">
+                                        <label for="contact_information" class="form-label">Kontaktinformation</label>
+                                        <textarea class="form-control @error('contact_information') is-invalid @enderror"
+                                            name="contact_information" rows="3" required>{{ old('contact_information') }}</textarea>
+                                        <div class="form-text">
+                                            Bitte geben Sie eine Kontaktinformation ein, wie z.B. einen Webseitenlink.
+                                        </div>
                                     </div>
