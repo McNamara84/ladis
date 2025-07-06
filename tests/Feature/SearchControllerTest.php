@@ -147,4 +147,37 @@ class SearchControllerTest extends TestCase
         $response->assertStatus(200);
         $response->assertSee('Keine Ergebnisse gefunden.');
     }
+
+    public function test_filter_by_institution_returns_only_matching_devices(): void
+    {
+        $inst1 = Institution::create([
+            'name' => 'Filter Inst',
+            'type' => Institution::TYPE_MANUFACTURER,
+            'contact_information' => 'f@inst.de',
+        ]);
+
+        $inst2 = Institution::create([
+            'name' => 'Other Inst',
+            'type' => Institution::TYPE_MANUFACTURER,
+            'contact_information' => 'o@inst.de',
+        ]);
+
+        $dev1 = new Device();
+        $dev1->institution_id = $inst1->id;
+        $dev1->name = 'FooDevice';
+        $dev1->beam_type = Device::BEAM_POINT;
+        $dev1->save();
+
+        $dev2 = new Device();
+        $dev2->institution_id = $inst2->id;
+        $dev2->name = 'BarDevice';
+        $dev2->beam_type = Device::BEAM_POINT;
+        $dev2->save();
+
+        $response = $this->get('/adv-search/result?advanced=1&q=Device&filter_institution_id=' . $inst1->id);
+
+        $response->assertStatus(200);
+        $response->assertSee('FooDevice');
+        $response->assertDontSee('BarDevice');
+    }
 }
