@@ -9,7 +9,8 @@ class InputFormInstitutionTest extends TestCase
 {
     use RefreshDatabase;
     /**
-     * A basic feature test example.
+     * Tests whether the institution input form view is accessible
+     * and returns a successful HTTP response with the correct view.
      */
     public function test_view_is_displayed_and_route_returns_successful_response(): void
     {
@@ -20,6 +21,10 @@ class InputFormInstitutionTest extends TestCase
 
     }
 
+    /**
+     * Tests that a valid institution record can be created via POST request,
+     * and the user is redirected to the input form afterwards.
+     */
     public function test_store_creates_institution_and_redirects(): void
     {
         $record = Institution::factory()->make()->toArray();
@@ -34,6 +39,11 @@ class InputFormInstitutionTest extends TestCase
             'contact_information' => $record['contact_information'],
         ]);
     }
+
+    /**
+     * Tests that a record with an overly long name fails validation,
+     * does not get stored in the database and redirects with errors.
+     */
 
     public function test_store_does_not_create_institution_because_of_too_long_string_and_redirects(): void
     {
@@ -52,6 +62,11 @@ class InputFormInstitutionTest extends TestCase
             'name' => $record['name'],
         ]);
     }
+
+    /**
+     * Tests that a record with a missing required field (type) fails validation,
+     * does not get stored in the database and redirects with appropriate errors.
+     */
 
     public function test_store_does_not_create_institution_because_of_missing_value_in_record_array_and_redirects(): void
     {
