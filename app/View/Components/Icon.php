@@ -11,7 +11,7 @@ use Illuminate\View\Component;
  *
  * Renders an SVG icon from the SVG sprite
  *
- * @param string $id The ID of the icon from the SVG sprite
+ * @param string $icon The ID of the icon from the SVG sprite
  * @param string $class Additional CSS classes
  */
 class Icon extends Component
@@ -21,7 +21,7 @@ class Icon extends Component
      *
      */
     public function __construct(
-        public string $id,
+        public string $icon,
         public string $class = '',
     ) {
     }
@@ -33,7 +33,7 @@ class Icon extends Component
     {
         return <<<'blade'
             <svg {{ $attributes->merge(['class' => 'bi']) }} aria-hidden="true">
-                <use xlink:href="#{{ $id }}"></use>
+                <use xlink:href="#{{ $icon }}"></use>
             </svg>
         blade;
     }
