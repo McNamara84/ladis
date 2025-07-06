@@ -11,7 +11,7 @@ class SearchController extends Controller
     public function search(Request $request)
     {
         $query = $request->input('q');
-        $advanced = $request->boolean('advanced'); // Check if the request is comming from the advanced search
+        $advanced = $request->boolean('advanced'); // Check if the request is coming from the advanced search
         $institution = $request->input('institution_id');
         $filterInstitution = $request->input('filter_institution_id');
         $weightMin = $request->input('weight_min');
