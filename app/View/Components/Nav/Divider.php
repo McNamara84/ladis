@@ -7,9 +7,9 @@ use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 /**
- * Devider component for the navigation bar
+ * Divider component for the navigation bar
  */
-class Devider extends Component
+class Divider extends Component
 {
     /**
      * Create a new component instance.
