@@ -22,17 +22,17 @@ We are developing our own information system as part of the P11 laboratory. A sp
         - Search Result: /adv-search/result
     - Contact Us: /contact
     - Database Statistics: /statistics
-    - Legal (Rechtliches / Impressum): /legal
+    - Legal (Rechtliches / Impressum): /impressum
     - Log-In Mask: /login
-        - Account Overview: /login/home
-        - Data Input Form: /login/input
+        - Account Overview: /login/home 
+        - Data Input Form (Eingabemaske): /login/inputform
             - New Artifact Entry [dynamic page]
             - New Device Entry [dynamic page]
             - New Institution Entry [dynamic page]
             - New Process Entry [dynamic page]
             - New Project Entry [dynamic page]
             - Report Review: /login/review
-    - Privacy Policy (Datenschutzerklärung): /privacy-policy
+    - Privacy Policy (Datenschutzerklärung): /datenschutz
     - Terms of Use (Nutzungsbedingungen): /terms-of-use
     - User Help: /help
         - Registered User Help [dynamic page]
