@@ -180,4 +180,33 @@ class SearchControllerTest extends TestCase
         $response->assertSee('FooDevice');
         $response->assertDontSee('BarDevice');
     }
+
+    public function test_filter_by_weight_range_returns_correct_devices(): void
+    {
+        $inst = Institution::create([
+            'name' => 'Weight Inst',
+            'type' => Institution::TYPE_MANUFACTURER,
+            'contact_information' => 'w@inst.de',
+        ]);
+
+        $light = new Device();
+        $light->institution_id = $inst->id;
+        $light->name = 'LightDevice';
+        $light->beam_type = Device::BEAM_POINT;
+        $light->weight = 50;
+        $light->save();
+
+        $heavy = new Device();
+        $heavy->institution_id = $inst->id;
+        $heavy->name = 'HeavyDevice';
+        $heavy->beam_type = Device::BEAM_POINT;
+        $heavy->weight = 150;
+        $heavy->save();
+
+        $response = $this->get('/adv-search/result?advanced=1&q=Device&weight_min=100&weight_max=200');
+
+        $response->assertStatus(200);
+        $response->assertSee('HeavyDevice');
+        $response->assertDontSee('LightDevice');
+    }
 }
