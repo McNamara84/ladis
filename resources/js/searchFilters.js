@@ -1,7 +1,7 @@
 function updateWeightSlider(el) {
     const min = document.getElementById('weight_min');
     const max = document.getElementById('weight_max');
-    if (parseInt(min.value) > parseInt(max.value)) {
+    if (parseFloat(min.value) > parseFloat(max.value)) {
         if (el === min) {
             max.value = min.value;
         } else {
