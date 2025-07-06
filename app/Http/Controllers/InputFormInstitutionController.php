@@ -48,4 +48,14 @@ class InputFormInstitutionController extends Controller
                 ->route('inputform_institution.index')
                 ->with('success', 'Institution "' . $institution->name . '" wurde erfolgreich hinzugefügt!');
 
+        } catch (\Exception $e) {
+
+            // Error handling: If an error occurs during the database operation, we catch it and return an error message
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with('error', 'Fehler beim Speichern der Institution: ' . $e->getMessage());
+
+        }
+    }
 }
