@@ -47,9 +47,7 @@
                 <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}"
                     aria-label="{{ config('app.name') }}">
                     <!-- LADIS Logo -->
-                    <svg class="app-logo">
-                        <use xlink:href="#ladis-logo"></use>
-                    </svg>
+                    <x-icon icon="ladis-logo" />
                 </a>
 
                 <!-- Mobile Toggle -->
@@ -111,10 +109,7 @@
                                 <x-nav.item route="inputform" text="Eingabemaske" />
                                 <x-nav.item route="inputform_material.index" text="+ Material" />
                                 <x-nav.item route="user-management.index" text="Benutzerverwaltung" icon="bi-person-gear" />
-                                <li class="nav-item">
-                                    <div class="vr d-none d-lg-flex h-100 mx-lg-2"></div>
-                                    <hr class="d-lg-none">
-                                </li>
+                                <x-nav.divider />
                                 <li class="nav-item">
                                     <button type="button" class="nav-link" aria-label="Logout" data-bs-toggle="modal"
                                         data-bs-target="#logout-modal">
@@ -169,7 +164,7 @@
                         <p class="small mb-0">
                             Datenbank zu Reinigungslasern in der Restaurierung<br>
                             Fachhochschule Potsdam - Studentisches Projekt<br>
-                            <a href="{{ route('datenschutz') }}">Datenschutzerklärung</a>
+                            <x-link route="datenschutz" text="Datenschutzerklärung" />
                         </p>
                     </div>
                     <div class="col-md-4 text-md-end">
