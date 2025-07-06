@@ -27,7 +27,8 @@ class InputFormInstitutionController extends Controller
         $validatedData = $request->validate([
 
             'name' => 'required|string|max:50|unique:institutions,name',
-            'type' => ['required',
+            'type' => [
+                'required',
                 Rule::in([
                     Institution::TYPE_CLIENT,
                     Institution::TYPE_CONTRACTOR,
@@ -49,7 +50,9 @@ class InputFormInstitutionController extends Controller
 
         } catch (\Exception $e) {
 
-            // Error handling: If an error occurs during the database operation, we catch it and return an error message
+            // Error handling: If an error occurs during the database operation, we catch it and return an error message.
+            // For production, consider removing the detailed system message to avoid exposing technical details
+            // and potential sensitive information such as table names in SQL errors.
             return redirect()
                 ->back()
                 ->withInput()
