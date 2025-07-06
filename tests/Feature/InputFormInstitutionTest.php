@@ -56,3 +56,20 @@ class InputFormInstitutionTest extends TestCase
         ] );
     }
 
+    public function test_store_does_not_create_institution_because_of_missing_value_in_record_array_and_redirects(): void
+    {
+        $record = Institution::factory()->make(
+            [
+                'type' => null,
+            ]
+        )->toArray();
+
+        $response = $this->withHeader('referer', '/inputform_institution')
+            ->post('/inputform_institution', $record);
+
+        $response->assertRedirect('/inputform_institution');
+        $response->assertSessionHasErrors('type');
+        $this->assertDatabaseMissing('institutions',[
+            'name' => $record['name'],
+        ] );
+    }
