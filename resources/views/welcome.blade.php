@@ -80,7 +80,7 @@
                     <h3 class="fw-semibold mt-5">{{ ("Erweiterte Suche") }}</h3>
                     <p>{{ __("messages.d03") }}</p>
                     <p>
-                        <a class="btn btn-outline-primary" href="{{ url('/advanced_search') }}">{{ ("→ Recherche starten") }}</a>
+                        <a class="btn btn-outline-primary" href="{{ route('advanced_search') }}">{{ ("→ Recherche starten") }}</a>
                     </p>
                 </div>
                 <div class="col-lg-4 mb-5 text-secondary">

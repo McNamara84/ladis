@@ -33,33 +33,56 @@ symbol {
 }
 
 //
-// App Logo (temporary)
+// App Logo
 //
+
+// Usage: <svg class="app-logo"><use xlink:href="#ladis-logo"></use></svg>
 
 :root {
     // Default size for the logo
     --app-logo-size: 4em;
     // Logo size in the header naviation
     --app-logo-size-nav: 2.2222em;
+    // Default color for the logo inherited from the parent element
+    --app-logo-color: currentColor;
+    // Individual colors that fall back to the common color
+    --app-logo-primary-color: var(--app-logo-color);
+    --app-logo-accent-color: var(--app-logo-color);
 }
 
+// Base styles for the app logo
 .app-logo {
     inline-size: var(--app-logo-size);
     aspect-ratio: 1 / 1;
-    color: currentColor;
+    color: var(--app-logo-color);
+    transition: color 0.3s ease;
 }
 
-.app-logo-bg {
-    fill: currentColor;
+// Styles for the logo ring
+.app-logo-primary {
+    color: var(--app-logo-primary-color);
 }
 
+// Styles for the logo spark
 .app-logo-accent {
-    fill: var(--bs-primary);
+    color: var(--app-logo-accent-color);
 }
 
 //
 // Navigation Bar
 //
+
+// Nabvar Light Mode Colors
+.navbar,
+.navbar-nav,
+.nav-link {
+    --bs-navbar-color: var(--bs-body-color);
+    --bs-navbar-hover-color: #{$link-color};
+    --bs-navbar-link-color: var(--bs-body-color);
+    --bs-navbar-link-hover-color: #{$link-color};
+    --bs-navbar-brand-color: var(--bs-body-color);
+    --bs-navbar-brand-hover-color: #{$link-color};
+}
 
 // Mobile Menu Button
 .navbar-toggler {
@@ -67,9 +90,14 @@ symbol {
     background-color: transparent;
 }
 
-// Adjust logo size in navbar
+// Navbar App Logo
 .navbar .app-logo {
+    // Adjust logo size in navbar
     --app-logo-size: var(--app-logo-size-nav);
+    // Make the primary logo color stick to the navbar base color.
+    // Accent color still inherits from the parent element and adjusts
+    // to the hover color.
+    --app-logo-primary-color: var(--bs-navbar-color);
 }
 
 //
@@ -151,3 +179,5 @@ symbol {
     //     --bs-btn-color: #{$…};
     // }
 }
+
+@import "filters";
