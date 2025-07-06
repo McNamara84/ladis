@@ -72,12 +72,12 @@
 
     <div id="app" class="d-flex flex-column min-vh-100">
         <!-- Skip to content -->
-        <a class="visually-hidden-focusable d-inline-flex p-2 m-1" href="#content">{{ __("Springe zum Inhalt") }}</a>
+        <a class="visually-hidden-focusable d-inline-flex p-2 m-1" href="#content">{{ __("Skip to Content") }}</a>
 
         <!-- Header -->
         <header class="navbar navbar-expand-lg sticky-top bg-body-secondary">
             <!-- Navigation -->
-            <nav class="container-fluid" aria-label="{{ __("Hauptnavigation") }}">
+            <nav class="container-fluid" aria-label="{{ __("Main Navigation") }}">
                 <!-- Brand/Logo -->
                 <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}"
                     aria-label="{{ config('app.name') }}">
@@ -90,11 +90,11 @@
                 <!-- Mobile Toggle -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
                     data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar"
-                    aria-label="Navigation ein-/ausblenden">
+                    aria-label="Toggle Navigation On/Off">
                     <svg width="24" height="24" aria-hidden="true">
                         <use xlink:href="#bi-menu"></use>
                     </svg>
-                    <span class="d-none fs-6 pe-1">{{ __("Navigation ein-/ausblenden") }}</span>
+                    <span class="d-none fs-6 pe-1">{{ __("Toggle Navigation On/Off") }}</span>
                 </button>
 
                 <!-- Offcanvas Menu -->
@@ -103,13 +103,13 @@
                     <div class="offcanvas-header border-bottom">
                         <h5 class="offcanvas-title" id="offcanvasNavbarLabel">{{ __("Navigation") }}</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
-                            aria-label="Navigation schließen"></button>
+                            aria-label="{{ __("Close Navigation") }}"></button>
                     </div>
                     <div class="offcanvas-body">
                         <!-- Mobile Search -->
                         <form class="d-flex d-lg-none" role="search" action="{{ route('search_results') }}" method="GET">
-                            <input class="form-control me-2" type="search" name="q" placeholder="{{ __("Suche …") }}" aria-label="{{ __("Suche") }}">
-                            <button type="submit" class="btn btn-outline-secondary" aria-label="{{ __("Suchen") }}">
+                            <input class="form-control me-2" type="search" name="q" placeholder="{{ __("Search …") }}" aria-label="{{ __("Search") }}">
+                            <button type="submit" class="btn btn-outline-secondary" aria-label="{{ __("Start Search") }}">
                                 <svg class="bi" width="16" height="16" aria-hidden="true">
                                     <use xlink:href="#bi-search"></use>
                                 </svg>
@@ -121,14 +121,14 @@
                         <!-- Left Side Navigation -->
                         <ul class="navbar-nav me-auto">
                             <li class="nav-item">
-                                <a class="nav-link disabled" href="#" aria-disabled="true">{{ __("Hilfe") }}</a>
+                                <a class="nav-link disabled" href="#" aria-disabled="true">{{ __("Help") }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/inputform') }}">{{ __("Eingabemaske") }}</a>
+                                <a class="nav-link" href="{{ url('/inputform') }}">{{ __("Input Form") }}</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('advanced_search') }}">
-                                    {{ __("Erweiterte Suche") }}
+                                    {{ __("Advanced Search") }}
                                 </a>
                             </li>
                         </ul>
@@ -140,8 +140,8 @@
                             style="width: 25vw">
                             <form id="nav-search-form" class="d-flex" role="search" action="{{ route('search_results') }}" method="GET">
                                 <input id="nav-search-input" class="form-control me-2" type="search" name="q"
-                                    placeholder="{{ __("Suche …") }}" aria-label="{{ __("Suche") }}">
-                                <button type="submit" class="btn btn-outline-secondary" aria-label="{{ __("Suchen") }}">
+                                    placeholder="{{ __("Search …") }}" aria-label="{{ __("Search") }}">
+                                <button type="submit" class="btn btn-outline-secondary" aria-label="{{ __("Start Search") }}">
                                     <svg class="bi" width="16" height="16" aria-hidden="true">
                                         <use xlink:href="#bi-search"></use>
                                     </svg>
@@ -155,7 +155,7 @@
                                 <li class="nav-item">
                                     <a class="nav-link {{ request()->routeIs('inputform_material.index') ? 'active' : '' }}"
                                         href="{{ route('inputform_material.index') }}">
-                                        + Material
+                                        {{ __("+ Material") }}
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -168,7 +168,7 @@
                                     <li class="nav-item">
                                         <a class="nav-link {{ request()->routeIs('register') ? 'active' : '' }}"
                                             href="{{ route('register') }}">
-                                            {{ __("Registrieren") }}
+                                            {{ __("Register") }}
                                         </a>
                                     </li>
                                 @endif
@@ -216,7 +216,7 @@
                     </div>
                     <div class="col-md-4 text-md-end">
                         <p class="small mb-0">
-                            {{ __("LIZENZ") }} {{ date('Y') }} {{ __("FH Potsdam") }}<br>
+                            {{ __("LICENSE") }} {{ date('Y') }} {{ __("UAS Potsdam") }}<br>
                             {!! __("messages.001") !!}
                         </p>
                     </div>
