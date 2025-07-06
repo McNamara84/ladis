@@ -9,7 +9,8 @@
                 <div class="card">
                     <div class="card-body">
                         <h1 class="card-title text-primary">Erweiterte Suche</h1>
-                        <form>
+                        <form action="{{ route('search_results') }}" method="GET">
+                            <input type="hidden" name="advanced" value="1">
 
                             <div class="mb-3">
                                 <label for="federal_state_id" class="form-label">Bundesland</label>
@@ -37,28 +38,16 @@
                                 <label for="institution_id" class="form-label">Institution</label>
                                 <select class="form-control" id="institution_id" name="institution_id" size="3">
                                     <option disabled selected value="">Wählen Sie den Namen der Institution aus</option>
-                                    <option>FH Potsdam</option>
-                                    <option>Institution2</option>
-                                    <option>Institution3</option>
-                                    <option>Institution4</option>
-                                    <option>Institution5</option>
-                                    <option>Sonstiges</option>
+                                    @foreach ($institutions as $institution)
+                                        <option value="{{ $institution->name }}">{{ $institution->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
 
                             <div class="mb-3">
-                                <label for="device_id" class="form-label">Gerätename
-                                    <select class="form-control" id="device_id" name="device_id">
-                                        <option disabled selected value="">Wählen Sie den Namen des Lasergeräts aus
-                                        </option>
-                                        <option>CL20</option>
-                                        <option>CL50</option>
-                                        <option>Infinito Laser p/n I054C1</option>
-                                        <option>Thunder Compact</option>
-                                        <option>Soliton LT300</option>
-                                        <option>Smart 300</option>
-                                        <option>Sonstiges</option>
-                                    </select>
+                                <label for="device_name" class="form-label">Gerätename</label>
+                                <input type="search" id="device_name" name="q" class="form-control"
+                                    placeholder="Geben Sie den Namen des Lasergeräts ein">
                             </div>
 
                             <div class="mb-3">
