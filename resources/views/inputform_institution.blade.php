@@ -29,3 +29,5 @@
                                 {{ session('success') }}
                             </div>
                         @endif
+
+                        <form action="{{ route('inputform_institution.store') }}" method="post">
