@@ -42,3 +42,12 @@
                                             Bitte geben Sie eine eindeutige Bezeichnung Institution ein.
                                         </div>
                                     </div>
+                                    <div class="form-group mb-3">
+                                        <label for="type" class="form-label">Typ</label>
+                                        <select class="form-control @error('type') is-invalid @enderror" id="type" name="type" required>
+                                            <option value="">Bitte wählen Sie die passende Typbezeichnung aus *</option>
+                                            <option value="{{ Institution::TYPE_CLIENT}}" {{ old('type') == Institution::TYPE_CLIENT ? 'selected' : '' }}>Auftraggeber</option>
+                                            <option value="{{ Institution::TYPE_CONTRACTOR}}" {{ old('type') == Institution::TYPE_CONTRACTOR ? 'selected' : '' }}>Auftragnehmer</option>
+                                            <option value="{{ Institution::TYPE_MANUFACTURER}}" {{ old('type') == Institution::TYPE_MANUFACTURER ? 'selected' : '' }}>Hersteller</option>
+                                        </select>
+                                    </div>
