@@ -174,7 +174,7 @@ class DeviceFormTest extends TestCase
         $response->assertRedirect();
         $response->assertSessionHasErrors(['build', 'beam_type', 'cooling']);
 
-        // Check if no DDevices with unallowed values were created
+        // Check if no Devices with unallowed values were created
         $this->assertDatabaseCount('devices', 0);
     }
 
