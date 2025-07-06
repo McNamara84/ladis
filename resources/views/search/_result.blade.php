@@ -6,8 +6,8 @@
         <div class="col-md-8">
             <div class="card-body">
                 <h5 class="card-title">{{ $device->name }}</h5>
-                <p class="card-text mb-1"><small class="text-muted">Baujahr: {{ $device->year ?? '–' }}</small></p>
-                <p class="card-text mb-1"><small class="text-muted">Max. Leistung: {{ $device->max_output ?? '–' }} {{ $device->max_output ? 'W' : '' }}</small></p>
+                <p class="card-text mb-1"><small class="text-muted">{{ __("Year of Manufacture") }}: {{ $device->year ?? '–' }}</small></p>
+                <p class="card-text mb-1"><small class="text-muted">{{ __("max. Power") }}: {{ $device->max_output ?? '–' }} {{ $device->max_output ? 'W' : '' }}</small></p>
             </div>
         </div>
     </div>
