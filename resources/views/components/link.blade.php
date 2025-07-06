@@ -1,5 +1,17 @@
-<a href="{{ $href() }}" {{ $attributes->class(['disabled' => $disabled, 'active' => $isActive()]) }} @if($disabled)
-aria-disabled="true" @endif>
+@php
+    use Illuminate\Support\Arr;
+
+    // This is a workaround to avoid the class attribute being set to an empty string.
+    $classes = Arr::toCssClasses([
+        'disabled' => $disabled,
+        'active' => $isActive(),
+    ]);
+@endphp
+
+<a href="{{ $href() }}" {{ $attributes->merge([
+    'class' => $classes ?: null,
+]) }} @if($disabled) aria-disabled="true"
+@endif>
     @if($icon)
         <x-icon :$icon class="me-2" />
     @endif
