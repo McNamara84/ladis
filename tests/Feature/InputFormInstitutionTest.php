@@ -20,10 +20,9 @@ class InputFormInstitutionTest extends TestCase
         $response->assertStatus(200);
         $response->assertViewIs('inputform_institution');
 
-
     }
 
-        public function test_store_creates_institution_and_redirects(): void
+    public function test_store_creates_institution_and_redirects(): void
     {
         $record = Institution::factory()->make()->toArray();
 
@@ -31,14 +30,14 @@ class InputFormInstitutionTest extends TestCase
             ->post('/inputform_institution', $record);
 
         $response->assertRedirect('/inputform_institution');
-        $this->assertDatabaseHas('institutions',[
+        $this->assertDatabaseHas('institutions', [
             'name' => $record['name'],
             'type' => $record['type'],
-            'contact_information'=> $record['contact_information'],
-        ] );
+            'contact_information' => $record['contact_information'],
+        ]);
     }
 
-        public function test_store_does_not_create_institution_because_of_too_long_string_and_redirects(): void
+    public function test_store_does_not_create_institution_because_of_too_long_string_and_redirects(): void
     {
         $record = Institution::factory()->make(
             [
@@ -51,9 +50,9 @@ class InputFormInstitutionTest extends TestCase
 
         $response->assertRedirect('/inputform_institution');
         $response->assertSessionHasErrors('name');
-        $this->assertDatabaseMissing('institutions',[
+        $this->assertDatabaseMissing('institutions', [
             'name' => $record['name'],
-        ] );
+        ]);
     }
 
     public function test_store_does_not_create_institution_because_of_missing_value_in_record_array_and_redirects(): void
@@ -69,7 +68,8 @@ class InputFormInstitutionTest extends TestCase
 
         $response->assertRedirect('/inputform_institution');
         $response->assertSessionHasErrors('type');
-        $this->assertDatabaseMissing('institutions',[
+        $this->assertDatabaseMissing('institutions', [
             'name' => $record['name'],
-        ] );
+        ]);
     }
+}
