@@ -60,5 +60,7 @@ class DeviceSeederTest extends TestCase
         $recordCountAfter = DB::table('devices')->count();
 
         $this->assertEquals($recordCountBefore, $recordCountAfter);
+
+        Storage::disk('local')->delete(['devices/test.txt', 'devices/test2.json']);
     }
 }
