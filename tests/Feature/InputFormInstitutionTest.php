@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Str;
 use Tests\TestCase;
 use App\Models\Institution;
 class InputFormInstitutionTest extends TestCase
@@ -49,7 +50,7 @@ class InputFormInstitutionTest extends TestCase
     {
         $record = Institution::factory()->make(
             [
-                'name' => 'THISSTRINGISTOOLONGTHISSTRINGISTOOLONGTHISSTRIN',
+                'name' => $name = Str::random(51),
             ]
         )->toArray();
 
