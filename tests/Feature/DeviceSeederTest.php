@@ -21,8 +21,15 @@ class DeviceSeederTest extends TestCase
 
         return $fileCount;
     }
+    /**
+     * A basic feature test example.
+     */
+    public function test_device_seeder_creates_expected_records(): void
+    {
+        $fileCount = $this->getFileCount();
+        Artisan::call('db:seed');
 
-    return $fileCount;
+        $this->assertDatabaseCount('devices', $fileCount);
     }
     /**
      * A basic feature test example.
