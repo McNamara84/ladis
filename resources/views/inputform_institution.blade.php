@@ -36,18 +36,18 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group mb-3">
-                                        <label for="name" class="form-label">Name der Institution: *</label>
+                                        <label for="name" class="form-label">Name der Institution: <strong>*</strong></label>
                                         <input type="text" class="form-control @error('name') is-invalid @enderror"
                                             id="name" name="name" value="{{ old('name') }}" required>
                                         <div class="form-text">
-                                            Bitte geben Sie eine eindeutige Bezeichnung Institution ein.
+                                            Bitte geben Sie eine eindeutige Bezeichnung der Institution ein.
                                         </div>
                                     </div>
 
                                     <div class="form-group mb-3">
-                                        <label for="type" class="form-label">Typ *</label>
+                                        <label for="type" class="form-label">Typ: <strong>*</strong></label>
                                         <select class="form-control @error('type') is-invalid @enderror" id="type" name="type" required>
-                                            <option value="">Bitte wählen Sie die passende Typbezeichnung aus</option>
+                                            <option value="">Bitte wählen Sie die passende Typbezeichnung aus der Liste aus</option>
                                             <option value="{{ Institution::TYPE_CLIENT}}" {{ old('type') == Institution::TYPE_CLIENT ? 'selected' : '' }}>Auftraggeber</option>
                                             <option value="{{ Institution::TYPE_CONTRACTOR}}" {{ old('type') == Institution::TYPE_CONTRACTOR ? 'selected' : '' }}>Auftragnehmer</option>
                                             <option value="{{ Institution::TYPE_MANUFACTURER}}" {{ old('type') == Institution::TYPE_MANUFACTURER ? 'selected' : '' }}>Hersteller</option>
@@ -55,12 +55,15 @@
                                     </div>
 
                                     <div class="form-group mb-3">
-                                        <label for="contact_information" class="form-label">Kontaktinformation: *</label>
+                                        <label for="contact_information" class="form-label">Kontaktinformation: <strong>*</strong></label>
                                         <textarea class="form-control @error('contact_information') is-invalid @enderror"
                                             name="contact_information" rows="3" required>{{ old('contact_information') }}</textarea>
                                         <div class="form-text">
                                             Bitte geben Sie eine Kontaktinformation ein, wie z.B. einen Webseitenlink.
                                         </div>
+                                    </div>
+                                    <div class="form-text mb-3">
+                                        <strong>*</strong> Pflichtangabe
                                     </div>
                                 </div>
                             </div>
