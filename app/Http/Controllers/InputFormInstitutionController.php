@@ -38,6 +38,10 @@ class InputFormInstitutionController extends Controller
             'contact_information' => 'required|string|max:255',
 
         ]);
+        // Catching errors during the database operation
+        try {
+            // Create a new institution record in the database
+            $institution = Institution::create($validatedData);
 
 
 }
