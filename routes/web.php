@@ -40,7 +40,7 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 // ----------------------------
 
 // Landing page
-Route::get('/', [WelcomeController::class, 'index']);
+Route::get('/', [WelcomeController::class, 'index'])->name('frontpage');
 
 // Advanced search
 Route::get('/adv-search', [AdvancedSearchController::class, 'index'])->name('advanced_search');
