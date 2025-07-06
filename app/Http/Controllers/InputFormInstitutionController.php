@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Validation\Rule;
 use App\Models\Institution;
+
 
 class InputFormInstitutionController extends Controller
 {
@@ -26,6 +28,13 @@ class InputFormInstitutionController extends Controller
         $validatedData = $request->validate([
 
             'name' => 'required|string|max:50|unique:institutions,name',
+            'type' => ['required',
+                Rule::in([
+                    Institution::TYPE_CLIENT,
+                    Institution::TYPE_CONTRACTOR,
+                    Institution::TYPE_MANUFACTURER,
+                ])
+            ],
             'contact_information' => 'required|string|max:255',
 
         ]);
