@@ -34,12 +34,9 @@ class DeviceSeederTest extends TestCase
     /**
      * A basic feature test example.
      */
-    public function test_example(): void
     public function test_device_seeder_does_not_create_records_with_non_csv_files(): void
     {
-        $response = $this->get('/');
 
-        $response->assertStatus(200);
         Artisan::call('db:seed', [
             '--class' => \Database\Seeders\UserSeeder::class,
         ]);
@@ -50,5 +47,10 @@ class DeviceSeederTest extends TestCase
         Artisan::call('db:seed', [
             '--class' => \Database\Seeders\DeviceSeeder::class,
         ]);
+
+        $recordCountBefore = DB::table('devices')->count();
+
+        Storage::disk('local')->put('devices/test.txt', 'test');
+        Storage::disk('local')->put('devices/test2.json', '{"test2":"test2"}');
     }
 }
