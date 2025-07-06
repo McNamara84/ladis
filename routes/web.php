@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\InputFormController;
+use App\Http\Controllers\LegalNoticeController;
 use App\Http\Controllers\PrivacyPolicyController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
@@ -49,6 +50,9 @@ Route::get('/adv-search/result', [SearchController::class, 'search'])->name('sea
 // Privacy policy
 Route::get('/datenschutz', [PrivacyPolicyController::class, 'index'])->name('datenschutz');
 
+// Legal notice
+Route::get('/impressum', [LegalNoticeController::class, 'index'])->name('impressum');
+
 // ----------------------------
 // Login and logout routes
 // ----------------------------
@@ -82,10 +86,26 @@ Route::middleware('auth')->group(function () {
     Route::get('/user-management/create', [UserManagementController::class, 'create'])->name('user-management.create');
     Route::post('/user-management/create', [UserManagementController::class, 'store'])->name('user-management.store');
     Route::delete('/user-management/{user}', [UserManagementController::class, 'destroy'])->name('user-management.destroy');
+});
+Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
 
-    // Device management
-    // TODO: Name this appropiately instead of the current generic name
-    Route::get('/inputform', [InputFormController::class, 'index'])->name('inputform');
+// Route for the Datenschutz (Data Protection) page
+Route::get('/datenschutz', [PrivacyPolicyController::class, 'index'])->name('datenschutz');
+
+
+// TODO: Setup authentication
+// Route for inputform with authentication
+
+// Route::middleware(['auth'])->group(function () {
+//    Route::get('/inputform', [InputFormController::class, 'index']);
+//});
+
+
+//Route for inputform without authentication
+Route::get('/inputform', [InputFormController::class, 'index']);
 
     // Material management
     Route::get('/inputform_material', [MaterialInputController::class, 'index'])->name('inputform_material.index');
