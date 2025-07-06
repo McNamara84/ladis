@@ -110,7 +110,7 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
                     data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar"
                     aria-label="Navigation ein-/ausblenden">
-                    <x-icon id="bi-menu" />
+                    <x-icon icon="bi-menu" />
                     <span class="d-none fs-6 pe-1">Navigation ein-/ausblenden</span>
                 </button>
 
@@ -129,7 +129,7 @@
                             <input class="form-control me-2" type="search" name="q" placeholder="Suche..."
                                 aria-label="Suche">
                             <button type="submit" class="btn btn-outline-secondary" aria-label="Suchen">
-                                <x-icon id="bi-search" />
+                                <x-icon icon="bi-search" />
                             </button>
                         </form>
 
@@ -151,7 +151,7 @@
                                 <input id="nav-search-input" class="form-control me-2" type="search" name="q"
                                     placeholder="Suche..." aria-label="Suche">
                                 <button type="submit" class="btn btn-outline-secondary" aria-label="Suchen">
-                                    <x-icon id="bi-search" />
+                                    <x-icon icon="bi-search" />
                                 </button>
                             </form>
                         </div>
@@ -173,7 +173,7 @@
                                     <button type="button" class="nav-link" aria-label="Logout" data-bs-toggle="modal"
                                         data-bs-target="#logout-modal">
                                         <span class="d-lg-none me-2">Logout</span>
-                                        <x-icon id="bi-box-arrow-right" />
+                                        <x-icon icon="bi-box-arrow-right" />
                                     </button>
                                 </li>
                             @endguest
