@@ -22,7 +22,7 @@ class InputFormInstitutionTest extends TestCase
     }
 
     /**
-     * Tests that a valid institution record can be created via POST request,
+     * Tests that a valid institution record can be created via POST request
      * and the user is redirected to the input form afterwards.
      */
     public function test_store_creates_institution_and_redirects(): void
@@ -85,4 +85,28 @@ class InputFormInstitutionTest extends TestCase
             'name' => $record['name'],
         ]);
     }
+    
+    /**
+     * Tests that a record with an invalid value fails validation,
+     * does not get stored in the database and redirects with appropriate errors.
+     */
+
+        public function test_store_does_not_create_institution_because_of_invalid_value_in_record_array_and_redirects(): void
+    {
+        $record = Institution::factory()->make(
+            [
+                'type' => 'EXAMPLE_TYPE',
+            ]
+        )->toArray();
+
+        $response = $this->withHeader('referer', '/inputform_institution')
+            ->post('/inputform_institution', $record);
+
+        $response->assertRedirect('/inputform_institution');
+        $response->assertSessionHasErrors('type');
+        $this->assertDatabaseMissing('institutions', [
+            'name' => $record['name'],
+        ]);
+    }
 }
+
