@@ -22,14 +22,12 @@ class Item extends Component
      * @param string $route The route name
      * @param string $text The display text
      * @param bool $disabled Whether the item is disabled
-     * @param string $class Additional CSS classes
      * @param string $icon Optional ID of an icon from the SVG sprite
      */
     public function __construct(
         public string $route,
         public string $text,
         public bool $disabled = false,
-        public string $class = '',
         public string $icon = '',
     ) {
     }
