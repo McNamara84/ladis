@@ -1,18 +1,18 @@
 <?php
 
-use App\Http\Controllers\AdvancedSearchController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdvancedSearchController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\InputFormController;
-use App\Http\Controllers\PrivacyPolicyController;
 use App\Http\Controllers\LegalNoticeController;
+use App\Http\Controllers\MaterialInputController;
+use App\Http\Controllers\PrivacyPolicyController;
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\UserManagementController;
+use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
-use App\Http\Controllers\SearchController;
-use App\Http\Controllers\UserManagementController;
-use App\Http\Controllers\MaterialInputController;
 
 // TODO/Conventions:
 // - Prefix all routes for authenticated users with /app
