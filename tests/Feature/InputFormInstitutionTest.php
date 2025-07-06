@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use Database\Factories\InstitutionFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use PhpOption\None;
 use Tests\TestCase;
 use App\Models\Institution;
 class InputFormInstitutionTest extends TestCase
@@ -36,3 +37,22 @@ class InputFormInstitutionTest extends TestCase
             'contact_information'=> $record['contact_information'],
         ] );
     }
+
+        public function test_store_does_not_create_institution_because_of_too_long_string_and_redirects(): void
+    {
+        $record = Institution::factory()->make(
+            [
+                'name' => 'THISSTRINGISTOOLONGTHISSTRINGISTOOLONGTHISSTRIN',
+            ]
+        )->toArray();
+
+        $response = $this->withHeader('referer', '/inputform_institution')
+            ->post('/inputform_institution', $record);
+
+        $response->assertRedirect('/inputform_institution');
+        $response->assertSessionHasErrors('name');
+        $this->assertDatabaseMissing('institutions',[
+            'name' => $record['name'],
+        ] );
+    }
+
