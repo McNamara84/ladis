@@ -14,6 +14,9 @@ function updateWeightSlider(el) {
     if (maxOutput) maxOutput.innerText = max.value;
 }
 
+// Expose the function globally so inline event handlers can access it
+window.updateWeightSlider = updateWeightSlider;
+
 document.addEventListener('DOMContentLoaded', function () {
     const min = document.getElementById('weight_min');
     if (min) {
