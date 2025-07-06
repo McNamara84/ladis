@@ -40,5 +40,15 @@ class DeviceSeederTest extends TestCase
         $response = $this->get('/');
 
         $response->assertStatus(200);
+        Artisan::call('db:seed', [
+            '--class' => \Database\Seeders\UserSeeder::class,
+        ]);
+        Artisan::call('db:seed', [
+            '--class' => \Database\Seeders\InstitutionSeeder::class,
+        ]);
+
+        Artisan::call('db:seed', [
+            '--class' => \Database\Seeders\DeviceSeeder::class,
+        ]);
     }
 }
