@@ -8,8 +8,10 @@ function updateWeightSlider(el) {
             min.value = max.value;
         }
     }
-    document.getElementById('weight_min_output').innerText = min.value;
-    document.getElementById('weight_max_output').innerText = max.value;
+    const minOutput = document.getElementById('weight_min_output');
+    const maxOutput = document.getElementById('weight_max_output');
+    if (minOutput) minOutput.innerText = min.value;
+    if (maxOutput) maxOutput.innerText = max.value;
 }
 
 document.addEventListener('DOMContentLoaded', function () {
