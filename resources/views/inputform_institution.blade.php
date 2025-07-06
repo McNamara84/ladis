@@ -31,3 +31,14 @@
                         @endif
 
                         <form action="{{ route('inputform_institution.store') }}" method="post">
+                            @csrf
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <label for="name" class="form-label">Name der Institution *</label>
+                                        <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                            id="name" name="name" value="{{ old('name') }}" required>
+                                        <div class="form-text">
+                                            Bitte geben Sie eine eindeutige Bezeichnung Institution ein.
+                                        </div>
+                                    </div>
