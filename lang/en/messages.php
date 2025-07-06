@@ -1,10 +1,7 @@
 <?php
 
-// lang/en/welcome.php
-// for: welcome.blade.php
-
 return [
-    "test" => "I love programming.",
+    'test' => 'I love programming.',
 
     /**
      * --- views/layouts/app.blade.php ---
@@ -25,16 +22,16 @@ return [
         <a href=":link02">Fachbereich Informationswissenschaften</a> der <a href=":link03">Fachhochschule Potsdam (FHP)</a> entwickelt.',
     
     // Erfasste Daten
-    'b01' => 'Das System dokumentiert umfassende Informationen zu Laserreinigungsverfahren für wissenschaftliche Forschung und Restaurierungspraxis.',
+    'a03' => 'Das System dokumentiert umfassende Informationen zu Laserreinigungsverfahren für wissenschaftliche Forschung und Restaurierungspraxis.',
 
     // Technische Parameter
-    'c01' => 'Detaillierte Aufzeichnung der verwendeten Lasergeräte, Optiken und Einstellungen.',
-    'c02' => 'Erfassung von Artefakten und deren Materialien, Schadensmuster und Erhaltungszustand vor und nach der Laserreinigung. 
+    'a04' => 'Detaillierte Aufzeichnung der verwendeten Lasergeräte, Optiken und Einstellungen.',
+    'a05' => 'Erfassung von Artefakten und deren Materialien, Schadensmuster und Erhaltungszustand vor und nach der Laserreinigung. 
         Projektdaten, Standortdaten und beteiligte Personen und Institutionen ergänzen die Dokumentation.',
     
     // Funktionen
-    'd01' => 'Das System bietet umfassende Recherche- und Analysefunktionen.',
-    'd02' => 'Die einfache Suche ermöglicht die schnelle Recherche mit Schlagworten.',
-    'd03' => 'Die erweiterte Suche bietet umfassende Filter- und Sortierfunktionen für detaillierte Recherchen.',
+    'a06' => 'Das System bietet umfassende Recherche- und Analysefunktionen.',
+    'a07' => 'Die einfache Suche ermöglicht die schnelle Recherche mit Schlagworten.',
+    'a08' => 'Die erweiterte Suche bietet umfassende Filter- und Sortierfunktionen für detaillierte Recherchen.',
 ];
 ?>
