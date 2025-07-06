@@ -10,7 +10,9 @@ use App\Models\Institution;
 
 class InputFormInstitutionController extends Controller
 {
-
+    /**
+     * Displays the input form for creating a new institution.
+     */
     public function index()
     {
         $pageTitle = 'Eingabeformular - Institution - LADIS - FH Potsdam';
