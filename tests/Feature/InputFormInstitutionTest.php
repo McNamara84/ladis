@@ -2,9 +2,7 @@
 
 namespace Tests\Feature;
 
-use Database\Factories\InstitutionFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use PhpOption\None;
 use Tests\TestCase;
 use App\Models\Institution;
 class InputFormInstitutionTest extends TestCase
