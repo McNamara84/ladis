@@ -16,6 +16,19 @@ class InputFormInstitutionController extends Controller
 
         return view('inputform_institution', compact('pageTitle'));
     }
+    /**
+     * Store a new institution in the database
+     */
+    public function store(Request $request): RedirectResponse
+    {
+        // Storing validated data from the incoming data from request
+        // Validation rules are defined here
+        $validatedData = $request->validate([
+
+            'name' => 'required|string|max:50|unique:institutions,name',
+            'contact_information' => 'required|string|max:255',
+
+        ]);
 
 
 }
