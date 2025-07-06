@@ -245,7 +245,7 @@ class DeviceFormTest extends TestCase
     public function test_can_store_device_with_minimum_required_fields(): void
     {
         $deviceData = [
-            'name' => 'Minimal Device', // Reuqired field
+            'name' => 'Minimal Device', // Required field
             'beam_type' => Device::BEAM_LINE, // Required field
         ];
 
