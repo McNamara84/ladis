@@ -59,5 +59,6 @@ class DeviceSeederTest extends TestCase
 
         $recordCountAfter = DB::table('devices')->count();
 
+        $this->assertEquals($recordCountBefore, $recordCountAfter);
     }
 }
