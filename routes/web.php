@@ -46,17 +46,13 @@ Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('
 // Route for the Datenschutz (Data Protection) page
 Route::get('/datenschutz', [PrivacyPolicyController::class, 'index'])->name('datenschutz');
 
-// TODO: Setup authentication
-// Route for inputform with authentication
-
-// Route::middleware(['auth'])->group(function () {
-//    Route::get('/inputform', [DeviceInputController::class, 'index']);
-//});
-
-// GET route for inputform without authentication
-Route::get('/inputform', [DeviceInputController::class, 'index'])->name('inputform.index');
-// POST route for inputform submission
-Route::post('/inputform', [DeviceInputController::class, 'store'])->name('inputform.store');
+// Routes for inputforms with authentication
+Route::middleware(['auth'])->group(function () {
+    // GET route for inputform without authentication
+    Route::get('/inputform', [DeviceInputController::class, 'index'])->name('inputform.index');
+    // POST route for inputform submission
+    Route::post('/inputform', [DeviceInputController::class, 'store'])->name('inputform.store');
+});
 
 Route::get('/impressum', [LegalNoticeController::class, 'index'])->name('impressum');
 
