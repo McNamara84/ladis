@@ -47,7 +47,7 @@ class DeviceSeederTest extends TestCase
         $this->assertDatabaseCount('devices', $fileCount);
     }
     /**
-     * A basic feature test example.
+     * Tests that no records are created from non-CSV files.
      */
     public function test_device_seeder_does_not_create_records_with_non_csv_files(): void
     {
