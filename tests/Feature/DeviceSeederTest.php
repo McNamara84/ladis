@@ -62,10 +62,29 @@ class DeviceSeederTest extends TestCase
         }
     }
 
+    public function test_device_seeder_does_not_create_records_because_of_missing_attribute(): void
+    {
+        $example_csv = <<<CSV
+        description;year;build;height;width;depth;weight;fiber_length;cooling;mounting;automation;max_output;mean_output;max_wattage;head;emission_source;beam_type;beam_profile;wavelength;min_spot_size;max_spot_size;min_pf;max_pf;min_pw;max_pw;min_scan_width;max_scan_width;min_focal_length;max_focal_length;safety_class;last_edit_by;institution_id
+        ;;;220;400;650;14.5;;0;;;;20;;;;1;;1064;;;;;;;;;;;;1;2
+        CSV;
 
-        Artisan::call('db:seed', [
-            '--class' => \Database\Seeders\DeviceSeeder::class,
-        ]);
+        $recordCountBefore = DB::table('devices')->count();
+        try {
+
+            Storage::disk('local')->put('devices/test.csv', $example_csv);
+
+            Artisan::call('db:seed', [
+                '--class' => \Database\Seeders\DeviceSeeder::class,
+            ]);
+
+            $recordCountAfter = DB::table('devices')->count();
+
+            $this->assertEquals($recordCountBefore, $recordCountAfter);
+        } finally {
+            Storage::disk('local')->delete(['devices/test.csv']);
+        }
+    }
 
         $recordCountAfter = DB::table('devices')->count();
     public function test_device_seeder_does_not_create_records_because_of_non_matching_delimiter(): void
