@@ -5,31 +5,37 @@ namespace App\View\Components;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use Illuminate\Support\Facades\Route;
 
 /**
  * High-level link component
  *
- * @param string $route The route name
+ * @param string|null $route The route name, defaults to the current route
  * @param string $text The display text
- * @param bool $disabled Whether the link is disabled
- * @param string $class Additional CSS classes
+ * @param bool $disabled Optional, whether the link is disabled
+ * @param string $icon Optional ID of an icon from the SVG sprite
+ *
+ * Additional attributes will be passed to the template
  */
 class Link extends Component
 {
     /**
      * Create a new component instance.
      *
-     * @param string $route The route name
+     * @param string|null $route The route name, defaults to the current route
      * @param string $text The display text
-     * @param bool $disabled Whether the link is disabled
+     * @param bool $disabled Optional, whether the link is disabled
      * @param string $icon Optional ID of an icon from the SVG sprite
+     *
+     * Additional attributes will be passed to the template
      */
     public function __construct(
-        public string $route,
+        public ?string $route = null,
         public string $text,
         public bool $disabled = false,
         public string $icon = '',
     ) {
+        $this->route ??= Route::currentRouteName();
     }
 
     /**

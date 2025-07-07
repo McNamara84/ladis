@@ -110,6 +110,19 @@
                                 <x-nav.item route="user-management.index" text="Benutzer" icon="bi-person-gear" />
                                 <x-nav.divider />
                                 <x-nav.item route="help" text="Hilfe" disabled icon="bi-question-circle" />
+                            @endguest
+                            <x-nav.divider />
+                            <li class="nav-item dropdown">
+                                <button type="button" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false" aria-label="Sprache wählen">
+                                    <x-icon icon="bi-translate" />
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><x-link class="dropdown-item" route="inputform" text="DE" /></li>
+                                    <li><x-link class="dropdown-item" route="inputform" text="EN" /></li>
+                                </ul>
+                            </li>
+                            @auth
                                 <x-nav.divider />
                                 <li class="nav-item">
                                     <button type="button" class="nav-link" aria-label="Logout" data-bs-toggle="modal"
@@ -118,7 +131,7 @@
                                         <x-icon icon="bi-box-arrow-right" />
                                     </button>
                                 </li>
-                            @endguest
+                            @endauth
                         </ul>
                     </div>
                 </div>
