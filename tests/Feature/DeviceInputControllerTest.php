@@ -6,15 +6,17 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class InputFormRouteTest extends TestCase
+class DeviceInputControllerTest extends TestCase
 {
     /**
      * A basic feature test example.
      */
-    public function test_inputform_route_returns_successful_response(): void
+    public function test_inputform_device_view_is_displayed(): void
     {
         $response = $this->get('/inputform');
-
+        
         $response->assertStatus(200);
+        $response->assertViewIs('inputform_device');
+        $response->assertSee('Neues Lasergerät hinzufügen');
     }
 }
