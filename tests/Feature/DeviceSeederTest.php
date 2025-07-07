@@ -69,6 +69,9 @@ class DeviceSeederTest extends TestCase
         }
     }
 
+    /**
+     * Tests that no records are created because of missing attributes.
+     */
     public function test_device_seeder_does_not_create_records_because_of_missing_attribute(): void
     {
         $example_csv = <<<CSV
