@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use App\Models\Device;
+use App\Models\Institution;
 
 class DeviceInputController extends Controller
 {
@@ -14,7 +15,11 @@ class DeviceInputController extends Controller
     {
         $pageTitle = 'Input Form - LADIS - FH Potsdam';
 
-        return view('inputform_device', compact('pageTitle'));
+        $manufacturers = Institution::where('type', Institution::TYPE_MANUFACTURER)
+            ->orderBy('name')
+            ->get();
+
+        return view('inputform_device', compact('pageTitle', 'manufacturers'));
     }
 
     /**
