@@ -47,16 +47,13 @@ Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('
 Route::get('/datenschutz', [PrivacyPolicyController::class, 'index'])->name('datenschutz');
 
 // Routes for inputforms with authentication
-/*Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     // GET route for inputform without authentication
     Route::get('/inputform', [DeviceInputController::class, 'index'])->name('inputform.index');
     // POST route for inputform submission
     Route::post('/inputform', [DeviceInputController::class, 'store'])->name('inputform.store');
-});*/
+});
 
-// GET route for inputform without authentication
-Route::get('/inputform', [DeviceInputController::class, 'index'])->name('inputform.index');
-// POST route for inputform submission
 Route::post('/inputform', [DeviceInputController::class, 'store'])->name('inputform.store');
 
 Route::get('/impressum', [LegalNoticeController::class, 'index'])->name('impressum');
