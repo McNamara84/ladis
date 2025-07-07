@@ -3,18 +3,31 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
+#use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\Location;
 
 class ArtifactInputControllerTest extends TestCase
 {
     /**
      * A basic feature test example.
      */
-    public function test_example(): void
+    use RefreshDatabase;
+
+    /** @test */
+    public function it_displays_the_artifact_input_form(): void
     {
-        $response = $this->get('/');
+        // Arrange: Eine Location mit zugehörigem Venue erstellen
+        $location = Location::factory()->create([
+            'name' => 'Kuppel',
+        ]);
+        $response = $this->get('/inputform_artifact');
 
         $response->assertStatus(200);
+        $response->assertViewIs('inputform_artifact');
+        $response->assertViewHas('pageTitle', 'Objekt Eingabeformular');
+        $response->assertViewHas('locations', function ($locations) use ($location) {
+            return $locations->contains($location);
+        });
     }
 }
