@@ -23,7 +23,9 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Share the app version number as a global variable.
+        // Share common information about the application as global variables.
         View::share('appVersion', config('app.version'));
+        View::share('appName', config('app.name'));
+        View::share('appTagLine', "Datenbank zu Reinigungslasern in der Restaurierung");
     }
 }
