@@ -155,7 +155,7 @@
                                 <li class="nav-item">
                                     <a class="nav-link {{ request()->routeIs('inputform_material.index') ? 'active' : '' }}"
                                         href="{{ route('inputform_material.index') }}">
-                                        {{ __("+ Material") }}
+                                        + {{ __("Material") }}
                                     </a>
                                 </li>
                                 <li class="nav-item">
