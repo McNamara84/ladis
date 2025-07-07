@@ -25,13 +25,13 @@
                             <div class="mb-3">
                                 <label for="project_name" class="form-label">{{ __("Project Name") }}</label>
                                 <input type="text" id="project_name" name="project_name" class="form-control"
-                                    placeholder="{{ __("Specify name of project …") }}">
+                                    placeholder="{{ __("Specify project title …") }}">
                             </div>
 
                             <div class="mb-3">
                                 <label for="person_name" class="form-label">{{ __("Project Leader") }}</label>
                                 <input type="text" id="person_name" name="person_name" class="form-control"
-                                    placeholder="{{ __("Specify name of project leader …") }}">
+                                    placeholder="{{ __("Specify project leader name …") }}">
                             </div>
 
                             <div class="mb-3">
@@ -47,7 +47,7 @@
                             <div class="mb-3">
                                 <label for="device_name" class="form-label">{{ __("Device Model") }}</label>
                                 <input type="search" id="device_name" name="q" class="form-control"
-                                    placeholder="{{ __("Specify name of device model …") }}">
+                                    placeholder="{{ __("Specify device model …") }}">
                             </div>
 
                             <div class="mb-3">
