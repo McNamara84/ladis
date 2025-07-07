@@ -1,23 +1,23 @@
 @extends('layouts.app')
 
-@section('title', '{{ __("User Management") }}')
+@section('title', 'Benutzerverwaltung')
 
 @section('content')
     <div class="container">
         <div class="row justify-content-between align-items-center mb-3">
             <div class="col">
-                <h1 class="h3 mb-0">{{ __("User Management") }}</h1>
+                <h1 class="h3 mb-0">Benutzerverwaltung</h1>
             </div>
         </div>
         <div class="table-responsive">
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>{{ __("ID") }}</th>
-                        <th>{{ __("Name") }}</th>
-                        <th>{{ __("E-Mail") }}</th>
-                        <th>{{ __("Created On") }}</th>
-                        <th>{{ __("Actions") }}</th>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>E-Mail</th>
+                        <th>Erstellt am</th>
+                        <th>Aktionen</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -30,24 +30,24 @@
                         <td>
                             @if ($user->id !== 1)
                                 <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteUser{{ $user->id }}">
-                                    {{ __("Delete") }}
+                                    Löschen
                                 </button>
                                 <div class="modal fade" id="deleteUser{{ $user->id }}" tabindex="-1" aria-labelledby="deleteUser{{ $user->id }}Label" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="deleteUser{{ $user->id }}Label">{{ __("Delete Account") }}</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ __("Close") }}"></button>
+                                                <h5 class="modal-title" id="deleteUser{{ $user->id }}Label">Account löschen</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schließen"></button>
                                             </div>
                                             <div class="modal-body">
-                                                {!! __("messages.b00", ["userName" => $user->name]) !!}
+                                                Soll der Account <strong>{{ $user->name }}</strong> wirklich gelöscht werden?
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __("Cancel") }}</button>
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Abbrechen</button>
                                                 <form method="POST" action="{{ route('user-management.destroy', $user->id) }}" class="d-inline">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger">{{ __("Delete") }}</button>
+                                                    <button type="submit" class="btn btn-danger">Löschen</button>
                                                 </form>
                                             </div>
                                         </div>
@@ -61,7 +61,7 @@
             </table>
         </div>
         <div class="col-auto text-center">
-            <a href="{{ route('user-management.create') }}" class="btn btn-primary">{{ __("Create New Account") }}</a>
+            <a href="{{ route('user-management.create') }}" class="btn btn-primary">Neuen Account erstellen</a>
         </div>
     </div>
 @endsection
