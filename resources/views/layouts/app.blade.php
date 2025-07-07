@@ -11,7 +11,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@hasSection('title')@yield('title') | @endif{{ config('app.name') }}</title>
+    <title>@hasSection('title')@yield('title') | @endif{{ $appName }}</title>
 
     <!-- Scripts -->
     @if (app()->environment('testing'))
@@ -44,8 +44,8 @@
             <!-- Navigation -->
             <nav class="container-fluid" aria-label="Hauptnavigation">
                 <!-- Brand/Logo -->
-                <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}"
-                    aria-label="{{ config('app.name') }}">
+                <a class="navbar-brand d-flex align-items-center" href="{{ route('frontpage') }}"
+                    aria-label="{{ $appName }}">
                     <!-- LADIS Logo -->
                     <x-icon icon="ladis-logo" />
                 </a>
