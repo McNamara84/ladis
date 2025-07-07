@@ -96,7 +96,6 @@ class DeviceSeederTest extends TestCase
         }
     }
 
-        $recordCountAfter = DB::table('devices')->count();
     /**
      * Tests that no records are created due to a non-matching delimiter in the CSV file.
      */
@@ -125,7 +124,6 @@ class DeviceSeederTest extends TestCase
         }
     }
 
-        $this->assertEquals($recordCountBefore, $recordCountAfter);
     /**
      * Tests that no records are created because of missing required values.
      */
