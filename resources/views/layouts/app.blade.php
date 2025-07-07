@@ -156,11 +156,11 @@
         </main>
 
         <!-- Footer -->
-        <footer class="py-4 bg-body-secondary">
+        <footer class="site-footer bg-body-secondary py-5 mt-5">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-10">
-                        <ul class="list-inline" role="list">
+                    <div class="col-md-9">
+                        <ul class="list-inline mb-0" role="list">
                             <li class="list-inline-item d-block d-md-inline-block">
                                 <x-link route="frontpage" text="Startseite" />
                             </li>
@@ -184,9 +184,11 @@
                             </li>
                         </ul>
                     </div>
-                    <hr class="d-md-none">
-                    <div class="col-md-2 text-md-end">
-                        <ul class="list-inline">
+                    <div class="col-12 d-md-none">
+                        <hr class="my-5">
+                    </div>
+                    <div class="col-md-3 text-md-end">
+                        <ul class="list-inline mb-0">
                             <li class="list-inline-item">
                                 <a href="#">
                                     <x-icon icon="bi-github" />
@@ -208,13 +210,13 @@
                         </ul>
                     </div>
                 </div>
-                <hr>
+                <hr class="my-5">
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-6">
                         <h6 class="fw-bold">{{ $appName }} {{ $appVersion }}</h6>
                         <p>{{ $appTagline }}</p>
                     </div>
-                    <div class="col-md-4 text-md-end">
+                    <div class="col-md-6 text-md-end">
                         <h6 class="fw-bold">LIZENZ {{ date('Y') }} FH Potsdam</h6>
                         <p>
                             {{ $appName }} wird unter <a href="#" class="disabled">LIZENZ</a> bereitgestellt. …
