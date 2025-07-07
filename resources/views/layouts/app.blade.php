@@ -122,7 +122,7 @@
                                 <x-nav.divider />
                                 <x-nav.item route="user-management.index" text="Benutzer" icon="bi-person-gear" />
                                 <x-nav.divider />
-                                <x-nav.item route="help" text="Hilfe" :disabled="true" icon="bi-question-circle" />
+                                <x-nav.item route="help" text="Hilfe" disabled icon="bi-question-circle" />
                                 <x-nav.divider />
                                 <li class="nav-item">
                                     <button type="button" class="nav-link" aria-label="Logout" data-bs-toggle="modal"
