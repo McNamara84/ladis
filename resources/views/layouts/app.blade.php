@@ -81,7 +81,6 @@
 
                         <!-- Left Side Navigation -->
                         <ul class="navbar-nav me-auto">
-                            <x-nav.item route="help" text="Hilfe" :disabled="true" />
                             <x-nav.item route="advanced_search" text="Erweiterte Suche" />
                         </ul>
 
@@ -105,10 +104,25 @@
                             @guest
                                 <x-nav.item route="login" text="Login" />
                             @else
-                                <x-nav.item route="home" text="Dashboard" />
-                                <x-nav.item route="inputform" text="Eingabemaske" />
-                                <x-nav.item route="inputform_material.index" text="+ Material" />
-                                <x-nav.item route="user-management.index" text="Benutzerverwaltung" icon="bi-person-gear" />
+                                <x-nav.item route="home" text="Dashboard" icon="bi-columns" />
+                                <x-nav.divider />
+                                <li class="nav-item dropdown">
+                                    <button type="button" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                        <x-icon icon="bi-database-fill-gear" class="me-2" />
+                                        <span>Datenbank</span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><x-link class="dropdown-item" route="inputform" text="Laser"
+                                                icon="bi-lightning-charge" /></li>
+                                        <li><x-link class="dropdown-item" route="inputform_material.index" text="Material"
+                                                icon="bi-stack" /></li>
+                                    </ul>
+                                </li>
+                                <x-nav.divider />
+                                <x-nav.item route="user-management.index" text="Benutzer" icon="bi-person-gear" />
+                                <x-nav.divider />
+                                <x-nav.item route="help" text="Hilfe" :disabled="true" icon="bi-question-circle" />
                                 <x-nav.divider />
                                 <li class="nav-item">
                                     <button type="button" class="nav-link" aria-label="Logout" data-bs-toggle="modal"
