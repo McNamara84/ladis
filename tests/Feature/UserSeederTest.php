@@ -24,12 +24,15 @@ class UserSeederTest extends TestCase
         ]);
     }
     /**
-     * A basic feature test example.
+     * Test whether a second BOT user gets created even though it already exists.
      */
-    public function test_example(): void
+    public function test_user_seeder_does_not_create_bot_user_because_it_already_exists(): void
     {
-        $response = $this->get('/');
+        Artisan::call('db:seed', ['--class' => \Database\Seeders\UserSeeder::class]);
+        $record_count_before = DB::table('users')->count();
+        Artisan::call('db:seed', ['--class' => \Database\Seeders\UserSeeder::class]);
+        $record_count_after = DB::table('users')->count();
+        $this->assertEquals($record_count_before, $record_count_after);
 
-        $response->assertStatus(200);
     }
 }
