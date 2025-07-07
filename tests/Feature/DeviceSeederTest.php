@@ -126,6 +126,9 @@ class DeviceSeederTest extends TestCase
     }
 
         $this->assertEquals($recordCountBefore, $recordCountAfter);
+    /**
+     * Tests that no records are created because of missing required values.
+     */
     public function test_device_seeder_does_not_create_records_because_of_missing_required_values(): void
     {
         $example_csv = <<<CSV
