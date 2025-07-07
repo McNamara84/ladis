@@ -10,8 +10,8 @@
                     <div class="card-header">
                         <h4 class="mb-0">Neues Objekt hinzufügen</h4>
                     </div>
-
                     <div class="card-body">
+                        <p>Pflichtfelder sind mit <span class="text-danger">*</span> gekennzeichnet.</p>
                         <form method="POST" action="{{ route('inputform_artifact.store') }}">
                             <div class="mb-5">
                                 <label for="artifact_name" class="form-label">Objektname <span
