@@ -8,9 +8,8 @@ use Tests\TestCase;
 
 class DeviceInputFormRouteTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     */
+    use RefreshDatabase;
+    
     public function test_inputform_route_returns_successful_response(): void
     {
         $response = $this->get('/inputform');
