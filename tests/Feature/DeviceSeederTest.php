@@ -38,7 +38,8 @@ class DeviceSeederTest extends TestCase
     }
 
     /**
-     * A basic feature test example.
+     * Tests whether the number of CSV files matches the number of created device records.
+     * Assumes that all relevant CSV files have been correctly generated beforehand.
      */
     public function test_device_seeder_creates_expected_records(): void
     {
