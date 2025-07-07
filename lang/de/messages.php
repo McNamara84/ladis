@@ -54,6 +54,38 @@ return [
     // Getting Started
     'c03' => 'Willkommen im {{ :appName }}!',
     'c04' => 'Beginnen Sie mit der Erfassung und Verwaltung von Reinigungslasern für Restaurierungsprojekte. 
-        Achtung: Das System befindet sich noch in der Entwicklung.'
+        Achtung: Das System befindet sich noch in der Entwicklung.',
+
+    /**
+     * --- views/layouts/inputform_device.blade.php ---
+     */
+
+    'd00' => 'Modellbezeichnung des Lasergeräts, z.B. „CL50“',
+    'd01' => 'Baujahr des Lasergeräts, vierstellig',
+    'd02' => 'Maße des Lasergeräts (in mm), ohne Nachkommastellen',
+    'd03' => 'Gewicht des Lasergeräts (in kg), mit zwei Nachkommastellen',
+    'd04' => 'Faserlänge des Lasergeräts (in Meter), mit zwei Nachkommastellen',
+    'd05' => 'maximale und mittlere Energieleistung des Lasergeräts (in Watt)',
+    'd06' => 'maximaler Stromverbrauch des Lasergeräts (in Watt)',
+    'd07' => 'Modellbezeichnung des Bearbeitungskopfs, z.B. „Optik OS A20“',
+    'd08' => 'Beschreibung des Strahlprofils, z.B. „Top-Hat-Kurve“ oder „Gauß-Kurve“',
+    'd09' => 'Wellenlänge des Lasergeräts (in nm)',
+    'd10' => 'optionale Merkmalbeschreibung des Lasergeräts',
+
+    /**
+     * --- views/layouts/inputform_material.blade.php ---
+     */
+
+    'e00' => 'Ohne Auswahl eines Grundmaterials wird neu registriertes Material ebenfalls als Grundmaterial angelegt.',
+
+    /**
+     * --- views/layouts/inputform_project.blade.php ---
+     */
+
+    'f00' => 'Bitte eindeutigen Titel des Projekts angeben.',
+    'f01' => 'Bitte kurze Beschreibung des Projekts hinzufügen.',
+    'f02' => 'Bitte eindeutige URL-Adresse des Projekts angeben.',
+    'f03' => 'Bitte Startdatum des Projektes angeben.',
+    'f04' => 'Bitte Enddatum des Projekts angeben.',
 
 ];
