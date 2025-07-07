@@ -21,6 +21,16 @@ class DeviceSeederTest extends TestCase
 
         return $fileCount;
     }
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        Artisan::call('db:seed', ['--class' => \Database\Seeders\UserSeeder::class]);
+        Artisan::call('db:seed', ['--class' => \Database\Seeders\InstitutionSeeder::class]);
+        Artisan::call('db:seed', ['--class' => \Database\Seeders\DeviceSeeder::class]);
+
+    }
+
     /**
      * A basic feature test example.
      */
