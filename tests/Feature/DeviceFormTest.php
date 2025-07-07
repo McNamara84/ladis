@@ -30,6 +30,12 @@ class DeviceFormTest extends TestCase
             'type' => Institution::TYPE_CLIENT, // Auftraggeber
             'contact_information' => 'Kontakt:' . $this->faker->email(),
         ]);
+
+        // Manufacturer institution for dropdown in input form
+        Institution::factory()->create([
+            'name' => 'Test Manufacturer',
+            'type' => Institution::TYPE_MANUFACTURER,
+        ]);
         
         $this->user = User::factory()->create([
             'name' => 'Test User',
@@ -73,6 +79,7 @@ class DeviceFormTest extends TestCase
             'max_scan_width' => 200.0,
             'min_focal_length' => 50.0,
             'max_focal_length' => 500.0,
+            'institution_id' => $this->institution->id,
         ];
 
         $response = $this->post(route('inputform.store'), $deviceData);
@@ -256,6 +263,7 @@ class DeviceFormTest extends TestCase
         $deviceData = [
             'name' => 'Minimal Device', // Required field
             'beam_type' => Device::BEAM_LINE, // Required field
+            'institution_id' => $this->institution->id,
         ];
 
         $response = $this->post(route('inputform.store'), $deviceData);
@@ -316,6 +324,10 @@ class DeviceFormTest extends TestCase
         $response->assertStatus(200);
         $response->assertViewIs('inputform_device');
         $response->assertSee('Neues Lasergerät hinzufügen');
+        $response->assertViewHas('manufacturers', function ($manufacturers) {
+            return $manufacturers->pluck('name')->contains('Test Manufacturer');
+        });
+        $response->assertSee('Test Manufacturer');
     }
 
     public function test_handles_database_exceptions_gracefully(): void
