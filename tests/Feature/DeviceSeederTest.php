@@ -153,7 +153,9 @@ class DeviceSeederTest extends TestCase
 
         }
     }
-
+    /**
+     * Tests that no records are created because the name is not unique.
+     */
     public function test_device_seeder_does_not_create_records_because_name_is_not_unique(): void
     {
         $example_csv_1 = <<<CSV
