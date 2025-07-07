@@ -13,7 +13,9 @@ class DeviceSeederTest extends TestCase
 {
     use RefreshDatabase;
     /**
-     * A basic feature test example.
+     * Returns the number of files stored in the 'devices' file storage.
+     *
+     * @return int
      */
     private function getFileCount()
     {
