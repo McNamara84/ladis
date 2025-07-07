@@ -74,9 +74,8 @@ class DeviceInputController extends Controller
         // TODO: Later we get this from form
         $validatedData['institution_id'] = 1; // Temporarily hardcoded
         
-        // Add User ID (temporarily hardcoded)
-        // TODO: Later we get this from Auth::user()
-        $validatedData['last_edit_by'] = 1; // Temporarily hardcoded
+        // Assign authenticated user as last editor
+        $validatedData['last_edit_by'] = auth()->id();
 
         // Catching errors during the database operation
         try {
