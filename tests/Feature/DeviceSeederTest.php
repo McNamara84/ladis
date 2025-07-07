@@ -37,8 +37,6 @@ class DeviceSeederTest extends TestCase
     public function test_device_seeder_creates_expected_records(): void
     {
         $fileCount = $this->getFileCount();
-        Artisan::call('db:seed');
-
         $this->assertDatabaseCount('devices', $fileCount);
     }
     /**
@@ -47,8 +45,6 @@ class DeviceSeederTest extends TestCase
     public function test_device_seeder_does_not_create_records_with_non_csv_files(): void
     {
 
-        Artisan::call('db:seed');
-        
         $recordCountBefore = DB::table('devices')->count();
 
         Storage::disk('local')->put('devices/test.txt', 'test');
