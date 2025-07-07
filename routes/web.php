@@ -4,7 +4,7 @@ use App\Http\Controllers\AdvancedSearchController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\WelcomeController;
-use App\Http\Controllers\InputFormController;
+use App\Http\Controllers\DeviceInputController;
 use App\Http\Controllers\LegalNoticeController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\PrivacyPolicyController;
@@ -50,13 +50,13 @@ Route::get('/datenschutz', [PrivacyPolicyController::class, 'index'])->name('dat
 // Route for inputform with authentication
 
 // Route::middleware(['auth'])->group(function () {
-//    Route::get('/inputform', [InputFormController::class, 'index']);
+//    Route::get('/inputform', [DeviceInputController::class, 'index']);
 //});
 
 // GET route for inputform without authentication
-Route::get('/inputform', [InputFormController::class, 'index'])->name('inputform.index');
+Route::get('/inputform', [DeviceInputController::class, 'index'])->name('inputform.index');
 // POST route for inputform submission
-Route::post('/inputform', [InputFormController::class, 'store'])->name('inputform.store');
+Route::post('/inputform', [DeviceInputController::class, 'store'])->name('inputform.store');
 
 Route::get('/impressum', [LegalNoticeController::class, 'index'])->name('impressum');
 
