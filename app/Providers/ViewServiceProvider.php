@@ -26,6 +26,6 @@ class ViewServiceProvider extends ServiceProvider
         // Share common information about the application as global variables.
         View::share('appVersion', config('app.version'));
         View::share('appName', config('app.name'));
-        View::share('appTagLine', "Datenbank zu Reinigungslasern in der Restaurierung");
+        View::share('appTagline', "Datenbank zu Reinigungslasern in der Restaurierung");
     }
 }
