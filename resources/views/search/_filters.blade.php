@@ -1,5 +1,5 @@
 <div class="border p-3 bg-body-secondary rounded">
-    <h2 class="h5">Filter</h2>
+    <h2 class="h5">{{ __("Filter") }}</h2>
     <form method="GET" action="{{ route('search_results') }}">
         <input type="hidden" name="advanced" value="{{ request('advanced') }}">
         <input type="hidden" name="q" value="{{ request('q') }}">
@@ -18,7 +18,7 @@
         </div>
 
         <div class="mb-3">
-            <label class="form-label">{{ __("Weight (in kg)") }}Gewicht (kg)</label>
+            <label class="form-label">{{ __("Weight (in kg)") }}</label>
             <div class="range-slider">
                 <input type="range" id="weight_min" name="weight_min" min="{{ $minWeight }}" max="{{ $maxWeight }}" value="{{ request('weight_min', $minWeight) }}" oninput="updateWeightSlider(this)">
                 <input type="range" id="weight_max" name="weight_max" min="{{ $minWeight }}" max="{{ $maxWeight }}" value="{{ request('weight_max', $maxWeight) }}" oninput="updateWeightSlider(this)">
