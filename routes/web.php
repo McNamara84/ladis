@@ -54,8 +54,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/inputform', [DeviceInputController::class, 'store'])->name('inputform.store');
 });
 
-Route::post('/inputform', [DeviceInputController::class, 'store'])->name('inputform.store');
-
 Route::get('/impressum', [LegalNoticeController::class, 'index'])->name('impressum');
 
 // Route for the inputform project without authentication
