@@ -202,7 +202,7 @@
                         <hr class="my-5">
                     </div>
                     <div class="col-md-3 text-md-end">
-                        <ul class="list-inline mb-0">
+                        <ul class="list-inline mb-0" role="list">
                             <li class="list-inline-item">
                                 <a href="#">
                                     <x-icon icon="bi-github" />
