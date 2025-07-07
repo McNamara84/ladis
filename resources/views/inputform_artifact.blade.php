@@ -34,6 +34,22 @@
                                     </div>
                                 @enderror
                             </div>
+                            <div class="mb-5">
+                                <label for="location_id" class="form-label">Standort <span class="text-danger">*</span></label>
+                                <select class="form-select" id="location_id" name="location_id" required>
+                                    <option value="">Bitte wählen Sie einen Standort</option>
+                                    @foreach($locations as $location)
+                                        <option value="{{ $location->id }}" {{ old('location_id') = $location->id ? 'selected' : '' }}>
+                                            {{ $location->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @error('location_id')
+                                    <div class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                @enderror
+                            </div>
                             <div class="d-flex justify-content-end gap-2">
                                 <button type="submit" class="btn btn-primary">Speichern</button>
                                 <a href="{{ url()->previous() }}" class="btn btn-secondary">Abbrechen</a>
