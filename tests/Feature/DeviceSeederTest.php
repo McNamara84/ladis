@@ -37,17 +37,8 @@ class DeviceSeederTest extends TestCase
     public function test_device_seeder_does_not_create_records_with_non_csv_files(): void
     {
 
-        Artisan::call('db:seed', [
-            '--class' => \Database\Seeders\UserSeeder::class,
-        ]);
-        Artisan::call('db:seed', [
-            '--class' => \Database\Seeders\InstitutionSeeder::class,
-        ]);
-
-        Artisan::call('db:seed', [
-            '--class' => \Database\Seeders\DeviceSeeder::class,
-        ]);
-
+        Artisan::call('db:seed');
+        
         $recordCountBefore = DB::table('devices')->count();
 
         Storage::disk('local')->put('devices/test.txt', 'test');
