@@ -35,6 +35,8 @@ class DeviceFormTest extends TestCase
             'name' => 'Test User',
             'email' => 'test@example.com'
         ]);
+
+        $this->actingAs($this->user);
     }
 
     public function test_can_store_device_with_valid_data(): void
@@ -90,7 +92,7 @@ class DeviceFormTest extends TestCase
             'safety_class' => 2,
             'beam_type' => Device::BEAM_POINT,
             'institution_id' => 1, // Hardcoded in Controller TODO: Later we get this from form
-            'last_edit_by' => 1,   // Hardcoded in Controller TODO: Later we get this from Auth::user()
+            'last_edit_by' => $this->user->id,
         ]);
 
         // Check that exactly one device was created
