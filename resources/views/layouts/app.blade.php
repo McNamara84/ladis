@@ -67,11 +67,11 @@
                             aria-label="Navigation schließen"></button>
                     </div>
                     <div class="offcanvas-body">
-                        <!-- Mobile Search -->
-                        <form class="d-flex d-lg-none" role="search" action="{{ route('search_results') }}"
-                            method="GET">
-                            <input class="form-control me-2" type="search" name="q" placeholder="Suche..."
-                                aria-label="Suche">
+                        <!-- Search Form -->
+                        <form id="nav-search-form" class="d-flex mx-lg-2" role="search"
+                            action="{{ route('search_results') }}" method="GET">
+                            <input id="nav-search-input" class="form-control me-2" type="search" name="q"
+                                placeholder="Suche..." aria-label="Suche">
                             <button type="submit" class="btn btn-outline-secondary" aria-label="Suchen">
                                 <x-icon icon="bi-search" />
                             </button>
@@ -85,19 +85,6 @@
                         </ul>
 
                         <hr class="d-lg-none">
-
-                        <!-- Truly centered Search on Desktop -->
-                        <div class="position-absolute start-50 translate-middle-x d-none d-lg-block"
-                            style="width: 25vw">
-                            <form id="nav-search-form" class="d-flex" role="search"
-                                action="{{ route('search_results') }}" method="GET">
-                                <input id="nav-search-input" class="form-control me-2" type="search" name="q"
-                                    placeholder="Suche..." aria-label="Suche">
-                                <button type="submit" class="btn btn-outline-secondary" aria-label="Suchen">
-                                    <x-icon icon="bi-search" />
-                                </button>
-                            </form>
-                        </div>
 
                         <!-- Right Side Navigation -->
                         <ul class="navbar-nav">
