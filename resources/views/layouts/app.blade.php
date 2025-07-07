@@ -118,8 +118,8 @@
                                     <x-icon icon="bi-translate" />
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-end">
-                                    <li><x-link class="dropdown-item" route="inputform" text="DE" /></li>
-                                    <li><x-link class="dropdown-item" route="inputform" text="EN" /></li>
+                                    <li><x-link class="dropdown-item" text="DE" disabled /></li>
+                                    <li><x-link class="dropdown-item" text="EN" disabled /></li>
                                 </ul>
                             </li>
                             @auth
