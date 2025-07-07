@@ -159,19 +159,65 @@
         <footer class="py-4 bg-body-secondary">
             <div class="container">
                 <div class="row">
+                    <div class="col-md-10">
+                        <ul class="list-inline" role="list">
+                            <li class="list-inline-item d-block d-md-inline-block">
+                                <x-link route="frontpage" text="Startseite" />
+                            </li>
+                            <li class="list-inline-item d-block d-md-inline-block">
+                                <x-link route="faq" text="FAQ" disabled />
+                            </li>
+                            <li class="list-inline-item d-block d-md-inline-block">
+                                <x-link route="about" text="Das Projekt" disabled />
+                            </li>
+                            <li class="list-inline-item d-block d-md-inline-block">
+                                <x-link route="datenschutz" text="Datenschutzerklärung" />
+                            </li>
+                            <li class="list-inline-item d-block d-md-inline-block">
+                                <x-link route="tos" text="Nutzungsbedingungen" disabled />
+                            </li>
+                            <li class="list-inline-item d-block d-md-inline-block">
+                                <x-link route="impressum" text="Impressum" />
+                            </li>
+                            <li class="list-inline-item d-block d-md-inline-block">
+                                <x-link route="contact" text="Kontakt" disabled />
+                            </li>
+                        </ul>
+                    </div>
+                    <hr class="d-md-none">
+                    <div class="col-md-2 text-md-end">
+                        <ul class="list-inline">
+                            <li class="list-inline-item">
+                                <a href="#">
+                                    <x-icon icon="bi-github" />
+                                    <span class="visually-hidden">{{ $appName }} auf GitHub</span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#">
+                                    <x-icon icon="bi-mastodon" />
+                                    <span class="visually-hidden">{{ $appName }} auf Mastodon</span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#">
+                                    <x-icon icon="bi-rss-fill" />
+                                    <span class="visually-hidden">{{ $appName }} RSS Feed</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
                     <div class="col-md-8">
-                        <h6 class="fw-bold">{{ config('app.name') }} {{ $appVersion }}</h6>
-                        <p class="small mb-0">
-                            Datenbank zu Reinigungslasern in der Restaurierung<br>
-                            Fachhochschule Potsdam - Studentisches Projekt<br>
-                            <x-link route="datenschutz" text="Datenschutzerklärung" />
-                        </p>
+                        <h6 class="fw-bold">{{ $appName }} {{ $appVersion }}</h6>
+                        <p>{{ $appTagline }}</p>
                     </div>
                     <div class="col-md-4 text-md-end">
-                        <p class="small mb-0">
-                            LIZENZ {{ date('Y') }} FH Potsdam<br>
-                            Vorname Nachname, Vorname Nachname, ...<br>
-                            Vorname Nachname, Vorname Nachname, ...
+                        <h6 class="fw-bold">LIZENZ {{ date('Y') }} FH Potsdam</h6>
+                        <p>
+                            {{ $appName }} wird unter <a href="#" class="disabled">LIZENZ</a> bereitgestellt. …
                         </p>
                     </div>
                 </div>
