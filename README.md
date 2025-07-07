@@ -133,4 +133,4 @@ Factories automatically generate sample data for models to simplify testing and 
 
 ## License
 
-<!-- Pick a license and explain and link it here -->
+This project is licensed under the PLACEHOLDER License - see the [LICENSE file](LICENSE) for details.
