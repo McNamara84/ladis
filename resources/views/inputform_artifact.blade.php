@@ -39,7 +39,7 @@
                                 <select class="form-select" id="location_id" name="location_id" required>
                                     <option value="">Bitte wählen Sie einen Standort</option>
                                     @foreach($locations as $location)
-                                        <option value="{{ $location->id }}" {{ old('location_id') = $location->id ? 'selected' : '' }}>
+                                        <option value="{{ $location->id }}" {{ old('location_id') == $location->id ? 'selected' : '' }}>
                                             {{ $location->name }}
                                         </option>
                                     @endforeach
