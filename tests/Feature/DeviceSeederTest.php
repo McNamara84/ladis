@@ -23,6 +23,10 @@ class DeviceSeederTest extends TestCase
 
         return $fileCount;
     }
+
+    /**
+     * Calls the necessary seeders for the following tests.
+     */
     protected function setUp(): void
     {
         parent::setUp();
