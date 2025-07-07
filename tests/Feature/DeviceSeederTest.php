@@ -46,6 +46,13 @@ class DeviceSeederTest extends TestCase
     {
 
         $recordCountBefore = DB::table('devices')->count();
+        try {
+            Storage::disk('local')->put('devices/test.txt', 'test');
+            Storage::disk('local')->put('devices/test2.json', '{"test2":"test2"}');
+
+            Artisan::call('db:seed', [
+                '--class' => \Database\Seeders\DeviceSeeder::class,
+            ]);
 
         Storage::disk('local')->put('devices/test.txt', 'test');
         Storage::disk('local')->put('devices/test2.json', '{"test2":"test2"}');
