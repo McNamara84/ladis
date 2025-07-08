@@ -47,11 +47,14 @@
                                     <div class="form-group mb-3">
                                         <label for="type" class="form-label">Typ: <strong>*</strong></label>
                                         <select class="form-control @error('type') is-invalid @enderror" id="type" name="type" required>
-                                            <option value="">Bitte wählen Sie die passende Typenbezeichnung aus der Liste aus</option>
+                                            <option value="">Bitte auswählen</option>
                                             <option value="{{ Institution::TYPE_CLIENT}}" {{ old('type') == Institution::TYPE_CLIENT ? 'selected' : '' }}>Auftraggeber</option>
                                             <option value="{{ Institution::TYPE_CONTRACTOR}}" {{ old('type') == Institution::TYPE_CONTRACTOR ? 'selected' : '' }}>Auftragnehmer</option>
                                             <option value="{{ Institution::TYPE_MANUFACTURER}}" {{ old('type') == Institution::TYPE_MANUFACTURER ? 'selected' : '' }}>Hersteller</option>
                                         </select>
+                                        <div class="form-text">
+                                            Bitte wählen Sie die passende Typenbezeichnung aus der Liste aus.
+                                        </div>
                                     </div>
 
                                     <div class="form-group mb-3">
