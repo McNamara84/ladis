@@ -6,6 +6,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
 use Tests\TestCase;
 use App\Models\Institution;
+use Faker\Factory;
+
 class InputFormInstitutionTest extends TestCase
 {
     use RefreshDatabase;
@@ -27,8 +29,13 @@ class InputFormInstitutionTest extends TestCase
      * and the user is redirected to the input form afterwards.
      */
     public function test_store_creates_institution_and_redirects(): void
-    {
-        $record = Institution::factory()->make()->toArray();
+    {   
+        $faker = Factory::create();
+
+        $record = [
+            'name' => Str::limit($faker->unique()->company, 50),
+            'type' => $faker->randomElement(Institution::getTypes()),
+            'contact_information' => $faker->text(255)];
 
         $response = $this->withHeader('referer', '/inputform_institution')
             ->post('/inputform_institution', $record);
