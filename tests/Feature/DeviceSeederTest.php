@@ -169,8 +169,8 @@ class DeviceSeederTest extends TestCase
         $recordCountBefore = DB::table('devices')->count();
 
         try {
-            Storage::disk('local')->put('devices/test1.csv', $example_csv_1);
-            Storage::disk('local')->put('devices/test2.csv', $example_csv_2);
+            Storage::disk('local')->put('devices/test1.csv', $exampleCsv1);
+            Storage::disk('local')->put('devices/test2.csv', $exampleCsv2);
 
             Artisan::call('db:seed', [
                 '--class' => \Database\Seeders\DeviceSeeder::class,
