@@ -130,7 +130,7 @@ class InputFormInstitutionTest extends TestCase
      * does not get stored in the database and redirects with appropriate errors.
      */
 
-        public function test_store_does_not_create_institution_because_of_invalid_value_in_record_array_and_redirects(): void
+    public function test_store_does_not_create_institution_because_of_invalid_value_in_record_array_and_redirects(): void
     {
 
         $faker = Factory::create();
