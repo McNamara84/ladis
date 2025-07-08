@@ -164,8 +164,6 @@ class DeviceSeederTest extends TestCase
         CL 20 BACKPACK;;;;220;400;650;14.5;;0;;;;20;;;;1;;1064;;;;;;;;;;;;1;2
         CSV;
 
-        $recordCountBefore = DB::table('devices')->count();
-
         try {
             Storage::disk('local')->put('devices/test1.csv', $exampleCsv1);
             Storage::disk('local')->put('devices/test2.csv', $exampleCsv2);
@@ -174,9 +172,8 @@ class DeviceSeederTest extends TestCase
                 '--class' => \Database\Seeders\DeviceSeeder::class,
             ]);
 
-            $recordCountAfter = DB::table('devices')->count();
-
-            $this->assertEquals($recordCountBefore, $recordCountAfter);
+            $count = DB::table('devices')->where('name', 'CL 20 BACKPACK')->count();
+            $this->assertTrue($count == 1);
         } finally {
             Storage::disk('local')->delete(['devices/test1.csv', 'devices/test2.csv']);
         }
