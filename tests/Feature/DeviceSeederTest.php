@@ -12,17 +12,6 @@ use Tests\TestCase;
 class DeviceSeederTest extends TestCase
 {
     use RefreshDatabase;
-    /**
-     * Returns the number of files stored in the 'devices' file storage.
-     *
-     * @return int
-     */
-    private function getFileCount()
-    {
-        $fileCount = count(Storage::disk('local')->files('devices'));
-
-        return $fileCount;
-    }
 
     /**
      * Calls the necessary seeders for the following tests.
