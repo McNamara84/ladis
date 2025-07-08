@@ -22,7 +22,6 @@ class DeviceSeederTest extends TestCase
 
         Artisan::call('db:seed', ['--class' => \Database\Seeders\UserSeeder::class]);
         Artisan::call('db:seed', ['--class' => \Database\Seeders\InstitutionSeeder::class]);
-        Artisan::call('db:seed', ['--class' => \Database\Seeders\DeviceSeeder::class]);
 
     }
 
