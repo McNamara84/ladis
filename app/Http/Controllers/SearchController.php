@@ -16,6 +16,9 @@ class SearchController extends Controller
         $filterInstitution = $request->input('filter_institution_id');
         $weightMin = $request->input('weight_min');
         $weightMax = $request->input('weight_max');
+        $minYear = $request->input('year_min', Device::min('year'));
+        $maxYear = $request->input('year_max', Device::max('year'));
+        $cooling = $request->input(key: 'cooling');
 
         $devices = collect();
         $devicesQuery = Device::query();
@@ -64,6 +67,6 @@ class SearchController extends Controller
         $minWeight = Device::min('weight');
         $maxWeight = Device::max('weight');
 
-        return view('search.index', compact('devices', 'query', 'pageTitle', 'institutions', 'minWeight', 'maxWeight'));
+        return view('search.index', compact('devices', 'query', 'pageTitle', 'institutions', 'minWeight', 'maxWeight', 'minYear', 'maxYear', 'cooling'));
     }
 }
