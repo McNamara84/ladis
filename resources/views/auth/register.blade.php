@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Registrierung')
+@section('title', 'Sign-On')
 
 @section('content')
     <div class="container">
@@ -18,8 +18,8 @@
                                 d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z" />
                         </svg>
                     </div>
-                    <h1 class="h3 fw-bold text-success">Registrierung</h1>
-                    <p class="text-muted">Erstellen Sie Ihr {{ config('app.name') }} Konto</p>
+                    <h1 class="h3 fw-bold text-success">{{ __("Sign-Up") }}</h1>
+                    <p class="text-muted">{!! __("messages.i00", [":appName" => config('app.name')]) !!}</p>
                 </div>
 
                 <!-- Register Card -->
@@ -36,12 +36,12 @@
                                         <path
                                             d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
                                     </svg>
-                                    Vollständiger Name
+                                    {{ __("Full Name") }}
                                 </label>
                                 <input id="name" type="text"
                                     class="form-control form-control-lg @error('name') is-invalid @enderror" name="name"
                                     value="{{ old('name') }}" required autocomplete="name" autofocus
-                                    placeholder="Max Mustermann">
+                                    placeholder="{{ __("John Doe") }}">
                                 @error('name')
                                     <div class="invalid-feedback">
                                         <svg width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle me-1"
@@ -63,12 +63,12 @@
                                         <path
                                             d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
                                     </svg>
-                                    E-Mail-Adresse
+                                    {{ __("Email Adress") }}
                                 </label>
                                 <input id="email" type="email"
                                     class="form-control form-control-lg @error('email') is-invalid @enderror" name="email"
                                     value="{{ old('email') }}" required autocomplete="email"
-                                    placeholder="ihre.email@beispiel.de">
+                                    placeholder="{{ __('your.email@example.com') }}">
                                 @error('email')
                                     <div class="invalid-feedback">
                                         <svg width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle me-1"
@@ -90,11 +90,11 @@
                                         <path
                                             d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z" />
                                     </svg>
-                                    Passwort
+                                    {{ __("Password") }}
                                 </label>
                                 <input id="password" type="password"
                                     class="form-control form-control-lg @error('password') is-invalid @enderror"
-                                    name="password" required autocomplete="new-password" placeholder="Mindestens 8 Zeichen">
+                                    name="password" required autocomplete="new-password" placeholder="{{ __("At least 8 characters") }}">
                                 @error('password')
                                     <div class="invalid-feedback">
                                         <svg width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle me-1"
@@ -118,11 +118,11 @@
                                         <path
                                             d="M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
                                     </svg>
-                                    Passwort bestätigen
+                                    {{ __("Confirm Password") }}
                                 </label>
                                 <input id="password-confirm" type="password" class="form-control form-control-lg"
                                     name="password_confirmation" required autocomplete="new-password"
-                                    placeholder="Passwort wiederholen">
+                                    placeholder="{{ __("Repeat Password") }}">
                             </div>
 
                             <!-- Submit Button -->
@@ -135,15 +135,14 @@
                                         <path fill-rule="evenodd"
                                             d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z" />
                                     </svg>
-                                    Konto erstellen
+                                    {{ __("Create Account") }}
                                 </button>
                             </div>
 
                             <!-- Terms & Privacy Info -->
                             <div class="text-center">
                                 <p class="small text-muted mb-0">
-                                    Mit der Registrierung stimmen Sie der Nutzung für das
-                                    studentische Projekt an der FH Potsdam zu.
+                                    {{ __("messages.i01") }}
                                 </p>
                             </div>
                         </form>
@@ -152,7 +151,7 @@
 
                 <!-- Login Link -->
                 <div class="text-center mt-4">
-                    <p class="text-muted mb-2">Bereits ein Konto?</p>
+                    <p class="text-muted mb-2">{{ __("Having an account?") }}</p>
                     <a href="{{ route('login') }}" class="btn btn-outline-primary">
                         <svg width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-right me-2"
                             viewBox="0 0 16 16">
@@ -161,7 +160,7 @@
                             <path fill-rule="evenodd"
                                 d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
                         </svg>
-                        Jetzt anmelden
+                        {{ __("Sign-In Now") }}
                     </a>
                 </div>
 
@@ -172,7 +171,7 @@
                             <path fill-rule="evenodd"
                                 d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
                         </svg>
-                        Zurück zur Startseite
+                        {{ __("Back to Homepage") }}
                     </a>
                 </div>
             </div>
