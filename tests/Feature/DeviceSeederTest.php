@@ -31,6 +31,7 @@ class DeviceSeederTest extends TestCase
     {
         parent::setUp();
 
+        Storage::fake('local');
         Artisan::call('db:seed', ['--class' => \Database\Seeders\UserSeeder::class]);
         Artisan::call('db:seed', ['--class' => \Database\Seeders\InstitutionSeeder::class]);
         Artisan::call('db:seed', ['--class' => \Database\Seeders\DeviceSeeder::class]);
