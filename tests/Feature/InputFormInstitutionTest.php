@@ -10,6 +10,18 @@ use Faker\Factory;
 class InputFormInstitutionTest extends TestCase
 {
     use RefreshDatabase;
+    protected $faker;
+
+    /**
+     * This protected method sets up a Faker instance so that all tests can use this instance.
+     * Helps to create truly unique values.
+     */
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->faker = Factory::create();
+    }
     /**
      * Tests whether the institution input form view is accessible
      * and returns a successful HTTP response with the correct view.
