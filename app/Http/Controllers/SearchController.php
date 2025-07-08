@@ -18,7 +18,7 @@ class SearchController extends Controller
         $weightMax = $request->input('weight_max');
         $minYear = $request->input('year_min', Device::min('year'));
         $maxYear = $request->input('year_max', Device::max('year'));
-        $cooling = $request->input(key: 'cooling');
+        $cooling = $request->input('cooling');
 
         $devices = collect();
         $devicesQuery = Device::query();
@@ -60,7 +60,7 @@ class SearchController extends Controller
             }
 
             if ($minYear !== null && $minYear !== '') {
-                $devicesQuery->where('year', '<=', $minYear);
+                $devicesQuery->where('year', '>=', $minYear);
             }
 
             if ($maxYear !== null && $maxYear !== '') {
@@ -68,7 +68,10 @@ class SearchController extends Controller
             }
 
             if ($cooling === '1') {
-                $devicesQuery->where('cooling', '!=', null);
+                $devicesQuery->where('cooling', '==', 1);
+            } elseif ($cooling === '0') {
+                $devicesQuery->where('cooling', '==', 0);
+                $devicesQuery->where('cooling', '==', null); // TODO: those devices with no information for cooling are added categorised under the devices with no coolers - the descision needs to be validated by stakeholders
             }
 
             $devices = $devicesQuery->get();
