@@ -48,9 +48,9 @@ Route::get('/datenschutz', [PrivacyPolicyController::class, 'index'])->name('dat
 
 // Routes for inputforms with authentication
 Route::middleware(['auth'])->group(function () {
-    // GET route for inputform without authentication
+    // GET route for inputform
     Route::get('/inputform', [DeviceInputController::class, 'index'])->name('inputform.index');
-    // POST route for inputform submission
+    // POST route for inputform
     Route::post('/inputform', [DeviceInputController::class, 'store'])->name('inputform.store');
 });
 
