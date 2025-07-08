@@ -110,9 +110,13 @@ Seeders are used to populate the database with initial or sample data. To run al
 
 ### Available Seeders
 
+- `DatabaseSeeder`
 - `DeviceSeeder`
 - `InstitutionSeeder`
 - `UserSeeder`
+- `DamagePatternSeeder`
+- `MaterialSeeder`
+
 
 ## Factories
 
