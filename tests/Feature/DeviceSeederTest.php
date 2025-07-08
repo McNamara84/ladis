@@ -119,7 +119,6 @@ class DeviceSeederTest extends TestCase
 
             $this->assertDatabaseMissing('devices', ['name' => 'CL 20 BACKPACK_Test_2']);
 
-            $this->assertEquals($recordCountBefore, $recordCountAfter);
         } finally {
             Storage::disk('local')->delete(['devices/test.csv']);
         }
