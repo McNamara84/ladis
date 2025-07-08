@@ -24,6 +24,7 @@ We are developing our own information system as part of the P11 laboratory. A sp
     - About LADIS: /about
     - Advanced Search: /adv-search
         - Search Result: /adv-search/result
+    - Devices: /devices/all
     - Contact Us: /contact
     - Database Statistics: /statistics
     - Legal (Rechtliches / Impressum): /impressum
