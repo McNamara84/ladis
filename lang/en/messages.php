@@ -88,4 +88,16 @@ return [
     'f03' => 'Please specify project start date.',
     'f04' => 'Please specify project end date.',
 
+    /**
+     * --- views/layouts/confirm.blade.php ---
+     */
+
+    'g00' => 'Please confirm your password before continuing.',
+
+    /**
+     * --- views/layouts/confirm.blade.php ---
+     */
+
+    'h00' => 'Sign-in into your {{ :appName }} account.',
+
 ];
