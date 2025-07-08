@@ -16,5 +16,5 @@
     @if($icon)
         <x-icon :$icon class="me-2" />
     @endif
-    {{ $text }}
+    <span class="link-text">{{ $text }}</span>
 </a>
