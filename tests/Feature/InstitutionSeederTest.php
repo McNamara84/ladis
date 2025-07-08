@@ -46,7 +46,6 @@ class InstitutionSeederTest extends TestCase
         $recordCountBefore = DB::table('institutions')->count();
         Artisan::call('db:seed', ['--class' => \Database\Seeders\InstitutionSeeder::class]);
         $recordCountAfter = DB::table('institutions')->count();
-        $this->assertEquals($recordCountBefore, $recordCountAfter);
-
+        $this->assertSame($recordCountBefore, $recordCountAfter);
     }
 }
