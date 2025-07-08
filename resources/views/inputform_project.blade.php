@@ -29,10 +29,20 @@
 
                             <div class="mb-3">
                                 <label for="person_id" class="form-label">Projektleitung</label>
-                                <select class="form-control" id="person_id" name="person_id">
+                                <select class="form-control" id="person_id" name="person_id" required>
                                     <option disabled selected value="">Wählen Sie die Projektleitung aus</option>
                                     @foreach ($persons as $person)
                                         <option value="{{ $person->id }}">{{ $person->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="venue_id" class="form-label">Objektname</label>
+                                <select class="form-control" id="venue_id" name="venue_id" required>
+                                    <option disabled selected value="">Wählen Sie den Objektnamen aus</option>
+                                    @foreach ($venues as $venue)
+                                        <option value="{{ $venue->id }}">{{ $venue->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
