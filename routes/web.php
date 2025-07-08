@@ -61,7 +61,9 @@ Route::post('/inputform', [InputFormController::class, 'store'])->name('inputfor
 Route::get('/impressum', [LegalNoticeController::class, 'index'])->name('impressum');
 
 // Route for the inputform project without authentication
-Route::get('/inputform_project', [ProjectInputController::class, 'index']);
+Route::get('/inputform_project', [ProjectInputController::class, 'index'])->name('inputform_project.index');
+Route::post('/inputform_project', [ProjectInputController::class, 'store'])->name('inputform_project.store');
+
 
 //Route for inputform for the materials
 Route::get('/inputform_material', [MaterialInputController::class, 'index'])->name('inputform_material.index');

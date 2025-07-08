@@ -10,12 +10,27 @@
                     <div class="card-header">
                         <h4 class="mb-0">Neues Projekt anlegen</h4>
                     </div>
+
                     <div class="card-body">
-                        <form>
+                        <form method="POST" action="{{ route('inputform_project.store') }}">
+                            @csrf
+
+                            @if(session('error'))
+                                <div class="alert alert-danger">
+                                    {{ session('error') }}
+                                </div>
+                            @endif
+
+                            @if(session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
+
                             <div class="mb-3">
                                 <label for="project_name" class="form-label">Name <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="project_name" name="project_name" required
-                                    placeholder="Geben Sie den Namen des Projektes an">
+                                    placeholder="Projektname">
                                 <div class="form-text">
                                     Bitte geben Sie eine eindeutige Bezeichnung für das Projekt an.
                                 </div>
@@ -25,7 +40,7 @@
                                 <label for="project_description" class="form-label">Beschreibung <span
                                         class="text-danger">*</span></label>
                                 <textarea class="form-control" id="project_description" name="project_description" required
-                                    rows="3" required placeholder="Geben Sie die Beschreibung des Projektes an"></textarea>
+                                    rows="3" required placeholder="Projektbeschreibung"></textarea>
                                 <div class="form-text">
                                     Bitte geben Sie eine Beschreibung für das Projekt an.
                                 </div>
@@ -34,7 +49,7 @@
                             <div class="mb-3">
                                 <label for="project_url" class="form-label">URL <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="project_url" name="project_url" required
-                                    placeholder="Geben Sie die URL des Projektes an">
+                                    placeholder="Projekt-URL">
                                 <div class="form-text">
                                     Bitte geben Sie eine eindeutige URL des Projektes an.
                                 </div>
@@ -43,8 +58,7 @@
                             <div class="mb-3">
                                 <label for="project_started_at" class="form-label">Beginn <span
                                         class="text-danger">*</span></label>
-                                <input type="date" class="form-control" id="project_started_at" name="project_started_at"
-                                    required placeholder="Geben Sie das Startdatum des Projektes an">
+                                <input type="date" class="form-control" id="project_started_at" name="project_started_at">
                                 <div class="form-text">
                                     Bitte geben Sie das Startdatum des Projektes an.
                                 </div>
@@ -53,23 +67,16 @@
                             <div class="mb-3">
                                 <label for="project_ended_at" class="form-label">Ende <span
                                         class="text-danger">*</span></label>
-                                <input type="date" class="form-control" id="project_ended_at" name="project_ended_at"
-                                    required placeholder="Geben Sie das Enddatum des Projektes an">
+                                <input type="date" class="form-control" id="project_ended_at" name="project_ended_at">
                                 <div class="form-text">
                                     Bitte geben Sie das Enddatum des Projektes an.
                                 </div>
                             </div>
 
 
-                            <!-- Group container for the two buttons -->
-                            <div class="d-flex justify-content-between align-items-center">
-                                <button type="reset" class="btn btn-danger text-center">
-                                    Werte zurücksetzen
-                                </button>
-
-                                <button type="submit" class="btn btn-primary text-center">
-                                    Projekt hinzufügen
-                                </button>
+                            <div class="d-flex justify-content-end gap-2">
+                                <button type="submit" class="btn btn-primary">Speichern</button>
+                                <a href="{{ url()->previous() }}" class="btn btn-secondary">Abbrechen</a>
                             </div>
 
 
