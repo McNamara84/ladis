@@ -1,3 +1,8 @@
+// Required Bootstrap Components to access and customize variables
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/variables-dark';
+
 // Colors
 @import 'colors';
 
