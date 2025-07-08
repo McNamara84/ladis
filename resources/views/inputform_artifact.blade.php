@@ -42,6 +42,9 @@
                                         <option value="{{ $location->id }}" {{ old('location_id') == $location->id ? 'selected' : '' }}>
                                             {{ $location->name }}
                                         </option>
+                                        <option>
+                                            Location1
+                                        </option>>
                                     @endforeach
                                 </select>
                                 @error('location_id')
