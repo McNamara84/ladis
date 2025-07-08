@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class ProcessInputRouteTest extends TestCase
@@ -11,9 +10,12 @@ class ProcessInputRouteTest extends TestCase
     /**
      * A basic feature test example.
      */
-    public function test_example(): void
+
+    use RefreshDatabase;
+
+    public function test_inputform_process_view_is_displayed(): void
     {
-        $response = $this->get('/');
+        $response = $this->get('/inputform_process');
 
         $response->assertStatus(200);
     }
