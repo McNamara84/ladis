@@ -1,9 +1,6 @@
 <?php
 
 namespace Tests\Feature;
-
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class ArtifactInputRouteTest extends TestCase
@@ -11,9 +8,9 @@ class ArtifactInputRouteTest extends TestCase
     /**
      * A basic feature test example.
      */
-    public function test_example(): void
+    public function test_artifact_input_route_returns_successful_response(): void
     {
-        $response = $this->get('/');
+        $response = $this->get('/inputform_artifact');
 
         $response->assertStatus(200);
     }
