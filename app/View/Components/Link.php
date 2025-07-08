@@ -30,8 +30,8 @@ class Link extends Component
      * Additional attributes will be passed to the template
      */
     public function __construct(
-        public ?string $route = null,
         public string $text,
+        public ?string $route = null,
         public bool $disabled = false,
         public string $icon = '',
     ) {
