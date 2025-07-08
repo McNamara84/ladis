@@ -1,0 +1,25 @@
+<?php
+
+namespace Tests\Feature;
+
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
+use App\Models\Device;
+use App\Models\Institution;
+
+class DeviceListTest extends TestCase
+{
+    use RefreshDatabase;
+
+    public function test_devices_list_page_displays_devices(): void
+    {
+        $institution = Institution::factory()->create();
+        Device::factory()->count(2)->create(['institution_id' => $institution->id]);
+
+        $response = $this->get('/devices/all');
+
+        $response->assertStatus(200);
+        $response->assertViewIs('devices.index');
+        $response->assertViewHas('devices');
+    }
+}
