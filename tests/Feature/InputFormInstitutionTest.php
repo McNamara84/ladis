@@ -138,7 +138,7 @@ class InputFormInstitutionTest extends TestCase
         $record = [
             'name' => $faker->unique()->regexify('[a-zA-Z]{50}'),
             'type' => 'EXAMPLE_TYPE',
-            'contact_information' => null
+            'contact_information' => $faker->text(255)
         ];
 
         $response = $this->withHeader('referer', '/inputform_institution')
