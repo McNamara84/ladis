@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Device;
 
 class DeviceController extends Controller
 {
     public function index()
     {
-        // TODO: Fetch all devices from the database
+        $devices = Device::with('institution')->get();
 
-        return view('devices.index');
+        return view('devices.index', compact('devices'));
     }
 }
