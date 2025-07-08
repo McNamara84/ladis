@@ -59,6 +59,18 @@ class SearchController extends Controller
                 $devicesQuery->where('weight', '<=', $weightMax);
             }
 
+            if ($minYear !== null && $minYear !== '') {
+                $devicesQuery->where('year', '<=', $minYear);
+            }
+
+            if ($maxYear !== null && $maxYear !== '') {
+                $devicesQuery->where('year', '<=', $maxYear);
+            }
+
+            if ($cooling === '1') {
+                $devicesQuery->where('cooling', '!=', null);
+            }
+
             $devices = $devicesQuery->get();
         }
 
