@@ -117,11 +117,10 @@ class InputFormInstitutionTest extends TestCase
 
     public function test_store_does_not_create_institution_because_of_missing_contact_information_in_record_array_and_redirects(): void
     {
-        $faker = Factory::create();
 
         $record = [
-            'name' => $faker->unique()->regexify('[a-zA-Z]{50}'),
-            'type' => $faker->randomElement(Institution::getTypes()),
+            'name' => $this->faker->unique()->regexify('[a-zA-Z]{50}'),
+            'type' => $this->faker->randomElement(Institution::getTypes()),
             'contact_information' => null
         ];
 
