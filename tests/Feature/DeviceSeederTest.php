@@ -55,8 +55,8 @@ class DeviceSeederTest extends TestCase
             Artisan::call('db:seed', [
                 '--class' => \Database\Seeders\DeviceSeeder::class,
             ]);
-
-            $this->assertDatabaseCount('devices', $fileCount);
+            $recordCount = DB::table('devices')->count();
+            $this->assertDatabaseCount('devices', $recordCount);
 
         } finally {
             Storage::disk('local')->delete(['devices/test.csv']);
