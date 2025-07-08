@@ -15,6 +15,7 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserManagementController;
 use App\Http\Controllers\ProjectInputController;
 use App\Http\Controllers\MaterialInputController;
+use App\Http\Controllers\DeviceController;
 
 // Landing page for guests
 Route::get('/', [WelcomeController::class, 'index']);
@@ -66,3 +67,9 @@ Route::get('/inputform_project', [ProjectInputController::class, 'index']);
 //Route for inputform for the materials
 Route::get('/inputform_material', [MaterialInputController::class, 'index'])->name('inputform_material.index');
 Route::post('/inputform_material', [MaterialInputController::class, 'store'])->name('inputform_material.store');
+
+// Routes for lists
+Route::get('/devices/all', [DeviceController::class, 'index'])->name('devices.all');
+
+// TODO: Routes for details pages
+// Route::get('/devices/{id}', [InputFormController::class, 'show']);
