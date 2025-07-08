@@ -110,17 +110,14 @@ class DeviceSeederTest extends TestCase
         CL 20 BACKPACK_Test_2,,,,220,400,650,14.5,,0,,,,20,,,,1,,1064,,,,,,,,,,,,1,2
         CSV;
 
-        $recordCountBefore = DB::table('devices')->count();
-
         try {
 
             Storage::disk('local')->put('devices/test.csv', $exampleCsv);
-
             Artisan::call('db:seed', [
                 '--class' => \Database\Seeders\DeviceSeeder::class,
             ]);
 
-            $recordCountAfter = DB::table('devices')->count();
+            $this->assertDatabaseMissing('devices', ['name' => 'CL 20 BACKPACK_Test_2']);
 
             $this->assertEquals($recordCountBefore, $recordCountAfter);
         } finally {
