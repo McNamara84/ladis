@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', '{{ __("User Management") }}')
+@section('title', 'User Management')
 
 @section('content')
     <div class="container">
