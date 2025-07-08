@@ -22,7 +22,7 @@ class DeviceFormTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        
+
         // Create a test institution and user
         // These will be used for the device creation
         $this->institution = Institution::factory()->create([
@@ -30,7 +30,7 @@ class DeviceFormTest extends TestCase
             'type' => Institution::TYPE_CLIENT, // Auftraggeber
             'contact_information' => 'Kontakt:' . $this->faker->email(),
         ]);
-        
+
         $this->user = User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com'
@@ -73,11 +73,11 @@ class DeviceFormTest extends TestCase
             'max_focal_length' => 500.0,
         ];
 
-        $response = $this->post(route('inputform.store'), $deviceData);
+        $response = $this->actingAs($this->user)->post(route('inputform.store'), $deviceData);
 
         // Check redirect to index route TODO: Later we redirect to device detail page or the devices table view
         $response->assertRedirect(route('inputform.index'));
-        
+
         // Check Success Message
         $response->assertSessionHas('success');
         $this->assertStringContainsString('CL50-Test', session('success'));
@@ -112,12 +112,12 @@ class DeviceFormTest extends TestCase
             'beam_type' => Device::BEAM_POINT,
         ];
 
-        $response = $this->post(route('inputform.store'), $deviceData);
+        $response = $this->actingAs($this->user)->post(route('inputform.store'), $deviceData);
 
         // Check redirect and error message
         $response->assertRedirect();
         $response->assertSessionHasErrors(['name']);
-        
+
         // Check if no Devices was created in database
         $this->assertDatabaseCount('devices', 0);
     }
@@ -129,7 +129,7 @@ class DeviceFormTest extends TestCase
             // 'beam_type' => 0, // Missing on purpose
         ];
 
-        $response = $this->post(route('inputform.store'), $deviceData);
+        $response = $this->actingAs($this->user)->post(route('inputform.store'), $deviceData);
 
         $response->assertRedirect();
         $response->assertSessionHasErrors(['beam_type']);
@@ -151,11 +151,11 @@ class DeviceFormTest extends TestCase
             'beam_type' => Device::BEAM_POINT,
         ];
 
-        $response = $this->post(route('inputform.store'), $deviceData);
+        $response = $this->actingAs($this->user)->post(route('inputform.store'), $deviceData);
 
         $response->assertRedirect();
         $response->assertSessionHasErrors(['name']);
-        
+
         // Only first Device should be in database
         $this->assertDatabaseCount('devices', 1);
     }
@@ -169,7 +169,7 @@ class DeviceFormTest extends TestCase
             'cooling' => 99,    // Unallowed value (only 0,1 allowed)
         ];
 
-        $response = $this->post(route('inputform.store'), $deviceData);
+        $response = $this->actingAs($this->user)->post(route('inputform.store'), $deviceData);
 
         $response->assertRedirect();
         $response->assertSessionHasErrors(['build', 'beam_type', 'cooling']);
@@ -192,12 +192,17 @@ class DeviceFormTest extends TestCase
             'wavelength' => -1064,  // signed
         ];
 
-        $response = $this->post(route('inputform.store'), $deviceData);
+        $response = $this->actingAs($this->user)->post(route('inputform.store'), $deviceData);
 
         $response->assertRedirect();
         $response->assertSessionHasErrors([
-            'year', 'height', 'width', 'weight', 
-            'fiber_length', 'max_output', 'wavelength'
+            'year',
+            'height',
+            'width',
+            'weight',
+            'fiber_length',
+            'max_output',
+            'wavelength'
         ]);
         $this->assertDatabaseCount('devices', 0);
     }
@@ -211,7 +216,7 @@ class DeviceFormTest extends TestCase
             'beam_type' => Device::BEAM_POINT,
         ];
 
-        $response = $this->post(route('inputform.store'), $deviceData);
+        $response = $this->actingAs($this->user)->post(route('inputform.store'), $deviceData);
 
         $response->assertRedirect();
         $response->assertSessionHasErrors(['name', 'head', 'beam_profile']);
@@ -231,12 +236,12 @@ class DeviceFormTest extends TestCase
             'width' => 999999, // Large value, but should be valid
         ];
 
-        $response = $this->post(route('inputform.store'), $deviceData);
+        $response = $this->actingAs($this->user)->post(route('inputform.store'), $deviceData);
 
         $response->assertRedirect(route('inputform.index'));
         $response->assertSessionHas('success');
         $this->assertDatabaseCount('devices', 1);
-        
+
         $device = Device::first();
         $this->assertEquals(1900, $device->year);
         $this->assertEquals(999.99, $device->weight);
@@ -249,16 +254,16 @@ class DeviceFormTest extends TestCase
             'beam_type' => Device::BEAM_LINE, // Required field
         ];
 
-        $response = $this->post(route('inputform.store'), $deviceData);
+        $response = $this->actingAs($this->user)->post(route('inputform.store'), $deviceData);
 
         $response->assertRedirect(route('inputform.index'));
         $response->assertSessionHas('success');
-        
+
         $this->assertDatabaseHas('devices', [
             'name' => 'Minimal Device',
             'beam_type' => Device::BEAM_LINE,
         ]);
-        
+
         $device = Device::first();
         $this->assertNull($device->year);
         $this->assertNull($device->weight);
@@ -275,7 +280,7 @@ class DeviceFormTest extends TestCase
             'automation' => 0,  // false
         ];
 
-        $response = $this->post(route('inputform.store'), $deviceData);
+        $response = $this->actingAs($this->user)->post(route('inputform.store'), $deviceData);
         $response->assertRedirect(route('inputform.index'));
 
         $device = Device::where('name', 'Boolean Test 1')->first();
@@ -284,7 +289,7 @@ class DeviceFormTest extends TestCase
 
         // Test case with mounting=false, automation=true
         $deviceData2 = [
-            'name' => 'Boolean Test 2', 
+            'name' => 'Boolean Test 2',
             'beam_type' => Device::BEAM_POINT,
             'mounting' => 0,    // false
             'automation' => 1,  // true
@@ -299,7 +304,7 @@ class DeviceFormTest extends TestCase
 
     public function test_can_view_input_form(): void
     {
-        $response = $this->get(route('inputform.index'));
+        $response = $this->actingAs($this->user)->get(route('inputform.index'));
 
         $response->assertStatus(200);
         $response->assertViewIs('inputform_device');
@@ -310,16 +315,16 @@ class DeviceFormTest extends TestCase
     {
         // Simulate database error because of not existing institution_id
         // This will throw an exception when trying to create a device
-        
+
         // Delete all institutions if any exists
         Institution::query()->delete();
-        
+
         $deviceData = [
             'name' => 'Exception Test',
             'beam_type' => Device::BEAM_POINT,
         ];
 
-        $response = $this->post(route('inputform.store'), $deviceData);
+        $response = $this->actingAs($this->user)->post(route('inputform.store'), $deviceData);
 
         // Check if we get redirected back with an error message
         $response->assertRedirect();
