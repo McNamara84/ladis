@@ -8,7 +8,7 @@ return [
      */
 
     // Footer
-    '000' => 'Datenbank für Reinigungslaser in der Restaurierung<br>Studentisches Projekt an der FH Potsdam<br>
+    '000' => 'Datenbank für Reinigungslaser in der Oberflächenrestaurierung<br>Studentisches Projekt an der FH Potsdam<br>
         <a href=":link00">Datenschutzerklärung</a>',
     '001' => 'Vorname Nachname, Vorname Nachname, …<br>Vorname Nachname, Vorname Nachname, …',
 
@@ -17,7 +17,7 @@ return [
      */
 
     // LADIS
-    'a00' => 'ist ein Informationssystem zur Dokumentation von Laserreinigungsverfahren bei der Restaurierung historischer Oberflächen.',
+    'a00' => 'ist ein Informationssystem zur Dokumentation von Laserreinigungsverfahren bei der Restaurierung historischer Materialien.',
     'a01' => 'Das System wurde 2025 vom <a href=":link01">Fachbereich STADT | BAU | KULTUR</a> in Kooperation mit dem 
         <a href=":link02">Fachbereich Informationswissenschaften</a> der <a href=":link03">Fachhochschule Potsdam (FHP)</a> entwickelt.',
     
