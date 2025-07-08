@@ -28,23 +28,26 @@ class InputFormInstitutionTest extends TestCase
      * and the user is redirected to the input form afterwards.
      */
     public function test_store_creates_institution_and_redirects(): void
-    {   
+    {
         $faker = Factory::create();
 
         $record = [
-            'name' => Str::limit($faker->unique()->company, 50),
+            'name' => $faker->unique()->regexify('[a-zA-Z]{50}'),
             'type' => $faker->randomElement(Institution::getTypes()),
-            'contact_information' => $faker->text(255)];
+            'contact_information' => $faker->text(255)
+        ];
 
         $response = $this->withHeader('referer', '/inputform_institution')
             ->post('/inputform_institution', $record);
 
         $response->assertRedirect('/inputform_institution');
+        $response->assertSessionHasNoErrors();
         $this->assertDatabaseHas('institutions', [
             'name' => $record['name'],
             'type' => $record['type'],
             'contact_information' => $record['contact_information'],
         ]);
+
     }
 
     /**
