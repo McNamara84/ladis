@@ -100,6 +100,7 @@ class InputFormInstitutionTest extends TestCase
         ]);
     }
 
+
     /**
      * Tests that a record with a missing required field (contact_information) fails validation,
      * does not get stored in the database and redirects with appropriate errors.
@@ -107,11 +108,13 @@ class InputFormInstitutionTest extends TestCase
 
     public function test_store_does_not_create_institution_because_of_missing_contact_information_in_record_array_and_redirects(): void
     {
-        $record = Institution::factory()->make(
-            [
-                'contact_information' => null,
-            ]
-        )->toArray();
+        $faker = Factory::create();
+
+        $record = [
+            'name' => $faker->unique()->regexify('[a-zA-Z]{51}'),
+            'type' => $faker->randomElement(Institution::getTypes()),
+            'contact_information' => null
+        ];
 
         $response = $this->withHeader('referer', '/inputform_institution')
             ->post('/inputform_institution', $record);
