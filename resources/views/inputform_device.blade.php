@@ -44,7 +44,7 @@
                                     <div class="form-group mb-3">
                                         <label for="institution_id" class="form-label">Hersteller *</label>
                                         <select class="form-control @error('institution_id') is-invalid @enderror" id="institution_id" name="institution_id" required>
-                                            <option value="">Bitte wählen Sie den Hersteller aus</option>
+                                            <option value="" disabled hidden>Bitte wählen Sie den Hersteller aus</option>
                                             @foreach ($manufacturers as $manufacturer)
                                                 <option value="{{ $manufacturer->id }}" {{ old('institution_id') == $manufacturer->id ? 'selected' : '' }}>
                                                     {{ $manufacturer->name }}
