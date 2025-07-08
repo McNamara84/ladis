@@ -43,10 +43,10 @@ class InstitutionSeederTest extends TestCase
     public function test_institution_seeder_does_not_create_duplicates_because_they_already_exist(): void
     {
         Artisan::call('db:seed', ['--class' => \Database\Seeders\InstitutionSeeder::class]);
-        $record_count_before = DB::table('institutions')->count();
+        $recordCountBefore = DB::table('institutions')->count();
         Artisan::call('db:seed', ['--class' => \Database\Seeders\InstitutionSeeder::class]);
-        $record_count_after = DB::table('institutions')->count();
-        $this->assertEquals($record_count_before, $record_count_after);
+        $recordCountAfter = DB::table('institutions')->count();
+        $this->assertEquals($recordCountBefore, $recordCountAfter);
 
     }
 }
