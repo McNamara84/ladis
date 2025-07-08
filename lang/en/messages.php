@@ -8,7 +8,7 @@ return [
      */
 
     // Footer
-    '000' => 'Databank for Cleaning Lasers in Restoration<br>Student Project of UAS Potsdam<br>
+    '000' => 'Databank for Cleaning Lasers in Surface Restoration<br>Student Project of UAS Potsdam<br>
         <a href=":link00">Privacy Policy</a>',
     '001' => 'Prename Surname, Prename Surname, …<br>Prename Surname, Prename Surname, …',
 
@@ -17,7 +17,7 @@ return [
      */
 
     // LADIS
-    'a00' => ' is an information system for the documentation of laser cleaning methods in the sphere of historical surface restoration.',
+    'a00' => ' is an information system for the documentation of laser cleaning methods in the sphere of historical material restoration.',
     'a01' => 'The system was created 2025 by the faculty <a href=":link01">CITY | BUILD | CULTURE</a> in cooperation with the faculty of 
         <a href=":link02">Information Sciences</a> of the <a href=":link03">University of Applied Sciences</a>.',
     
