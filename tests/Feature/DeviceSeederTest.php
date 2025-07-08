@@ -107,7 +107,7 @@ class DeviceSeederTest extends TestCase
     {
         $exampleCsv = <<<CSV
         name,description,year,build,height,width,depth,weight,fiber_length,cooling,mounting,automation,max_output,mean_output,max_wattage,head,emission_source,beam_type,beam_profile,wavelength,min_spot_size,max_spot_size,min_pf,max_pf,min_pw,max_pw,min_scan_width,max_scan_width,min_focal_length,max_focal_length,safety_class,last_edit_by,institution_id
-        CL 20 BACKPACK,,,,220,400,650,14.5,,0,,,,20,,,,1,,1064,,,,,,,,,,,,1,2
+        CL 20 BACKPACK_Test_2,,,,220,400,650,14.5,,0,,,,20,,,,1,,1064,,,,,,,,,,,,1,2
         CSV;
 
         $recordCountBefore = DB::table('devices')->count();
