@@ -88,4 +88,32 @@ return [
     'f03' => 'Bitte Startdatum des Projektes angeben.',
     'f04' => 'Bitte Enddatum des Projekts angeben.',
 
+    /**
+     * --- views/layouts/confirm.blade.php ---
+     */
+
+    'g00' => 'Vor dem Fortfahren bitte Passwort bestätigen.',
+
+    /**
+     * --- views/layouts/confirm.blade.php ---
+     */
+
+    'h00' => 'Melden Sie sich in Ihrem {{ :appName }}-Konto an.',
+
+    /**
+     * --- views/layouts/confirm.blade.php ---
+     */
+
+    'i00' => 'Erstellen Sie Ihr {{ :appName }}-Konto.',
+    'i01' => 'Mit der Registrierung stimmen Sie der Nutzung Ihrer Kontodaten im Rahmen des studentischen Projekts an der FH Potsdam zu.',
+
+    /**
+     * --- views/layouts/verify.blade.php ---
+     */
+
+    'j00' => 'Ein neuer Bestätigungslink wurde an Ihre E-Mail-Adresse versandt.',
+    'j01' => 'Überprüfen Sie Ihre E-Mail vor dem Fortfahren auf einen Bestätigungslink.',
+    'j02' => 'Sollten Sie keine E-Mail erhalten haben',
+    'j03' => 'klicken Sie hier, um eine erneut anzufragen',
+
 ];
