@@ -12,6 +12,17 @@
                     </div>
 
                     <div class="card-body">
+                        @if(session('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+
+                        @if(session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif
                         <form method="POST" action="{{ route('inputform_process.store') }}">
                             @csrf
 
@@ -24,7 +35,6 @@
                                         {{ $surface->identifier ?? ('Oberfläche'.$surface->id) }}
                                     </option>
                                 @endforeach
-                                <option>A1</option>
                             </select>
                             @error('partial_surface_id')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -57,7 +67,6 @@
                                         {{ $configuration->name ?? ('Einstellung'.$configuration->id) }}
                                     </option>
                                 @endforeach
-                                <option>A1</option>
                             </select>
                             @error('configuration_id')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
