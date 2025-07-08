@@ -72,7 +72,7 @@ class DeviceSeederTest extends TestCase
         try {
             Storage::disk('local')->put('devices/test.txt', 'test');
             Storage::disk('local')->put('devices/test2.json', '{"test2":"test2"}');
-
+            
             Artisan::call('db:seed', [
                 '--class' => \Database\Seeders\DeviceSeeder::class,
             ]);
