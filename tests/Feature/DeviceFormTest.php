@@ -32,7 +32,7 @@ class DeviceFormTest extends TestCase
         ]);
 
         // Manufacturer institution for dropdown in input form
-        Institution::factory()->create([
+        $this->manufacturerInstitution = Institution::factory()->create([
             'name' => 'Test Manufacturer',
             'type' => Institution::TYPE_MANUFACTURER,
         ]);
