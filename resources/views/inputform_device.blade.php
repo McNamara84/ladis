@@ -43,7 +43,7 @@
                                     </div>
 
                                     <div class="form-group mb-3">
-                                        <label for="year" class="form-label">{{ __("Device Build Year") }}
+                                        <label for="year" class="form-label">{{ __("Build Year") }}
                                             <span class="text-danger"> *</span></label>
                                         <input type="number" class="form-control @error('year') is-invalid @enderror"
                                             id="year" name="year" value="{{ old('year') }}" min="1900" max="2099" required>
@@ -53,7 +53,7 @@
                                     </div>
 
                                     <div class="form-group mb-3">
-                                        <label for="build" class="form-label">{{ __("Device Build Type") }}
+                                        <label for="build" class="form-label">{{ __("Build Type") }}
                                             <span class="text-danger"> *</span></label>
                                         <select class="form-control @error('build') is-invalid @enderror" id="build"
                                             name="build" required>
