@@ -51,6 +51,9 @@
                                                 </option>
                                             @endforeach
                                         </select>
+                                        @error('institution_id')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
 
                                     <div class="form-group mb-3">
