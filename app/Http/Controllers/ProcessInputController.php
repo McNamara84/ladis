@@ -7,6 +7,7 @@ use App\Models\PartialSurface;
 use Illuminate\Http\Request;
 use App\Models\Process;
 
+
 class ProcessInputController extends Controller
 {
     public function index()
@@ -31,9 +32,18 @@ class ProcessInputController extends Controller
             'wet' => 'required|integer|min:0|max:1',
         ]);
 
+        $data = [
+            'partial_surface_id' => $request->input('partial_surface_id'),
+            'device_id' => $validated['device_id'],
+            'configuration_id' => $request->input('configuration_id'),
+            'description' => $validated['description'],
+            'duration' => $validated['duration'],
+            'wet' => $validated['wet'],
+        ];
+
         try {
             // Create a new process record in the database
-            $process = Process::create($validated);
+            Process::create($data);
 
             return redirect()->route('inputform_process.index')
                 ->with('success', 'Prozess wurde erfolgreich gespeichert!');
