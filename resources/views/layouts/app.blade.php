@@ -90,7 +90,7 @@
                                     <span>Daten</span>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><x-link class="dropdown-item" route="inputform" text="Laser"
+                                    <li><x-link class="dropdown-item" route="inputform.index" text="Laser"
                                             icon="bi-lightning-charge" /></li>
                                     <li><x-link class="dropdown-item" route="inputform_material.index" text="Material"
                                             icon="bi-stack" /></li>

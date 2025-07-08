@@ -7,6 +7,7 @@ use App\Http\Controllers\InputFormController;
 use App\Http\Controllers\LegalNoticeController;
 use App\Http\Controllers\MaterialInputController;
 use App\Http\Controllers\PrivacyPolicyController;
+use App\Http\Controllers\ProjectInputController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserManagementController;
 use App\Http\Controllers\WelcomeController;
@@ -94,4 +95,7 @@ Route::middleware('auth')->group(function () {
     // Material management
     Route::get('/inputform_material', [MaterialInputController::class, 'index'])->name('inputform_material.index');
     Route::post('/inputform_material', [MaterialInputController::class, 'store'])->name('inputform_material.store');
+
+    // Project management
+    Route::get('/inputform_project', [ProjectInputController::class, 'index']);
 });
