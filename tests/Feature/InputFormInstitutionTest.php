@@ -85,7 +85,7 @@ class InputFormInstitutionTest extends TestCase
         $faker = Factory::create();
 
         $record = [
-            'name' => $faker->unique()->regexify('[a-zA-Z]{51}'),
+            'name' => $faker->unique()->regexify('[a-zA-Z]{50}'),
             'type' => null,
             'contact_information' => $faker->text(255)
         ];
@@ -111,7 +111,7 @@ class InputFormInstitutionTest extends TestCase
         $faker = Factory::create();
 
         $record = [
-            'name' => $faker->unique()->regexify('[a-zA-Z]{51}'),
+            'name' => $faker->unique()->regexify('[a-zA-Z]{50}'),
             'type' => $faker->randomElement(Institution::getTypes()),
             'contact_information' => null
         ];
@@ -136,7 +136,7 @@ class InputFormInstitutionTest extends TestCase
         $faker = Factory::create();
 
         $record = [
-            'name' => $faker->unique()->regexify('[a-zA-Z]{51}'),
+            'name' => $faker->unique()->regexify('[a-zA-Z]{50}'),
             'type' => 'EXAMPLE_TYPE',
             'contact_information' => null
         ];
