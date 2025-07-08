@@ -19,15 +19,21 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @forelse($devices as $device)
                         <tr>
-                            <td>PL ID</td>
-                            <td>PL NAME</td>
-                            <td>PL INSTITUTION NAME</td>
-                            <td>PL YEAR</td>
-                            <td>PL TYPE</td>
-                            <td>PL BEAM</td>
-                            <td>PL OUTPUT</td>
+                            <td>{{ $device->id }}</td>
+                            <td>{{ $device->name }}</td>
+                            <td>{{ $device->institution->name ?? '–' }}</td>
+                            <td>{{ $device->year ?? '–' }}</td>
+                            <td>{{ $device->build_type }}</td>
+                            <td>{{ $device->beam_type_name }}</td>
+                            <td>{{ $device->max_output ?? '–' }}</td>
                         </tr>
+                    @empty
+                        <tr>
+                            <td colspan="7">Keine Geräte vorhanden.</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>
