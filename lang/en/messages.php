@@ -100,4 +100,20 @@ return [
 
     'h00' => 'Sign-in into your {{ :appName }} account.',
 
+    /**
+     * --- views/layouts/confirm.blade.php ---
+     */
+
+    'i00' => 'Create your {{ :appName }} account.',
+    'i01' => 'With the registration you agree on the use of your account data as part of the UAS Potsdam student project.',
+
+    /**
+     * --- views/layouts/verify.blade.php ---
+     */
+
+    'j00' => 'A fresh verification link has been sent to your email address.',
+    'j01' => 'Before proceeding, please check your email for a verification link.',
+    'j02' => 'If you did not receive the email',
+    'j03' => 'click here to request another',
+
 ];
