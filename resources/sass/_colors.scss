@@ -26,6 +26,7 @@ $blue-bikni: #29beea;
 $aqua: #2dfffe;
 $neon-fuchsia: #fc3f6d;
 $break-the-ice: #b4ebf1;
+$bright-star: #dee2e6;
 
 //
 // Generic colors
@@ -44,6 +45,9 @@ $cyan: $aqua;
 
 // Note: BS grayscale colors from 100-900 affect the color system in various ways.
 // Override with cuation.
+
+// Used for secondary bg color in light color mode
+$gray-300: $bright-star;
 
 // 900 Affects `$dark`, `$body-color` and `$body-bg-dark`
 $gray-900: $sooty;
