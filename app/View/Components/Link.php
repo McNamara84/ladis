@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 /**
  * High-level link component
  *
- * @param string|null $route The route name, defaults to the current route
+ * @param string|null $route Optional, the route name
  * @param string $text The display text
  * @param bool $disabled Optional, whether the link is disabled
  * @param string $icon Optional ID of an icon from the SVG sprite
@@ -22,7 +22,7 @@ class Link extends Component
     /**
      * Create a new component instance.
      *
-     * @param string|null $route The route name, defaults to the current route
+     * @param string|null $route Optional, the route name
      * @param string $text The display text
      * @param bool $disabled Optional, whether the link is disabled
      * @param string $icon Optional ID of an icon from the SVG sprite
@@ -35,7 +35,6 @@ class Link extends Component
         public bool $disabled = false,
         public string $icon = '',
     ) {
-        $this->route ??= Route::currentRouteName();
     }
 
     /**
@@ -45,7 +44,11 @@ class Link extends Component
      */
     public function href(): string
     {
-        return $this->disabled ? '#' : route($this->route);
+        if (!$this->route || $this->disabled) {
+            return '#';
+        }
+
+        return route($this->route);
     }
 
     /**
