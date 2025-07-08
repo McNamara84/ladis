@@ -32,7 +32,7 @@
         <div class="mb-3">
             <label class="form-label">Baujahr</label>
             <div class="range-slider">
-                <input type="range" id="year_max" name="year_min" min="{{ $minYear }}" max="{{ $maxYear }}" value="{{ request('year_min', $minYear) }}" oninput="updateWeightSlider(this)">
+                <input type="range" id="year_min" name="year_min" min="{{ $minYear }}" max="{{ $maxYear }}" value="{{ request('year_min', $minYear) }}" oninput="updateWeightSlider(this)">
                 <input type="range" id="year_max" name="year_max" min="{{ $minYear }}" max="{{ $maxYear }}" value="{{ request('year_max', $maxYear) }}" oninput="updateWeightSlider(this)">
             </div>
             <div class="d-flex justify-content-between mt-2">
