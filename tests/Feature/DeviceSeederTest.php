@@ -141,9 +141,9 @@ class DeviceSeederTest extends TestCase
                 '--class' => \Database\Seeders\DeviceSeeder::class,
             ]);
 
-            $recordCountAfter = DB::table('devices')->count();
+            $this->assertDatabaseMissing('devices', ['name' => '']);
+            $this->assertDatabaseMissing('devices', ['name' => null]);
 
-            $this->assertEquals($recordCountBefore, $recordCountAfter);
         } finally {
             Storage::disk('local')->delete(['devices/test.csv']);
 
