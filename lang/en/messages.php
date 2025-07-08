@@ -8,84 +8,84 @@ return [
      */
 
     // Footer
-    '000' => 'Datenbank zu Reinigungslasern in der Restaurierung<br>Fachhochschule Potsdam - Studentisches Projekt<br>
-        <a href=":link00">Datenschutzerklärung</a>',
-    '001' => 'Vorname Nachname, Vorname Nachname, …<br>Vorname Nachname, Vorname Nachname, …',
+    '000' => 'Databank for Cleaning Lasers in Restoration<br>Student Project of UAS Potsdam<br>
+        <a href=":link00">Privacy Policy</a>',
+    '001' => 'Prename Surname, Prename Surname, …<br>Prename Surname, Prename Surname, …',
 
     /**
      * --- views/welcome.blade.php ---
      */
 
     // LADIS
-    'a00' => 'ist ein Informationssystem zur Dokumentation von Laserreinigungsverfahren bei der Restaurierung historischer Oberflächen.',
-    'a01' => 'Das System wurde 2025 vom <a href=":link01">Fachbereich STADT | BAU | KULTUR</a> in Kooperation mit dem 
-        <a href=":link02">Fachbereich Informationswissenschaften</a> der <a href=":link03">Fachhochschule Potsdam (FHP)</a> entwickelt.',
+    'a00' => ' is an information system for the documentation of laser cleaning methods in the sphere of historical surface restoration.',
+    'a01' => 'The system was created 2025 by the faculty <a href=":link01">CITY | BUILD | CULTURE</a> in cooperation with the faculty of 
+        <a href=":link02">Information Sciences</a> of the <a href=":link03">University of Applied Sciences</a>.',
     
     // Erfasste Daten
-    'a02' => 'Das System dokumentiert umfassende Informationen zu Laserreinigungsverfahren für wissenschaftliche Forschung und Restaurierungspraxis.',
+    'a02' => 'This information system saves comprehensive datasets from laser cleaning processes for academic research and restoration practice.',
 
     // Technische Parameter
-    'a03' => 'Detaillierte Aufzeichnung der verwendeten Lasergeräte, Optiken und Einstellungen.',
-    'a04' => 'Erfassung von Artefakten und deren Materialien, Schadensmuster und Erhaltungszustand vor und nach der Laserreinigung. 
-        Projektdaten, Standortdaten und beteiligte Personen und Institutionen ergänzen die Dokumentation.',
+    'a03' => 'Detailed records about used laser devices, laser optics and their setup.',
+    'a04' => 'Recording of artifacts and their materials, damage patterns and preservation conditions before and after the cleaning process. 
+        Project data, location data and contributing persons as well as institutions complement the documentation.',
     
     // Funktionen
-    'a05' => 'Das System bietet umfassende Recherche- und Analysefunktionen.',
-    'a06' => 'Die einfache Suche ermöglicht die schnelle Recherche mit Schlagworten.',
-    'a07' => 'Die erweiterte Suche bietet umfassende Filter- und Sortierfunktionen für detaillierte Recherchen.',
+    'a05' => 'The system provides broad research and analysis features.',
+    'a06' => 'Simple search allows quick research with single or multiple keywords.',
+    'a07' => 'The advanced search provides diverse filtering and sorting features for detailed research.',
 
     /**
      * --- views/layouts/user_management.blade.php ---
      */
 
-    'b00' => 'Soll der Account <strong>{{ :userName }}</strong> wirklich gelöscht werden?',
+    'b00' => 'Do you really want to delete the account<strong>{{ :userName }}</strong>?',
 
     /**
      * --- views/layouts/home.blade.php ---
      */
 
     // Welcome Header
-    'c00' => 'Willkommen zurück, {{ :userName }}!',
-    'c01' => 'Verwalten Sie Ihre Reinigungslaser-Datenbank und Restaurierungsprojekte.',
+    'c00' => 'Welcome back, {{ :userName }}!',
+    'c01' => 'Manage your laser cleaning databank and your restoration projects.',
     
     // Quick Actions
-    'c02' => 'Starten Sie mit der Erfassung von Reinigungslasern',
+    'c02' => 'Begin the logging of cleaning laser devices',
     
     // Getting Started
-    'c03' => 'Willkommen im {{ :appName }}!',
-    'c04' => 'Beginnen Sie mit der Erfassung und Verwaltung von Reinigungslasern für Restaurierungsprojekte. 
-        Achtung: Das System befindet sich noch in der Entwicklung.',
+    'c03' => 'Welcome in {{ :appName }}!',
+    'c04' => 'Begin the logging of cleaning laser devices and manage them for restoration projects. 
+        Caution: The information system is still in development!',
 
     /**
      * --- views/layouts/inputform_device.blade.php ---
      */
 
-    'd00' => 'Modellbezeichnung des Lasergeräts, z.B. „CL50“',
-    'd01' => 'Baujahr des Lasergeräts, vierstellig',
-    'd02' => 'Maße des Lasergeräts (in mm), ohne Nachkommastellen',
-    'd03' => 'Gewicht des Lasergeräts (in kg), mit zwei Nachkommastellen',
-    'd04' => 'Faserlänge des Lasergeräts (in Meter), mit zwei Nachkommastellen',
-    'd05' => 'maximale und mittlere Energieleistung des Lasergeräts (in Watt)',
-    'd06' => 'maximaler Stromverbrauch des Lasergeräts (in Watt)',
-    'd07' => 'Modellbezeichnung des Bearbeitungskopfs, z.B. „Optik OS A20“',
-    'd08' => 'Beschreibung des Strahlprofils, z.B. „Top-Hat-Kurve“ oder „Gauß-Kurve“',
-    'd09' => 'Wellenlänge des Lasergeräts (in nm)',
-    'd10' => 'optionale Merkmalbeschreibung des Lasergeräts',
+    'd00' => 'Model designation of the laser device, e.g. "CL50"',
+    'd01' => 'Build year of the laser device, four-digit',
+    'd02' => 'Metrics of the laser device (in mm), no decimal places',
+    'd03' => 'Weight of the laser device (in kg), two decimal places',
+    'd04' => 'Length of laser device fiber (im m), two decimal places',
+    'd05' => 'Maximum and mean power output of the laser device (in Watt)',
+    'd06' => 'Maximum wattage of the laser device (in Watt)',
+    'd07' => 'Model designation of the machining head, e.g. "OS A20 optics"',
+    'd08' => 'Description of the beam profile, e.g. "Top-Hat" or "Gaussian"',
+    'd09' => 'Wavelength of the laser device (in nm), no decimal places',
+    'd10' => 'Optional decription of important laser device features',
 
     /**
      * --- views/layouts/inputform_material.blade.php ---
      */
 
-    'e00' => 'Ohne Auswahl eines Grundmaterials wird neu registriertes Material ebenfalls als Grundmaterial angelegt.',
+    'e00' => 'Without the selection of a top level material the newly added material is also registered as top level.',
 
     /**
      * --- views/layouts/inputform_project.blade.php ---
      */
 
-    'f00' => 'Bitte eindeutigen Titel des Projekts angeben.',
-    'f01' => 'Bitte kurze Beschreibung des Projekts hinzufügen.',
-    'f02' => 'Bitte eindeutige URL-Adresse des Projekts angeben.',
-    'f03' => 'Bitte Startdatum des Projektes angeben.',
-    'f04' => 'Bitte Enddatum des Projekts angeben.',
+    'f00' => 'Please specify distinct project title.',
+    'f01' => 'Please add short project description.',
+    'f02' => 'Please specify distinct project URL adress.',
+    'f03' => 'Please specify project start date.',
+    'f04' => 'Please specify project end date.',
 
 ];
