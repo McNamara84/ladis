@@ -27,6 +27,7 @@ $aqua: #2dfffe;
 $neon-fuchsia: #fc3f6d;
 $break-the-ice: #b4ebf1;
 $bright-star: #dee2e6;
+$lavendar-wisp: #e9ebee;
 
 //
 // Generic colors
@@ -45,6 +46,8 @@ $cyan: $aqua;
 
 // Note: BS grayscale colors from 100-900 affect the color system in various ways.
 // Override with cuation.
+
+$gray-200: $lavendar-wisp;
 
 // Used for secondary bg color in light color mode
 $gray-300: $bright-star;
@@ -68,6 +71,7 @@ $primary: $blue;
 
 $body-bg: $light;
 $body-secondary-bg: $gray-300;
+$body-tertiary-bg: $gray-200;
 
 $link-color: $primary;
 $link-hover-decoration: underline;
