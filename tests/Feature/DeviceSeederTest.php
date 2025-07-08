@@ -39,13 +39,10 @@ class DeviceSeederTest extends TestCase
         Storage::disk('local')->put('devices/test.csv', $exampleCsv);
 
         try {
-
             Artisan::call('db:seed', [
                 '--class' => \Database\Seeders\DeviceSeeder::class,
             ]);
-            $recordCount = DB::table('devices')->count();
-            $this->assertDatabaseCount('devices', $recordCount);
-
+            $this->assertDatabaseHas('devices', ['name' => 'CL 20 BACKPACK_Test']);
         } finally {
             Storage::disk('local')->delete(['devices/test.csv']);
         }
