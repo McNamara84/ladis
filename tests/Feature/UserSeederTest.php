@@ -30,12 +30,12 @@ class UserSeederTest extends TestCase
     {
         Artisan::call('db:seed', ['--class' => \Database\Seeders\UserSeeder::class]);
         Artisan::call('db:seed', ['--class' => \Database\Seeders\UserSeeder::class]);
-        
+
         $count = DB::table('users')->where('name', 'BOT')->count();
         $this->assertTrue($count == 1);
 
         $count = DB::table('users')->where('id', 1)->count();
         $this->assertTrue($count == 1);
-        
+
     }
 }
