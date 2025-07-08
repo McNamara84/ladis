@@ -29,10 +29,10 @@ class UserSeederTest extends TestCase
     public function test_user_seeder_does_not_create_bot_user_because_it_already_exists(): void
     {
         Artisan::call('db:seed', ['--class' => \Database\Seeders\UserSeeder::class]);
-        $record_count_before = DB::table('users')->count();
+        $recordCountBefore = DB::table('users')->count();
         Artisan::call('db:seed', ['--class' => \Database\Seeders\UserSeeder::class]);
-        $record_count_after = DB::table('users')->count();
-        $this->assertEquals($record_count_before, $record_count_after);
+        $recordCountAfter = DB::table('users')->count();
+        $this->assertEquals($recordCountBefore, $recordCountAfter);
 
     }
 }
