@@ -64,7 +64,7 @@
     "No results found.": "Keine Ergebnisse gefunden.",
 
     "Create User": "Benutzer anlegen",
-    "Create New Account": "Neuen Account erstellen",
+    "Create New Account": "Neues Konto erstellen",
     "Set up a new user": "Einen neuen Benutzer anlegen",
     "Full Name": "voller Name",
     "John Doe": "Max Mustermann",
@@ -80,7 +80,7 @@
     "Created on": "Erstellt am",
     "Actions": "Aktionen",
     "Delete": "Löschen",
-    "Delete Account": "Account löschen",
+    "Delete Account": "Konto löschen",
     "Close": "Schließen",
     "Cancel": "Abbrechen",
 
@@ -89,7 +89,7 @@
     "System Information": "Systeminformation",
     "Laravel Version": "Laravel-Version",
     "PHP Version": "PHP-Version",
-    "Registration": "Anmeldung",
+    "Registration": "Registrierung",
     "Status": "Status",
     "Online": "Online",
     "Add First Laser": "Ersten Laser hinzufügen",
@@ -105,8 +105,7 @@
 
     "Add New Laser Device": "Neues Lasergerät hinzufügen",
     "Device Name": "Gerätename",
-    "Device Build Year": "Gerätebaujahr",
-    "Device Build Type": "Gerätebauart",
+    "Build Type": "Bauart",
     "Fiber Optics": "Glasfaser",
     "Mirror Arm": "Spiegelarm",
     "Safety Class": "Sicherheitsklasse",
@@ -132,11 +131,11 @@
     "Machining Head": "Bearbeitungskopf",
     "Emission Source": "Emissionsquelle",
     "Type": "Typ",
-    "Laser Beam Geometry": "Laserstrahlgeometrie",
+    "Beam Geometry": "Strahlgeometrie",
     "Point Laser": "Punktlaser",
     "Line Laser": "Zeilenlaser",
     "Broad-Area Laser": "Flächenlaser",
-    "Laser Beam Profile": "Laserstrahlprofil",
+    "Beam Profile": "Strahlprofil",
     "Wavelength": "Wellenlänge",
     "Description": "Beschreibung",
     "Reset Values": "Werte zurücksetzen",
@@ -156,6 +155,30 @@
     "End": "Ende",
     "Specify start date …": "Startdatum angeben …",
     "Specify end date …": "Enddatum angeben …",
-    "Add Project": "Projekt hinzufügen"
+    "Add Project": "Projekt hinzufügen",
+
+    "Confirm Password": "Passwort bestätigen",
+    "Password": "Passwort",
+    "Forgot Your Password?": "Passwort vergessen?",
+
+    "Reset Password": "Passwort zurücksetzen",
+    "Email Adress": "E-Mail-Adresse",
+    "Send Password Reset Link": "Passwort-Zurücksetzungslink senden",
+
+    "Sign-In": "Anmeldung",
+    "Your Password": "Ihr Passwort",
+    "Stay Logged-In": "Angemeldet bleiben",
+    "No account as yet?": "Noch kein Konto?",
+    "Register Now": "Jetzt registrieren",
+    "Back to Homepage": "Zurück zur Startseite",
+
+    "Sign-Up": "Registrierung",
+    "At least 8 characters": "Mindestens 8 Zeichen",
+    "Repeat Password": "Passwort wiederholen",
+    "Create Account": "Konto erstellen",
+    "Having an account?": "Bereits ein Konto?",
+    "Sign-In Now": "Jetzt anmelden",
+
+    "Verify Email Adress": "E-Mail-Adresse bestätigen"
 
 }
