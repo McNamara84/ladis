@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdvancedSearchController;
+use App\Http\Controllers\InputFormInstitutionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\WelcomeController;
@@ -73,3 +74,7 @@ Route::get('/devices/all', [DeviceController::class, 'index'])->name('devices.al
 
 // TODO: Routes for details pages
 // Route::get('/devices/{id}', [InputFormController::class, 'show']);
+
+//Route for input form for institution
+Route::get('/inputform_institution', [InputFormInstitutionController::class, 'index'])->name('inputform_institution.index');
+Route::post('/inputform_institution', [InputFormInstitutionController::class, 'store'])->name('inputform_institution.store');
