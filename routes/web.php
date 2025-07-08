@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdvancedSearchController;
+use App\Http\Controllers\InputFormInstitutionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\WelcomeController;
@@ -66,3 +67,8 @@ Route::get('/inputform_project', [ProjectInputController::class, 'index']);
 //Route for inputform for the materials
 Route::get('/inputform_material', [MaterialInputController::class, 'index'])->name('inputform_material.index');
 Route::post('/inputform_material', [MaterialInputController::class, 'store'])->name('inputform_material.store');
+
+
+//Route for input form for institution
+Route::get('/inputform_institution', [InputFormInstitutionController::class, 'index'])->name('inputform_institution.index');
+Route::post('/inputform_institution', [InputFormInstitutionController::class, 'store'])->name('inputform_institution.store');
