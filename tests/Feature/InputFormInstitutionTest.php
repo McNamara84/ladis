@@ -132,11 +132,14 @@ class InputFormInstitutionTest extends TestCase
 
         public function test_store_does_not_create_institution_because_of_invalid_value_in_record_array_and_redirects(): void
     {
-        $record = Institution::factory()->make(
-            [
-                'type' => 'EXAMPLE_TYPE',
-            ]
-        )->toArray();
+
+        $faker = Factory::create();
+
+        $record = [
+            'name' => $faker->unique()->regexify('[a-zA-Z]{51}'),
+            'type' => 'EXAMPLE_TYPE',
+            'contact_information' => null
+        ];
 
         $response = $this->withHeader('referer', '/inputform_institution')
             ->post('/inputform_institution', $record);
