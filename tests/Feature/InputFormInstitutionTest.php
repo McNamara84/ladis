@@ -92,12 +92,11 @@ class InputFormInstitutionTest extends TestCase
 
     public function test_store_does_not_create_institution_because_of_missing_type_in_record_array_and_redirects(): void
     {
-        $faker = Factory::create();
 
         $record = [
-            'name' => $faker->unique()->regexify('[a-zA-Z]{50}'),
+            'name' => $this->faker->unique()->regexify('[a-zA-Z]{50}'),
             'type' => null,
-            'contact_information' => $faker->text(255)
+            'contact_information' => $this->faker->text(255)
         ];
 
         $response = $this->withHeader('referer', '/inputform_institution')
