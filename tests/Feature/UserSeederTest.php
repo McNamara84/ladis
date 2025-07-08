@@ -33,6 +33,11 @@ class UserSeederTest extends TestCase
         Artisan::call('db:seed', ['--class' => \Database\Seeders\UserSeeder::class]);
         $recordCountAfter = DB::table('users')->count();
         $this->assertEquals($recordCountBefore, $recordCountAfter);
+        $this->assertDatabaseHas('users', [
+            'id' => 1,
+            'name' => 'BOT',
+            'email' => 'bot@example.com',
+        ]);
 
     }
 }
