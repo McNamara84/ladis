@@ -37,14 +37,12 @@
                             <div class="mb-5">
                                 <label for="location_id" class="form-label">Standort <span class="text-danger">*</span></label>
                                 <select class="form-select" id="location_id" name="location_id" required>
-                                    <option value="">Bitte wählen Sie einen Standort</option>
+                                    <option value="">Wählen Sie einen Standort aus.</option>
                                     @foreach($locations as $location)
                                         <option value="{{ $location->id }}" {{ old('location_id') == $location->id ? 'selected' : '' }}>
                                             {{ $location->name }}
                                         </option>
-                                        <option>
-                                            Location1
-                                        </option>>
+                                    <option>Location1</option>>
                                     @endforeach
                                 </select>
                                 @error('location_id')
