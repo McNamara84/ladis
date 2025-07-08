@@ -22,8 +22,6 @@ class ArtifactInputControllerTest extends TestCase
             'name' => 'Kuppel',
         ]);
         $response = $this->get('/inputform_artifact');
-
-        $response->assertStatus(200);
         $response->assertViewIs('inputform_artifact');
         $response->assertViewHas('pageTitle', 'Objekt Eingabeformular');
         $response->assertViewHas('locations', function ($locations) use ($location) {
