@@ -112,6 +112,16 @@ a.disabled {
 }
 
 //
+// Dropdown
+//
+
+// Reset the default min-width of the dropdown body.
+// Usefull for small dropdowns like the language picker.
+.dropdown-menu-size-auto {
+    --bs-dropdown-min-width: initial;
+}
+
+//
 // Generic container-like components
 //
 

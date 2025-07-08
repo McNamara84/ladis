@@ -119,7 +119,7 @@
                                     aria-haspopup="true" aria-expanded="false" aria-label="Sprache wählen">
                                     <x-icon icon="bi-translate" />
                                 </button>
-                                <ul class="dropdown-menu dropdown-menu-end">
+                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-size-auto">
                                     <li><x-link class="dropdown-item" text="DE" disabled /></li>
                                     <li><x-link class="dropdown-item" text="EN" disabled /></li>
                                 </ul>
