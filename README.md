@@ -12,9 +12,34 @@ We are developing our own information system as part of the P11 laboratory. A sp
 
 ## Features
 
-- **User-friendly input form*** for entering materials, ...
+- **User-friendly input forms:** Add devices and material via input form
 - **Admin Tools:** Create new Accounts via UI or enter `php artisan newuser <name> <email> <password>` in server terminal for easy user creation.
 - **Simple Search:** The simple search function in the main menu allows you to quickly search for device names, institution names, ...
+- **Advanced Search:** The advanced search allows you to search the database for specific attributes. Currently, device and institution names can be searched.
+
+## Sitemap
+
+- Welcome (Homepage): /
+    - About LADIS: /about
+    - Advanced Search: /adv-search
+        - Search Result: /adv-search/result
+    - Contact Us: /contact
+    - Database Statistics: /statistics
+    - Legal (Rechtliches / Impressum): /impressum
+    - Log-In Mask: /login
+        - Account Overview: /login/home 
+        - Data Input Form (Eingabemaske): /login/inputform
+            - New Artifact Entry [dynamic page]
+            - New Device Entry [dynamic page]
+            - New Institution Entry [dynamic page]
+            - New Process Entry [dynamic page]
+            - New Project Entry [dynamic page]
+            - Report Review: /login/review
+    - Privacy Policy (Datenschutzerklärung): /datenschutz
+    - Terms of Use (Nutzungsbedingungen): /terms-of-use
+    - User Help: /help
+        - Registered User Help [dynamic page]
+        - Unregistered User Help [dynamic page]
 
 ## Prerequisites
 

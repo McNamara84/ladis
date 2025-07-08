@@ -88,7 +88,8 @@ Route::middleware('auth')->group(function () {
 
     // Device management
     // TODO: Name this appropiately instead of the current generic name
-    Route::get('/inputform', [InputFormController::class, 'index'])->name('inputform');
+    Route::get('/inputform', [InputFormController::class, 'index'])->name('inputform.index');
+    Route::post('/inputform', [InputFormController::class, 'store'])->name('inputform.store');
 
     // Material management
     Route::get('/inputform_material', [MaterialInputController::class, 'index'])->name('inputform_material.index');
