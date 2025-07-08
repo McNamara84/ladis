@@ -68,12 +68,11 @@ class InputFormInstitutionTest extends TestCase
 
     public function test_store_does_not_create_institution_because_of_too_long_string_and_redirects(): void
     {
-        $faker = Factory::create();
 
         $record = [
-            'name' => $faker->unique()->regexify('[a-zA-Z]{51}'),
-            'type' => $faker->randomElement(Institution::getTypes()),
-            'contact_information' => $faker->text(255)
+            'name' => $this->faker->unique()->regexify('[a-zA-Z]{51}'),
+            'type' => $this->faker->randomElement(Institution::getTypes()),
+            'contact_information' => $this->faker->text(255)
         ];
 
         $response = $this->withHeader('referer', '/inputform_institution')
