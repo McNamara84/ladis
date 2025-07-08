@@ -5,6 +5,7 @@
     $classes = Arr::toCssClasses([
         'disabled' => $disabled,
         'active' => $isActive(),
+        'has-icon' => $icon,
     ]);
 @endphp
 

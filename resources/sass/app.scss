@@ -111,6 +111,18 @@ a.disabled {
     --app-logo-primary-color: var(--bs-navbar-color);
 }
 
+.nav-link {
+    // Prevent text in navbar links to break on smaller viewports
+    white-space: nowrap;
+}
+
+// Make sure icon and text stay on the same line in composed nav links
+.nav-link.has-icon {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
 //
 // Dropdown
 //
