@@ -17,7 +17,6 @@ use App\Http\Controllers\ProjectInputController;
 use App\Http\Controllers\MaterialInputController;
 use App\Http\Controllers\ProcessInputController;
 
-
 // Landing page for guests
 Route::get('/', [WelcomeController::class, 'index']);
 
