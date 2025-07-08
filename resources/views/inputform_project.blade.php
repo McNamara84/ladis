@@ -28,6 +28,16 @@
                             @endif
 
                             <div class="mb-3">
+                                <label for="person_id" class="form-label">Projektleitung</label>
+                                <select class="form-control" id="person_id" name="person_id">
+                                    <option disabled selected value="">Wählen Sie die Projektleitung aus</option>
+                                    @foreach ($persons as $person)
+                                        <option value="{{ $person->id }}">{{ $person->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
                                 <label for="project_name" class="form-label">Name <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="project_name" name="project_name" required
                                     placeholder="Projektname">

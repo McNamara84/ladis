@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Person;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
@@ -13,8 +14,10 @@ class ProjectInputController extends Controller
     public function index()
     {
         $pageTitle = 'Projekteingabe';
+        $persons = Person::orderBy('name')->get();
 
-        return view('inputform_project', compact('pageTitle'));
+
+        return view('inputform_project', compact('pageTitle', 'persons'));
     }
 
     /**
@@ -28,6 +31,7 @@ class ProjectInputController extends Controller
             'project_url' => 'required|string|max:255|unique:projects,url',
             'project_started_at' => 'required|date',
             'project_ended_at' => 'required|date',
+            'person_id' => 'required|exists:persons,id',
         ]);
 
         $data = [
@@ -36,6 +40,7 @@ class ProjectInputController extends Controller
             'url' => $validatedData['project_url'],
             'started_at' => $validatedData['project_started_at'],
             'ended_at' => $validatedData['project_ended_at'],
+            'person_id' => $request->input('person_id'),
         ];
 
         try {
