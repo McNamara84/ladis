@@ -42,3 +42,4 @@ class ProcessInputController extends Controller
                 ->with('error', 'Fehler beim Speichern des Prozesses: ' . $e->getMessage());
         }
     }
+}
