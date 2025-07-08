@@ -29,6 +29,33 @@
             </div>
         </div>
 
+        <div class="mb-3">
+            <label class="form-label">Baujahr</label>
+            <div class="range-slider">
+                <input type="range" id="year_max" name="year_min" min="{{ $minYear }}" max="{{ $maxYear }}" value="{{ request('year_min', $minYear) }}" oninput="updateWeightSlider(this)">
+                <input type="range" id="year_max" name="year_max" min="{{ $minYear }}" max="{{ $maxYear }}" value="{{ request('year_max', $maxYear) }}" oninput="updateWeightSlider(this)">
+            </div>
+            <div class="d-flex justify-content-between mt-2">
+                <span><span id="year_min_output">{{ request('year_min', $minYear) }}</span> kg</span>
+                <span><span id="year_max_output">{{ request('year_max', $maxYear) }}</span> kg</span>
+            </div>
+        </div>
+
+        <div class="mb-3">
+        <label class="form-label">Kühlung:</label>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="cooling" id="cooling_yes" value="1" {{ request('cooling') === '1' ? 'checked' : '' }}>
+            <label class="form-check-label" for="cooling_yes">
+                Ja
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="cooling" id="cooling_no" value="0" {{ request('cooling') === '0' ? 'checked' : '' }}>
+            <label class="form-check-label" for="cooling_no">
+                Nein
+            </label>
+        </div>
+
         <button type="submit" class="btn btn-outline-secondary">Anwenden</button>
     </form>
 </div>
