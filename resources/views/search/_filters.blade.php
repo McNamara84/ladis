@@ -36,8 +36,8 @@
                 <input type="range" id="year_max" name="year_max" min="{{ $minYear }}" max="{{ $maxYear }}" value="{{ request('year_max', $maxYear) }}" oninput="updateWeightSlider(this)">
             </div>
             <div class="d-flex justify-content-between mt-2">
-                <span><span id="year_min_output">{{ request('year_min', $minYear) }}</span> kg</span>
-                <span><span id="year_max_output">{{ request('year_max', $maxYear) }}</span> kg</span>
+                <span id="year_min_output">{{ request('year_min', $minYear) }}</span>
+                <span id="year_max_output">{{ request('year_max', $maxYear) }}</span>
             </div>
         </div>
 
