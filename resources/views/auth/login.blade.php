@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Login')
+@section('title', 'Sign-In')
 
 @section('content')
     <div class="container">
@@ -22,8 +22,8 @@
                     <svg class="app-logo-bg">
                         <use xlink:href="#ladis-logo"></use>
                     </svg>
-                    <h1 class="h3 fw-bold text-primary">Anmeldung</h1>
-                    <p class="text-muted">Melden Sie sich in Ihrem {{ config('app.name') }} Konto an</p>
+                    <h1 class="h3 fw-bold text-primary">{{ __("Sign-In") }}</h1>
+                    <p class="text-muted">{!! __("messages.h00", [":appName" => config('app.name')]) !!}</p>
                 </div>
 
                 <!-- Login Card -->
@@ -40,12 +40,12 @@
                                         <path
                                             d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
                                     </svg>
-                                    E-Mail-Adresse
+                                    {{ __("Email Adress") }}
                                 </label>
                                 <input id="email" type="email"
                                     class="form-control form-control-lg @error('email') is-invalid @enderror" name="email"
                                     value="{{ old('email') }}" required autocomplete="email" autofocus
-                                    placeholder="ihre.email@beispiel.de">
+                                    placeholder="{{ __('your.email@example.com') }}">
                                 @error('email')
                                     <div class="invalid-feedback">
                                         <svg width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle me-1"
@@ -67,11 +67,11 @@
                                         <path
                                             d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z" />
                                     </svg>
-                                    Passwort
+                                    {{ __("Password") }}
                                 </label>
                                 <input id="password" type="password"
                                     class="form-control form-control-lg @error('password') is-invalid @enderror"
-                                    name="password" required autocomplete="current-password" placeholder="Ihr Passwort">
+                                    name="password" required autocomplete="current-password" placeholder="{{ __("Your Password") }}">
                                 @error('password')
                                     <div class="invalid-feedback">
                                         <svg width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle me-1"
@@ -90,7 +90,7 @@
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                                     <label class="form-check-label" for="remember">
-                                        Angemeldet bleiben
+                                        {{ __("Stay Logged-in") }}
                                     </label>
                                 </div>
                             </div>
@@ -105,7 +105,7 @@
                                         <path fill-rule="evenodd"
                                             d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
                                     </svg>
-                                    Anmelden
+                                    {{ __("Sign-In") }}
                                 </button>
                             </div>
 
@@ -119,7 +119,7 @@
                                             <path
                                                 d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
                                         </svg>
-                                        Passwort vergessen?
+                                        {{ __("Forgot Password?") }}
                                     </a>
                                 </div>
                             @endif
@@ -130,7 +130,7 @@
                 <!-- Register Link -->
                 @if (Route::has('register'))
                     <div class="text-center mt-4">
-                        <p class="text-muted mb-2">Noch kein Konto?</p>
+                        <p class="text-muted mb-2">{{ __("No account as yet?") }}</p>
                         <a href="{{ route('register') }}" class="btn btn-outline-primary">
                             <svg width="16" height="16" fill="currentColor" class="bi bi-person-plus me-2" viewBox="0 0 16 16">
                                 <path
@@ -138,7 +138,7 @@
                                 <path fill-rule="evenodd"
                                     d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z" />
                             </svg>
-                            Jetzt registrieren
+                            {{ __("Register Now") }}
                         </a>
                     </div>
                 @endif
@@ -150,7 +150,7 @@
                             <path fill-rule="evenodd"
                                 d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
                         </svg>
-                        Zurück zur Startseite
+                        {{ __("Back to Homepage") }}
                     </a>
                 </div>
             </div>
