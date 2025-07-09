@@ -36,7 +36,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group mb-3">
-                                        <label for="name" class="form-label">{{ __("Name of Institution") }}<strong> *</strong></label>
+                                        <label for="name" class="form-label">{{ __("Institution Name") }}<span class="text-danger"> *</span></label>
                                         <input type="text" class="form-control @error('name') is-invalid @enderror"
                                             id="name" name="name" value="{{ old('name') }}" required>
                                         <div class="form-text">
@@ -45,7 +45,7 @@
                                     </div>
 
                                     <div class="form-group mb-3">
-                                        <label for="type" class="form-label">Typ: <strong>*</strong></label>
+                                        <label for="type" class="form-label">{{ __("Institution Type") }}<span class="text-danger"> *</span></label>
                                         <select class="form-control @error('type') is-invalid @enderror" id="type" name="type" required>
                                             <option value="">{{ __("Please select …") }}</option>
                                             <option value="{{ Institution::TYPE_CLIENT}}" {{ old('type') == Institution::TYPE_CLIENT ? 'selected' : '' }}>{{ __("Client") }}</option>
@@ -58,7 +58,7 @@
                                     </div>
 
                                     <div class="form-group mb-3">
-                                        <label for="contact_information" class="form-label">{{ __("Contact Information") }}<strong> *</strong></label>
+                                        <label for="contact_information" class="form-label">{{ __("Contact Information") }}<span class="text-danger"> *</span></label>
                                         <textarea class="form-control @error('contact_information') is-invalid @enderror"
                                             name="contact_information" rows="3" required>{{ old('contact_information') }}</textarea>
                                         <div class="form-text">
@@ -66,7 +66,7 @@
                                         </div>
                                     </div>
                                     <div class="form-text mb-3">
-                                        <strong>* </strong>{{ __("Mandatory Field") }}
+                                        <span class="text-danger">* </span>{{ __("Mandatory Field") }}
                                     </div>
                                 </div>
                             </div>
