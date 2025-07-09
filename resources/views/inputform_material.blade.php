@@ -46,8 +46,8 @@
                             </div>
 
                             <div class="mb-5">
-                                <label for="material_name" class="form-label">{{ __("Material") }}<span
-                                        class="text-danger"> *</span></label>
+                                <label for="material_name" class="form-label">{{ __("Material") }}
+                                        <span class="text-danger"> *</span></label>
                                 <input type="text" class="form-control" id="material_name" name="material_name"
                                     value="{{ old('material_name') }}" required placeholder="{{ __("Specify Material Name …") }}" />
                                 <div class="form-text"></div>
