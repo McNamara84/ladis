@@ -59,7 +59,7 @@
                             </div>
 
                             <div class="d-flex justify-content-end gap-2">
-                                <button type="submit" class="btn btn-primary">{{ __("Save") }}</button>
+                                <button type="submit" class="btn btn-primary">{{ __("Submit") }}</button>
                                 <a href="{{ url()->previous() }}" class="btn btn-secondary">{{ __("Cancel") }}</a>
                             </div>
 
