@@ -12,6 +12,7 @@ We are developing our own information system as part of the P11 laboratory. A sp
 
 ## Features
 
+- **Overview lists:** All registered institutions
 - **User-friendly input forms:**
   - Add new **materials**
   - Add new **institutions**
