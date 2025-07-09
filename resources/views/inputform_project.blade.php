@@ -65,7 +65,7 @@
                                 </button>
 
                                 <button type="submit" class="btn btn-primary text-center">
-                                    {{ __("Add Project") }}
+                                    {{ __("Submit") }}
                                 </button>
                             </div>
 
