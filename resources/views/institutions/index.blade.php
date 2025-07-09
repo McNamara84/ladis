@@ -60,6 +60,8 @@
                 </tbody>
             </table>
         </div>
-        <a href="{{ url('/institutions/create') }}" class="btn btn-primary mt-3">Institution hinzufügen</a>
+        @auth
+            <a href="{{ url('/institutions/create') }}" class="btn btn-primary mt-3">Institution hinzufügen</a>
+        @endauth
     </div>
 @endsection
