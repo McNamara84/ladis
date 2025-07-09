@@ -206,19 +206,19 @@
                     <div class="col-md-3 text-md-end">
                         <ul class="list-inline mb-0" role="list">
                             <li class="list-inline-item">
-                                <a href="#">
-                                    <x-icon icon="bi-github" />
-                                    <span class="visually-hidden">{{ $appName }} auf GitHub</span>
+                                <a href="{{ $appRepoURL }}">
+                                    <x-icon icon="{{ $appRepoIcon }}" />
+                                    <span class="visually-hidden">{{ $appName }} auf {{ $appRepoPlatformName }}</span>
                                 </a>
                             </li>
                             <li class="list-inline-item">
-                                <a href="#">
+                                <a href="#" class="disabled">
                                     <x-icon icon="bi-mastodon" />
                                     <span class="visually-hidden">{{ $appName }} auf Mastodon</span>
                                 </a>
                             </li>
                             <li class="list-inline-item">
-                                <a href="#">
+                                <a href="#" class="disabled">
                                     <x-icon icon="bi-rss-fill" />
                                     <span class="visually-hidden">{{ $appName }} RSS Feed</span>
                                 </a>
