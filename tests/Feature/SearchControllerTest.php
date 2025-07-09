@@ -181,6 +181,7 @@ class SearchControllerTest extends TestCase
         $response->assertDontSee('BarDevice');
     }
 
+
     public function test_filter_by_weight_range_returns_correct_devices(): void
     {
         $inst = Institution::create([
@@ -208,5 +209,34 @@ class SearchControllerTest extends TestCase
         $response->assertStatus(200);
         $response->assertSee('HeavyDevice');
         $response->assertDontSee('LightDevice');
+    }
+
+    public function test_filter_by_year_range_returns_correct_devices(): void
+    {
+        $inst = Institution::create([
+            'name' => 'Year Inst',
+            'type' => Institution::TYPE_MANUFACTURER,
+            'contact_information' => 'w@inst.de',
+        ]);
+
+        $youngest = new Device();
+        $youngest->institution_id = $inst->id;
+        $youngest->name = 'youngestDevice';
+        $youngest->beam_type = Device::BEAM_POINT;
+        $youngest->year = 2020;
+        $youngest->save();
+
+        $oldest = new Device();
+        $oldest->institution_id = $inst->id;
+        $oldest->name = 'oldestDevice';
+        $oldest->beam_type = Device::BEAM_POINT;
+        $oldest->year = 1950;
+        $oldest->save();
+
+        $response = $this->get('/adv-search/result?advanced=1&q=Device&year_min=1950&year_max=1960');
+
+        $response->assertStatus(200);
+        $response->assertSee('oldestDevice');
+        $response->assertDontSee('youngestDevice');
     }
 }
