@@ -95,13 +95,13 @@ return [
     'g00' => 'Please confirm your password before continuing.',
 
     /**
-     * --- views/layouts/confirm.blade.php ---
+     * --- views/layouts/login.blade.php ---
      */
 
     'h00' => 'Sign-in into your {{ :appName }} account.',
 
     /**
-     * --- views/layouts/confirm.blade.php ---
+     * --- views/layouts/register.blade.php ---
      */
 
     'i00' => 'Create your {{ :appName }} account.',
@@ -115,5 +115,13 @@ return [
     'j01' => 'Before proceeding, please check your email for a verification link.',
     'j02' => 'If you did not receive the email',
     'j03' => 'click here to request another',
+
+    /**
+     * --- views/layouts/inputform_institution.blade.php ---
+     */
+
+    'k00' => 'Please specify formal institution name.',
+    'k01' => 'Please choose the correct institution type.',
+    'k02' => 'Please add contact information, e.g. a website link.',
 
 ];
