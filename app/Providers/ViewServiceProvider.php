@@ -27,5 +27,11 @@ class ViewServiceProvider extends ServiceProvider
         View::share('appVersion', config('app.version'));
         View::share('appName', config('app.name'));
         View::share('appTagline', "Datenbank zum Einsatz von Lasertechnik in der Restaurierung.");
+        // ToDo: Get these values from the repo or at least from env/config
+        View::share('appLicenseHolder', 'Fachhochschule Potsdam (FHP)<br>University of Applied Sciences');
+        View::share('appLicenseHolderURL', 'https://fh-potsdam.de');
+        View::share('appLicenseName', 'GNU General Public License v3');
+        View::share('appLicenseShortName', 'GPL v3');
+        View::share('appLicenseURL', 'https://www.gnu.org/licenses/gpl-3.0.html#license-text');
     }
 }
