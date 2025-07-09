@@ -74,4 +74,34 @@ class LinkTest extends TestCase
 
         $this->assertFalse($component->isActive());
     }
+
+    public function test_component_renders_correctly(): void
+    {
+        $view = $this->component(Link::class, [
+            'text' => 'Test Link',
+            'route' => 'frontpage',
+            'disabled' => false,
+            'icon' => ''
+        ]);
+
+        $view->assertSee('Test Link');
+        $view->assertSee(route('frontpage'));
+    }
+
+    public function test_component_renders_disabled_link(): void
+    {
+        $view = $this->component(Link::class, [
+            'text' => 'Disabled Link',
+            'route' => 'frontpage',
+            'disabled' => true
+        ]);
+
+        $view->assertSeeInOrder([
+            '<a',
+            'href="#"',
+            'disabled',
+            'aria-disabled="true"',
+            '</a>'
+        ]);
+    }
 }
