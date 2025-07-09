@@ -55,4 +55,23 @@ class LinkTest extends TestCase
 
         $this->assertEquals(route('frontpage'), $component->href());
     }
+
+    public function test_is_active_returns_true_for_current_route(): void
+    {
+        // Mock the current request to be on the 'frontpage' route
+        $this->get(route('frontpage'));
+
+        $component = new Link('Home', 'frontpage');
+
+        $this->assertTrue($component->isActive());
+    }
+
+    public function test_is_active_returns_false_for_different_route(): void
+    {
+        $this->get(route('frontpage'));
+
+        $component = new Link('Login', 'login');
+
+        $this->assertFalse($component->isActive());
+    }
 }
