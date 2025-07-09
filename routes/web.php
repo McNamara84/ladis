@@ -55,9 +55,12 @@ Route::get('/datenschutz', [PrivacyPolicyController::class, 'index'])->name('dat
 //    Route::get('/inputform', [InputFormController::class, 'index']);
 //});
 
-//Routes for inputform for devices
-Route::get('/devices/create', [InputFormDeviceController::class, 'index'])->name('inputform.index');
-Route::post('/devices/create', [InputFormDeviceController::class, 'store'])->name('inputform.store');
+// Routes for input form for devices (authenticated users only)
+Route::middleware('auth')->group(function () {
+    Route::get('/devices/create', [InputFormDeviceController::class, 'index'])->name('inputform.index');
+    Route::post('/devices/create', [InputFormDeviceController::class, 'store'])->name('inputform.store');
+    Route::delete('/devices/{device}', [DeviceController::class, 'destroy'])->name('devices.destroy');
+});
 
 Route::get('/impressum', [LegalNoticeController::class, 'index'])->name('impressum');
 
@@ -70,7 +73,6 @@ Route::post('/inputform_material', [MaterialInputController::class, 'store'])->n
 
 // Routes for lists
 Route::get('/devices/all', [DeviceController::class, 'index'])->name('devices.all');
-Route::delete('/devices/{device}', [DeviceController::class, 'destroy'])->name('devices.destroy');
 
 // TODO: Routes for details pages
 // Route::get('/devices/{id}', [InputFormController::class, 'show']);

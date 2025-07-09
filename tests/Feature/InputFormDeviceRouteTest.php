@@ -8,10 +8,10 @@ use Tests\TestCase;
 
 class InputFormDeviceRouteTest extends TestCase
 {
-    public function test_inputform_route_returns_successful_response(): void
+    public function test_inputform_route_requires_authentication(): void
     {
         $response = $this->get('/devices/create');
 
-        $response->assertStatus(200);
+        $response->assertRedirect('/login');
     }
 }
