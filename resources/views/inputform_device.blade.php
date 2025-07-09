@@ -275,7 +275,7 @@
 
                             <div class="form-group mt-4">
                                 <button type="reset" class="btn btn-secondary">{{ __("Reset Values") }}</button>
-                                <button type="submit" class="btn btn-primary">{{ __("Add Device") }}</button>
+                                <button type="submit" class="btn btn-primary">{{ __("Submit") }}</button>
                             </div>
                         </form>
                     </div>
