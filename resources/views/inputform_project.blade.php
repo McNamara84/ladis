@@ -31,7 +31,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="project_url" class="form-label">{{{ __("URL Adress") }}}<span class="text-danger"> *</span></label>
+                                <label for="project_url" class="form-label">{{ __("URL Adress") }}<span class="text-danger"> *</span></label>
                                 <input type="text" class="form-control" id="project_url" name="project_url" required
                                     placeholder="{{ __("Specify URL adress of project …") }}">
                                 <div class="form-text">
