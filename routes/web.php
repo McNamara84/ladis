@@ -71,6 +71,7 @@ Route::post('/inputform_material', [MaterialInputController::class, 'store'])->n
 
 // Routes for lists
 Route::get('/devices/all', [DeviceController::class, 'index'])->name('devices.all');
+Route::delete('/devices/{device}', [DeviceController::class, 'destroy'])->name('devices.destroy');
 
 // TODO: Routes for details pages
 // Route::get('/devices/{id}', [InputFormController::class, 'show']);
