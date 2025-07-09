@@ -20,6 +20,7 @@ We are developing our own information system as part of the P11 laboratory. A sp
 - **Admin Tools:** Create new Accounts via UI or enter `php artisan newuser <name> <email> <password>` in server terminal for easy user creation.
 - **Simple Search:** The simple search function in the main menu allows you to quickly search for device names, institution names, ...
 - **Advanced Search:** The advanced search allows you to search the database for specific attributes. Currently, device and institution names can be searched.
+- **Responsive UI:** Adapats to light and dark color scheme and supports various viewport sizes.
 
 ## Sitemap
 
@@ -141,4 +142,4 @@ Factories automatically generate sample data for models to simplify testing and 
 
 ## License
 
-This project is licensed under the GPLv3 License - see the [LICENSE file](https://github.com/McNamara84/ladis/blob/doc/code-license/LICENSE) for details.
+<!-- Pick a license and explain and link it here -->

@@ -42,21 +42,6 @@
                                     </div>
 
                                     <div class="form-group mb-3">
-                                        <label for="institution_id" class="form-label">Hersteller *</label>
-                                        <select class="form-control @error('institution_id') is-invalid @enderror" id="institution_id" name="institution_id" required>
-                                            <option value="" disabled hidden>Bitte wählen Sie den Hersteller aus</option>
-                                            @foreach ($manufacturers as $manufacturer)
-                                                <option value="{{ $manufacturer->id }}" {{ old('institution_id') == $manufacturer->id ? 'selected' : '' }}>
-                                                    {{ $manufacturer->name }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                        @error('institution_id')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-
-                                    <div class="form-group mb-3">
                                         <label for="year" class="form-label">Gerätejahr *</label>
                                         <input type="number" class="form-control @error('year') is-invalid @enderror"
                                             id="year" name="year" value="{{ old('year') }}" min="1900" max="2099" required>
