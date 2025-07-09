@@ -3,12 +3,17 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\PartialSurface;
 use App\Models\Device;
 use App\Models\Configuration;
-use App\Models\Process;
+use App\Models\Artifact;
+use App\Models\SampleSurface;
+use App\Models\DamagePattern;
+use App\Models\Condition;
+use App\Models\Material;
+use App\Models\Lens;
+
 
 class ProcessInputControllerTest extends TestCase
 {
