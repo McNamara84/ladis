@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdvancedSearchController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InputFormController;
+use App\Http\Controllers\InputFormInstitutionController;
 use App\Http\Controllers\LegalNoticeController;
 use App\Http\Controllers\MaterialInputController;
 use App\Http\Controllers\PrivacyPolicyController;
@@ -98,4 +99,8 @@ Route::middleware('auth')->group(function () {
 
     // Project management
     Route::get('/inputform_project', [ProjectInputController::class, 'index'])->name('projects.index');
+
+    // Institution management
+    Route::get('/inputform_institution', [InputFormInstitutionController::class, 'index'])->name('inputform_institution.index');
+    Route::post('/inputform_institution', [InputFormInstitutionController::class, 'store'])->name('inputform_institution.store');
 });
