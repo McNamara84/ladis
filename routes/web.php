@@ -16,6 +16,7 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserManagementController;
 use App\Http\Controllers\ProjectInputController;
 use App\Http\Controllers\MaterialInputController;
+use App\Http\Controllers\InstitutionController;
 
 // Landing page for guests
 Route::get('/', [WelcomeController::class, 'index']);
@@ -69,6 +70,14 @@ Route::get('/inputform_material', [MaterialInputController::class, 'index'])->na
 Route::post('/inputform_material', [MaterialInputController::class, 'store'])->name('inputform_material.store');
 
 
-//Route for input form for institution
-Route::get('/inputform_institution', [InputFormInstitutionController::class, 'index'])->name('inputform_institution.index');
-Route::post('/inputform_institution', [InputFormInstitutionController::class, 'store'])->name('inputform_institution.store');
+// Routes for institution input form
+Route::get('/institutions/create', [InputFormInstitutionController::class, 'index'])->name('inputform_institution.index');
+Route::post('/institutions/create', [InputFormInstitutionController::class, 'store'])->name('inputform_institution.store');
+
+// Institution overview lists
+Route::get('/institutions/manufacturers/all', [InstitutionController::class, 'index'])->defaults('category', 'manufacturers')->name('institutions.manufacturers');
+Route::get('/institutions/clients/all', [InstitutionController::class, 'index'])->defaults('category', 'clients')->name('institutions.clients');
+Route::get('/institutions/contractors/all', [InstitutionController::class, 'index'])->defaults('category', 'contractors')->name('institutions.contractors');
+
+// Delete institution (authenticated users only)
+Route::middleware('auth')->delete('/institutions/{institution}', [InstitutionController::class, 'destroy'])->name('institutions.destroy');

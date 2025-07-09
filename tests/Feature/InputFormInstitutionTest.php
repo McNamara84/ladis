@@ -28,7 +28,7 @@ class InputFormInstitutionTest extends TestCase
      */
     public function test_view_is_displayed_and_route_returns_successful_response(): void
     {
-        $response = $this->get('/inputform_institution');
+        $response = $this->get('/institutions/create');
 
         $response->assertStatus(200);
         $response->assertViewIs('inputform_institution');
@@ -48,10 +48,10 @@ class InputFormInstitutionTest extends TestCase
             'contact_information' => $this->faker->text(255)
         ];
 
-        $response = $this->withHeader('referer', '/inputform_institution')
-            ->post('/inputform_institution', $record);
+        $response = $this->withHeader('referer', '/institutions/create')
+            ->post('/institutions/create', $record);
 
-        $response->assertRedirect('/inputform_institution');
+        $response->assertRedirect('/institutions/create');
         $response->assertSessionHasNoErrors();
         $this->assertDatabaseHas('institutions', [
             'name' => $record['name'],
@@ -75,10 +75,10 @@ class InputFormInstitutionTest extends TestCase
             'contact_information' => $this->faker->text(255)
         ];
 
-        $response = $this->withHeader('referer', '/inputform_institution')
-            ->post('/inputform_institution', $record);
+        $response = $this->withHeader('referer', '/institutions/create')
+            ->post('/institutions/create', $record);
 
-        $response->assertRedirect('/inputform_institution');
+        $response->assertRedirect('/institutions/create');
         $response->assertSessionHasErrors('name');
         $this->assertDatabaseMissing('institutions', [
             'name' => $record['name'],
@@ -99,10 +99,10 @@ class InputFormInstitutionTest extends TestCase
             'contact_information' => $this->faker->text(255)
         ];
 
-        $response = $this->withHeader('referer', '/inputform_institution')
-            ->post('/inputform_institution', $record);
+        $response = $this->withHeader('referer', '/institutions/create')
+            ->post('/institutions/create', $record);
 
-        $response->assertRedirect('/inputform_institution');
+        $response->assertRedirect('/institutions/create');
         $response->assertSessionHasErrors('type');
         $this->assertDatabaseMissing('institutions', [
             'name' => $record['name'],
@@ -124,10 +124,10 @@ class InputFormInstitutionTest extends TestCase
             'contact_information' => null
         ];
 
-        $response = $this->withHeader('referer', '/inputform_institution')
-            ->post('/inputform_institution', $record);
+        $response = $this->withHeader('referer', '/institutions/create')
+            ->post('/institutions/create', $record);
 
-        $response->assertRedirect('/inputform_institution');
+        $response->assertRedirect('/institutions/create');
         $response->assertSessionHasErrors('contact_information');
         $this->assertDatabaseMissing('institutions', [
             'name' => $record['name'],
@@ -148,10 +148,10 @@ class InputFormInstitutionTest extends TestCase
             'contact_information' => $this->faker->text(255)
         ];
 
-        $response = $this->withHeader('referer', '/inputform_institution')
-            ->post('/inputform_institution', $record);
+        $response = $this->withHeader('referer', '/institutions/create')
+            ->post('/institutions/create', $record);
 
-        $response->assertRedirect('/inputform_institution');
+        $response->assertRedirect('/institutions/create');
         $response->assertSessionHasErrors('type');
         $this->assertDatabaseMissing('institutions', [
             'name' => $record['name'],
