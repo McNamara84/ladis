@@ -8,9 +8,10 @@ return [
      */
 
     // Footer
-    '000' => 'Datenbank für Reinigungslaser in der Oberflächenrestaurierung<br>Studentisches Projekt an der FH Potsdam<br>
-        <a href=":link00">Datenschutzerklärung</a>',
-    '001' => 'Vorname Nachname, Vorname Nachname, …<br>Vorname Nachname, Vorname Nachname, …',
+    '000' => '{{ :appName }} auf {{ :appRepo }}',
+    '001' => '{{ :appName }} auf Mastodon',
+    '002' => '{{ :appName }} RSS Feed',
+    '003' => '{{ :appName }} wird unter der <a href="{{ :appLicenseURL }}">{{ :appLicenseName }}</a> bereitgestellt.',
 
     /**
      * --- views/welcome.blade.php ---
@@ -95,13 +96,13 @@ return [
     'g00' => 'Vor dem Fortfahren bitte Passwort bestätigen.',
 
     /**
-     * --- views/layouts/confirm.blade.php ---
+     * --- views/layouts/login.blade.php ---
      */
 
     'h00' => 'Melden Sie sich in Ihrem {{ :appName }}-Konto an.',
 
     /**
-     * --- views/layouts/confirm.blade.php ---
+     * --- views/layouts/register.blade.php ---
      */
 
     'i00' => 'Erstellen Sie Ihr {{ :appName }}-Konto.',
@@ -115,5 +116,13 @@ return [
     'j01' => 'Überprüfen Sie Ihre E-Mail vor dem Fortfahren auf einen Bestätigungslink.',
     'j02' => 'Sollten Sie keine E-Mail erhalten haben',
     'j03' => 'klicken Sie hier, um eine erneut anzufragen',
+
+    /**
+     * --- views/layouts/inputform_institution.blade.php ---
+     */
+
+    'k00' => 'Bitte formalen Namen der Institution angeben.',
+    'k01' => 'Bitte passenden Institutionstyp auswählen.',
+    'k02' => 'Bitte Kontaktinformation angeben, z.B. einen Webseitenlink.',
 
 ];
