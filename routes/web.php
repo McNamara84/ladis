@@ -5,7 +5,7 @@ use App\Http\Controllers\InputFormInstitutionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\WelcomeController;
-use App\Http\Controllers\InputFormController;
+use App\Http\Controllers\InputFormDeviceController;
 use App\Http\Controllers\LegalNoticeController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\PrivacyPolicyController;
@@ -56,8 +56,8 @@ Route::get('/datenschutz', [PrivacyPolicyController::class, 'index'])->name('dat
 //});
 
 //Routes for inputform for devices
-Route::get('/devices/create', [InputFormController::class, 'index'])->name('inputform.index');
-Route::post('/devices/create', [InputFormController::class, 'store'])->name('inputform.store');
+Route::get('/devices/create', [InputFormDeviceController::class, 'index'])->name('inputform.index');
+Route::post('/devices/create', [InputFormDeviceController::class, 'store'])->name('inputform.store');
 
 Route::get('/impressum', [LegalNoticeController::class, 'index'])->name('impressum');
 
