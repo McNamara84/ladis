@@ -133,4 +133,4 @@ Factories automatically generate sample data for models to simplify testing and 
 
 ## License
 
-This project is licensed under the GPLv3 License - see the [LICENSE file]([LICENSE](https://github.com/McNamara84/ladis/blob/doc/code-license/LICENSE)) for details.
+This project is licensed under the GPLv3 License - see the [LICENSE file](https://github.com/McNamara84/ladis/blob/doc/code-license/LICENSE) for details.
