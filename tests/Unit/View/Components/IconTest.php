@@ -50,4 +50,25 @@ class IconTest extends TestCase
 
         $this->assertEquals('singleword', $prefixMethod->invoke($component));
     }
+
+    public function test_base_class_for_bootstrap_icons(): void
+    {
+        $component = new Icon('bi-home');
+
+        $this->assertEquals('bi', $component->baseClass());
+    }
+
+    public function test_base_class_for_unknown_prefix(): void
+    {
+        $component = new Icon('unknown-icon');
+
+        $this->assertEquals('icon', $component->baseClass());
+    }
+
+    public function test_base_class_for_ladis_logo_special_case(): void
+    {
+        $component = new Icon('ladis-logo');
+
+        $this->assertEquals('app-logo', $component->baseClass());
+    }
 }
