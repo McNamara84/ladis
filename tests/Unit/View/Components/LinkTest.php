@@ -19,4 +19,19 @@ class LinkTest extends TestCase
         $this->assertFalse($component->disabled);
         $this->assertEquals('', $component->icon);
     }
+
+    public function test_component_with_all_parameters(): void
+    {
+        $component = new Link(
+            text: 'Home',
+            route: 'welcome',
+            disabled: true,
+            icon: 'home'
+        );
+
+        $this->assertEquals('Home', $component->text);
+        $this->assertEquals('welcome', $component->route);
+        $this->assertTrue($component->disabled);
+        $this->assertEquals('home', $component->icon);
+    }
 }
