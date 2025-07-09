@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdvancedSearchController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\DeviceInputController;
 use App\Http\Controllers\InputFormController;
 use App\Http\Controllers\InputFormInstitutionController;
 use App\Http\Controllers\LegalNoticeController;

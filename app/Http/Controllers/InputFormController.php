@@ -6,20 +6,15 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use App\Models\Device;
-use App\Models\Institution;
 
-class DeviceInputController extends Controller
+class InputFormController extends Controller
 {
 
     public function index()
     {
         $pageTitle = 'Input Form - LADIS - FH Potsdam';
 
-        $manufacturers = Institution::where('type', Institution::TYPE_MANUFACTURER)
-            ->orderBy('name')
-            ->get();
-
-        return view('inputform_device', compact('pageTitle', 'manufacturers'));
+        return view('inputform_device', compact('pageTitle'));
     }
 
     /**
@@ -33,7 +28,6 @@ class DeviceInputController extends Controller
         $validatedData = $request->validate([
             // Basic values
             'name' => 'required|string|max:50|unique:devices,name',
-            'institution_id' => 'required|exists:institutions,id',
             'year' => 'nullable|integer|min:1900|max:2099',
             'build' => 'nullable|integer|in:0,1',
             'safety_class' => 'nullable|integer|min:1|max:4',
@@ -75,9 +69,14 @@ class DeviceInputController extends Controller
             'min_focal_length' => 'nullable|numeric|min:0',
             'max_focal_length' => 'nullable|numeric|min:0',
         ]);
+
+        // Add Institution ID (temporarily hardcoded)
+        // TODO: Later we get this from form
+        $validatedData['institution_id'] = 1; // Temporarily hardcoded
         
-        // Assign authenticated user as last editor
-        $validatedData['last_edit_by'] = auth()->id();
+        // Add User ID (temporarily hardcoded)
+        // TODO: Later we get this from Auth::user()
+        $validatedData['last_edit_by'] = 1; // Temporarily hardcoded
 
         // Catching errors during the database operation
         try {

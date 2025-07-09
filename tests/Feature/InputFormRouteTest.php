@@ -6,15 +6,18 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\Models\User;
 
-class DeviceInputFormRouteTest extends TestCase
+class InputFormRouteTest extends TestCase
 {
     use RefreshDatabase;
 
+    /**
+     * A basic feature test example.
+     */
     public function test_inputform_route_returns_successful_response(): void
     {
-        // Simulate a user being authenticated
-        $this->actingAs(User::factory()->create());
-        $response = $this->get('/inputform');
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/inputform');
 
         $response->assertStatus(200);
     }
