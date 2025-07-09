@@ -204,6 +204,10 @@ a .link-text {
 // Site Footer
 //
 
+.site-footer {
+    --bs-link-color-rgb: var(--bs-body-color);
+}
+
 .site-footer .bi {
     font-size: 1.5em;
 }
