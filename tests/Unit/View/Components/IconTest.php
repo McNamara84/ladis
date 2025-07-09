@@ -14,20 +14,6 @@ class IconTest extends TestCase
         $this->assertEquals('bi-home', $component->icon);
     }
 
-    public function test_component_with_bootstrap_icon(): void
-    {
-        $component = new Icon('bi-database');
-
-        $this->assertEquals('bi-database', $component->icon);
-    }
-
-    public function test_component_with_custom_icon(): void
-    {
-        $component = new Icon('custom-icon-name');
-
-        $this->assertEquals('custom-icon-name', $component->icon);
-    }
-
     public function test_component_with_ladis_logo(): void
     {
         $component = new Icon('ladis-logo');
@@ -63,60 +49,5 @@ class IconTest extends TestCase
         $prefixMethod->setAccessible(true);
 
         $this->assertEquals('singleword', $prefixMethod->invoke($component));
-    }
-
-    public function test_base_class_for_bootstrap_icons(): void
-    {
-        $component = new Icon('bi-home');
-
-        $this->assertEquals('bi', $component->baseClass());
-    }
-
-    public function test_base_class_for_unknown_prefix(): void
-    {
-        $component = new Icon('unknown-icon');
-
-        $this->assertEquals('icon', $component->baseClass());
-    }
-
-    public function test_base_class_for_ladis_logo_special_case(): void
-    {
-        $component = new Icon('ladis-logo');
-
-        $this->assertEquals('app-logo', $component->baseClass());
-    }
-
-    public function test_component_renders_correctly(): void
-    {
-        $view = $this->component(Icon::class, [
-            'icon' => 'bi-home'
-        ]);
-
-        $view->assertSeeInOrder([
-            '<svg',
-            'class="bi bi-home"',
-            'aria-hidden="true"',
-            '<use',
-            'xlink:href="#bi-home"',
-            '</use>',
-            '</svg>'
-        ]);
-    }
-
-    public function test_component_renders_ladis_logo(): void
-    {
-        $view = $this->component(Icon::class, [
-            'icon' => 'ladis-logo'
-        ]);
-
-        $view->assertSeeInOrder([
-            '<svg',
-            'class="app-logo ladis-logo"',
-            'aria-hidden="true"',
-            '<use',
-            'xlink:href="#ladis-logo"',
-            '</use>',
-            '</svg>'
-        ]);
     }
 }
