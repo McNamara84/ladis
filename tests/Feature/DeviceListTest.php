@@ -22,4 +22,15 @@ class DeviceListTest extends TestCase
         $response->assertViewIs('devices.index');
         $response->assertViewHas('devices');
     }
+
+    public function test_device_can_be_deleted(): void
+    {
+        $institution = Institution::factory()->create();
+        $device = Device::factory()->create(['institution_id' => $institution->id]);
+
+        $response = $this->delete(route('devices.destroy', $device));
+
+        $response->assertRedirect(route('devices.all'));
+        $this->assertModelMissing($device);
+    }
 }
