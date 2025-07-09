@@ -45,6 +45,14 @@ class SearchController extends Controller
             });
             $hasConditions = true;
         }
+        if (!$hasConditions) {
+            $hasConditions = $filterInstitution !== null
+                || $request->filled('weight_min')
+                || $request->filled('weight_max')
+                || $request->filled('year_min')
+                || $request->filled('year_max')
+                || ($cooling !== null && $cooling !== '');
+        }
 
         if ($hasConditions) {
             if ($filterInstitution) {
