@@ -39,6 +39,6 @@ class InstitutionController extends Controller
     {
         $institution->delete();
 
-        return redirect()->back()->with('success', 'Institution wurde geloescht.');
+        return redirect()->back()->with('success', 'Institution wurde gelöscht.');
     }
 }
