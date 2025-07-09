@@ -24,20 +24,20 @@ class LinkTest extends TestCase
     {
         $component = new Link(
             text: 'Home',
-            route: 'welcome',
+            route: 'frontpage',
             disabled: true,
             icon: 'home'
         );
 
         $this->assertEquals('Home', $component->text);
-        $this->assertEquals('welcome', $component->route);
+        $this->assertEquals('frontpage', $component->route);
         $this->assertTrue($component->disabled);
         $this->assertEquals('home', $component->icon);
     }
 
     public function test_href_returns_hash_when_disabled(): void
     {
-        $component = new Link('Test', 'welcome', disabled: true);
+        $component = new Link('Test', 'frontpage', disabled: true);
 
         $this->assertEquals('#', $component->href());
     }
