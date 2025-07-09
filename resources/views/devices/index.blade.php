@@ -65,5 +65,6 @@
                 </tbody>
             </table>
         </div>
+        <a href="{{ url('/devices/create') }}" class="btn btn-primary mt-3">Lasergerät hinzufügen</a>
     </div>
 @endsection
