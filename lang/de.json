@@ -193,7 +193,8 @@
     "Verify Email Adress": "E-Mail-Adresse bestätigen",
 
     "Add New Institution": "Neue Institution hinzufügen",
-    "Name of Institution": "Name der Institution",
+    "Institution Name": "Institutionname",
+    "Institution Type": "Institutionstyp",
     "Client": "Auftraggeber",
     "Contractor": "Auftragnehmer",
     "Manufacturer": "Hersteller",
