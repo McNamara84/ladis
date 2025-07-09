@@ -70,14 +70,14 @@ Route::get('/inputform_material', [MaterialInputController::class, 'index'])->na
 Route::post('/inputform_material', [MaterialInputController::class, 'store'])->name('inputform_material.store');
 
 
-// Routes for institution input form
-Route::get('/institutions/create', [InputFormInstitutionController::class, 'index'])->name('inputform_institution.index');
-Route::post('/institutions/create', [InputFormInstitutionController::class, 'store'])->name('inputform_institution.store');
+// Routes for institution input form (authenticated users only)
+Route::middleware('auth')->group(function () {
+    Route::get('/institutions/create', [InputFormInstitutionController::class, 'index'])->name('inputform_institution.index');
+    Route::post('/institutions/create', [InputFormInstitutionController::class, 'store'])->name('inputform_institution.store');
+    Route::delete('/institutions/{institution}', [InstitutionController::class, 'destroy'])->name('institutions.destroy');
+});
 
 // Institution overview lists
 Route::get('/institutions/manufacturers/all', [InstitutionController::class, 'index'])->defaults('category', 'manufacturers')->name('institutions.manufacturers');
 Route::get('/institutions/clients/all', [InstitutionController::class, 'index'])->defaults('category', 'clients')->name('institutions.clients');
 Route::get('/institutions/contractors/all', [InstitutionController::class, 'index'])->defaults('category', 'contractors')->name('institutions.contractors');
-
-// Delete institution (authenticated users only)
-Route::middleware('auth')->delete('/institutions/{institution}', [InstitutionController::class, 'destroy'])->name('institutions.destroy');
