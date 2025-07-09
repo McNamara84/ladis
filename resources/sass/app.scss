@@ -93,6 +93,7 @@ a.disabled {
     --bs-navbar-link-hover-color: #{$link-color};
     --bs-navbar-brand-color: var(--bs-body-color);
     --bs-navbar-brand-hover-color: #{$link-color};
+    --bs-navbar-active-color: var(--bs-navbar-link-color);
 }
 
 // Mobile Menu Button
@@ -121,6 +122,25 @@ a.disabled {
     display: inline-flex;
     flex-wrap: nowrap;
     align-items: center;
+}
+
+.link-text {
+    display: inline-block;
+}
+
+// Nav Items Active states
+.nav-link.active,
+.nav-item .dropdown-item.active,
+.nav-item .dropdown-item:active,
+// Target the parent element of the active dropdown item
+.nav-item.dropdown:has(.dropdown-item.active) .dropdown-toggle {
+    font-weight: #{$font-weight-medium};
+}
+
+.nav-item .dropdown-item.active,
+.nav-item .dropdown-item:active {
+    color: var(--bs-dropdown-link-color);
+    background-color: transparent;
 }
 
 //
