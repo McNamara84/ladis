@@ -10,86 +10,93 @@ class SearchController extends Controller
 {
     public function search(Request $request)
     {
-        $query = $request->input('q');
-        $advanced = $request->boolean('advanced'); // Check if the request is coming from the advanced search
+        $queryString = $request->input('q');
+        $advanced = $request->boolean('advanced');
         $institution = $request->input('institution_id');
-        $filterInstitution = $request->input('filter_institution_id');
-        $weightMin = $request->input('weight_min');
-        $weightMax = $request->input('weight_max');
-        $minYear = $request->input('year_min', Device::min('year'));
-        $maxYear = $request->input('year_max', Device::max('year'));
+        $filterInstId = $request->input('filter_institution_id');
+        $minWeightInput = $request->input('weight_min');
+        $maxWeightInput = $request->input('weight_max');
+        $minYearInput = $request->input('year_min');
+        $maxYearInput = $request->input('year_max');
         $cooling = $request->input('cooling');
 
-        $devices = collect();
         $devicesQuery = Device::query();
-        $hasConditions = false;
 
-        if ($advanced && ($query || $institution)) {
-            if ($query) {
-                $devicesQuery->where('name', 'like', "%{$query}%");
-                $hasConditions = true;
+        if ($advanced) {
+            if ($queryString) {
+                $devicesQuery->where('name', 'like', "%{$queryString}%");
             }
 
             if ($institution) {
                 $devicesQuery->whereHas('institution', function ($q) use ($institution) {
                     $q->where('name', 'like', "%{$institution}%");
                 });
-                $hasConditions = true;
             }
-        } elseif ($query) {
-            $devicesQuery->where(function ($q) use ($query) {
-                $q->where('name', 'like', "%{$query}%")
-                    ->orWhereHas('institution', function ($q2) use ($query) {
-                        $q2->where('name', 'like', "%{$query}%");
-                    });
+        } else {
+            if ($queryString) {
+                $devicesQuery->where(function ($q) use ($queryString) {
+                    $q->where('name', 'like', "%{$queryString}%")
+                        ->orWhereHas('institution', function ($q2) use ($queryString) {
+                            $q2->where('name', 'like', "%{$queryString}%");
+                        });
+                });
+            }
+        }
+
+        if ($filterInstId) {
+            $devicesQuery->where('institution_id', $filterInstId);
+        }
+
+        if ($minWeightInput !== null && $minWeightInput !== '') {
+            $devicesQuery->where('weight', '>=', $minWeightInput);
+        }
+
+        if ($maxWeightInput !== null && $maxWeightInput !== '') {
+            $devicesQuery->where('weight', '<=', $maxWeightInput);
+        }
+
+        if ($minYearInput !== null && $minYearInput !== '') {
+            $devicesQuery->where('year', '>=', $minYearInput);
+        }
+
+        if ($maxYearInput !== null && $maxYearInput !== '') {
+            $devicesQuery->where('year', '<=', $maxYearInput);
+        }
+
+        if ($cooling === '1') {
+            $devicesQuery->where('cooling', 1);
+        } elseif ($cooling === '0') {
+            $devicesQuery->where(function ($q) {
+                $q->where('cooling', 0)->orWhereNull('cooling');
             });
-            $hasConditions = true;
-        }
-        if (!$hasConditions) {
-            $hasConditions = $filterInstitution !== null
-                || $request->filled('weight_min')
-                || $request->filled('weight_max')
-                || $request->filled('year_min')
-                || $request->filled('year_max')
-                || ($cooling !== null && $cooling !== '');
         }
 
-        if ($hasConditions) {
-            if ($filterInstitution) {
-                $devicesQuery->where('institution_id', $filterInstitution);
-            }
+        $hasConditions = $queryString || $institution || $filterInstId ||
+            $request->filled('weight_min') || $request->filled('weight_max') ||
+            $request->filled('year_min') || $request->filled('year_max') ||
+            $request->has('cooling');
 
-            if ($weightMin !== null && $weightMin !== '') {
-                $devicesQuery->where('weight', '>=', $weightMin);
-            }
-
-            if ($weightMax !== null && $weightMax !== '') {
-                $devicesQuery->where('weight', '<=', $weightMax);
-            }
-
-            if ($minYear !== null && $minYear !== '') {
-                $devicesQuery->where('year', '>=', $minYear);
-            }
-
-            if ($maxYear !== null && $maxYear !== '') {
-                $devicesQuery->where('year', '<=', $maxYear);
-            }
-
-            if ($cooling === '1') {
-                $devicesQuery->where('cooling', '==', 1);
-            } elseif ($cooling === '0') {
-                $devicesQuery->where('cooling', '==', 0);
-                $devicesQuery->where('cooling', '==', null); // TODO: those devices with no information for cooling are added categorised under the devices with no coolers - the descision needs to be validated by stakeholders
-            }
-
-            $devices = $devicesQuery->get();
-        }
+        $devices = $hasConditions ? $devicesQuery->get() : collect();
 
         $pageTitle = 'Suchergebnisse';
         $institutions = Institution::orderBy('name')->get();
         $minWeight = Device::min('weight');
         $maxWeight = Device::max('weight');
+        $minYear = $minYearInput ?? Device::min('year');
+        $maxYear = $maxYearInput ?? Device::max('year');
 
-        return view('search.index', compact('devices', 'query', 'pageTitle', 'institutions', 'minWeight', 'maxWeight', 'minYear', 'maxYear', 'cooling'));
+        $query = $queryString; // preserve original variable name for the view
+
+        return view('search.index', compact(
+            'devices',
+            'query',
+            'pageTitle',
+            'institutions',
+            'minWeight',
+            'maxWeight',
+            'minYear',
+            'maxYear',
+            'cooling'
+        ));
     }
 }
