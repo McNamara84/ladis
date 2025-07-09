@@ -12,4 +12,11 @@ class DeviceController extends Controller
 
         return view('devices.index', compact('devices'));
     }
+
+    public function destroy(Device $device)
+    {
+        $device->delete();
+
+        return redirect()->route('devices.all')->with('success', 'Gerät wurde gelöscht.');
+    }
 }
