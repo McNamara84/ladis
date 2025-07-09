@@ -233,9 +233,10 @@
                         <p>{{ $appTagline }}</p>
                     </div>
                     <div class="col-md-6 text-md-end">
-                        <h6 class="fw-bold">LIZENZ {{ date('Y') }} FH Potsdam</h6>
-                        <p>
-                            {{ $appName }} wird unter <a href="#" class="disabled">LIZENZ</a> bereitgestellt. …
+                        <p><time datetime="{{ now()->year }}-01-01">{{ date('Y') }}</time> <a
+                                href="{{ $appLicenseHolderURL }}">{!! $appLicenseHolder !!}</a><br>
+                            {{ $appName }} wird unter der <a href="{{ $appLicenseURL }}">{{ $appLicenseName }}</a>
+                            bereitgestellt.
                         </p>
                     </div>
                 </div>
