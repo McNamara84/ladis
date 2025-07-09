@@ -34,4 +34,25 @@ class LinkTest extends TestCase
         $this->assertTrue($component->disabled);
         $this->assertEquals('home', $component->icon);
     }
+
+    public function test_href_returns_hash_when_disabled(): void
+    {
+        $component = new Link('Test', 'welcome', disabled: true);
+
+        $this->assertEquals('#', $component->href());
+    }
+
+    public function test_href_returns_hash_when_no_route(): void
+    {
+        $component = new Link('Test');
+
+        $this->assertEquals('#', $component->href());
+    }
+
+    public function test_href_returns_route_url(): void
+    {
+        $component = new Link('Home', 'frontpage');
+
+        $this->assertEquals(route('frontpage'), $component->href());
+    }
 }
