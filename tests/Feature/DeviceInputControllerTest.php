@@ -6,18 +6,16 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\Models\User;
 
-class InputFormControllerTest extends TestCase
+class DeviceInputControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * A basic feature test example.
-     */
     public function test_inputform_device_view_is_displayed(): void
     {
-        $user = User::factory()->create();
+        // Simulate a user being authenticated
+        $this->actingAs(User::factory()->create());
 
-        $response = $this->actingAs($user)->get('/inputform');
+        $response = $this->get('/inputform');
 
         $response->assertStatus(200);
         $response->assertViewIs('inputform_device');
