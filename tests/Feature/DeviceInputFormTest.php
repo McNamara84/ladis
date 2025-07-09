@@ -9,7 +9,7 @@ use App\Models\Device;
 use App\Models\Institution;
 use App\Models\User;
 
-class DeviceFormTest extends TestCase
+class DeviceInputFormTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
 
