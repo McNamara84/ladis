@@ -55,10 +55,9 @@ Route::get('/datenschutz', [PrivacyPolicyController::class, 'index'])->name('dat
 //    Route::get('/inputform', [InputFormController::class, 'index']);
 //});
 
-// GET route for inputform without authentication
-Route::get('/inputform', [InputFormController::class, 'index'])->name('inputform.index');
-// POST route for inputform submission
-Route::post('/inputform', [InputFormController::class, 'store'])->name('inputform.store');
+//Routes for inputform for devices
+Route::get('/devices/create', [InputFormController::class, 'index'])->name('inputform.index');
+Route::post('/devices/create', [InputFormController::class, 'store'])->name('inputform.store');
 
 Route::get('/impressum', [LegalNoticeController::class, 'index'])->name('impressum');
 
