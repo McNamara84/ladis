@@ -42,14 +42,14 @@ class ProcessInputControllerTest extends TestCase
     public function test_store_creates_process_and_redirects(): void
     {
         $artifact = Artifact::factory()->create();
-        $sampleSurface = SampleSurface::unguarded(callback: fn (): SampleSurface => SampleSurface::create(attributes: [
+        $sampleSurface = SampleSurface::unguarded(callback: fn(): SampleSurface => SampleSurface::create(attributes: [
             'name' => 'Test',
             'description' => 'desc',
             'artifacts_id' => $artifact->id,
 
         ]));
         $damagePattern = DamagePattern::factory()->create();
-        $condition = Condition::create(attributes:['damage_pattern_id' => $damagePattern->id]);
+        $condition = Condition::create(attributes: ['damage_pattern_id' => $damagePattern->id]);
         $result = Condition::create(attributes: ['damage_pattern_id' => $damagePattern->id]);
         $foundation = Material::factory()->create();
         $coating = Material::factory()->create();
@@ -76,7 +76,7 @@ class ProcessInputControllerTest extends TestCase
         ];
         $response = $this->withHeader(name: 'referer', value: '/inputform_process')
             ->post(uri: '/inputform_process', data: $data);
-        
+
         $response->assertRedirect(uri: 'inputform_process');
         $this->assertDatabaseHas(table: 'processes', data: [
             'partial_surface_id' => $partialSurface->id,
