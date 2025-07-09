@@ -71,4 +71,38 @@ class IconTest extends TestCase
 
         $this->assertEquals('app-logo', $component->baseClass());
     }
+
+    public function test_component_renders_correctly(): void
+    {
+        $view = $this->component(Icon::class, [
+            'icon' => 'bi-home'
+        ]);
+
+        $view->assertSeeInOrder([
+            '<svg',
+            'class="bi bi-home"',
+            'aria-hidden="true"',
+            '<use',
+            'xlink:href="#bi-home"',
+            '</use>',
+            '</svg>'
+        ]);
+    }
+
+    public function test_component_renders_ladis_logo(): void
+    {
+        $view = $this->component(Icon::class, [
+            'icon' => 'ladis-logo'
+        ]);
+
+        $view->assertSeeInOrder([
+            '<svg',
+            'class="app-logo ladis-logo"',
+            'aria-hidden="true"',
+            '<use',
+            'xlink:href="#ladis-logo"',
+            '</use>',
+            '</svg>'
+        ]);
+    }
 }
