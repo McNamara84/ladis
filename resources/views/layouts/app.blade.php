@@ -126,7 +126,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('devices.create') }}">
+                                <a class="nav-link" href="{{ route('devices.index') }}">
                                     Eingabemaske
                                 </a>
                             </li>
