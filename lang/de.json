@@ -19,6 +19,14 @@
     "Logout": "Logout",
     "LICENSE": "LIZENZ",
     "Potsdam UAS": "FH Potsdam",
+    "Data": "Daten",
+    "Homepage": "Startseite",
+    "FAQ": "FAQ",
+    "The Project": "Das Projekt",
+    "Datenschutzerklärung": "Privacy Policy",
+    "Terms of Use": "Nutzungsbedingungen",
+    "Site Notice": "Impressum",
+    "Contact": "Kontakt",
     
     "Recorded Data": "Erfasste Daten",
     "Statistics": "Statistiken",
@@ -28,6 +36,9 @@
     "Laser Devices": "Lasergeräte",
     "Data Sheets": "Messreihen",
     "Artifacts": "Artefakte",
+    "Institutions": "Institutionen",
+    "User": "Benutzer",
+    "Choose Language": "Sprache wählen",
 
     "Technical Parameters": "Technische Parameter",
     "Object and Project Documentation": "Objekt- und Projektdokumentation",
@@ -179,6 +190,15 @@
     "Having an account?": "Bereits ein Konto?",
     "Sign-In Now": "Jetzt anmelden",
 
-    "Verify Email Adress": "E-Mail-Adresse bestätigen"
+    "Verify Email Adress": "E-Mail-Adresse bestätigen",
+
+    "Add New Institution": "Neue Institution hinzufügen",
+    "Name of Institution": "Name der Institution",
+    "Client": "Auftraggeber",
+    "Contractor": "Auftragnehmer",
+    "Manufacturer": "Hersteller",
+    "Contact Information": "Kontaktinformation",
+    "Mandatory Field": "Pflichtfeld",
+    "Submit": "Hinzufügen"
 
 }
