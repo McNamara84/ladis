@@ -104,4 +104,16 @@ class LinkTest extends TestCase
             '</a>'
         ]);
     }
+
+    public function test_component_renders_with_icon(): void
+    {
+        $view = $this->component(Link::class, [
+            'text' => 'Home',
+            'icon' => 'bi-database',
+            'route' => 'frontpage'
+        ]);
+
+        $view->assertSee('has-icon');
+        $view->assertSeeInOrder(['<use', 'xlink:href="#bi-database"']);
+    }
 }
