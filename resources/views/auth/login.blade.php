@@ -23,7 +23,7 @@
                         <use xlink:href="#ladis-logo"></use>
                     </svg>
                     <h1 class="h3 fw-bold text-primary">{{ __("Sign-In") }}</h1>
-                    <p class="text-muted">{!! __("messages.h00", [":appName" => config('app.name')]) !!}</p>
+                    <p class="text-muted">{!! __("messages.h00", ["appName" => config('app.name')]) !!}</p>
                 </div>
 
                 <!-- Login Card -->
