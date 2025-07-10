@@ -142,4 +142,44 @@ return [
 
     'n00' => 'Required fields are marked with an <span class="text-danger">*</span> asterisk.',
 
+    /**
+     * --- views/site/about.blade.php ---
+     */
+
+    'o00' => 'Optimisation of Laser Technology for Cleaning and Desinfection of Historical Surfaces (AZ 35765/01)',
+    'o01' => 'A Research Project of the Saxony-Anhalt Cultural Foundation',
+    'o02' => 'Die Laserreinigung hat in den vergangenen Jahren einen immer höheren Stellenwert in der Restaurierung historischer
+                Oberflächen eingenommen. Um diese Technologie einem noch größeren Kreis anwendender Restaurator*innen zugänglich
+                zu machen, bedarf es eines systematischen Erfahrungstransfers, den das hier durch die <a href=":link0">Deutsche 
+                Bundesstiftung Umwelt (DBU)</a> unterstützte Projekt der <a href=":link1">Kulturstiftung Sachsen-Anhalt</a> befördern soll.',
+    'o03' => 'So wurden aktuell in der Denkmalpflege für verschiedene Reinigungsaufgaben <x-link route="devices.all" 
+                text="eingesetzte Lasergeräte" /> anhand von unterschiedlichen Musterflächen vergleichend getestet. Welches Gerät 
+                ist für welchen Zweck geeignet und was sind erfolgversprechende Einstellparamater? Im Mittepunkt der Betrachtungen 
+                stand der <x-link text="Halberstädter Dom" /> mit seinen stark verkrusteten Kalksteinoberflächen. Aber auch Sandsteine 
+                an den <x-link  text="Domen in Magdeburg und Halle" /> sowie Alabasteruntergründe wurden systematisch untersucht.',
+    'o04' => 'Ein wesentlicher Pfeiler für die systematische Erfassung umfassender Ergebnisse bildeten verschiedene Qualifikationsarbeiten 
+                im Studiengang <a  href=":link"> Konservierung und Restaurierung der FH Potsdam</a>. So wurden materialübergreifend auch 
+                verkruste oder mit Graffiti verschmutzte Holzoberflächen zum Gegenstand des Forschungsprojektes. Die für viele Anwender*innen 
+                interessanten Ergebnisse sind in vorbildlicher Weise in eine Datenbank im Sinne eines „Offenen Anwendungskataloges“ eingeflossen.',
+    'o05' => 'Ein erklärtes Ziel des Projekts ist ein detaillierter <x-link text="Anwendungs- und Einstellungskatalog" />, der
+                für typische Verschmutzungsbilder bei unterschiedlichen Materialien sowohl die Oberflächen- und Schadensbeschreibung
+                als auch die jeweils optimalen Einstellparameter für unterschiedliche Lasergeräte zusammenfasst.',
+    'o06' => 'Der Katalog wurde als fortschreibbare Datenbank konzipiert. Sie ist mit dem Ziel angelegt, eine kontinuierliche
+                Erweiterung durch weitere Fachanwender*innen zu ermöglichen.',
+    'o07' => 'Erstellt wurde die Datenbank von Studierenden im <a href=":link">Fachbereich Informationswissenschaften der Fachhochschule 
+                Potsdam</a> im Rahmen eines Semesterprojekts in enger Zusammenarbeit mit betreuenden Restauratorinnen.',
+    'o08' => 'Saxony-Anhalt Cultural Foundation',
+    'o09' => 'Construction Department "Halberstadt Dome", Mrs. Weigelt Röseler<br>Am Schloss 4, 39279 Leitzkau',
+    'o10' => 'Saxony-Anhalt State Office for Archeology and Historical Monument Preservation',
+    'o11' => 'Division for Built and Art Heritage Conservation<br>Department of Monument Exploration, Dip. Conservator Karsten Böhm<br>
+                Richard-Wagner-Str. 9, 06114 Halle (Saale)',
+    'o12' => 'Dip. Cons. Dr. Corinna Grimm-Remus',
+    'o13' => 'Am Schäferbrunnen 12, 39128 Magdeburg',
+    'o14' => 'Institute for Diagnostics and Conservation of Heritage in Saxony and Saxony-Anhalt e.V.',
+    'o15' => 'Domplatz 3, 06108 Halle',
+    'o16' => 'Ulrich Bauer Bornemann',
+    'o17' => 'Oberer Stephansberg 37, 96049 Bamberg',
+    'o18' => 'Counselor',
+    'o19' => 'Prof. Dr. Jeannine Meinhardt<br>Potsdam University of Applied Sciences<br>Kiepenheuerallee 5, 14469 Potsdam',
+
 ];
