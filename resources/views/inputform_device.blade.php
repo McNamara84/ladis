@@ -1,6 +1,6 @@
 {{-- Credits: View design and breakpoints auto-generated via ai model Claude Sonnet 4 --}}
 @extends('layouts.app')
-@section('title', 'Input Form: Device')
+@section('title', __('Input Form: Device'))
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
