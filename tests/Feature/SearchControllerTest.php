@@ -342,5 +342,18 @@ class SearchControllerTest extends TestCase
         $response->assertSee('DeviceWithYear');
         $response->assertDontSee('DeviceWithoutYear');
     }
+        //sicherstellen, dass ein PR mit neuen oder kaputten Parametern nicht gleich alles zerschießt
+        public function test_search_with_unknown_and_missing_parameters_is_robust(): void
+    {
+        // Keine Geräte anlegen, nur prüfen, dass keine Exception geworfen wird und die Seite korrekt lädt
+        $response = $this->get('/adv-search/result?foo=bar&year_min=&weight_max=');
+        $response->assertStatus(200);
+        $response->assertSee('Keine Ergebnisse gefunden.');
+
+        // Auch mit komplett fehlenden Parametern
+        $response2 = $this->get('/adv-search/result');
+        $response2->assertStatus(200);
+        $response2->assertSee('Keine Ergebnisse gefunden.');
+    }
 }
  
