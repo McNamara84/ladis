@@ -186,7 +186,7 @@
                                 <x-link route="faq" text="FAQ" disabled />
                             </li>
                             <li class="list-inline-item d-block d-md-inline-block">
-                                <x-link route="about" text="Das Projekt" disabled />
+                                <x-link route="site.about" text="Das Projekt" />
                             </li>
                             <li class="list-inline-item d-block d-md-inline-block">
                                 <x-link route="datenschutz" text="Datenschutzerklärung" />
