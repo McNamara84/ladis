@@ -48,8 +48,7 @@ class ProjectInputController extends Controller
 
         } catch (\Exception $e) {
             Log::error('Fehler beim Speichern des Projekts: ' . $e->getMessage(), [
-                'exception' => $e,
-                'input' => $request->all(),
+                'attributes' => $validatedData,
             ]);
             return redirect()->back()->withInput()
                 ->with('error', 'Fehler beim Speichern des Projekts: ' . $e->getMessage());

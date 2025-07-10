@@ -28,8 +28,10 @@
                             @endif
 
                             <div class="mb-3">
-                                <label for="person_id" class="form-label">Projektleitung <span class="text-danger">*</span></label>
-                                <select class="form-control @error('person_id') is-invalid @enderror" id="person_id" name="person_id" required>
+                                <label for="person_id" class="form-label">Projektleitung <span
+                                        class="text-danger">*</span></label>
+                                <select class="form-control @error('person_id') is-invalid @enderror" id="person_id"
+                                    name="person_id" required>
                                     <option disabled selected value="">Wählen Sie die Projektleitung aus</option>
                                     @foreach ($persons as $person)
                                         <option value="{{ $person->id }}">{{ $person->name }}</option>
@@ -38,8 +40,10 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="venue_id" class="form-label">Objektname <span class="text-danger">*</span></label>
-                                <select class="form-control @error('venue_id') is-invalid @enderror" id="venue_id" name="venue_id" required>
+                                <label for="venue_id" class="form-label">Objektname <span
+                                        class="text-danger">*</span></label>
+                                <select class="form-control @error('venue_id') is-invalid @enderror" id="venue_id"
+                                    name="venue_id" required>
                                     <option disabled selected value="">Wählen Sie den Objektnamen aus</option>
                                     @foreach ($venues as $venue)
                                         <option value="{{ $venue->id }}">{{ $venue->name }}</option>
@@ -49,8 +53,8 @@
 
                             <div class="mb-3">
                                 <label for="name" class="form-label">Name <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" required
-                                    placeholder="Projektname">
+                                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
+                                    name="name" required placeholder="Projektname">
                                 <div class="form-text">
                                     Bitte geben Sie eine eindeutige Bezeichnung für das Projekt an.
                                 </div>
@@ -59,8 +63,8 @@
                             <div class="mb-3">
                                 <label for="description" class="form-label">Beschreibung <span
                                         class="text-danger">*</span></label>
-                                <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description" required
-                                    rows="3" required placeholder="Projektbeschreibung"></textarea>
+                                <textarea class="form-control @error('description') is-invalid @enderror" id="description"
+                                    name="description" rows="3" required placeholder="Projektbeschreibung"></textarea>
                                 <div class="form-text">
                                     Bitte geben Sie eine Beschreibung für das Projekt an.
                                 </div>
@@ -68,17 +72,17 @@
 
                             <div class="mb-3">
                                 <label for="url" class="form-label">URL <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control @error('url') is-invalid @enderror" id="url" name="url" required
-                                    placeholder="Projekt-URL">
+                                <input type="text" class="form-control @error('url') is-invalid @enderror" id="url"
+                                    name="url" required placeholder="Projekt-URL">
                                 <div class="form-text">
                                     Bitte geben Sie eine eindeutige URL des Projektes an.
                                 </div>
                             </div>
 
                             <div class="mb-3">
-                                <label for="started_at" class="form-label">Beginn <span
-                                        class="text-danger">*</span></label>
-                                <input type="date" class="form-control @error('started_at') is-invalid @enderror" id="started_at" name="started_at" required>
+                                <label for="started_at" class="form-label">Beginn <span class="text-danger">*</span></label>
+                                <input type="date" class="form-control @error('started_at') is-invalid @enderror"
+                                    id="started_at" name="started_at" required>
                                 <div class="form-text">
                                     Bitte geben Sie das Startdatum des Projektes an.
                                 </div>
@@ -86,7 +90,8 @@
 
                             <div class="mb-3">
                                 <label for="ended_at" class="form-label">Ende <span class="text-danger">*</span></label>
-                                <input type="date" class="form-control @error('ended_at') is-invalid @enderror" id="ended_at" name="ended_at" required>
+                                <input type="date" class="form-control @error('ended_at') is-invalid @enderror"
+                                    id="ended_at" name="ended_at">
                                 @error('ended_at')
                                     <div class="invalid-feedback">
                                         {{ $message }}
