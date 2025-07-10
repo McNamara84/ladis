@@ -181,6 +181,80 @@ class SearchControllerTest extends TestCase
         $response->assertDontSee('BarDevice');
     }
 
+    public function test_filter_by_cooling_returns_only_matching_devices(): void
+    {
+        $cooling1 = Institution::create([
+            'name' => 'cooling1',
+            'type' => Institution::TYPE_MANUFACTURER,
+            'contact_information' => 'f@inst.de',
+        ]);
+         
+        $cooling2 = Institution::create([
+            'name' => 'cooling2',
+            'type' => Institution::TYPE_MANUFACTURER,
+            'contact_information' => 'o@inst.de',
+        ]);
+
+        $dev1 = new Device();
+        $dev1->institution_id = $cooling1->id;
+        $dev1->cooling = 1; // Assuming cooling is given
+        $dev1->name = 'FooDevice';
+        $dev1->beam_type = Device::BEAM_POINT;
+        $dev1->save();
+
+        $dev2 = new Device();
+        $dev2->institution_id = $cooling2->id;
+        $dev2->cooling = 0; // Assuming cooling is not given
+        $dev2->name = 'BarDevice';
+        $dev2->beam_type = Device::BEAM_POINT;
+        $dev2->save();
+
+        $response = $this->get('/adv-search/result?advanced=1&q=Device&cooling=1');
+
+        $response->assertStatus(200);
+        $response->assertSee('FooDevice');
+        $response->assertDontSee('BarDevice');
+    }
+
+    public function test_filter_by_cooling_returns_no_devices_when_none_match(): void
+    {
+        $inst = Institution::create([
+            'name' => 'NoMatch Inst',
+            'type' => Institution::TYPE_MANUFACTURER,
+            'contact_information' => 'no@match.de',
+        ]);
+
+        $device1 = new Device();
+        $device1->institution_id = $inst->id;
+        $device1->name = 'Device1';
+        $device1->beam_type = Device::BEAM_POINT;
+        $device1->cooling = 1;
+        $device1->save();
+
+        $device2 = new Device();
+        $device2->institution_id = $inst->id;
+        $device2->name = 'Device2';
+        $device2->beam_type = Device::BEAM_POINT;
+        $device2->cooling = 1;
+        $device2->save();
+
+        $device3 = new Device();
+        $device3->institution_id = $inst->id;
+        $device3->name = 'Device3';
+        $device3->beam_type = Device::BEAM_POINT;
+        $device3->cooling = 1;
+        $device3->save();
+
+        // Filter for devices without cooler (cooling=0), but all devices have cooling=1
+        $response = $this->get('/adv-search/result?advanced=1&q=Device&cooling=0');
+
+        $response->assertStatus(200);
+        $response->assertSee('Keine Ergebnisse gefunden.');
+        $response->assertDontSee('Device1');
+        $response->assertDontSee('Device2');
+        $response->assertDontSee('Device3');
+    }
+
     public function test_filter_by_weight_range_returns_correct_devices(): void
     {
         $inst = Institution::create([
@@ -209,4 +283,77 @@ class SearchControllerTest extends TestCase
         $response->assertSee('HeavyDevice');
         $response->assertDontSee('LightDevice');
     }
+
+    public function test_filter_by_year_range_returns_correct_devices(): void
+    {
+        $inst = Institution::create([
+            'name' => 'Year Inst',
+            'type' => Institution::TYPE_MANUFACTURER,
+            'contact_information' => 'w@inst.de',
+        ]);
+
+        $youngest = new Device();
+        $youngest->institution_id = $inst->id;
+        $youngest->name = 'youngestDevice';
+        $youngest->beam_type = Device::BEAM_POINT;
+        $youngest->year = 2020;
+        $youngest->save();
+
+        $oldest = new Device();
+        $oldest->institution_id = $inst->id;
+        $oldest->name = 'oldestDevice';
+        $oldest->beam_type = Device::BEAM_POINT;
+        $oldest->year = 1950;
+        $oldest->save();
+
+        $response = $this->get('/adv-search/result?advanced=1&q=Device&year_min=1950&year_max=1960');
+
+        $response->assertStatus(200);
+        $response->assertSee('oldestDevice');
+        $response->assertDontSee('youngestDevice');
+    }
+
+    public function test_filter_by_year_range_excludes_devices_with_null_year(): void
+    {
+        $inst = Institution::create([
+            'name' => 'Year Inst',
+            'type' => Institution::TYPE_MANUFACTURER,
+            'contact_information' => 'w@inst.de',
+        ]);
+
+        $deviceWithYear = new Device();
+        $deviceWithYear->institution_id = $inst->id;
+        $deviceWithYear->name = 'DeviceWithYear';
+        $deviceWithYear->beam_type = Device::BEAM_POINT;
+        $deviceWithYear->year = 2000;
+        $deviceWithYear->save();
+
+        $deviceWithoutYear = new Device();
+        $deviceWithoutYear->institution_id = $inst->id;
+        $deviceWithoutYear->name = 'DeviceWithoutYear';
+        $deviceWithoutYear->beam_type = Device::BEAM_POINT;
+        $deviceWithoutYear->year = null;
+        $deviceWithoutYear->save();
+
+        // Filter: nur Geräte zwischen 1990 und 2010
+        $response = $this->get('/adv-search/result?advanced=1&q=Device&year_min=1990&year_max=2010');
+
+        $response->assertStatus(200);
+        $response->assertSee('DeviceWithYear');
+        $response->assertDontSee('DeviceWithoutYear');
+    }
+        //sicherstellen, dass ein PR mit neuen oder kaputten Parametern nicht gleich alles zerschießt
+        public function test_search_with_unknown_and_missing_parameters_is_robust(): void
+    {
+        // Keine Geräte anlegen, nur prüfen, dass keine Exception geworfen wird und die Seite korrekt lädt
+        $response = $this->get('/adv-search/result?foo=bar&year_min=&weight_max=');
+        $response->assertStatus(200);
+        $response->assertSee('Keine Ergebnisse gefunden.');
+
+        // Auch mit komplett fehlenden Parametern
+        $response2 = $this->get('/adv-search/result');
+        $response2->assertStatus(200);
+        $response2->assertSee('Keine Ergebnisse gefunden.');
+    }
 }
+ 

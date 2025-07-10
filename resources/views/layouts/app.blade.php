@@ -90,7 +90,7 @@
                                     <span>{{ __("Data") }}</span>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><x-link class="dropdown-item" route="projects.index" text="{{ __("Projects") }}"
+                                    <li><x-link class="dropdown-item" route="inputform_project.index" text="{{ __("Projects") }}"
                                             icon="bi-rocket-takeoff" /></li>
                                     <li><x-link class="dropdown-item" route="inputform_institution.index"
                                             text="{{ __("Institutions") }}" icon="bi-bank2" /></li>

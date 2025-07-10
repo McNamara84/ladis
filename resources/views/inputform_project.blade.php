@@ -8,67 +8,104 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="mb-0">{{ __("Add New Project") }}</h4>
+                        <h4 class="mb-0">{{ $pageTitle }}</h4>
                     </div>
+
                     <div class="card-body">
-                        <form>
+                        <form method="POST" action="{{ route('inputform_project.store') }}">
+                            @csrf
+
+                            @if(session('error'))
+                                <div class="alert alert-danger">
+                                    {{ session('error') }}
+                                </div>
+                            @endif
+
+                            @if(session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
+
                             <div class="mb-3">
-                                <label for="project_name" class="form-label">{{ __("Project Title") }}<span class="text-danger"> *</span></label>
-                                <input type="text" class="form-control" id="project_name" name="project_name" required
-                                    placeholder="{{ __("Specify project title …") }}">
+                                <label for="person_id" class="form-label">Projektleitung <span
+                                        class="text-danger">*</span></label>
+                                <select class="form-control @error('person_id') is-invalid @enderror" id="person_id"
+                                    name="person_id" required>
+                                    <option disabled selected value="">Wählen Sie die Projektleitung aus</option>
+                                    @foreach ($persons as $person)
+                                        <option value="{{ $person->id }}">{{ $person->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="venue_id" class="form-label">Objektname <span
+                                        class="text-danger">*</span></label>
+                                <select class="form-control @error('venue_id') is-invalid @enderror" id="venue_id"
+                                    name="venue_id" required>
+                                    <option disabled selected value="">Wählen Sie den Objektnamen aus</option>
+                                    @foreach ($venues as $venue)
+                                        <option value="{{ $venue->id }}">{{ $venue->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="name" class="form-label">{{ __("Project Title") }}<span class="text-danger"> *</span></label>
+                                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
+                                    name="name" required placeholder="{{ __('Specify project title …') }}">
                                 <div class="form-text">
                                     {{ __("messages.f00") }}
                                 </div>
                             </div>
 
                             <div class="mb-3">
-                                <label for="project_description" class="form-label">{{ __("Description") }}<span class="text-danger"> *</span></label>
-                                <textarea class="form-control" id="project_description" name="project_description" required
-                                    rows="3" required placeholder="{{ __("Add project description …") }}"></textarea>
+                                <label for="description" class="form-label">{{ __("Description") }}<span
+                                        class="text-danger"> *</span></label>
+                                <textarea class="form-control @error('description') is-invalid @enderror" id="description"
+                                    name="description" rows="3" required placeholder="{{ __("Add project description …") }}"></textarea>
                                 <div class="form-text">
                                     {{ __("messages.f01") }}
                                 </div>
                             </div>
 
                             <div class="mb-3">
-                                <label for="project_url" class="form-label">{{ __("URL Adress") }}<span class="text-danger"> *</span></label>
-                                <input type="text" class="form-control" id="project_url" name="project_url" required
-                                    placeholder="{{ __("Specify URL adress of project …") }}">
+                                <label for="url" class="form-label">{{ __("URL Adress") }}<span class="text-danger"> *</span></label>
+                                <input type="text" class="form-control @error('url') is-invalid @enderror" id="url"
+                                    name="url" required placeholder="{{ __("Specify URL adress of project …") }}">
                                 <div class="form-text">
                                     {{ __("messages.f02") }}
                                 </div>
                             </div>
 
                             <div class="mb-3">
-                                <label for="project_started_at" class="form-label">{{ __("Start") }}<span class="text-danger"> *</span></label>
-                                <input type="date" class="form-control" id="project_started_at" name="project_started_at"
-                                    required placeholder="{{ __("Specify start date …") }}">
+                                <label for="started_at" class="form-label">{{ __("Start") }}<span class="text-danger"> *</span></label>
+                                <input type="date" class="form-control @error('started_at') is-invalid @enderror"
+                                    id="started_at" name="started_at" required>
                                 <div class="form-text">
                                     {{ __("messages.f03") }}
                                 </div>
                             </div>
 
                             <div class="mb-3">
-                                <label for="project_ended_at" class="form-label">{{ __("End") }}<span class="text-danger"> *</span></label>
-                                <input type="date" class="form-control" id="project_ended_at" name="project_ended_at"
-                                    required placeholder="{{ __("Specify end date …") }}">
+                                <label for="ended_at" class="form-label">{{ __("End") }}<span class="text-danger"> *</span></label>
+                                <input type="date" class="form-control @error('ended_at') is-invalid @enderror"
+                                    id="ended_at" name="ended_at">
+                                @error('ended_at')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                                 <div class="form-text">
                                     {{ __("messages.f04") }}
                                 </div>
                             </div>
 
-
-                            <!-- Group container for the two buttons -->
-                            <div class="d-flex justify-content-between align-items-center">
-                                <button type="reset" class="btn btn-danger text-center">
-                                    {{ __("Reset Values") }}
-                                </button>
-
-                                <button type="submit" class="btn btn-primary text-center">
-                                    {{ __("Submit") }}
-                                </button>
+                            <div class="d-flex justify-content-end gap-2">
+                                <button type="submit" class="btn btn-primary">{{ __("Save") }}</button>
+                                <a href="{{ url()->previous() }}" class="btn btn-secondary">{{ __("Cancel") }}</a>
                             </div>
-
 
                         </form>
                     </div>
