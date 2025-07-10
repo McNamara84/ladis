@@ -98,6 +98,12 @@
                                             icon="bi-lightning-charge" /></li>
                                     <li><x-link class="dropdown-item" route="inputform_material.index" text="{{ __("Material") }}"
                                             icon="bi-stack" /></li>
+                                    @auth
+                                        <li>
+                                            <x-link class="dropdown-item" route="inputform_image.index"
+                                                text="Image-Upload" icon="bi-stack" />
+                                        </li>
+                                    @endauth
                                 </ul>
                             </li>
                         </ul>
