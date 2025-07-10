@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Institutionen')
+@section('title', __('Institutions'))
 
 @section('content')
     <div class="container">
@@ -9,11 +9,11 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Kontaktinformation</th>
+                        <th>{{ __("ID") }}</th>
+                        <th>{{ __("Name") }}</th>
+                        <th>{{ __("Contact Information") }}</th>
                         @auth
-                            <th>Aktionen</th>
+                            <th>{{ __("Actions") }}</th>
                         @endauth
                     </tr>
                 </thead>
@@ -26,24 +26,24 @@
                             @auth
                                 <td>
                                     <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteInstitution{{ $institution->id }}">
-                                        Löschen
+                                        {{ __("Delete") }}
                                     </button>
                                     <div class="modal fade" id="deleteInstitution{{ $institution->id }}" tabindex="-1" aria-labelledby="deleteInstitution{{ $institution->id }}Label" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="deleteInstitution{{ $institution->id }}Label">Institution löschen</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schliessen"></button>
+                                                    <h5 class="modal-title" id="deleteInstitution{{ $institution->id }}Label">{{ __("Delete Institution") }}</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ __('Close') }}"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    Soll die Institution <strong>{{ $institution->name }}</strong> wirklich gelöscht werden?
+                                                    {!! __("messages.l00", [":institutionName" => $institution->name]) !!}
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Abbrechen</button>
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __("Cancel") }}</button>
                                                     <form method="POST" action="{{ route('institutions.destroy', $institution->id) }}" class="d-inline">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger">Löschen</button>
+                                                        <button type="submit" class="btn btn-danger">{{ __("Delete") }}</button>
                                                     </form>
                                                 </div>
                                             </div>
@@ -54,14 +54,14 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="@auth 4 @else 3 @endauth">Keine Institutionen vorhanden.</td>
+                            <td colspan="@auth 4 @else 3 @endauth">{{ __("No institutions available.") }}</td>
                         </tr>
                     @endforelse
                 </tbody>
             </table>
         </div>
         @auth
-            <a href="{{ url('/institutions/create') }}" class="btn btn-primary mt-3">Institution hinzufügen</a>
+            <a href="{{ url('/institutions/create') }}" class="btn btn-primary mt-3">{{ __("Add Institution") }}</a>
         @endauth
     </div>
 @endsection
