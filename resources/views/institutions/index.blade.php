@@ -36,7 +36,7 @@
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ __('Close') }}"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    {!! __("messages.l00", [":institutionName" => $institution->name]) !!}
+                                                    {!! __("messages.l00", ["institutionName" => $institution->name]) !!}
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __("Cancel") }}</button>
