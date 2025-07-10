@@ -24,7 +24,8 @@
                         href="https://www.kulturstiftung-st.de">Kulturstiftung Sachsen-Anhalt</a> befördern soll. So
                     wurden aktuell
                     in
-                    der Denkmalpflege für verschiedene Reinigungsaufgaben <x-link text="eingesetzte Lasergeräte" />
+                    der Denkmalpflege für verschiedene Reinigungsaufgaben <x-link route="devices.all"
+                        text="eingesetzte Lasergeräte" />
                     anhand von
                     unterschiedlichen Musterflächen vergleichend getestet. Welches Gerät ist für welchen Zweck geeignet
                     und was sind
@@ -59,15 +60,15 @@
 
         <h2>Die Datenbank</h2>
         <p>Ein erklärtes Ziel des Projekts ist ein detaillierter <x-link text="Anwendungs- und Einstellungskatalog" />, der
-            für
-            typische
-            Verschmutzungsbilder unterschiedlicher Materialien sowohl die Oberflächen- und Schadensbeschreibung als auch die
+            für typische Verschmutzungsbilder unterschiedlicher Materialien sowohl die Oberflächen- und Schadensbeschreibung
+            als auch die
             jeweils optimalen Laser und deren Einstellparameter zusammenfasst.</p>
         <p>Der Katalog wurde als fortschreibbare Datenbank konzipiert. Sie ist mit dem Ziel angelegt, eine kontinuierliche
             Erweiterung durch weitere Fachanwender*innen zu ermöglichen.</p>
-        <p>Erstellt wurde die Datenbank von Studierenden im <a href="#">Fachbereich Informationswissenschaften der
-                Fachhochschule Potsdam</a> im Rahmen eines Semesterprojekts in enger Zusammenarbeit mit betreuenden
-            Restauratorinnen.</p>
+        <p>Erstellt wurde die Datenbank von Studierenden im <a
+                href="https://www.fh-potsdam.de/studium-weiterbildung/fachbereiche/fachbereich-informationswissenschaften">Fachbereich
+                Informationswissenschaften der Fachhochschule Potsdam</a> im Rahmen eines Semesterprojekts in enger
+            Zusammenarbeit mit betreuenden Restauratorinnen.</p>
 
         <h2>Projektleitung und Kooperationspartner</h2>
         <dl class="row">
