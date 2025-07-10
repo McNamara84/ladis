@@ -21,6 +21,7 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\ProcessInputController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\InstitutionController;
+use App\Http\Controllers\TermsOfUseController;
 
 // TODO/Conventions:
 // - Prefix all routes for authenticated users with /app
@@ -72,6 +73,8 @@ Route::get('/impressum', [LegalNoticeController::class, 'index'])->name('impress
 // About (the project) Page
 Route::get('/ladis', [AboutController::class, 'index'])->name('site.about');
 
+// Terms of use
+Route::get('/terms_of_use', [TermsOfUseController::class, 'index'])->name('terms_of_use');
 
 // ----------------------------
 // Login and logout routes
@@ -132,7 +135,7 @@ Route::middleware('auth')->group(function () {
     // Routes for artifacts
     Route::get('/inputform_artifact', [ArtifactInputController::class, 'index'])->name('inputform_artifact.index');
     Route::post('/inputform_artifact', [ArtifactInputController::class, 'store'])->name('inputform_artifact.store');
-    
+
     // GET Routes for image upload
     Route::get('/inputform_image', [ImageUploadController::class, 'index'])->name('inputform_image.index');
     // POST route for image upload
