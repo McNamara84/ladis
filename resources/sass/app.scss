@@ -177,6 +177,35 @@ a .link-text {
     max-width: 60ch;
 }
 
+// Utility class to maintain a vertical rhythm in flow content sections
+.flow>*+* {
+    margin-block-start: var(--flow-gap-start, 1.5em);
+    margin-block-end: var(--flow-gap-end, 1em);
+}
+
+//
+// Description List
+//
+dl.row dt,
+dl.row dd {
+    margin-block-end: 1.5em;
+}
+
+//
+// Figures & Figcaptions
+//
+.figure-caption {
+    margin-block-start: 1em;
+}
+
+.figure img {
+    transition: transform .5s ease;
+}
+
+.figure img:hover {
+    transform: scale(1.05);
+}
+
 //
 // Hero section – Flashy page intro component
 //
