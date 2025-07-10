@@ -50,6 +50,15 @@ Route::get('/', [WelcomeController::class, 'index'])->name('frontpage');
 Route::get('/adv-search', [AdvancedSearchController::class, 'index'])->name('advanced_search');
 Route::get('/adv-search/result', [SearchController::class, 'search'])->name('search_results');
 
+// Routes for lists
+Route::get('/devices/all', [DeviceController::class, 'index'])->name('devices.all');
+Route::get('/institutions/manufacturers/all', [InstitutionController::class, 'index'])->defaults('category', 'manufacturers')->name('institutions.manufacturers');
+Route::get('/institutions/clients/all', [InstitutionController::class, 'index'])->defaults('category', 'clients')->name('institutions.clients');
+Route::get('/institutions/contractors/all', [InstitutionController::class, 'index'])->defaults('category', 'contractors')->name('institutions.contractors');
+
+// TODO: Routes for details pages
+// Route::get('/devices/{id}', [InputFormController::class, 'show']);
+
 // Privacy policy
 Route::get('/datenschutz', [PrivacyPolicyController::class, 'index'])->name('datenschutz');
 
@@ -89,56 +98,19 @@ Route::middleware('auth')->group(function () {
     Route::get('/user-management/create', [UserManagementController::class, 'create'])->name('user-management.create');
     Route::post('/user-management/create', [UserManagementController::class, 'store'])->name('user-management.store');
     Route::delete('/user-management/{user}', [UserManagementController::class, 'destroy'])->name('user-management.destroy');
-});
-Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
-Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
-Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
-Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
-
-// Route for the Datenschutz (Data Protection) page
-Route::get('/datenschutz', [PrivacyPolicyController::class, 'index'])->name('datenschutz');
-
-// TODO: Setup authentication
-// Route for inputform with authentication
-
-// Route::middleware(['auth'])->group(function () {
-//    Route::get('/inputform', [InputFormController::class, 'index']);
-//});
-
-// Routes for input form for devices (authenticated users only)
-Route::middleware('auth')->group(function () {
+    // Routes for devices
     Route::get('/devices/create', [InputFormDeviceController::class, 'index'])->name('inputform.index');
     Route::post('/devices/create', [InputFormDeviceController::class, 'store'])->name('inputform.store');
     Route::delete('/devices/{device}', [DeviceController::class, 'destroy'])->name('devices.destroy');
-});
-
-Route::get('/impressum', [LegalNoticeController::class, 'index'])->name('impressum');
-
-// Device management
-// TODO: Name this appropiately instead of the current generic name
-Route::get('/inputform', [InputFormDeviceController::class, 'index'])->name('inputform.index');
-Route::post('/inputform', [InputFormDeviceController::class, 'store'])->name('inputform.store');
-
-// Material management
-Route::get('/inputform_material', [MaterialInputController::class, 'index'])->name('inputform_material.index');
-Route::post('/inputform_material', [MaterialInputController::class, 'store'])->name('inputform_material.store');
-
-// Routes for lists
-Route::get('/devices/all', [DeviceController::class, 'index'])->name('devices.all');
-
-// TODO: Routes for details pages
-// Route::get('/devices/{id}', [InputFormController::class, 'show']);
-// Project management
-Route::get('/inputform_project', [ProjectInputController::class, 'index'])->name('projects.index');
-
-// Routes for institution input form (authenticated users only)
-Route::middleware('auth')->group(function () {
+    // Routes for institutions
     Route::get('/institutions/create', [InputFormInstitutionController::class, 'index'])->name('inputform_institution.index');
     Route::post('/institutions/create', [InputFormInstitutionController::class, 'store'])->name('inputform_institution.store');
     Route::delete('/institutions/{institution}', [InstitutionController::class, 'destroy'])->name('institutions.destroy');
 });
 
-// Institution overview lists
-Route::get('/institutions/manufacturers/all', [InstitutionController::class, 'index'])->defaults('category', 'manufacturers')->name('institutions.manufacturers');
-Route::get('/institutions/clients/all', [InstitutionController::class, 'index'])->defaults('category', 'clients')->name('institutions.clients');
-Route::get('/institutions/contractors/all', [InstitutionController::class, 'index'])->defaults('category', 'contractors')->name('institutions.contractors');
+// Material management
+Route::get('/inputform_material', [MaterialInputController::class, 'index'])->name('inputform_material.index');
+Route::post('/inputform_material', [MaterialInputController::class, 'store'])->name('inputform_material.store');
+
+// Project management
+Route::get('/inputform_project', [ProjectInputController::class, 'index'])->name('projects.index');
