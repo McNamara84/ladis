@@ -19,7 +19,7 @@
                         </svg>
                     </div>
                     <h1 class="h3 fw-bold text-success">{{ __("Sign-Up") }}</h1>
-                    <p class="text-muted">{!! __("messages.i00", [":appName" => config('app.name')]) !!}</p>
+                    <p class="text-muted">{!! __("messages.i00", ["appName" => config('app.name')]) !!}</p>
                 </div>
 
                 <!-- Register Card -->
