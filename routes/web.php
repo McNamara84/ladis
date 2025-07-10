@@ -64,7 +64,6 @@ Route::get('/impressum', [LegalNoticeController::class, 'index'])->name('impress
 Route::get('/inputform_project', [ProjectInputController::class, 'index'])->name('inputform_project.index');
 Route::post('/inputform_project', [ProjectInputController::class, 'store'])->name('inputform_project.store');
 
-
 //Route for inputform for the materials
 Route::get('/inputform_material', [MaterialInputController::class, 'index'])->name('inputform_material.index');
 Route::post('/inputform_material', [MaterialInputController::class, 'store'])->name('inputform_material.store');
