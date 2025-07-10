@@ -305,7 +305,7 @@ class DeviceFormTest extends TestCase
 
         $response->assertStatus(200);
         $response->assertViewIs('inputform_device');
-        $response->assertSee('Neues Lasergerät hinzufügen');
+        $response->assertSee('Add New Laser Device');
     }
 
     public function test_handles_database_exceptions_gracefully(): void
