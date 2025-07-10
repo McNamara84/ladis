@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', __('Homepage'))
+
 @section('content')
     <!-- Hero section -->
     <div class="vh-section">
