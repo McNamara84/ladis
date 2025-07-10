@@ -3,19 +3,21 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-//use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\User;
 
 class MaterialInputFormRouteTest extends TestCase
 {
-
     use RefreshDatabase;
+
     /**
      * This method tests whether a view is displayed whenever the defined route is called.
      */
     public function test_inputform_material_view_is_displayed(): void
     {
-        $response = $this->get('/inputform_material');
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/inputform_material');
 
         $response->assertStatus(200);
         $response->assertViewIs('inputform_material');
@@ -26,7 +28,9 @@ class MaterialInputFormRouteTest extends TestCase
         $top = \App\Models\Material::create(['name' => 'Top']);
         $child = \App\Models\Material::create(['name' => 'Child', 'parent_id' => $top->id]);
 
-        $response = $this->get('/inputform_material');
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/inputform_material');
 
         $response->assertStatus(200);
         $materials = $response->viewData('materials');
