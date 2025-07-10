@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Input Form: Material')
+@section('title', __('Input Form: Material'))
 
 @section('content')
     <div class="container">
