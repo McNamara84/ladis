@@ -52,6 +52,9 @@ Route::get('/adv-search/result', [SearchController::class, 'search'])->name('sea
 
 // Routes for lists
 Route::get('/devices/all', [DeviceController::class, 'index'])->name('devices.all');
+Route::get('/institutions/manufacturers/all', [InstitutionController::class, 'index'])->defaults('category', 'manufacturers')->name('institutions.manufacturers');
+Route::get('/institutions/clients/all', [InstitutionController::class, 'index'])->defaults('category', 'clients')->name('institutions.clients');
+Route::get('/institutions/contractors/all', [InstitutionController::class, 'index'])->defaults('category', 'contractors')->name('institutions.contractors');
 
 // TODO: Routes for details pages
 // Route::get('/devices/{id}', [InputFormController::class, 'show']);
@@ -111,8 +114,3 @@ Route::post('/inputform_material', [MaterialInputController::class, 'store'])->n
 
 // Project management
 Route::get('/inputform_project', [ProjectInputController::class, 'index'])->name('projects.index');
-
-// Institution overview lists
-Route::get('/institutions/manufacturers/all', [InstitutionController::class, 'index'])->defaults('category', 'manufacturers')->name('institutions.manufacturers');
-Route::get('/institutions/clients/all', [InstitutionController::class, 'index'])->defaults('category', 'clients')->name('institutions.clients');
-Route::get('/institutions/contractors/all', [InstitutionController::class, 'index'])->defaults('category', 'contractors')->name('institutions.contractors');
