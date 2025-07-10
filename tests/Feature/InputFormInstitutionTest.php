@@ -5,12 +5,15 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\Models\Institution;
+use App\Models\User;
 use Faker\Factory;
 
 class InputFormInstitutionTest extends TestCase
 {
     use RefreshDatabase;
     protected $faker;
+
+    private User $user;
 
     /**
      * This protected method sets up a Faker instance so that all tests can use this instance.
@@ -21,6 +24,8 @@ class InputFormInstitutionTest extends TestCase
     {
         parent::setUp();
         $this->faker = Factory::create();
+
+        $this->user = User::factory()->create();
     }
     /**
      * Tests whether the institution input form view is accessible
@@ -28,7 +33,7 @@ class InputFormInstitutionTest extends TestCase
      */
     public function test_view_is_displayed_and_route_returns_successful_response(): void
     {
-        $response = $this->get('/inputform_institution');
+        $response = $this->actingAs($this->user)->get('/inputform_institution');
 
         $response->assertStatus(200);
         $response->assertViewIs('inputform_institution');
@@ -48,7 +53,7 @@ class InputFormInstitutionTest extends TestCase
             'contact_information' => $this->faker->text(255)
         ];
 
-        $response = $this->withHeader('referer', '/inputform_institution')
+        $response = $this->actingAs($this->user)->withHeader('referer', '/inputform_institution')
             ->post('/inputform_institution', $record);
 
         $response->assertRedirect('/inputform_institution');
@@ -75,7 +80,7 @@ class InputFormInstitutionTest extends TestCase
             'contact_information' => $this->faker->text(255)
         ];
 
-        $response = $this->withHeader('referer', '/inputform_institution')
+        $response = $this->actingAs($this->user)->withHeader('referer', '/inputform_institution')
             ->post('/inputform_institution', $record);
 
         $response->assertRedirect('/inputform_institution');
@@ -99,7 +104,7 @@ class InputFormInstitutionTest extends TestCase
             'contact_information' => $this->faker->text(255)
         ];
 
-        $response = $this->withHeader('referer', '/inputform_institution')
+        $response = $this->actingAs($this->user)->withHeader('referer', '/inputform_institution')
             ->post('/inputform_institution', $record);
 
         $response->assertRedirect('/inputform_institution');
@@ -124,7 +129,7 @@ class InputFormInstitutionTest extends TestCase
             'contact_information' => null
         ];
 
-        $response = $this->withHeader('referer', '/inputform_institution')
+        $response = $this->actingAs($this->user)->withHeader('referer', '/inputform_institution')
             ->post('/inputform_institution', $record);
 
         $response->assertRedirect('/inputform_institution');
@@ -148,7 +153,7 @@ class InputFormInstitutionTest extends TestCase
             'contact_information' => $this->faker->text(255)
         ];
 
-        $response = $this->withHeader('referer', '/inputform_institution')
+        $response = $this->actingAs($this->user)->withHeader('referer', '/inputform_institution')
             ->post('/inputform_institution', $record);
 
         $response->assertRedirect('/inputform_institution');
