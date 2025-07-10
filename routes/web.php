@@ -123,3 +123,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/inputform_material', [MaterialInputController::class, 'store'])->name('inputform_material.store');
 
 });
+
+
+// Project management
+Route::get('/inputform_project', [ProjectInputController::class, 'index'])->name('projects.index');
