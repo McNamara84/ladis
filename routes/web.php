@@ -89,17 +89,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/user-management/create', [UserManagementController::class, 'create'])->name('user-management.create');
     Route::post('/user-management/create', [UserManagementController::class, 'store'])->name('user-management.store');
     Route::delete('/user-management/{user}', [UserManagementController::class, 'destroy'])->name('user-management.destroy');
-});
-
-// TODO: Setup authentication
-// Route for inputform with authentication
-
-// Route::middleware(['auth'])->group(function () {
-//    Route::get('/inputform', [InputFormController::class, 'index']);
-//});
-
-// Routes for input form for devices (authenticated users only)
-Route::middleware('auth')->group(function () {
+    // Routes for devices
     Route::get('/devices/create', [InputFormDeviceController::class, 'index'])->name('inputform.index');
     Route::post('/devices/create', [InputFormDeviceController::class, 'store'])->name('inputform.store');
     Route::delete('/devices/{device}', [DeviceController::class, 'destroy'])->name('devices.destroy');
