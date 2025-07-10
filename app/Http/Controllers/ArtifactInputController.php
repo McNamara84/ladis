@@ -25,7 +25,7 @@ class ArtifactInputController extends Controller
 
         $data = [
             'location_id' => $validated['artifact_location_id'],
-            'name' => $validated['artifact_name'] ?? null,
+            'name' => $validated['artifact_name'],
             'inventory_number' => $validated['artifact_inventory_number'],
         ];
 
