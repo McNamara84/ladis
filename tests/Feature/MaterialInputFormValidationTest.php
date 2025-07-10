@@ -5,16 +5,26 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\Models\Material;
+use App\Models\User;
 
 class MaterialInputFormValidationTest extends TestCase
 {
     use RefreshDatabase;
 
+    private User $user;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->user = User::factory()->create();
+    }
+
     public function test_store_creates_material_and_redirects(): void
     {
         $name = 'Stein';
 
-        $response = $this->withHeader('referer', '/inputform_material')
+        $response = $this->actingAs($this->user)
+            ->withHeader('referer', '/inputform_material')
             ->post('/inputform_material', [
                 'material_name' => $name,
             ]);
@@ -32,7 +42,8 @@ class MaterialInputFormValidationTest extends TestCase
     {
         $name_non = '';
 
-        $response = $this->withHeader('referer', '/inputform_material')
+        $response = $this->actingAs($this->user)
+            ->withHeader('referer', '/inputform_material')
             ->post('/inputform_material', [
                 'material_name' => $name_non,
             ]);
@@ -48,7 +59,8 @@ class MaterialInputFormValidationTest extends TestCase
     {
         $name_non_valid = 'BeispielstringBeispielstringBeispielstringBeispiels';
 
-        $response = $this->withHeader('referer', '/inputform_material')
+        $response = $this->actingAs($this->user)
+            ->withHeader('referer', '/inputform_material')
             ->post('/inputform_material', [
                 'material_name' => $name_non_valid,
             ]);
@@ -63,7 +75,8 @@ class MaterialInputFormValidationTest extends TestCase
     {
         $name_non = null;
 
-        $response = $this->withHeader('referer', '/inputform_material')
+        $response = $this->actingAs($this->user)
+            ->withHeader('referer', '/inputform_material')
             ->post('/inputform_material', [
                 'material_name' => $name_non,
             ]);
@@ -77,7 +90,8 @@ class MaterialInputFormValidationTest extends TestCase
         $top = Material::create(['name' => 'Top']);
         $child = Material::create(['name' => 'Child', 'parent_id' => $top->id]);
 
-        $response = $this->withHeader('referer', '/inputform_material')
+        $response = $this->actingAs($this->user)
+            ->withHeader('referer', '/inputform_material')
             ->post('/inputform_material', [
                 'material_name' => 'Third',
                 'material_parent_id' => $child->id,

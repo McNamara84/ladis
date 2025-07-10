@@ -13,6 +13,8 @@ class InputFormInstitutionTest extends TestCase
     use RefreshDatabase;
     protected $faker;
 
+    private User $user;
+
     /**
      * This protected method sets up a Faker instance so that all tests can use this instance.
      * Helps to create truly unique values.
@@ -22,6 +24,8 @@ class InputFormInstitutionTest extends TestCase
     {
         parent::setUp();
         $this->faker = Factory::create();
+
+        $this->user = User::factory()->create();
     }
 
     public function test_guest_is_redirected_from_create_route(): void
