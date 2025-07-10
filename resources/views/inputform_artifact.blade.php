@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Eingabeformular Artifact')
+@section('title', 'Eingabeformular Objekt')
 
 @section('content')
     <div class="container">
