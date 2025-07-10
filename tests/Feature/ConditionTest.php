@@ -3,11 +3,20 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\Condition;
 use App\Models\DamagePattern;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use App\Models\Image;
+use App\Models\Project;
+use App\Models\Person;
+use App\Models\Venue;
+use App\Models\SampleSurface;
+use App\Models\PartialSurface;
+use App\Models\Material;
+use App\Models\Artifact;
 
 class ConditionTest extends TestCase
 {
@@ -69,5 +78,63 @@ class ConditionTest extends TestCase
         $this->assertIsString($condition->adhesion);
         $this->assertSame('leicht beschädigt', $condition->severity);
         $this->assertSame('mäßig', $condition->adhesion);
+    }
+
+    public function test_images_relationship_and_accessors(): void
+    {
+        $condition = Condition::create([
+            'damage_pattern_id' => DamagePattern::factory()->create()->id,
+        ]);
+        $project = Project::forceCreate([
+            'name' => 'P',
+            'description' => 'd',
+            'url' => 'http://e.com',
+            'started_at' => '2024-01-01',
+            'ended_at' => '2024-01-02',
+            'person_id' => Person::factory()->create()->id,
+            'venue_id' => Venue::factory()->create()->id,
+        ]);
+
+        $img = Image::forceCreate([
+            'condition_id' => $condition->id,
+            'project_id' => $project->id,
+            'uri' => 'a',
+            'description' => 'd',
+            'alt_text' => 'a',
+            'year_created' => 2024,
+            'creator' => 'me',
+        ]);
+
+        $relation = $condition->images();
+        $this->assertInstanceOf(HasMany::class, $relation);
+        $this->assertTrue($condition->images->contains($img));
+    }
+
+    public function test_condition_of_and_result_of_relationships(): void
+    {
+        $condition = Condition::create([
+            'damage_pattern_id' => DamagePattern::factory()->create()->id,
+        ]);
+        $other = Condition::create([
+            'damage_pattern_id' => DamagePattern::factory()->create()->id,
+        ]);
+        $sample = SampleSurface::forceCreate([
+            'name' => 'S',
+            'description' => 'd',
+            'artifacts_id' => Artifact::factory()->create()->id,
+        ]);
+        $pre = PartialSurface::create([
+            'sample_surface_id' => $sample->id,
+            'foundation_material_id' => Material::create(['name' => 'f'])->id,
+            'coating_material_id' => Material::create(['name' => 'c'])->id,
+            'condition_id' => $condition->id,
+            'result_id' => $other->id,
+            'size' => 1.0,
+        ]);
+
+        $this->assertInstanceOf(HasOne::class, $condition->conditionOf());
+        $this->assertInstanceOf(HasOne::class, $other->resultOf());
+        $this->assertTrue($condition->conditionOf->is($pre));
+        $this->assertTrue($other->resultOf->is($pre));
     }
 }
