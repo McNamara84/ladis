@@ -18,5 +18,6 @@ class ArtifactInputRouteTest extends TestCase
         $response = $this->get('/inputform_artifact');
 
         $response->assertStatus(200);
+        $response->assertViewIs('inputform_artifact');
     }
 }
