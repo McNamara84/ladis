@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdvancedSearchController;
+use App\Http\Controllers\ImageUploadController;
 use App\Http\Controllers\InputFormInstitutionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -53,6 +54,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/inputform', [DeviceInputController::class, 'index'])->name('inputform.index');
     // POST route for inputform
     Route::post('/inputform', [DeviceInputController::class, 'store'])->name('inputform.store');
+    // GET route for image upload
+    Route::get('/inputform_image', [ImageUploadController::class, 'index'])->name('inputform_image.index');
+    // POST route for image upload
+    Route::post('/inputform_image', [ImageUploadController::class, 'store'])->name('inputform_image.store');
 });
 
 Route::get('/impressum', [LegalNoticeController::class, 'index'])->name('impressum');
