@@ -35,6 +35,8 @@ class DeviceFormTest extends TestCase
             'name' => 'Test User',
             'email' => 'test@example.com'
         ]);
+
+        $this->actingAs($this->user);
     }
 
     public function test_can_store_device_with_valid_data(): void

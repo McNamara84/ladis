@@ -33,6 +33,21 @@ symbol {
 }
 
 //
+// Links
+//
+
+// Same appearance as BS's `.disabled` class for nav links
+a.disabled {
+    color: rgba(var(--bs-emphasis-color-rgb), 0.3);
+    pointer-events: none;
+    cursor: default;
+}
+
+a .link-text {
+    text-decoration: inherit;
+}
+
+//
 // App Logo
 //
 
@@ -82,6 +97,7 @@ symbol {
     --bs-navbar-link-hover-color: #{$link-color};
     --bs-navbar-brand-color: var(--bs-body-color);
     --bs-navbar-brand-hover-color: #{$link-color};
+    --bs-navbar-active-color: var(--bs-navbar-link-color);
 }
 
 // Mobile Menu Button
@@ -98,6 +114,47 @@ symbol {
     // Accent color still inherits from the parent element and adjusts
     // to the hover color.
     --app-logo-primary-color: var(--bs-navbar-color);
+}
+
+.nav-link {
+    // Prevent text in navbar links to break on smaller viewports
+    white-space: nowrap;
+}
+
+// Make sure icon and text stay on the same line in composed nav links
+.nav-link.has-icon {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.link-text {
+    display: inline-block;
+}
+
+// Nav Items Active states
+.nav-link.active,
+.nav-item .dropdown-item.active,
+.nav-item .dropdown-item:active,
+// Target the parent element of the active dropdown item
+.nav-item.dropdown:has(.dropdown-item.active) .dropdown-toggle {
+    font-weight: #{$font-weight-medium};
+}
+
+.nav-item .dropdown-item.active,
+.nav-item .dropdown-item:active {
+    color: var(--bs-dropdown-link-color);
+    background-color: transparent;
+}
+
+//
+// Dropdown
+//
+
+// Reset the default min-width of the dropdown body.
+// Usefull for small dropdowns like the language picker.
+.dropdown-menu-size-auto {
+    --bs-dropdown-min-width: initial;
 }
 
 //
@@ -144,17 +201,30 @@ symbol {
 }
 
 //
+// Site Footer
+//
+
+.site-footer {
+    --bs-link-color-rgb: var(--bs-body-color);
+}
+
+.site-footer .bi {
+    font-size: 1.5em;
+}
+
+//
 // Dark Mode
 //
 
-// Variables for Dark color mode are far from complete in BS.
-// So we have to use this thing:
-// @include color-mode(dark, true) {
-// styles for `:root` here …
-// }
+// SASS variables for Dark color mode are far from complete in BS.
+// We use media queries to fill in the gaps.
 
-// Because Bootstrap defines many variables on sepcific selctors,
-// we can't just assign all of them to `:root` :(
+// Styles for `:root`
+@include color-mode(dark, true) {
+    --link-disabled-color: #{$body-tertiary-color-dark};
+}
+
+// BS defines custom properties on specific selectors, too.
 @include color-mode(dark) {
     .text-secondary {
         // Override the default color for secondary text
@@ -169,15 +239,9 @@ symbol {
         --bs-navbar-link-color: #{$light};
         --bs-navbar-hover-color: #{$link-color-dark};
         --bs-nav-link-hover-color: #{$link-color-dark};
-        --bs-navbar-disabled-color: #{$body-tertiary-color-dark};
-        --bs-nav-link-disabled-color: #{$body-tertiary-color-dark};
+        --bs-navbar-disabled-color: var(--link-disabled-color);
+        --bs-nav-link-disabled-color: var(--link-disabled-color);
     }
-
-    // Want to do this but it has too many side effects:
-    // .btn,
-    // .btn-primary {
-    //     --bs-btn-color: #{$…};
-    // }
 }
 
 @import "filters";
