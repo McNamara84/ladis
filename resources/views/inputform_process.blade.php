@@ -74,13 +74,19 @@
                             @enderror       
                         </div> 
 
-                        <div class="mb-5">
-                            <label for="description" class="form-label">Anmerkung<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="description" name="description"
-                                value="{{ old('description') }}" required placeholder="Anmerkung" />
+                        <div class="mb-5 form-floating">
+                            <textarea class="form-control @error('description') is-invalid @enderror" 
+                                    placeholder="Anmerkung" 
+                                    id="description" 
+                                    name="description" 
+                                    required 
+                                    style="height: 120px">{{ old('description') }}</textarea>
+                            <label for="description">Anmerkung <span class="text-danger">*</span></label>
+
                             <div class="form-text">
                                 Bitte fügen Sie Ihre Anmerkung ein.
                             </div>
+
                             @error('description')
                                 <div class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
