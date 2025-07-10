@@ -8,13 +8,14 @@ use App\Models\Project;
 use App\Models\Venue;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Log;
 
 class ProjectInputController extends Controller
 {
     // Display the input form for a project
     public function index()
     {
-        $pageTitle = 'Projekteingabe';
+        $pageTitle = 'Neues Projekt anlegen';
         $persons = Person::orderBy('name')->get();
         $venues = Venue::orderBy('name')->get();
 
@@ -28,33 +29,28 @@ class ProjectInputController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $validatedData = $request->validate([
-            'project_name' => 'required|string|max:50|unique:projects,name',
-            'project_description' => 'nullable|string',
-            'project_url' => 'required|string|max:255|unique:projects,url',
-            'project_started_at' => 'required|date',
-            'project_ended_at' => 'required|date',
+            'name' => 'required|string|max:50|unique:projects,name',
+            'description' => 'required|string',
+            'url' => 'required|string|max:255|unique:projects,url',
+            'started_at' => 'required|date',
+            'ended_at' => 'required|date|after_or_equal:started_at',
             'person_id' => 'required|exists:persons,id',
             'venue_id' => 'required|exists:venues,id',
+        ], [
+            'ended_at.after_or_equal' => 'Das Enddatum darf nicht vor dem Startdatum liegen.',
         ]);
 
-        $data = [
-            'name' => $validatedData['project_name'],
-            'description' => $validatedData['project_description'] ?? null,
-            'url' => $validatedData['project_url'],
-            'started_at' => $validatedData['project_started_at'],
-            'ended_at' => $validatedData['project_ended_at'],
-            'person_id' => $validatedData['person_id'],
-            'venue_id' => $validatedData['venue_id'],
-        ];
-
         try {
-            Project::create($data);
+            $project = Project::create($validatedData);
 
             return redirect()->route('inputform_project.index')
-                ->with('success', 'Projekt wurde angelegt');
+                ->with('success', 'Projekt "' . $project->name . '" wurde angelegt');
 
         } catch (\Exception $e) {
-
+            Log::error('Fehler beim Speichern des Projekts: ' . $e->getMessage(), [
+                'exception' => $e,
+                'input' => $request->all(),
+            ]);
             return redirect()->back()->withInput()
                 ->with('error', 'Fehler beim Speichern des Projekts: ' . $e->getMessage());
         }
