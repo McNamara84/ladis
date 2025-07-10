@@ -15,10 +15,10 @@ class ProcessInputController extends Controller
         $pageTitle = 'Prozesseingabe';
         // Fetch necessary data for the view, e.g., partial surfaces, devices, configurations
         $devices = Device::orderBy('name')->get();
-        $partialSurface = PartialSurface::orderBy('sample_surface_id')->get();
+        $partialSurfaces = PartialSurface::orderBy('sample_surface_id')->get();
         $configurations = Configuration::orderBy('description')->get();
 
-        return view('inputform_process', compact('pageTitle', 'partialSurface', 'devices', 'configurations'));
+        return view('inputform_process', compact('pageTitle', 'partialSurfaces', 'devices', 'configurations'));
     }   
 
     public function store(Request $request)

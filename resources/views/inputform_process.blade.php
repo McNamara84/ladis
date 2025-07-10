@@ -30,7 +30,7 @@
                              <label for="partial_surface_id" class="form-label">Partielle Oberfläche<span class="text-danger"></span></label>
                             <select class="form-select" id="partial_surface_id" name="partial_surface_id" required>
                                 <option value="">-</option>
-                                @foreach($partialSurface as $surface)
+                                @foreach($partialSurfaces as $surface)
                                     <option value="{{ $surface->id }}" {{ old(key: 'partial_surface_id') == $surface->id ? 'selected' : '' }}>
                                         {{ $surface->identifier ?? ('Oberfläche'.$surface->id) }}
                                     </option>
