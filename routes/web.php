@@ -15,11 +15,8 @@ use App\Http\Controllers\UserManagementController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
-use App\Http\Controllers\SearchController;
-use App\Http\Controllers\UserManagementController;
-use App\Http\Controllers\ProjectInputController;
-use App\Http\Controllers\MaterialInputController;
 use App\Http\Controllers\DeviceController;
+use App\Http\Controllers\InstitutionController;
 
 // TODO/Conventions:
 // - Prefix all routes for authenticated users with /app
