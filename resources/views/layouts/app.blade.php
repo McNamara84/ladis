@@ -92,9 +92,15 @@
                                 <ul class="dropdown-menu">
                                     <li><x-link class="dropdown-item" route="projects.index" text="Projekte"
                                             icon="bi-rocket-takeoff" /></li>
+                                    <li><x-link class="dropdown-item" route="institutions.clients"
+                                            text="Auftraggeber" icon="bi-bank2" /></li>
+                                    <li><x-link class="dropdown-item" route="institutions.contractors"
+                                            text="Auftragnehmer" icon="bi-bank2" /></li>
                                     <li><x-link class="dropdown-item" route="devices.all" text="Laser"
                                             icon="bi-lightning-charge" /></li>
-                                    <li><x-link class="dropdown-item" route="institutions.manufacturers" text="Material"
+                                    <li><x-link class="dropdown-item" route="institutions.manufacturers"
+                                            text="Hersteller" icon="bi-bank2" /></li>
+                                    <li><x-link class="dropdown-item" route="inputform_material.index" text="Material"
                                             icon="bi-stack" /></li>
                                 </ul>
                             </li>
