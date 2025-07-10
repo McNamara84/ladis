@@ -29,6 +29,8 @@ class ViewServiceProvider extends ServiceProvider
         // General app metadata
         View::share('appVersion', config('app.version'));
         View::share('appName', config('app.name'));
+        View::share('appNameLong', config('app.name_long'));
+        View::share('appNameFull', config('app.name_full'));
         View::share('appTagline', "Datenbank zum Einsatz von Lasertechnik in der Restaurierung.");
 
         // Code repository information
