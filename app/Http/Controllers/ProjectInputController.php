@@ -3,18 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Person;
 use App\Models\Project;
+use App\Models\Venue;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Log;
 
 class ProjectInputController extends Controller
 {
     // Display the input form for a project
     public function index()
     {
-        $pageTitle = 'Input Form - Projekt';
+        $pageTitle = 'Neues Projekt anlegen';
+        $persons = Person::orderBy('name')->get();
+        $venues = Venue::orderBy('name')->get();
 
-        return view('inputform_project', compact('pageTitle'));
+
+        return view('inputform_project', compact('pageTitle', 'persons', 'venues'));
     }
 
     /**
@@ -24,25 +30,27 @@ class ProjectInputController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required|string|max:50|unique:projects,name',
-            'description' => 'nullable|string',
+            'description' => 'required|string',
             'url' => 'required|string|max:255|unique:projects,url',
             'started_at' => 'required|date',
-            'ended_at' => 'required|date'
+            'ended_at' => 'required|date|after_or_equal:started_at',
+            'person_id' => 'required|exists:persons,id',
+            'venue_id' => 'required|exists:venues,id',
+        ], [
+            'ended_at.after_or_equal' => 'Das Enddatum darf nicht vor dem Startdatum liegen.',
         ]);
 
-        // Catching errors during the database operation
         try {
-            // Create a new project record in the database
             $project = Project::create($validatedData);
 
-            return redirect()
-                ->route('inputform_project.index')
-                ->with('success', 'Projekt "' . $project->name . '" wurde erfolgreich angelegt!');
+            return redirect()->route('inputform_project.index')
+                ->with('success', 'Projekt "' . $project->name . '" wurde angelegt');
+
         } catch (\Exception $e) {
-            // Error handling: If an error occurs during the database operation, we catch it and return an error message
-            return redirect()
-                ->back()
-                ->withInput()
+            Log::error('Fehler beim Speichern des Projekts: ' . $e->getMessage(), [
+                'attributes' => $validatedData,
+            ]);
+            return redirect()->back()->withInput()
                 ->with('error', 'Fehler beim Speichern des Projekts: ' . $e->getMessage());
         }
     }
