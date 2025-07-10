@@ -239,4 +239,35 @@ class SearchControllerTest extends TestCase
         $response->assertSee('oldestDevice');
         $response->assertDontSee('youngestDevice');
     }
+
+    public function test_filter_by_year_range_excludes_devices_with_null_year(): void
+    {
+        $inst = Institution::create([
+            'name' => 'Year Inst',
+            'type' => Institution::TYPE_MANUFACTURER,
+            'contact_information' => 'w@inst.de',
+        ]);
+
+        $deviceWithYear = new Device();
+        $deviceWithYear->institution_id = $inst->id;
+        $deviceWithYear->name = 'DeviceWithYear';
+        $deviceWithYear->beam_type = Device::BEAM_POINT;
+        $deviceWithYear->year = 2000;
+        $deviceWithYear->save();
+
+        $deviceWithoutYear = new Device();
+        $deviceWithoutYear->institution_id = $inst->id;
+        $deviceWithoutYear->name = 'DeviceWithoutYear';
+        $deviceWithoutYear->beam_type = Device::BEAM_POINT;
+        $deviceWithoutYear->year = null;
+        $deviceWithoutYear->save();
+
+        // Filter: nur Geräte zwischen 1990 und 2010
+        $response = $this->get('/adv-search/result?advanced=1&q=Device&year_min=1990&year_max=2010');
+
+        $response->assertStatus(200);
+        $response->assertSee('DeviceWithYear');
+        $response->assertDontSee('DeviceWithoutYear');
+    }
 }
+ 
