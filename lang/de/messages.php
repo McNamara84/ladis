@@ -42,7 +42,7 @@ return [
     'b00' => 'Möchten Sie den Account <strong>{{ :userName }}</strong> wirklich löschen?',
 
     /**
-     * --- views/layouts/home.blade.php ---
+     * --- views/home.blade.php ---
      */
 
     // Welcome Header
@@ -58,7 +58,7 @@ return [
         Achtung: Das System befindet sich noch in der Entwicklung!',
 
     /**
-     * --- views/layouts/inputform_device.blade.php ---
+     * --- views/inputform_device.blade.php ---
      */
 
     'd00' => 'Modellbezeichnung des Lasergeräts, z.B. „CL50“',
@@ -74,13 +74,13 @@ return [
     'd10' => 'optionale Beschreibung wichtiger Lasergerätmerkmale',
 
     /**
-     * --- views/layouts/inputform_material.blade.php ---
+     * --- views/inputform_material.blade.php ---
      */
 
     'e00' => 'Ohne Auswahl eines Grundmaterials wird neu registriertes Material ebenfalls als Grundmaterial angelegt.',
 
     /**
-     * --- views/layouts/inputform_project.blade.php ---
+     * --- views/inputform_project.blade.php ---
      */
 
     'f00' => 'Bitte eindeutigen Titel des Projekts angeben.',
@@ -90,26 +90,26 @@ return [
     'f04' => 'Bitte Enddatum des Projekts angeben.',
 
     /**
-     * --- views/layouts/confirm.blade.php ---
+     * --- views/auth/passwords/confirm.blade.php ---
      */
 
     'g00' => 'Vor dem Fortfahren bitte Passwort bestätigen.',
 
     /**
-     * --- views/layouts/login.blade.php ---
+     * --- views/auth/login.blade.php ---
      */
 
     'h00' => 'Melden Sie sich in Ihrem {{ :appName }}-Konto an.',
 
     /**
-     * --- views/layouts/register.blade.php ---
+     * --- views/auth/register.blade.php ---
      */
 
     'i00' => 'Erstellen Sie Ihr {{ :appName }}-Konto.',
     'i01' => 'Mit der Registrierung stimmen Sie der Nutzung Ihrer Kontodaten im Rahmen des studentischen Projekts an der FH Potsdam zu.',
 
     /**
-     * --- views/layouts/verify.blade.php ---
+     * --- views/auth/verify.blade.php ---
      */
 
     'j00' => 'Ein neuer Bestätigungslink wurde an Ihre E-Mail-Adresse versandt.',
@@ -118,11 +118,23 @@ return [
     'j03' => 'klicken Sie hier, um eine erneut anzufragen',
 
     /**
-     * --- views/layouts/inputform_institution.blade.php ---
+     * --- views/inputform_institution.blade.php ---
      */
 
     'k00' => 'Bitte formalen Namen der Institution angeben.',
     'k01' => 'Bitte passenden Institutionstyp auswählen.',
     'k02' => 'Bitte Kontaktinformation angeben, z.B. einen Webseitenlink.',
+
+    /**
+     * --- views/institutions/index.blade.php ---
+     */
+
+    'l00' => 'Soll die Institution <strong>{{ :institutionName }}</strong> wirklich gelöscht werden?',
+
+    /**
+     * --- views/devices/index.blade.php ---
+     */
+
+    'm00' => 'Soll das Gerät <strong>{{ :deviceName }}</strong> wirklich gelöscht werden?',
 
 ];
