@@ -50,6 +50,9 @@ Route::get('/', [WelcomeController::class, 'index'])->name('frontpage');
 Route::get('/adv-search', [AdvancedSearchController::class, 'index'])->name('advanced_search');
 Route::get('/adv-search/result', [SearchController::class, 'search'])->name('search_results');
 
+// Routes for lists
+Route::get('/devices/all', [DeviceController::class, 'index'])->name('devices.all');
+
 // Privacy policy
 Route::get('/datenschutz', [PrivacyPolicyController::class, 'index'])->name('datenschutz');
 
@@ -98,9 +101,6 @@ Route::middleware('auth')->group(function () {
 // Material management
 Route::get('/inputform_material', [MaterialInputController::class, 'index'])->name('inputform_material.index');
 Route::post('/inputform_material', [MaterialInputController::class, 'store'])->name('inputform_material.store');
-
-// Routes for lists
-Route::get('/devices/all', [DeviceController::class, 'index'])->name('devices.all');
 
 // TODO: Routes for details pages
 // Route::get('/devices/{id}', [InputFormController::class, 'show']);
