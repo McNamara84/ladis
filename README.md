@@ -12,6 +12,8 @@ We are developing our own information system as part of the P11 laboratory. A sp
 
 ## Features
 
+
+- **User-friendly input forms:** Add devices, material and process via input form
 - **Overview lists:** List all registered devices and institutions
 - **User-friendly input forms:**
   - Add new **materials**

@@ -17,6 +17,7 @@ use App\Http\Controllers\Site\AboutController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\ProcessInputController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\InstitutionController;
 
@@ -115,6 +116,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/institutions/create', [InputFormInstitutionController::class, 'store'])->name('inputform_institution.store');
     Route::delete('/institutions/{institution}', [InstitutionController::class, 'destroy'])->name('institutions.destroy');
 
+    //Route for inputform for the process
+    Route::get('/inputform_process', [ProcessInputController::class, 'index'])->name('inputform_process.index');
+    Route::post('/inputform_process', [ProcessInputController::class, 'store'])->name('inputform_process.store');
   
     // Routes for projects
     Route::get('/inputform_project', [ProjectInputController::class, 'index'])->name('inputform_project.index');
