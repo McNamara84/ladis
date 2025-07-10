@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\Models\Location;
 use App\Models\Artifact;
+use App\Models\User;
 
 class ArtifactInputControllerTest extends TestCase
 {
@@ -16,8 +17,10 @@ class ArtifactInputControllerTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function it_displays_the_artifact_input_form(): void
+    public function test_it_displays_the_artifact_input_form(): void
     {
+        $user = User::factory()->create();
+        $this->actingAs($user);
         // Arrange: Eine Location mit zugehörigem Venue erstellen
         $location = Location::factory()->create([
             'name' => 'Kuppel',
@@ -31,6 +34,9 @@ class ArtifactInputControllerTest extends TestCase
     }
     public function test_store_creates_artifact_and_redirects(): void
     {
+        $user = User::factory()->create();
+        $this->actingAs($user);
+
         $location = Location::factory()->create();
         $name = 'Stuhl';
         $location_id = $location->id;
@@ -56,6 +62,9 @@ class ArtifactInputControllerTest extends TestCase
 
     public function test_store_does_not_create_artifact_and_redirects(): void
     {
+        $user = User::factory()->create();
+        $this->actingAs($user);
+
         $name_non = '';
         $location_id_non = null;
 
@@ -72,8 +81,11 @@ class ArtifactInputControllerTest extends TestCase
             'location_id' => $location_id_non,
         ]);
     }
-     public function test_required_data_is_missing_articat_name_and_redirects(): void
+     public function test_required_data_is_missing_artifact_name_and_redirects(): void
     {
+        $user = User::factory()->create();
+        $this->actingAs($user);
+
         $name_non = null;
 
         $response = $this->withHeader('referer', '/inputform_artifact')
@@ -88,6 +100,9 @@ class ArtifactInputControllerTest extends TestCase
     }
     public function test_form_submission_returns_redirect(): void
     {
+        $user = User::factory()->create();
+        $this->actingAs($user);
+
         $location = Location::factory()->create();
 
         $response = $this->post('/inputform_artifact', [
