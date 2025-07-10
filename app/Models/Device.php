@@ -24,7 +24,46 @@ class Device extends Model
     use HasFactory;
 
     /**
-     * Attribute casting for stronger type safety
+     * The attributes that are mass assignable.
+     */
+    protected $fillable = [
+        'institution_id',
+        'name',
+        'description', 
+        'year',
+        'build',
+        'safety_class',
+        'height',
+        'width', 
+        'depth',
+        'weight',
+        'fiber_length',
+        'cooling',
+        'mounting',
+        'automation',
+        'max_output',
+        'mean_output',
+        'max_wattage',
+        'head',
+        'emission_source',
+        'beam_type',
+        'beam_profile',
+        'wavelength',
+        'min_spot_size',
+        'max_spot_size',
+        'min_pf',
+        'max_pf',
+        'min_pw',
+        'max_pw',
+        'min_scan_width',
+        'max_scan_width',
+        'min_focal_length',
+        'max_focal_length',
+        'last_edit_by',
+    ];
+
+    /**
+     * The attributes that should be cast.
      */
     protected $casts = [
         'institution_id'  => 'integer',
@@ -71,6 +110,12 @@ class Device extends Model
     const BEAM_LINE  = 1;
     const BEAM_AREA  = 2;
 
+    /**
+     * Constants for cooling types
+     */
+    const COOLING_INTERNAL = 0;
+    const COOLING_EXTERNAL = 1;
+
     // TODO: Add methods hasBeamType() and hasBuildType() if we will need this for validations and dropdowns
 
     /**
@@ -105,5 +150,42 @@ class Device extends Model
     public function lastEditor(): BelongsTo
     {
         return $this->belongsTo(User::class, 'last_edit_by');
+    }
+
+    /**
+     * Get human readable build type
+     */
+    public function getBuildTypeAttribute(): string
+    {
+        return match($this->build) {
+            self::BUILD_FIBER => 'Glasfaser',
+            self::BUILD_MIRROR_ARM => 'Spiegelarm',
+            default => 'Unbekannt'
+        };
+    }
+
+    /**
+     * Get human readable beam type
+     */
+    public function getBeamTypeNameAttribute(): string
+    {
+        return match($this->beam_type) {
+            self::BEAM_POINT => 'Punktlaser',
+            self::BEAM_LINE => 'Zeilenlaser', 
+            self::BEAM_AREA => 'Flächenlaser',
+            default => 'Unbekannt'
+        };
+    }
+
+    /**
+     * Get human readable cooling type
+     */
+    public function getCoolingTypeAttribute(): string
+    {
+        return match($this->cooling) {
+            self::COOLING_INTERNAL => 'Intern',
+            self::COOLING_EXTERNAL => 'Extern',
+            default => 'Unbekannt'
+        };
     }
 }
