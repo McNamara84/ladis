@@ -13,6 +13,7 @@ use App\Models\DamagePattern;
 use App\Models\Condition;
 use App\Models\Material;
 use App\Models\Lens;
+use App\Models\User;
 
 
 class ProcessInputControllerTest extends TestCase
@@ -21,6 +22,8 @@ class ProcessInputControllerTest extends TestCase
 
     public function test_empty_form_can_not_be_saved(): void
     {
+        $user = User::factory()->create();
+        $this->actingAs($user);
         $response = $this->post('/inputform_process', [
             'partial_surface_id' => '',
             'device_id' => '',
@@ -41,6 +44,9 @@ class ProcessInputControllerTest extends TestCase
 
     public function test_store_creates_process_and_redirects(): void
     {
+        $user = User::factory()->create();
+        $this->actingAs($user);
+
         $artifact = Artifact::factory()->create();
         $sampleSurface = SampleSurface::unguarded(callback: fn(): SampleSurface => SampleSurface::create(attributes: [
             'name' => 'Test',
@@ -90,6 +96,9 @@ class ProcessInputControllerTest extends TestCase
 
     public function test_store_fails_when_required_field_is_missing(): void
     {
+        $user = User::factory()->create();
+        $this->actingAs($user);
+
         $artifact = Artifact::factory()->create();
         $sampleSurface = SampleSurface::unguarded(fn() => SampleSurface::create([
             'name' => 'Test',
