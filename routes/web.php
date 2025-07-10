@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArtifactInputController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdvancedSearchController;
 use App\Http\Controllers\HomeController;
@@ -113,6 +114,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/institutions/create', [InputFormInstitutionController::class, 'index'])->name('inputform_institution.index');
     Route::post('/institutions/create', [InputFormInstitutionController::class, 'store'])->name('inputform_institution.store');
     Route::delete('/institutions/{institution}', [InstitutionController::class, 'destroy'])->name('institutions.destroy');
+
   
     // Routes for projects
     Route::get('/inputform_project', [ProjectInputController::class, 'index'])->name('inputform_project.index');
@@ -122,4 +124,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/inputform_material', [MaterialInputController::class, 'index'])->name('inputform_material.index');
     Route::post('/inputform_material', [MaterialInputController::class, 'store'])->name('inputform_material.store');
 
+    // Routes for artifacts
+    Route::get('/inputform_artifact', [ArtifactInputController::class, 'index'])->name('inputform_artifact.index');
+    Route::post('/inputform_artifact', [ArtifactInputController::class, 'store'])->name('inputform_artifact.store');
 });
