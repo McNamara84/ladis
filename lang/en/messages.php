@@ -35,13 +35,13 @@ return [
     'a07' => 'The advanced search provides diverse filtering and sorting features for detailed research.',
 
     /**
-     * --- views/layouts/user_management.blade.php ---
+     * --- views/user_management.blade.php ---
      */
 
     'b00' => 'Do you really want to delete the account<strong>{{ :userName }}</strong>?',
 
     /**
-     * --- views/layouts/home.blade.php ---
+     * --- views/home.blade.php ---
      */
 
     // Welcome Header
@@ -57,7 +57,7 @@ return [
         Caution: The information system is still in development!',
 
     /**
-     * --- views/layouts/inputform_device.blade.php ---
+     * --- views/inputform_device.blade.php ---
      */
 
     'd00' => 'Model designation of the laser device, e.g. "CL50"',
@@ -73,13 +73,13 @@ return [
     'd10' => 'Optional decription of important laser device features',
 
     /**
-     * --- views/layouts/inputform_material.blade.php ---
+     * --- views/inputform_material.blade.php ---
      */
 
     'e00' => 'Without the selection of a top level material the newly added material is also registered as top level.',
 
     /**
-     * --- views/layouts/inputform_project.blade.php ---
+     * --- views/inputform_project.blade.php ---
      */
 
     'f00' => 'Please specify distinct project title.',
@@ -89,26 +89,26 @@ return [
     'f04' => 'Please specify project end date.',
 
     /**
-     * --- views/layouts/confirm.blade.php ---
+     * --- views/auth/passwords/confirm.blade.php ---
      */
 
     'g00' => 'Please confirm your password before continuing.',
 
     /**
-     * --- views/layouts/login.blade.php ---
+     * --- views/auth/login.blade.php ---
      */
 
     'h00' => 'Sign-in into your {{ :appName }} account.',
 
     /**
-     * --- views/layouts/register.blade.php ---
+     * --- views/auth/register.blade.php ---
      */
 
     'i00' => 'Create your {{ :appName }} account.',
     'i01' => 'With the registration you agree on the use of your account data as part of the UAS Potsdam student project.',
 
     /**
-     * --- views/layouts/verify.blade.php ---
+     * --- views/auth/verify.blade.php ---
      */
 
     'j00' => 'A fresh verification link has been sent to your email address.',
@@ -117,11 +117,29 @@ return [
     'j03' => 'click here to request another',
 
     /**
-     * --- views/layouts/inputform_institution.blade.php ---
+     * --- views/inputform_institution.blade.php ---
      */
 
     'k00' => 'Please specify formal institution name.',
     'k01' => 'Please choose the correct institution type.',
     'k02' => 'Please add contact information, e.g. a website link.',
+
+    /**
+     * --- views/institutions/index.blade.php ---
+     */
+
+    'l00' => 'Do you really want to delete <strong>{{ :institutionName }}</strong>?',
+
+    /**
+     * --- views/devices/index.blade.php ---
+     */
+
+    'm00' => 'Do you really want to delete <strong>{{ :deviceName }}</strong>?',
+
+    /**
+     * --- views/inputform_artifact.blade.php ---
+     */
+
+    'n00' => 'Required fields are marked with an <span class="text-danger">*</span> asterisk.',
 
 ];
