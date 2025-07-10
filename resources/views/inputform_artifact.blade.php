@@ -14,6 +14,15 @@
                     <div class="card-body">
                         <form method="POST" action="{{ route('inputform_artifact.store') }}">
                             @csrf
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul class="mb-0">
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
 
                             @if(session('error'))
                                 <div class="alert alert-danger">
@@ -60,7 +69,6 @@
                                         <option value="{{ $location->id }}" {{ old('artifact_location_id') == $location->id ? 'selected' : '' }}>
                                             {{ $location->name }}
                                         </option>
-                                        <option>1</option>
                                     @endforeach
                                 </select>
                                 @error('artifact_location_id')
