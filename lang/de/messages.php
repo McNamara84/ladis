@@ -137,4 +137,10 @@ return [
 
     'm00' => 'Soll das Gerät <strong>{{ :deviceName }}</strong> wirklich gelöscht werden?',
 
+    /**
+     * --- views/inputform_artifact.blade.php ---
+     */
+
+    'n00' => 'Pflichtfelder sind mit einem <span class="text-danger">*</span>-Asterisk gekennzeichnet.',
+
 ];
