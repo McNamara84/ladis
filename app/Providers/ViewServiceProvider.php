@@ -23,7 +23,24 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Share the app version number as a global variable.
+        // Share common information about the application as global variables.
+        // ToDo: Get these values from the repo or at least from env/config
+
+        // General app metadata
         View::share('appVersion', config('app.version'));
+        View::share('appName', config('app.name'));
+        View::share('appTagline', "Datenbank zum Einsatz von Lasertechnik in der Restaurierung.");
+
+        // Code repository information
+        View::share('appRepoPlatformName', 'GitHub');
+        View::share('appRepoURL', 'https://github.com/McNamara84/ladis');
+        View::share('appRepoIcon', 'bi-github');
+
+        // License information
+        View::share('appLicenseHolder', 'Fachhochschule Potsdam (FHP)<br>University of Applied Sciences');
+        View::share('appLicenseHolderURL', 'https://fh-potsdam.de');
+        View::share('appLicenseName', 'GNU General Public License v3');
+        View::share('appLicenseShortName', 'GPL v3');
+        View::share('appLicenseURL', 'https://www.gnu.org/licenses/gpl-3.0.html#license-text');
     }
 }
