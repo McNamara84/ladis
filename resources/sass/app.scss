@@ -207,6 +207,16 @@ dl.row dd {
 }
 
 //
+// Regular Page Sections
+//
+
+// Page Title
+.page-title:only-child {
+    // Important is required becaus Bootstraps margin classes use it.
+    margin-block-end: 0 !important;
+}
+
+//
 // Hero section – Flashy page intro component
 //
 
