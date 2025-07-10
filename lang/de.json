@@ -214,6 +214,15 @@
 
     "Input Form: Device": "Eingabe: Gerät",
     "Input Form: Material": "Eingabe: Material",
-    "Input Form: Project": "Eingabe: Projekt"
+    "Input Form: Project": "Eingabe: Projekt",
+    "Input Form: Artifact": "Eingabe: Objekt",
+
+    "Add New Artifact": "Neues Objekt hinzufügen",
+    "Artifact Name": "Objektname",
+    "Specify artifact name …": "Objektnamen angeben …",
+    "Inventarnummer": "Inventarnummer",
+    "Specify inventory number …": "Inventarnummer angeben …",
+    "Location": "Standort",
+    "Choose a location …": "Standort auswählen …"
 
 }
