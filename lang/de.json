@@ -223,6 +223,16 @@
     "Inventarnummer": "Inventarnummer",
     "Specify inventory number …": "Inventarnummer angeben …",
     "Location": "Standort",
-    "Choose a location …": "Standort auswählen …"
+    "Choose a location …": "Standort auswählen …",
+
+    "About Project LADIS": "Über Projekt LADIS",
+    "About The Project": "Über das Projekt",
+    "A Picture in Monochrome": "Ein Bild in Schwarz-Weiß",
+    "The Database": "Die Datenbank",
+    "Project Board and Cooperation Partners": "Projektleitung und Kooperationspartner",
+
+    "Cooling": "Kühlung",
+    "Yes": "Ja",
+    "No": "Nein"
 
 }
