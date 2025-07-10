@@ -3,10 +3,11 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\Institution;
 use App\Models\Device;
+use App\Models\Person;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class InstitutionTest extends TestCase
 {
@@ -58,5 +59,17 @@ class InstitutionTest extends TestCase
         // Attempting to create another institution with the same name should fail
         $this->expectException(\Illuminate\Database\QueryException::class);
         Institution::factory()->create(['name' => $name]);
+    }
+
+    public function test_persons_relationship_returns_persons(): void
+    {
+        $institution = Institution::factory()->create();
+        $personA = Person::factory()->for($institution)->create();
+        $personB = Person::factory()->for($institution)->create();
+
+        $relation = $institution->persons();
+        $this->assertInstanceOf(HasMany::class, $relation);
+        $this->assertTrue($institution->persons->contains($personA));
+        $this->assertTrue($institution->persons->contains($personB));
     }
 }
