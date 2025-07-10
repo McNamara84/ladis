@@ -33,7 +33,7 @@ class ProcessInputController extends Controller
         ]);
 
         $data = [
-            'partial_surface_id' => $request->input('partial_surface_id'),
+            'partial_surface_id' => $validated['partial_surface_id'],
             'device_id' => $validated['device_id'],
             'configuration_id' => $request->input('configuration_id'),
             'description' => $validated['description'],
