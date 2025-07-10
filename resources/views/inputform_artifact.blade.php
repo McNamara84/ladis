@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Eingabeformular Objekt')
+@section('title', __('Input Form: Artifact'))
 
 @section('content')
     <div class="container">
@@ -8,7 +8,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="mb-0">Neues Objekt hinzufügen</h4>
+                        <h4 class="mb-0">{{ __("Add New Artifact") }}</h4>
                     </div>
 
                     <div class="card-body">
@@ -36,13 +36,12 @@
                                 </div>
                             @endif
 
-                            <p>Pflichtfelder sind mit <span class="text-danger">*</span> gekennzeichnet.</p>
+                            <p>{!! __("messages.n00") !!}</p>
 
                             <div class="mb-5">
-                                <label for="artifact_name" class="form-label">Objektname <span
-                                        class="text-danger">*</span></label>
+                                <label for="artifact_name" class="form-label">{{ __("Artifact Name") }}<span class="text-danger"> *</span></label>
                                 <input type="text" class="form-control" id="artifact_name" name="artifact_name"
-                                    value="{{ old('artifact_name') }}" required placeholder="Legen Sie den Name eines neuen Objekts an." />
+                                    value="{{ old('artifact_name') }}" required placeholder="{{ __('Specify artifact name …') }}" />
                                 @error('artifact_name')
                                     <div class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -51,9 +50,9 @@
                             </div>
 
                             <div class="mb-5">
-                                <label for="artifact_inventory_number" class="form-label">Inventarnummer</label>
+                                <label for="artifact_inventory_number" class="form-label">{{ __("Inventory Number") }}</label>
                                 <input type="text" class="form-control" id="artifact_inventory_number" name="artifact_inventory_number"
-                                    value="{{ old('artifact_inventory_number') }}" placeholder="Geben Sie hier die Inventarnummer an." />
+                                    value="{{ old('artifact_inventory_number') }}" placeholder="{{ __("Specify inventory number …") }}" />
                                 @error('artifact_inventory_number')
                                     <div class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -62,9 +61,9 @@
                             </div>
 
                             <div class="mb-5">
-                                <label for="artifact_location_id" class="form-label">Standort <span class="text-danger">*</span></label>
+                                <label for="artifact_location_id" class="form-label">{{ __("Location") }}<span class="text-danger"> *</span></label>
                                 <select class="form-select" id="artifact_location_id" name="artifact_location_id" required>
-                                    <option value="">Wählen Sie einen Standort aus.</option>
+                                    <option value="">{{ __("Choose a location …") }}</option>
                                     @foreach($locations as $location)
                                         <option value="{{ $location->id }}" {{ old('artifact_location_id') == $location->id ? 'selected' : '' }}>
                                             {{ $location->name }}
@@ -79,8 +78,8 @@
                             </div>
 
                             <div class="d-flex justify-content-end gap-2">
-                                <button type="submit" class="btn btn-primary">Speichern</button>
-                                <a href="{{ url()->previous() }}" class="btn btn-secondary">Abbrechen</a>
+                                <button type="submit" class="btn btn-primary">{{ __("Save") }}</button>
+                                <a href="{{ url()->previous() }}" class="btn btn-secondary">{{ __("Cancel") }}</a>
                             </div>
 
                         </form>
