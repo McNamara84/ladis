@@ -106,18 +106,22 @@
                             @enderror
                         </div>
 
-                        <div class="mb-5">
-                            <label for="wet" class="form-label">Feuchtigkeitszustand<span class="text-danger">*</span></label>
-                            <input type="number" class="form-control" id="wet" name="wet"
-                                value="{{ old('wet') }}" required min="0" max="1" step="1" placeholder="0 = trocken, 1 = nass" />
-                            <div class="form-text">
-                                Bitte geben Sie den Feuchtigkeitszustand an: 0 = trocken, 1 = nass.
+                        <div class="mb-3">
+                            <label class="form-label">Feuchtigkeitszustand</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" id="wet_yes" name="wet" value="1"
+                                    {{ old('wet') === '1' ? 'checked' : '' }} required>
+                                <label class="form-check-label" for="wet_yes">
+                                    Nass
+                                </label>
                             </div>
-                             @error('wet')
-                                <div class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </div>
-                            @enderror
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" id="wet_no" name="wet" value="0"
+                                    {{ old('wet') === '0' ? 'checked' : '' }} required>
+                                <label class="form-check-label" for="wet_no">
+                                    Trocken
+                                </label>
+                            </div>
                         </div>
 
                         <div class="d-flex justify-content-end gap-2">
