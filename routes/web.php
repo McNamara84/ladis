@@ -99,6 +99,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/devices/create', [InputFormDeviceController::class, 'index'])->name('inputform.index');
     Route::post('/devices/create', [InputFormDeviceController::class, 'store'])->name('inputform.store');
     Route::delete('/devices/{device}', [DeviceController::class, 'destroy'])->name('devices.destroy');
+    // Routes for institutions
+    Route::get('/institutions/create', [InputFormInstitutionController::class, 'index'])->name('inputform_institution.index');
+    Route::post('/institutions/create', [InputFormInstitutionController::class, 'store'])->name('inputform_institution.store');
+    Route::delete('/institutions/{institution}', [InstitutionController::class, 'destroy'])->name('institutions.destroy');
 });
 
 // Material management
@@ -107,13 +111,6 @@ Route::post('/inputform_material', [MaterialInputController::class, 'store'])->n
 
 // Project management
 Route::get('/inputform_project', [ProjectInputController::class, 'index'])->name('projects.index');
-
-// Routes for institution input form (authenticated users only)
-Route::middleware('auth')->group(function () {
-    Route::get('/institutions/create', [InputFormInstitutionController::class, 'index'])->name('inputform_institution.index');
-    Route::post('/institutions/create', [InputFormInstitutionController::class, 'store'])->name('inputform_institution.store');
-    Route::delete('/institutions/{institution}', [InstitutionController::class, 'destroy'])->name('institutions.destroy');
-});
 
 // Institution overview lists
 Route::get('/institutions/manufacturers/all', [InstitutionController::class, 'index'])->defaults('category', 'manufacturers')->name('institutions.manufacturers');
