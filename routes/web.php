@@ -128,6 +128,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/inputform_material', [MaterialInputController::class, 'index'])->name('inputform_material.index');
     Route::post('/inputform_material', [MaterialInputController::class, 'store'])->name('inputform_material.store');
 
+});
+
     // Routes for artifacts
     Route::get('/inputform_artifact', [ArtifactInputController::class, 'index'])->name('inputform_artifact.index');
     Route::post('/inputform_artifact', [ArtifactInputController::class, 'store'])->name('inputform_artifact.store');
@@ -136,4 +138,3 @@ Route::middleware('auth')->group(function () {
     Route::post('/inputform_material', [MaterialInputController::class, 'store'])->name('inputform_material.store');
     // Project management
     Route::get('/inputform_project', [ProjectInputController::class, 'index'])->name('projects.index');
-});
