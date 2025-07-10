@@ -114,11 +114,6 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/impressum', [LegalNoticeController::class, 'index'])->name('impressum');
 
-// Device management
-// TODO: Name this appropiately instead of the current generic name
-Route::get('/inputform', [InputFormDeviceController::class, 'index'])->name('inputform.index');
-Route::post('/inputform', [InputFormDeviceController::class, 'store'])->name('inputform.store');
-
 // Material management
 Route::get('/inputform_material', [MaterialInputController::class, 'index'])->name('inputform_material.index');
 Route::post('/inputform_material', [MaterialInputController::class, 'store'])->name('inputform_material.store');
