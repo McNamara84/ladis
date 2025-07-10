@@ -216,6 +216,44 @@ class SearchControllerTest extends TestCase
         $response->assertDontSee('BarDevice');
     }
 
+    public function test_filter_by_cooling_returns_no_devices_when_none_match(): void
+    {
+        $inst = Institution::create([
+            'name' => 'NoMatch Inst',
+            'type' => Institution::TYPE_MANUFACTURER,
+            'contact_information' => 'no@match.de',
+        ]);
+
+        $device1 = new Device();
+        $device1->institution_id = $inst->id;
+        $device1->name = 'Device1';
+        $device1->beam_type = Device::BEAM_POINT;
+        $device1->cooling = 1;
+        $device1->save();
+
+        $device2 = new Device();
+        $device2->institution_id = $inst->id;
+        $device2->name = 'Device2';
+        $device2->beam_type = Device::BEAM_POINT;
+        $device2->cooling = 1;
+        $device2->save();
+
+        $device3 = new Device();
+        $device3->institution_id = $inst->id;
+        $device3->name = 'Device3';
+        $device3->beam_type = Device::BEAM_POINT;
+        $device3->cooling = 1;
+        $device3->save();
+
+        // Filter for devices without cooler (cooling=0), but all devices have cooling=1
+        $response = $this->get('/adv-search/result?advanced=1&q=Device&cooling=0');
+
+        $response->assertStatus(200);
+        $response->assertSee('Keine Ergebnisse gefunden.');
+        $response->assertDontSee('Device1');
+        $response->assertDontSee('Device2');
+        $response->assertDontSee('Device3');
+    }
 
     public function test_filter_by_weight_range_returns_correct_devices(): void
     {
