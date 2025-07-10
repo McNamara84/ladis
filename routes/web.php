@@ -16,6 +16,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\DeviceController;
+use App\Http\Controllers\InstitutionController;
 
 // TODO/Conventions:
 // - Prefix all routes for authenticated users with /app
@@ -130,7 +131,14 @@ Route::get('/devices/all', [DeviceController::class, 'index'])->name('devices.al
 // Project management
 Route::get('/inputform_project', [ProjectInputController::class, 'index'])->name('projects.index');
 
-// Institution management
-Route::get('/inputform_institution', [InputFormInstitutionController::class, 'index'])->name('inputform_institution.index');
-Route::post('/inputform_institution', [InputFormInstitutionController::class, 'store'])->name('inputform_institution.store');
+// Routes for institution input form (authenticated users only)
+Route::middleware('auth')->group(function () {
+    Route::get('/institutions/create', [InputFormInstitutionController::class, 'index'])->name('inputform_institution.index');
+    Route::post('/institutions/create', [InputFormInstitutionController::class, 'store'])->name('inputform_institution.store');
+    Route::delete('/institutions/{institution}', [InstitutionController::class, 'destroy'])->name('institutions.destroy');
+});
 
+// Institution overview lists
+Route::get('/institutions/manufacturers/all', [InstitutionController::class, 'index'])->defaults('category', 'manufacturers')->name('institutions.manufacturers');
+Route::get('/institutions/clients/all', [InstitutionController::class, 'index'])->defaults('category', 'clients')->name('institutions.clients');
+Route::get('/institutions/contractors/all', [InstitutionController::class, 'index'])->defaults('category', 'contractors')->name('institutions.contractors');

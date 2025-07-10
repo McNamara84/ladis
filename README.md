@@ -12,7 +12,7 @@ We are developing our own information system as part of the P11 laboratory. A sp
 
 ## Features
 
-- **Overview lists:** All registered devices on one page
+- **Overview lists:** List all registered devices and institutions
 - **User-friendly input forms:**
   - Add new **materials**
   - Add new **institutions**
@@ -28,6 +28,10 @@ We are developing our own information system as part of the P11 laboratory. A sp
     - About LADIS: /about
     - Advanced Search: /adv-search
         - Search Result: /adv-search/result
+    - Institutions:
+      - /institutions/manufacturers/all
+      - /institutions/clients/all
+      - /institutions/contractors/all
     - Devices: /devices/all
     - Contact Us: /contact
     - Database Statistics: /statistics
