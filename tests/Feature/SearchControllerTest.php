@@ -137,7 +137,7 @@ class SearchControllerTest extends TestCase
         $response = $this->get('/adv-search/result?q=');
 
         $response->assertStatus(200);
-        $response->assertSee('Keine Ergebnisse gefunden.');
+        $response->assertSee(__('No results found.'));
     }
 
     public function test_advanced_search_with_empty_fields_displays_no_results(): void
@@ -145,7 +145,7 @@ class SearchControllerTest extends TestCase
         $response = $this->get('/adv-search/result?advanced=1');
 
         $response->assertStatus(200);
-        $response->assertSee('Keine Ergebnisse gefunden.');
+        $response->assertSee(__('No results found.'));
     }
 
     public function test_filter_by_institution_returns_only_matching_devices(): void
