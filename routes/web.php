@@ -67,3 +67,9 @@ Route::post('/inputform_project', [ProjectInputController::class, 'store'])->nam
 //Route for inputform for the materials
 Route::get('/inputform_material', [MaterialInputController::class, 'index'])->name('inputform_material.index');
 Route::post('/inputform_material', [MaterialInputController::class, 'store'])->name('inputform_material.store');
+<<<<<<< Updated upstream
+=======
+
+// Project management
+//Route::get('/inputform_project', [ProjectInputController::class, 'index'])->name('projects.index');
+>>>>>>> Stashed changes
