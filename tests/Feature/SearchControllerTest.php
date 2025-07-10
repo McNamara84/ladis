@@ -181,6 +181,41 @@ class SearchControllerTest extends TestCase
         $response->assertDontSee('BarDevice');
     }
 
+    public function test_filter_by_cooling_returns_only_matching_devices(): void
+    {
+        $cooling1 = Institution::create([
+            'name' => 'cooling1',
+            'type' => Institution::TYPE_MANUFACTURER,
+            'contact_information' => 'f@inst.de',
+        ]);
+         
+        $cooling2 = Institution::create([
+            'name' => 'cooling2',
+            'type' => Institution::TYPE_MANUFACTURER,
+            'contact_information' => 'o@inst.de',
+        ]);
+
+        $dev1 = new Device();
+        $dev1->institution_id = $cooling1->id;
+        $dev1->cooling = 1; // Assuming cooling is given
+        $dev1->name = 'FooDevice';
+        $dev1->beam_type = Device::BEAM_POINT;
+        $dev1->save();
+
+        $dev2 = new Device();
+        $dev2->institution_id = $cooling2->id;
+        $dev2->cooling = 0; // Assuming cooling is not given
+        $dev2->name = 'BarDevice';
+        $dev2->beam_type = Device::BEAM_POINT;
+        $dev2->save();
+
+        $response = $this->get('/adv-search/result?advanced=1&q=Device&cooling=1');
+
+        $response->assertStatus(200);
+        $response->assertSee('FooDevice');
+        $response->assertDontSee('BarDevice');
+    }
+
 
     public function test_filter_by_weight_range_returns_correct_devices(): void
     {
