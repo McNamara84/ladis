@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArtifactInputController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdvancedSearchController;
 use App\Http\Controllers\HomeController;
@@ -115,6 +116,9 @@ Route::middleware('auth')->group(function () {
     //Route for inputform for the process
     Route::get('/inputform_process', [ProcessInputController::class, 'index'])->name('inputform_process.index');
     Route::post('/inputform_process', [ProcessInputController::class, 'store'])->name('inputform_process.store');
+    // Routes for artifacts
+    Route::get('/inputform_artifact', [ArtifactInputController::class, 'index'])->name('inputform_artifact.index');
+    Route::post('/inputform_artifact', [ArtifactInputController::class, 'store'])->name('inputform_artifact.store');
 });
 
 // Material management
@@ -123,3 +127,4 @@ Route::post('/inputform_material', [MaterialInputController::class, 'store'])->n
 
 // Project management
 Route::get('/inputform_project', [ProjectInputController::class, 'index'])->name('projects.index');
+
