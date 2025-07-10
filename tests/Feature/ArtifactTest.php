@@ -7,6 +7,8 @@ use Tests\TestCase;
 use App\Models\Artifact;
 use App\Models\Location;
 use Illuminate\Database\QueryException;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\SampleSurface;
 
 class ArtifactTest extends TestCase
 {
@@ -61,5 +63,32 @@ class ArtifactTest extends TestCase
         Artifact::factory()->for($locationA)->create(['name' => 'Campus GFZ']);
         $artifactB = Artifact::factory()->for($locationB)->create(['name' => 'Campus GFZ']);
         $this->assertDatabaseHas('artifacts', ['id' => $artifactB->id, 'name' => 'Campus GFZ']);
+    }
+
+    public function test_fillable_and_casts_are_defined(): void
+    {
+        $artifact = new Artifact([
+            'location_id' => '1',
+            'name' => 'Test',
+            'inventory_number' => 42,
+        ]);
+
+        $this->assertSame([
+            'location_id',
+            'name',
+            'inventory_number',
+        ], $artifact->getFillable());
+
+        $this->assertIsInt($artifact->location_id);
+        $this->assertIsString($artifact->inventory_number);
+    }
+
+    public function test_sample_surfaces_relationship_is_hasmany(): void
+    {
+        $artifact = new Artifact();
+        $relation = $artifact->sampleSurfaces();
+
+        $this->assertInstanceOf(HasMany::class, $relation);
+        $this->assertSame(SampleSurface::class, $relation->getRelated()::class);
     }
 }
