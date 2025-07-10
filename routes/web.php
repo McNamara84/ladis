@@ -90,10 +90,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/user-management/create', [UserManagementController::class, 'store'])->name('user-management.store');
     Route::delete('/user-management/{user}', [UserManagementController::class, 'destroy'])->name('user-management.destroy');
 });
-Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
-Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
-Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
-Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
 
 // Route for the Datenschutz (Data Protection) page
 Route::get('/datenschutz', [PrivacyPolicyController::class, 'index'])->name('datenschutz');
