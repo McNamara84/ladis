@@ -91,9 +91,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/user-management/{user}', [UserManagementController::class, 'destroy'])->name('user-management.destroy');
 });
 
-// Route for the Datenschutz (Data Protection) page
-Route::get('/datenschutz', [PrivacyPolicyController::class, 'index'])->name('datenschutz');
-
 // TODO: Setup authentication
 // Route for inputform with authentication
 
