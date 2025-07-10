@@ -200,6 +200,20 @@
     "Manufacturer": "Hersteller",
     "Contact Information": "Kontaktinformation",
     "Mandatory Field": "Pflichtfeld",
-    "Submit": "Hinzufügen"
+    "Submit": "Hinzufügen",
+
+    "Delete Institution": "Institution löschen",
+    "No institutions available.": "Keine Institutionen vorhanden.",
+    "Add Institution": "Institution hinzufügen",
+
+    "Devices": "Geräte",
+    "All Laser Devices": "Alle Lasergeräte",
+    "Delete Device": "Gerät löschen",
+    "No devices available.": "Keine Geräte vorhanden.",
+    "Add Laser Device": "Lasergerät hinzufügen",
+
+    "Input Form: Device": "Eingabe: Gerät",
+    "Input Form: Material": "Eingabe: Material",
+    "Input Form: Project": "Eingabe: Projekt"
 
 }
