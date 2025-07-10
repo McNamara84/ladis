@@ -15,6 +15,10 @@ return [
 
     'name' => env('APP_NAME', 'LADIS'),
 
+    'name_long' => env('APP_NAME_LONG', 'Laser Datenbank Informationssystem'),
+
+    'name_full' => env('APP_NAME_FULL', 'LADIS (Laser Datenbank Informationssystem)'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment

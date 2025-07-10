@@ -7,7 +7,7 @@
     <div class="vh-section">
         <div class="container content hero">
             <h1 class="hero-title">{{ config('app.name') }}</h1>
-            <p><span class="brand-name">{{ config('app.name') }}</span> {{ __("messages.a00") }}</p>
+            <p><span class="brand-name">{{ config('app.name') }}</span> ({{ $appNameLong }}) {{ __("messages.a00") }}</p>
             <p>{!! __("messages.a01", [
                 "link01" => url('https://www.fh-potsdam.de/studium-weiterbildung/fachbereiche/fachbereich-stadt-bau-kultur'),
                 "link02" => url('https://www.fh-potsdam.de/studium-weiterbildung/fachbereiche/fachbereich-informationswissenschaften'),
