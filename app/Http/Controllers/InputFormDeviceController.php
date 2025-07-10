@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use App\Models\Device;
 
-class InputFormController extends Controller
+class InputFormDeviceController extends Controller
 {
 
     public function index()

@@ -12,10 +12,46 @@ We are developing our own information system as part of the P11 laboratory. A sp
 
 ## Features
 
+
 - **User-friendly input forms:** Add devices, material and process via input form
+- **Overview lists:** List all registered devices and institutions
+- **User-friendly input forms:**
+  - Add new **materials**
+  - Add new **institutions**
+  - Add new **devices**
 - **Admin Tools:** Create new Accounts via UI or enter `php artisan newuser <name> <email> <password>` in server terminal for easy user creation.
 - **Simple Search:** The simple search function in the main menu allows you to quickly search for device names, institution names, ...
 - **Advanced Search:** The advanced search allows you to search the database for specific attributes. Currently, device and institution names can be searched.
+- **Responsive UI:** Adapats to light and dark color scheme and supports various viewport sizes.
+
+## Sitemap
+
+- Welcome (Homepage): /
+    - About LADIS: /about
+    - Advanced Search: /adv-search
+        - Search Result: /adv-search/result
+    - Institutions:
+      - /institutions/manufacturers/all
+      - /institutions/clients/all
+      - /institutions/contractors/all
+    - Devices: /devices/all
+    - Contact Us: /contact
+    - Database Statistics: /statistics
+    - Legal (Rechtliches / Impressum): /impressum
+    - Log-In Mask: /login
+        - Account Overview: /login/home 
+        - Data Input Form (Eingabemaske): /login/inputform
+            - New Artifact Entry [dynamic page]
+            - New Device Entry [dynamic page]
+            - New Institution Entry [dynamic page]
+            - New Process Entry [dynamic page]
+            - New Project Entry [dynamic page]
+            - Report Review: /login/review
+    - Privacy Policy (Datenschutzerklärung): /datenschutz
+    - Terms of Use (Nutzungsbedingungen): /terms-of-use
+    - User Help: /help
+        - Registered User Help [dynamic page]
+        - Unregistered User Help [dynamic page]
 
 ## Prerequisites
 
@@ -109,4 +145,4 @@ Factories automatically generate sample data for models to simplify testing and 
 
 ## License
 
-<!-- Pick a license and explain and link it here -->
+This project is licensed under the GPLv3 License - see the [LICENSE file](https://github.com/McNamara84/ladis/blob/doc/code-license/LICENSE) for details.
