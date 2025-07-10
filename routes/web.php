@@ -12,14 +12,9 @@ use App\Http\Controllers\PrivacyPolicyController;
 use App\Http\Controllers\ProjectInputController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserManagementController;
-use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
-use App\Http\Controllers\SearchController;
-use App\Http\Controllers\UserManagementController;
-use App\Http\Controllers\ProjectInputController;
-use App\Http\Controllers\MaterialInputController;
 use App\Http\Controllers\DeviceController;
 
 // TODO/Conventions:
@@ -118,24 +113,24 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/impressum', [LegalNoticeController::class, 'index'])->name('impressum');
 
-    // Device management
-    // TODO: Name this appropiately instead of the current generic name
-    Route::get('/inputform', [InputFormController::class, 'index'])->name('inputform.index');
-    Route::post('/inputform', [InputFormController::class, 'store'])->name('inputform.store');
+// Device management
+// TODO: Name this appropiately instead of the current generic name
+Route::get('/inputform', [InputFormDeviceController::class, 'index'])->name('inputform.index');
+Route::post('/inputform', [InputFormDeviceController::class, 'store'])->name('inputform.store');
 
-    // Material management
-    Route::get('/inputform_material', [MaterialInputController::class, 'index'])->name('inputform_material.index');
-    Route::post('/inputform_material', [MaterialInputController::class, 'store'])->name('inputform_material.store');
+// Material management
+Route::get('/inputform_material', [MaterialInputController::class, 'index'])->name('inputform_material.index');
+Route::post('/inputform_material', [MaterialInputController::class, 'store'])->name('inputform_material.store');
 
 // Routes for lists
 Route::get('/devices/all', [DeviceController::class, 'index'])->name('devices.all');
 
 // TODO: Routes for details pages
 // Route::get('/devices/{id}', [InputFormController::class, 'show']);
-    // Project management
-    Route::get('/inputform_project', [ProjectInputController::class, 'index'])->name('projects.index');
+// Project management
+Route::get('/inputform_project', [ProjectInputController::class, 'index'])->name('projects.index');
 
-    // Institution management
-    Route::get('/inputform_institution', [InputFormInstitutionController::class, 'index'])->name('inputform_institution.index');
-    Route::post('/inputform_institution', [InputFormInstitutionController::class, 'store'])->name('inputform_institution.store');
-});
+// Institution management
+Route::get('/inputform_institution', [InputFormInstitutionController::class, 'index'])->name('inputform_institution.index');
+Route::post('/inputform_institution', [InputFormInstitutionController::class, 'store'])->name('inputform_institution.store');
+
