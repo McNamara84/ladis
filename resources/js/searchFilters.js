@@ -15,7 +15,7 @@ function updateWeightSlider(el) {
 }
 
 // Expose the function globally so inline event handlers can access it
-window.updateWheightSlider = updateWeightSlider;
+window.updateWeightSlider = updateWeightSlider;
 
 document.addEventListener('DOMContentLoaded', function () {
     const min = document.getElementById('weight_min');
