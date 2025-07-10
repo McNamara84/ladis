@@ -37,12 +37,12 @@
 
     <div id="app" class="d-flex flex-column min-vh-100">
         <!-- Skip to content -->
-        <a class="visually-hidden-focusable d-inline-flex p-2 m-1" href="#content">Springe zum Inhalt</a>
+        <a class="visually-hidden-focusable d-inline-flex p-2 m-1" href="#content">{{ __("Skip to Content") }}</a>
 
         <!-- Header -->
         <header class="navbar navbar-expand-lg sticky-top bg-body-secondary">
             <!-- Navigation -->
-            <nav class="container-fluid" aria-label="Hauptnavigation">
+            <nav class="container-fluid" aria-label="{{ __("Main Navigation") }}">
                 <!-- Brand/Logo -->
                 <a class="navbar-brand d-flex align-items-center" href="{{ route('frontpage') }}"
                     aria-label="{{ $appName }}">
@@ -53,26 +53,26 @@
                 <!-- Mobile Toggle -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
                     data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar"
-                    aria-label="Navigation ein-/ausblenden">
+                    aria-label="{{ __("Toggle Navigation On/Off") }}">
                     <x-icon icon="bi-menu" />
-                    <span class="d-none fs-6 pe-1">Navigation ein-/ausblenden</span>
+                    <span class="d-none fs-6 pe-1">{{ __("Toggle Navigation On/Off") }}</span>
                 </button>
 
                 <!-- Offcanvas Menu -->
                 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
                     aria-labelledby="offcanvasNavbarLabel">
                     <div class="offcanvas-header border-bottom">
-                        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Navigation</h5>
+                        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">{{ __("Navigation") }}</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
-                            aria-label="Navigation schließen"></button>
+                            aria-label="{{ __("Close Navigation") }}"></button>
                     </div>
                     <div class="offcanvas-body">
                         <!-- Search Form -->
                         <form id="nav-search-form" class="d-flex mx-lg-2" role="search"
                             action="{{ route('search_results') }}" method="GET">
                             <input id="nav-search-input" class="form-control me-2" type="search" name="q"
-                                placeholder="Suche..." aria-label="Suche">
-                            <button type="submit" class="btn btn-outline-secondary" aria-label="Suchen">
+                                placeholder="{{ __("Search …") }}" aria-label="{{ __("Search") }}">
+                            <button type="submit" class="btn btn-outline-secondary" aria-label="{{ __("Start Search") }}">
                                 <x-icon icon="bi-search" />
                             </button>
                         </form>
@@ -81,22 +81,22 @@
 
                         <!-- Left Side Navigation -->
                         <ul class="navbar-nav me-auto">
-                            <x-nav.item route="advanced_search" text="Erweiterte Suche" />
+                            <x-nav.item route="advanced_search" text="{{ __("Advanced Search") }}" />
                             <x-nav.divider />
                             <li class="nav-item dropdown">
                                 <button type="button" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false">
                                     <x-icon icon="bi-database" class="me-2" />
-                                    <span>Daten</span>
+                                    <span>{{ __("Data") }}</span>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><x-link class="dropdown-item" route="inputform_project.index" text="Projekte"
+                                    <li><x-link class="dropdown-item" route="inputform_project.index" text="{{ __("Projects") }}"
                                             icon="bi-rocket-takeoff" /></li>
                                     <li><x-link class="dropdown-item" route="inputform_institution.index"
-                                            text="Institutionen" icon="bi-bank2" /></li>
-                                    <li><x-link class="dropdown-item" route="inputform.index" text="Laser"
+                                            text="{{ __("Institutions") }}" icon="bi-bank2" /></li>
+                                    <li><x-link class="dropdown-item" route="inputform.index" text="{{ __("Laser Devices") }}"
                                             icon="bi-lightning-charge" /></li>
-                                    <li><x-link class="dropdown-item" route="inputform_material.index" text="Material"
+                                    <li><x-link class="dropdown-item" route="inputform_material.index" text="{{ __("Material") }}"
                                             icon="bi-stack" /></li>
                                     @auth
                                         <li>
@@ -113,18 +113,18 @@
                         <!-- Right Side Navigation -->
                         <ul class="navbar-nav">
                             @guest
-                                <x-nav.item route="login" text="Login" />
+                                <x-nav.item route="login" text="{{ __("Login") }}" />
                             @else
-                                <x-nav.item route="home" text="Dashboard" icon="bi-columns" />
+                                <x-nav.item route="home" text="{{ __("Dashboard") }}" icon="bi-columns" />
                                 <x-nav.divider />
-                                <x-nav.item route="user-management.index" text="Benutzer" icon="bi-person-gear" />
+                                <x-nav.item route="user-management.index" text="{{ __("User") }}" icon="bi-person-gear" />
                                 <x-nav.divider />
-                                <x-nav.item route="help" text="Hilfe" disabled icon="bi-question-circle" />
+                                <x-nav.item route="help" text="{{ __("Help") }}" disabled icon="bi-question-circle" />
                             @endguest
                             <x-nav.divider />
                             <li class="nav-item dropdown">
                                 <button type="button" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false" aria-label="Sprache wählen">
+                                    aria-haspopup="true" aria-expanded="false" aria-label="{{ __("Choose Language") }}">
                                     <x-icon icon="bi-translate" />
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-size-auto">
@@ -186,25 +186,25 @@
                     <div class="col-md-9">
                         <ul class="list-inline mb-0" role="list">
                             <li class="list-inline-item d-block d-md-inline-block">
-                                <x-link route="frontpage" text="Startseite" />
+                                <x-link route="frontpage" text="{{ __("Homepage") }}" />
                             </li>
                             <li class="list-inline-item d-block d-md-inline-block">
-                                <x-link route="faq" text="FAQ" disabled />
+                                <x-link route="faq" text="{{ __("FAQ") }}" disabled />
                             </li>
                             <li class="list-inline-item d-block d-md-inline-block">
-                                <x-link route="site.about" text="Das Projekt" />
+                                <x-link route="about" text="{{ __("The Project") }}" disabled />
                             </li>
                             <li class="list-inline-item d-block d-md-inline-block">
-                                <x-link route="datenschutz" text="Datenschutzerklärung" />
+                                <x-link route="datenschutz" text="{{ __("Privacy Policy") }}" />
                             </li>
                             <li class="list-inline-item d-block d-md-inline-block">
-                                <x-link route="tos" text="Nutzungsbedingungen" disabled />
+                                <x-link route="tos" text="{{ __("Terms of Use") }}" disabled />
                             </li>
                             <li class="list-inline-item d-block d-md-inline-block">
-                                <x-link route="impressum" text="Impressum" />
+                                <x-link route="impressum" text="{{ __("Site Notice") }}" />
                             </li>
                             <li class="list-inline-item d-block d-md-inline-block">
-                                <x-link route="contact" text="Kontakt" disabled />
+                                <x-link route="contact" text="{{ __("Contact") }}" disabled />
                             </li>
                         </ul>
                     </div>
@@ -216,19 +216,19 @@
                             <li class="list-inline-item">
                                 <a href="{{ $appRepoURL }}">
                                     <x-icon icon="{{ $appRepoIcon }}" />
-                                    <span class="visually-hidden">{{ $appName }} auf {{ $appRepoPlatformName }}</span>
+                                    <span class="visually-hidden">{!! __("messages.000", [":appName" => $appName, ":appRepo" => $appRepoPlatformName]) !!}</span>
                                 </a>
                             </li>
                             <li class="list-inline-item">
                                 <a href="#" class="disabled">
                                     <x-icon icon="bi-mastodon" />
-                                    <span class="visually-hidden">{{ $appName }} auf Mastodon</span>
+                                    <span class="visually-hidden">{!! __("messages.001", [":appName" => $appName]) !!}</span>
                                 </a>
                             </li>
                             <li class="list-inline-item">
                                 <a href="#" class="disabled">
                                     <x-icon icon="bi-rss-fill" />
-                                    <span class="visually-hidden">{{ $appName }} RSS Feed</span>
+                                    <span class="visually-hidden">{!! __("messages.002", [":appName" => $appName]) !!}</span>
                                 </a>
                             </li>
                         </ul>
@@ -241,10 +241,9 @@
                         <p>{{ $appTagline }}</p>
                     </div>
                     <div class="col-md-6 text-md-end">
-                        <p><time datetime="{{ now()->year }}-01-01">{{ date('Y') }}</time> <a
-                                href="{{ $appLicenseHolderURL }}">{!! $appLicenseHolder !!}</a><br>
-                            {{ $appName }} wird unter der <a href="{{ $appLicenseURL }}">{{ $appLicenseName }}</a>
-                            bereitgestellt.
+                        <p><time datetime="{{ now()->year }}-01-01">{{ date('Y') }}</time> 
+                            <a href="{{ $appLicenseHolderURL }}">{!! $appLicenseHolder !!}</a><br>
+                                {!! __("messages.003", [":appName" => $appName, ":appLicenseURL" => $appLicenseURL, ":appLicenseName" => $appLicenseName]) !!}
                         </p>
                     </div>
                 </div>

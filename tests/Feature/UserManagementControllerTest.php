@@ -31,7 +31,7 @@ class UserManagementControllerTest extends TestCase
 
         $response->assertStatus(200);
         $response->assertViewIs('create_user');
-        $response->assertSee('Neuen Account erstellen');
+        $response->assertSee(__('Create New Account'));
     }
 
     public function test_store_creates_user_and_redirects(): void

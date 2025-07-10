@@ -10,12 +10,12 @@
             </aside>
             <div class="col-md-9">
                 @if($query)
-                    <h1 class="h4">Suchergebnisse für "{{ $query }}"</h1>
+                    <h1 class="h4">{{ __("Search results for") }} "{{ $query }}"</h1>
                 @endif
                 @forelse($devices as $device)
                     @include('search._result', ['device' => $device])
                 @empty
-                    <p>Keine Ergebnisse gefunden.</p>
+                    <p>{{ __("No results found.") }}</p>
                 @endforelse
             </div>
         </div>

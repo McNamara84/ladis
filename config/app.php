@@ -15,9 +15,9 @@ return [
 
     'name' => env('APP_NAME', 'LADIS'),
 
-    'name_long' => env('APP_NAME_LONG', 'Laser Datenbank Informationssystem'),
+    'name_long' => env('APP_NAME_LONG', 'Laser-Datenbank-Informationssystem'),
 
-    'name_full' => env('APP_NAME_FULL', 'LADIS (Laser Datenbank Informationssystem)'),
+    'name_full' => env('APP_NAME_FULL', 'LADIS (Laser-Datenbank-Informationssystem)'),
 
     /*
     |--------------------------------------------------------------------------
@@ -47,7 +47,7 @@ return [
     |
     */
 
-    'version' => env('APP_VERSION', '0.0.0'),
+    'version' => env('APP_VERSION', '0.1.0'),
 
     /*
     |--------------------------------------------------------------------------
@@ -86,7 +86,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'CET',
 
     /*
     |--------------------------------------------------------------------------
@@ -99,11 +99,24 @@ return [
     |
     */
 
-    'locale' => env('APP_LOCALE', 'en'),
+    'locale' => env('APP_LOCALE', 'de'),
 
     'fallback_locale' => env('APP_FALLBACK_LOCALE', 'en'),
 
-    'faker_locale' => env('APP_FAKER_LOCALE', 'en_US'),
+    'faker_locale' => env('APP_FAKER_LOCALE', 'de_DE'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Available locales
+    |--------------------------------------------------------------------------
+    |
+    | List all locales that your application works with
+    |
+    */
+    'available_locales' => [
+    'German' => 'de',
+    'English' => 'en',
+    ],
 
     /*
     |--------------------------------------------------------------------------
