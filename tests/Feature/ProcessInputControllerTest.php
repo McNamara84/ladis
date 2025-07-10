@@ -87,4 +87,53 @@ class ProcessInputControllerTest extends TestCase
             'wet' => 0,
         ]);
     }
+
+    public function test_store_fails_when_required_field_is_missing(): void
+    {
+        $artifact = Artifact::factory()->create();
+        $sampleSurface = SampleSurface::unguarded(fn() => SampleSurface::create([
+            'name' => 'Test',
+            'description' => 'desc',
+            'artifacts_id' => $artifact->id,
+        ]));
+        $damagePattern = DamagePattern::factory()->create();
+        $condition = Condition::create(['damage_pattern_id' => $damagePattern->id]);
+        $result = Condition::create(['damage_pattern_id' => $damagePattern->id]);
+        $foundation = Material::factory()->create();
+        $coating = Material::factory()->create();
+        $partialSurface = PartialSurface::create([
+            'sample_surface_id' => $sampleSurface->id,
+            'foundation_material_id' => $foundation->id,
+            'coating_material_id' => $coating->id,
+            'condition_id' => $condition->id,
+            'result_id' => $result->id,
+            'identifier' => 'PS1',
+            'size' => 1.0,
+        ]);
+        $device = Device::factory()->create();
+        $lens = Lens::factory()->create();
+        $configuration = Configuration::factory()->create(['lens_id' => $lens->id]);
+
+        $data = [
+            'partial_surface_id' => $partialSurface->id,
+            'device_id' => $device->id,
+            'configuration_id' => $configuration->id,
+            //'duration' => 1,  // Duration is missing
+            'wet' => 0,
+            'description' => '',
+        ];
+
+        $response = $this->withHeader(name: 'referer', value: '/inputform_process')
+            ->post(uri: '/inputform_process', data: $data);
+
+        $response->assertRedirect(uri: '/inputform_process');
+        $response->assertSessionHasErrors('duration');
+        $this->assertDatabaseMissing('processes', [
+            'partial_surface_id' => $partialSurface->id,
+            'device_id' => $device->id,
+            'configuration_id' => $configuration->id,
+            //'duration' => 1,  // Duration is missing
+            'wet' => 0,
+        ]);
+    }
 }
