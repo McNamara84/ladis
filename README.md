@@ -12,16 +12,17 @@ We are developing our own information system as part of the P11 laboratory. A sp
 
 ## Features
 
+
+- **User-friendly input forms:** Add devices, material and process via input form
+- **Overview lists:** List all registered devices and institutions
 - **User-friendly input forms:**
   - Add new **materials**
   - Add new **institutions**
   - Add new **devices**
-  
 - **Admin Tools:** Create new Accounts via UI or enter `php artisan newuser <name> <email> <password>` in server terminal for easy user creation.
 - **Simple Search:** The simple search function in the main menu allows you to quickly search for device names, institution names, ...
-- **Advanced Search:** The advanced search allows you to search the database for specific attributes. Currently, device and institution names can be searched.
-- **Image Upload:** You can upload images for your project.
-
+- **Advanced Search:** The advanced search allows you to search the database for specific attributes. Currently, device and institution names as well as the features year and cooling can be searched.
+- **Responsive UI:** Adapats to light and dark color scheme and supports various viewport sizes.
 
 ## Sitemap
 
@@ -29,6 +30,11 @@ We are developing our own information system as part of the P11 laboratory. A sp
     - About LADIS: /about
     - Advanced Search: /adv-search
         - Search Result: /adv-search/result
+    - Institutions:
+      - /institutions/manufacturers/all
+      - /institutions/clients/all
+      - /institutions/contractors/all
+    - Devices: /devices/all
     - Contact Us: /contact
     - Database Statistics: /statistics
     - Legal (Rechtliches / Impressum): /impressum
@@ -116,13 +122,9 @@ Seeders are used to populate the database with initial or sample data. To run al
 
 ### Available Seeders
 
-- `DatabaseSeeder`
 - `DeviceSeeder`
 - `InstitutionSeeder`
 - `UserSeeder`
-- `DamagePatternSeeder`
-- `MaterialSeeder`
-
 
 ## Factories
 

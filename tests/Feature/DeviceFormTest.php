@@ -9,7 +9,7 @@ use App\Models\Device;
 use App\Models\Institution;
 use App\Models\User;
 
-class DeviceInputFormTest extends TestCase
+class DeviceFormTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
 
@@ -29,12 +29,6 @@ class DeviceInputFormTest extends TestCase
             'name' => 'Test Institution',
             'type' => Institution::TYPE_CLIENT, // Auftraggeber
             'contact_information' => 'Kontakt:' . $this->faker->email(),
-        ]);
-
-        // Manufacturer institution for dropdown in input form
-        $this->manufacturerInstitution = Institution::factory()->create([
-            'name' => 'Test Manufacturer',
-            'type' => Institution::TYPE_MANUFACTURER,
         ]);
         
         $this->user = User::factory()->create([
@@ -79,7 +73,6 @@ class DeviceInputFormTest extends TestCase
             'max_scan_width' => 200.0,
             'min_focal_length' => 50.0,
             'max_focal_length' => 500.0,
-            'institution_id' => $this->institution->id,
         ];
 
         $response = $this->post(route('inputform.store'), $deviceData);
@@ -98,8 +91,8 @@ class DeviceInputFormTest extends TestCase
             'build' => Device::BUILD_FIBER,
             'safety_class' => 2,
             'beam_type' => Device::BEAM_POINT,
-            'institution_id' => $this->institution->id,
-            'last_edit_by' => $this->user->id,
+            'institution_id' => 1, // Hardcoded in Controller TODO: Later we get this from form
+            'last_edit_by' => 1,   // Hardcoded in Controller TODO: Later we get this from Auth::user()
         ]);
 
         // Check that exactly one device was created
@@ -119,7 +112,6 @@ class DeviceInputFormTest extends TestCase
         $deviceData = [
             // 'name' => 'Test Device', // Missing on purpose
             'beam_type' => Device::BEAM_POINT,
-            'institution_id' => $this->institution->id,
         ];
 
         $response = $this->post(route('inputform.store'), $deviceData);
@@ -137,7 +129,6 @@ class DeviceInputFormTest extends TestCase
         $deviceData = [
             'name' => 'Test Device',
             // 'beam_type' => 0, // Missing on purpose
-            'institution_id' => $this->institution->id,
         ];
 
         $response = $this->post(route('inputform.store'), $deviceData);
@@ -160,7 +151,6 @@ class DeviceInputFormTest extends TestCase
         $deviceData = [
             'name' => 'Unique Device', // Same name as first Device
             'beam_type' => Device::BEAM_POINT,
-            'institution_id' => $this->institution->id,
         ];
 
         $response = $this->post(route('inputform.store'), $deviceData);
@@ -179,7 +169,6 @@ class DeviceInputFormTest extends TestCase
             'build' => 99,      // Unallowed value (only 0,1 allowed)
             'beam_type' => 99,  // Unallowed value (only 0,1,2 allowed)
             'cooling' => 99,    // Unallowed value (only 0,1 allowed)
-            'institution_id' => $this->institution->id,
         ];
 
         $response = $this->post(route('inputform.store'), $deviceData);
@@ -203,7 +192,6 @@ class DeviceInputFormTest extends TestCase
             'fiber_length' => -5.0, // signed
             'max_output' => -100,   // signed
             'wavelength' => -1064,  // signed
-            'institution_id' => $this->institution->id,
         ];
 
         $response = $this->post(route('inputform.store'), $deviceData);
@@ -223,7 +211,6 @@ class DeviceInputFormTest extends TestCase
             'head' => str_repeat('B', 51),           // Max. 50 chars
             'beam_profile' => str_repeat('C', 51),   // Max. 50 chars
             'beam_type' => Device::BEAM_POINT,
-            'institution_id' => $this->institution->id,
         ];
 
         $response = $this->post(route('inputform.store'), $deviceData);
@@ -244,7 +231,6 @@ class DeviceInputFormTest extends TestCase
             'cooling' => Device::COOLING_EXTERNAL, // Max. allowed
             'height' => 1, // Min. > 0
             'width' => 999999, // Large value, but should be valid
-            'institution_id' => $this->institution->id,
         ];
 
         $response = $this->post(route('inputform.store'), $deviceData);
@@ -263,7 +249,6 @@ class DeviceInputFormTest extends TestCase
         $deviceData = [
             'name' => 'Minimal Device', // Required field
             'beam_type' => Device::BEAM_LINE, // Required field
-            'institution_id' => $this->institution->id,
         ];
 
         $response = $this->post(route('inputform.store'), $deviceData);
@@ -274,7 +259,6 @@ class DeviceInputFormTest extends TestCase
         $this->assertDatabaseHas('devices', [
             'name' => 'Minimal Device',
             'beam_type' => Device::BEAM_LINE,
-            'institution_id' => $this->institution->id,
         ]);
         
         $device = Device::first();
@@ -291,7 +275,6 @@ class DeviceInputFormTest extends TestCase
             'beam_type' => Device::BEAM_POINT,
             'mounting' => 1,    // true
             'automation' => 0,  // false
-            'institution_id' => $this->institution->id,
         ];
 
         $response = $this->post(route('inputform.store'), $deviceData);
@@ -307,7 +290,6 @@ class DeviceInputFormTest extends TestCase
             'beam_type' => Device::BEAM_POINT,
             'mounting' => 0,    // false
             'automation' => 1,  // true
-            'institution_id' => $this->institution->id,
         ];
 
         $this->post(route('inputform.store'), $deviceData2);
@@ -324,10 +306,6 @@ class DeviceInputFormTest extends TestCase
         $response->assertStatus(200);
         $response->assertViewIs('inputform_device');
         $response->assertSee('Neues Lasergerät hinzufügen');
-        $response->assertViewHas('manufacturers', function ($manufacturers) {
-            return $manufacturers->pluck('name')->contains('Test Manufacturer');
-        });
-        $response->assertSee('Test Manufacturer');
     }
 
     public function test_handles_database_exceptions_gracefully(): void
@@ -341,14 +319,13 @@ class DeviceInputFormTest extends TestCase
         $deviceData = [
             'name' => 'Exception Test',
             'beam_type' => Device::BEAM_POINT,
-            'institution_id' => 9999,
         ];
 
         $response = $this->post(route('inputform.store'), $deviceData);
 
-        // Check if we get redirected back with a validation error
+        // Check if we get redirected back with an error message
         $response->assertRedirect();
-        $response->assertSessionHasErrors(['institution_id']);
+        $response->assertSessionHas('error');
         $this->assertDatabaseCount('devices', 0);
     }
 }

@@ -5,12 +5,15 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\Models\Institution;
+use App\Models\User;
 use Faker\Factory;
 
 class InputFormInstitutionTest extends TestCase
 {
     use RefreshDatabase;
     protected $faker;
+
+    private User $user;
 
     /**
      * This protected method sets up a Faker instance so that all tests can use this instance.
@@ -21,14 +24,37 @@ class InputFormInstitutionTest extends TestCase
     {
         parent::setUp();
         $this->faker = Factory::create();
+
+        $this->user = User::factory()->create();
     }
+
+    public function test_guest_is_redirected_from_create_route(): void
+    {
+        $response = $this->get('/institutions/create');
+        $response->assertRedirect('/login');
+    }
+
+    public function test_guest_cannot_store_institution(): void
+    {
+        $record = [
+            'name' => 'Test',
+            'type' => Institution::TYPE_MANUFACTURER,
+            'contact_information' => 'info'
+        ];
+
+        $response = $this->post('/institutions/create', $record);
+        $response->assertRedirect('/login');
+        $this->assertDatabaseCount('institutions', 0);
+    }
+
     /**
      * Tests whether the institution input form view is accessible
      * and returns a successful HTTP response with the correct view.
      */
     public function test_view_is_displayed_and_route_returns_successful_response(): void
     {
-        $response = $this->get('/inputform_institution');
+        $response = $this->actingAs(User::factory()->create())
+            ->get('/institutions/create');
 
         $response->assertStatus(200);
         $response->assertViewIs('inputform_institution');
@@ -48,10 +74,11 @@ class InputFormInstitutionTest extends TestCase
             'contact_information' => $this->faker->text(255)
         ];
 
-        $response = $this->withHeader('referer', '/inputform_institution')
-            ->post('/inputform_institution', $record);
+        $response = $this->actingAs(User::factory()->create())
+            ->withHeader('referer', '/institutions/create')
+            ->post('/institutions/create', $record);
 
-        $response->assertRedirect('/inputform_institution');
+        $response->assertRedirect('/institutions/create');
         $response->assertSessionHasNoErrors();
         $this->assertDatabaseHas('institutions', [
             'name' => $record['name'],
@@ -75,10 +102,11 @@ class InputFormInstitutionTest extends TestCase
             'contact_information' => $this->faker->text(255)
         ];
 
-        $response = $this->withHeader('referer', '/inputform_institution')
-            ->post('/inputform_institution', $record);
+        $response = $this->actingAs(User::factory()->create())
+            ->withHeader('referer', '/institutions/create')
+            ->post('/institutions/create', $record);
 
-        $response->assertRedirect('/inputform_institution');
+        $response->assertRedirect('/institutions/create');
         $response->assertSessionHasErrors('name');
         $this->assertDatabaseMissing('institutions', [
             'name' => $record['name'],
@@ -99,10 +127,11 @@ class InputFormInstitutionTest extends TestCase
             'contact_information' => $this->faker->text(255)
         ];
 
-        $response = $this->withHeader('referer', '/inputform_institution')
-            ->post('/inputform_institution', $record);
+        $response = $this->actingAs(User::factory()->create())
+            ->withHeader('referer', '/institutions/create')
+            ->post('/institutions/create', $record);
 
-        $response->assertRedirect('/inputform_institution');
+        $response->assertRedirect('/institutions/create');
         $response->assertSessionHasErrors('type');
         $this->assertDatabaseMissing('institutions', [
             'name' => $record['name'],
@@ -124,10 +153,11 @@ class InputFormInstitutionTest extends TestCase
             'contact_information' => null
         ];
 
-        $response = $this->withHeader('referer', '/inputform_institution')
-            ->post('/inputform_institution', $record);
+        $response = $this->actingAs(User::factory()->create())
+            ->withHeader('referer', '/institutions/create')
+            ->post('/institutions/create', $record);
 
-        $response->assertRedirect('/inputform_institution');
+        $response->assertRedirect('/institutions/create');
         $response->assertSessionHasErrors('contact_information');
         $this->assertDatabaseMissing('institutions', [
             'name' => $record['name'],
@@ -148,10 +178,11 @@ class InputFormInstitutionTest extends TestCase
             'contact_information' => $this->faker->text(255)
         ];
 
-        $response = $this->withHeader('referer', '/inputform_institution')
-            ->post('/inputform_institution', $record);
+        $response = $this->actingAs(User::factory()->create())
+            ->withHeader('referer', '/institutions/create')
+            ->post('/institutions/create', $record);
 
-        $response->assertRedirect('/inputform_institution');
+        $response->assertRedirect('/institutions/create');
         $response->assertSessionHasErrors('type');
         $this->assertDatabaseMissing('institutions', [
             'name' => $record['name'],
