@@ -70,7 +70,7 @@
             </table>
         </div>
         @auth
-            <a href="{{ url('/devices/all') }}" class="btn btn-primary mt-3">Lasergerät hinzufügen</a>
+            <a href="{{ url('/devices/create') }}" class="btn btn-primary mt-3">Lasergerät hinzufügen</a>
         @endauth
     </div>
 @endsection
