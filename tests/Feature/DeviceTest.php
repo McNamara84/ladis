@@ -97,4 +97,22 @@ class DeviceTest extends TestCase
         $this->assertTrue($device->processes->contains($process));
         $this->assertTrue($device->lastEditor->is($user));
     }
+
+    public function test_human_readable_attributes_cover_all_cases(): void
+    {
+        $device = new Device();
+        $device->build = Device::BUILD_MIRROR_ARM;
+        $device->beam_type = Device::BEAM_POINT;
+        $device->cooling = Device::COOLING_INTERNAL;
+        $this->assertEquals('Spiegelarm', $device->build_type);
+        $this->assertEquals('Punktlaser', $device->beam_type_name);
+        $this->assertEquals('Intern', $device->cooling_type);
+
+        $device->build = 99;
+        $device->beam_type = 99;
+        $device->cooling = 99;
+        $this->assertEquals('Unbekannt', $device->build_type);
+        $this->assertEquals('Unbekannt', $device->beam_type_name);
+        $this->assertEquals('Unbekannt', $device->cooling_type);
+    }
 }
