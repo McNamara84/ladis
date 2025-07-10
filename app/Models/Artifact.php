@@ -18,6 +18,15 @@ use App\Models\Location;
 class Artifact extends Model
 {
     use HasFactory;
+    /**
+     * The table associated with the model.
+     *
+     * Laravel would automatically assume 'artifacts' (plural of Artifact).
+     * An explicit definition is optional in this case but makes the code more readable.
+     *
+     * @var string
+     */
+    protected $table = 'artifacts';
 
     /**
      * The attributes that are mass assignable.
