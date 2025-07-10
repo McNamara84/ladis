@@ -12,6 +12,7 @@ use App\Http\Controllers\PrivacyPolicyController;
 use App\Http\Controllers\ProjectInputController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserManagementController;
+use App\Http\Controllers\Site\AboutController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
@@ -64,6 +65,10 @@ Route::get('/datenschutz', [PrivacyPolicyController::class, 'index'])->name('dat
 
 // Legal notice
 Route::get('/impressum', [LegalNoticeController::class, 'index'])->name('impressum');
+
+// About (the project) Page
+Route::get('/ladis', [AboutController::class, 'index'])->name('site.about');
+
 
 // ----------------------------
 // Login and logout routes
