@@ -19,10 +19,10 @@ class Contact extends Component
 {
 
     /**
-     * Valid Schema.org types
+     * List of valid Schema.org types
      *
      * Types valid for the top-level `itemscope` of the contact element
-     * e.g. `https://schema.org/<TYPE>`.
+     * (`https://schema.org/<TYPE>`).
      *
      * @var list<string>
      */
