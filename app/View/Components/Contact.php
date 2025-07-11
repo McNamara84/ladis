@@ -7,6 +7,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 use Illuminate\Support\Facades\Context;
 use Illuminate\Support\Facades\Log;
+use Stringable;
 
 /**
  * Contact component
@@ -69,7 +70,7 @@ class Contact extends Component
      *
      * @var string
      */
-    protected const string DEFAULT_NAME_FORMAT = '[n][ (A)][ <br> a]';
+    protected const string DEFAULT_NAME_FORMAT = '[n][ (A)][ <br> a][x]';
 
     /**
      * Poor man's cache for formatted names
@@ -108,10 +109,6 @@ class Contact extends Component
      */
     public function name(?string $format = null): string
     {
-        // Add component context at the method level
-        Context::add('component', static::class);
-        Context::add('method', __METHOD__);
-
         // If no format is provided, use the attribute
         $format ??= $this->name_format;
 
@@ -139,9 +136,13 @@ class Contact extends Component
 
             // If no token is found, skip this part
             if (empty($token)) {
-                Log::warning('Skipping match without known token', [
-                    'match' => $match,
-                ]);
+                Log::warning(
+                    'Skipping match without known token',
+                    [
+                        'match' => $match,
+                        '@origin' => __METHOD__,
+                    ]
+                );
                 continue;
             }
 
@@ -149,10 +150,14 @@ class Contact extends Component
             $value = $this->contact[self::NAME_TOKENS[$token]] ?? '';
 
             if (empty($value)) {
-                Log::warning('Skipping match with empty value for token', [
-                    'match' => $match,
-                    'token' => $token,
-                ]);
+                Log::warning(
+                    'Skipping match with empty value for token',
+                    [
+                        'match' => $match,
+                        'token' => $token,
+                        '@origin' => __METHOD__,
+                    ]
+                );
                 continue;
             }
 
