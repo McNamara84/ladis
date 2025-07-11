@@ -43,15 +43,16 @@ class ProjectInputController extends Controller
         try {
             $project = Project::create($validatedData);
 
-            return redirect()->route('inputform_project.index')
-                ->with('success', 'Projekt "' . $project->name . '" wurde angelegt');
+            return redirect()
+                ->route('inputform_project.index')
+                ->with('success', 'Projekt "'.$project->name.'" wurde erfolgreich angelegt!');
 
         } catch (\Exception $e) {
             Log::error('Fehler beim Speichern des Projekts: ' . $e->getMessage(), [
                 'attributes' => $validatedData,
             ]);
             return redirect()->back()->withInput()
-                ->with('error', 'Fehler beim Speichern des Projekts: ' . $e->getMessage());
+                ->with('error', 'Fehler beim Speichern des Projekts: '.$e->getMessage());
         }
     }
 }
