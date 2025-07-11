@@ -3,9 +3,10 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\Material;
+use App\Models\PartialSurface;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class MaterialTest extends TestCase
 {
@@ -118,5 +119,20 @@ class MaterialTest extends TestCase
 
         $this->expectException(\InvalidArgumentException::class);
         $child->save();
+    }
+
+    public function test_partial_surfaces_relationship_returns_related_models(): void
+    {
+        $material = new Material();
+        $relation = $material->partialSurfaces();
+
+        $this->assertInstanceOf(HasMany::class, $relation);
+        $this->assertInstanceOf(PartialSurface::class, $relation->getRelated());
+    }
+
+    public function test_would_create_circular_reference_returns_false_for_unknown_parent(): void
+    {
+        $material = Material::create(['name' => 'M']);
+        $this->assertFalse($material->wouldCreateCircularReference(9999));
     }
 }
