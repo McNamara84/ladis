@@ -91,6 +91,16 @@ class Contact extends Component
     }
 
     /**
+     * Checks if contact.type is a valid Schema.org item type
+     *
+     * @return bool
+     */
+    public function isValidType(): bool
+    {
+        return in_array($this->contact['type'], self::SCHEMA_ORG_TYPES);
+    }
+
+    /**
      * Get the formatted name
      *
      * @param string|null $format The format of the name, overrides the attribute
