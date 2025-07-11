@@ -20,6 +20,40 @@ class Contact extends Component
 {
 
     /**
+     * Valid Schema.org types
+     *
+     * Types valid for the top-level `itemscope` of the contact element
+     * e.g. `https://schema.org/<TYPE>`.
+     *
+     * @var list<string>
+     */
+    protected const array SCHEMA_ORG_TYPES = [
+        'Person',
+        'Organization',
+        // Specific Organization Types
+        'Airline',
+        'Consortium',
+        'Cooperative',
+        'Corporation',
+        'EducationalOrganization',
+        'FundingScheme',
+        'GovernmentOrganization',
+        'LibrarySystem',
+        'LocalBusiness',
+        'MedicalOrganization',
+        'NGO',
+        'NewsMediaOrganization',
+        'OnlineBusiness',
+        'PerformingGroup',
+        'PoliticalParty',
+        'Project',
+        'ResearchOrganization',
+        'SearchRescueOrganization',
+        'SportsOrganization',
+        'WorkersUnion',
+    ];
+
+    /**
      * Tokens for the name format
      *
      * @var array<string>
