@@ -29,6 +29,7 @@ return [
     */
 
     'contact_fhp' => [
+        'type' => 'CollegeOrUniversity',
         'name' => 'Fachhochschule Potsdam',
         'name_adjunct' => 'University of Applied Sciences',
         'name_abbreviation' => 'FHP',
@@ -52,6 +53,7 @@ return [
     */
 
     'contact_mwfk' => [
+        'type' => 'GovernmentOrganization',
         'name' => 'Ministerium für Wissenschaft, Forschung und Kultur des Landes Brandenburg',
         'name_abbreviation' => 'MWFK',
         'street' => 'Dortustr. 36',
