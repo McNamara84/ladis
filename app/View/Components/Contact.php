@@ -68,7 +68,7 @@ class Contact extends Component
      *
      * @var string
      */
-    protected const string DEFAULT_NAME_FORMAT = '[n][ (A)][ <br> a]';
+    protected const string DEFAULT_NAME_FORMAT = '[n][ (A)][<br>a]';
 
     /**
      * Poor man's cache for formatted names
