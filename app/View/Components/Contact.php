@@ -56,9 +56,9 @@ class Contact extends Component
     /**
      * Tokens for the name format
      *
-     * @var array<string>
+     * @var array<string, string>
      */
-    protected const NAME_TOKENS = [
+    protected const array NAME_TOKENS = [
         'n' => 'name',
         'A' => 'name_abbreviation',
         'a' => 'name_adjunct',
@@ -69,7 +69,7 @@ class Contact extends Component
      *
      * @var string
      */
-    protected const DEFAULT_NAME_FORMAT = '[n][ (A)][ <br> a]';
+    protected const string DEFAULT_NAME_FORMAT = '[n][ (A)][ <br> a]';
 
     /**
      * Poor man's cache for formatted names
@@ -96,7 +96,7 @@ class Contact extends Component
      * @param string|null $format The format of the name, overrides the attribute
      * @return string The name
      */
-    public function name(string $format = null): string
+    public function name(?string $format = null): string
     {
         // Add component context at the method level
         Context::add('component', static::class);
