@@ -25,8 +25,6 @@ class Project extends Model
         'url',
         'started_at',
         'ended_at',
-        'person_id',
-        'venue_id',
     ];
 
     protected $casts = [
