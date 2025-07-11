@@ -30,6 +30,8 @@ class ProjectTest extends TestCase
             'url',
             'started_at',
             'ended_at',
+            'person_id',
+            'venue_id',
         ], $project->getFillable());
         $this->assertInstanceOf(\Carbon\Carbon::class, $project->started_at);
         $this->assertInstanceOf(\Carbon\Carbon::class, $project->ended_at);
