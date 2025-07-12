@@ -67,11 +67,12 @@ class ConditionTest extends TestCase
     public function test_damage_pattern_relation_returns_associated_model(): void
     {
         $pattern = DamagePattern::create(['name' => 'Scratch']);
-        $condition = Condition::create([
-            'damage_pattern_id' => $pattern->id,
-            'severity' => 'leicht beschädigt',
-            'adhesion' => 'mäßig',
-        ]);
+        $condition = Condition::factory()
+            ->for($pattern)
+            ->state([
+                'severity' => 'leicht beschädigt',
+                'adhesion' => 'mäßig',
+            ])->create();
 
         $this->assertTrue($condition->damagePattern->is($pattern));
         $this->assertIsString($condition->severity);
@@ -82,28 +83,13 @@ class ConditionTest extends TestCase
 
     public function test_images_relationship_and_accessors(): void
     {
-        $condition = Condition::create([
-            'damage_pattern_id' => DamagePattern::factory()->create()->id,
-        ]);
-        $project = Project::forceCreate([
-            'name' => 'P',
-            'description' => 'd',
-            'url' => 'http://e.com',
-            'started_at' => '2024-01-01',
-            'ended_at' => '2024-01-02',
-            'person_id' => Person::factory()->create()->id,
-            'venue_id' => Venue::factory()->create()->id,
-        ]);
+        $condition = Condition::factory()->create();
+        $project = Project::factory()->create();
 
-        $img = Image::forceCreate([
-            'condition_id' => $condition->id,
-            'project_id' => $project->id,
-            'uri' => 'a',
-            'description' => 'd',
-            'alt_text' => 'a',
-            'year_created' => 2024,
-            'creator' => 'me',
-        ]);
+        $img = Image::factory()
+            ->for($condition)
+            ->for($project)
+            ->create();
 
         $relation = $condition->images();
         $this->assertInstanceOf(HasMany::class, $relation);
@@ -112,17 +98,9 @@ class ConditionTest extends TestCase
 
     public function test_condition_of_and_result_of_relationships(): void
     {
-        $condition = Condition::create([
-            'damage_pattern_id' => DamagePattern::factory()->create()->id,
-        ]);
-        $other = Condition::create([
-            'damage_pattern_id' => DamagePattern::factory()->create()->id,
-        ]);
-        $sample = SampleSurface::forceCreate([
-            'name' => 'S',
-            'description' => 'd',
-            'artifacts_id' => Artifact::factory()->create()->id,
-        ]);
+        $condition = Condition::factory()->create();
+        $other = Condition::factory()->create();
+        $sample = SampleSurface::factory()->create();
         $pre = PartialSurface::create([
             'sample_surface_id' => $sample->id,
             'foundation_material_id' => Material::create(['name' => 'f'])->id,
