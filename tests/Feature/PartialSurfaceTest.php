@@ -41,14 +41,9 @@ class PartialSurfaceTest extends TestCase
 
     public function test_relationships(): void
     {
-        $artifact = Artifact::factory()->create();
-        $sample = SampleSurface::forceCreate([
-            'name' => 'S',
-            'description' => 'desc',
-            'artifacts_id' => $artifact->id,
-        ]);
-        $condition = Condition::create(['severity' => 'leicht', 'adhesion' => 'gut', 'damage_pattern_id' => DamagePattern::factory()->create()->id]);
-        $result = Condition::create(['severity' => 'gut', 'adhesion' => 'schlecht', 'damage_pattern_id' => DamagePattern::factory()->create()->id]);
+        $sample = SampleSurface::factory()->create();
+        $condition = Condition::factory()->state(['severity' => 'leicht', 'adhesion' => 'gut'])->create();
+        $result = Condition::factory()->state(['severity' => 'gut', 'adhesion' => 'schlecht'])->create();
         $material = Material::create(['name' => 'M']);
         $partial = PartialSurface::create([
             'sample_surface_id' => $sample->id,

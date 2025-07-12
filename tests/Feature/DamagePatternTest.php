@@ -22,11 +22,10 @@ class DamagePatternTest extends TestCase
     public function test_conditions_relationship_is_hasmany(): void
     {
         $pattern = DamagePattern::factory()->create();
-        $condition = Condition::create([
-            'damage_pattern_id' => $pattern->id,
-            'severity' => 'leicht',
-            'adhesion' => 'gut',
-        ]);
+        $condition = Condition::factory()
+            ->for($pattern)
+            ->state(['severity' => 'leicht', 'adhesion' => 'gut'])
+            ->create();
 
         $relation = $pattern->conditions();
 

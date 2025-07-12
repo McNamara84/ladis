@@ -32,28 +32,20 @@ class ImageTest extends TestCase
 
     public function test_relationships_return_correct_types(): void
     {
-        $condition = Condition::create([
+        $condition = Condition::factory()->state([
             'severity' => 'leicht',
             'adhesion' => 'gut',
-            'damage_pattern_id' => DamagePattern::factory()->create()->id,
-        ]);
-        $project = Project::forceCreate([
-            'name' => 'P',
-            'description' => 'desc',
-            'url' => 'http://example.com',
-            'started_at' => '2024-01-01',
-            'ended_at' => '2024-01-02',
-            'person_id' => Person::factory()->create()->id,
-            'venue_id' => Venue::factory()->create()->id,
-        ]);
-        $image = Image::create([
-            'condition_id' => $condition->id,
-            'project_id' => $project->id,
-            'uri' => 'img.jpg',
-            'alt_text' => 'alt',
-            'year_created' => 2020,
-            'creator' => 'c',
-        ]);
+        ])->create();
+        $project = Project::factory()->create();
+        $image = Image::factory()
+            ->for($condition)
+            ->for($project)
+            ->state([
+                'uri' => 'img.jpg',
+                'alt_text' => 'alt',
+                'year_created' => 2020,
+                'creator' => 'c',
+            ])->create();
 
         $this->assertInstanceOf(BelongsTo::class, $image->condition());
         $this->assertInstanceOf(BelongsTo::class, $image->project());

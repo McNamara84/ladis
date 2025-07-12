@@ -49,24 +49,13 @@ class DeviceTest extends TestCase
         $device = Device::factory()->for($institution)->for($user, 'lastEditor')->create();
         $lens = Lens::factory()->create();
         $device->lenses()->attach($lens);
-        $artifact = Artifact::factory()->create();
-        $sample = SampleSurface::forceCreate([
-            'name' => 'S',
-            'description' => 'desc',
-            'artifacts_id' => $artifact->id,
-        ]);
+        $sample = SampleSurface::factory()->create();
         $partialSurface = PartialSurface::create([
             'sample_surface_id' => $sample->id,
             'foundation_material_id' => Material::create(['name' => 'm'])->id,
             'coating_material_id' => Material::create(['name' => 'c'])->id,
-            'condition_id' => Condition::create([
-                'severity' => 'a',
-                'damage_pattern_id' => DamagePattern::factory()->create()->id,
-            ])->id,
-            'result_id' => Condition::create([
-                'severity' => 'b',
-                'damage_pattern_id' => DamagePattern::factory()->create()->id,
-            ])->id,
+            'condition_id' => Condition::factory()->state(['severity' => 'a'])->create()->id,
+            'result_id' => Condition::factory()->state(['severity' => 'b'])->create()->id,
             'size' => 1.0,
         ]);
         $config = Configuration::create([
