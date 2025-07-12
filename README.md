@@ -12,6 +12,8 @@ We are developing our own information system as part of the P11 laboratory. A sp
 
 ## Features
 
+
+- **User-friendly input forms:** Add devices, material and process via input form
 - **Overview lists:** List all registered devices and institutions
 - **User-friendly input forms:**
   - Add new **materials**
@@ -19,8 +21,9 @@ We are developing our own information system as part of the P11 laboratory. A sp
   - Add new **devices**
 - **Admin Tools:** Create new Accounts via UI or enter `php artisan newuser <name> <email> <password>` in server terminal for easy user creation.
 - **Simple Search:** The simple search function in the main menu allows you to quickly search for device names, institution names, ...
-- **Advanced Search:** The advanced search allows you to search the database for specific attributes. Currently, device and institution names can be searched.
+- **Advanced Search:** The advanced search allows you to search the database for specific attributes. Currently, device and institution names as well as the features year and cooling can be searched.
 - **Responsive UI:** Adapats to light and dark color scheme and supports various viewport sizes.
+- **Image Upload:** You can upload images for your project.
 
 ## Sitemap
 

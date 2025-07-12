@@ -6,6 +6,8 @@ use Tests\TestCase;
 use App\Models\City;
 use App\Models\FederalState;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Venue;
 
 class CityTest extends TestCase
 {
@@ -54,5 +56,14 @@ class CityTest extends TestCase
         $city->setRelation('federalState', $state);
 
         $this->assertSame('Potsdam, Brandenburg', $city->full_name);
+    }
+
+    public function test_venues_relationship_returns_related_models(): void
+    {
+        $city = new City();
+        $relation = $city->venues();
+
+        $this->assertInstanceOf(HasMany::class, $relation);
+        $this->assertInstanceOf(Venue::class, $relation->getRelated());
     }
 }
