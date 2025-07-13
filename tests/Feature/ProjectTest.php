@@ -39,29 +39,19 @@ class ProjectTest extends TestCase
 
     public function test_relationships(): void
     {
-        $person = Person::factory()->create();
-        $venue = Venue::factory()->create();
-        $project = Project::forceCreate([
-            'name' => 'Project',
-            'description' => 'desc',
-            'url' => 'http://example.com',
-            'started_at' => '2024-01-01',
-            'ended_at' => '2024-01-02',
-            'person_id' => $person->id,
-            'venue_id' => $venue->id,
-        ]);
-        $image = Image::create([
-            'condition_id' => Condition::create([
+        $project = Project::factory()->create();
+        $image = Image::factory()
+            ->for(Condition::factory()->state([
                 'severity' => 'x',
                 'adhesion' => 'y',
-                'damage_pattern_id' => DamagePattern::factory()->create()->id,
-            ])->id,
-            'project_id' => $project->id,
-            'uri' => 'img',
-            'alt_text' => 'alt',
-            'year_created' => 2020,
-            'creator' => 'c',
-        ]);
+            ]))
+            ->for($project)
+            ->state([
+                'uri' => 'img',
+                'alt_text' => 'alt',
+                'year_created' => 2020,
+                'creator' => 'c',
+            ])->create();
         $project->coverImage()->associate($image);
         $project->thumbnailImage()->associate($image);
         $project->save();
