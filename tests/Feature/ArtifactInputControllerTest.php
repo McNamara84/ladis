@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-#use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\Location;
 use App\Models\Artifact;
@@ -11,17 +10,13 @@ use App\Models\User;
 
 class ArtifactInputControllerTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     */
     use RefreshDatabase;
 
-    /** @test */
     public function test_it_displays_the_artifact_input_form(): void
     {
         $user = User::factory()->create();
         $this->actingAs($user);
-        // Arrange: Eine Location mit zugehörigem Venue erstellen
+        // Arrange: A location is created to be used in the test
         $location = Location::factory()->create([
             'name' => 'Kuppel',
         ]);
@@ -81,7 +76,7 @@ class ArtifactInputControllerTest extends TestCase
             'location_id' => $location_id_non,
         ]);
     }
-     public function test_required_data_is_missing_artifact_name_and_redirects(): void
+    public function test_required_data_is_missing_artifact_name_and_redirects(): void
     {
         $user = User::factory()->create();
         $this->actingAs($user);
@@ -111,7 +106,7 @@ class ArtifactInputControllerTest extends TestCase
             'artifact_inventory_number' => 'INV-001',
         ]);
 
-        $response->assertStatus(302); // 302 = Redirect (Formular wurde abgeschickt)
+        $response->assertStatus(302); // 302 = Redirect (form has been sent)
         $response->assertRedirect('/inputform_artifact');
     }
 }
