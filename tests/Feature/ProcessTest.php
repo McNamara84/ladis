@@ -48,18 +48,13 @@ class ProcessTest extends TestCase
             'spot_size' => 1.0,
             'fluence' => 1.0,
         ]);
-        $artifact = Artifact::factory()->create();
-        $sample = SampleSurface::forceCreate([
-            'name' => 's',
-            'description' => 'd',
-            'artifacts_id' => $artifact->id,
-        ]);
+        $sample = SampleSurface::factory()->create();
         $partial = PartialSurface::create([
             'sample_surface_id' => $sample->id,
             'foundation_material_id' => Material::create(['name' => 'm'])->id,
             'coating_material_id' => Material::create(['name' => 'c'])->id,
-            'condition_id' => Condition::create(['severity' => 'ok', 'adhesion' => 'gut', 'damage_pattern_id' => DamagePattern::factory()->create()->id])->id,
-            'result_id' => Condition::create(['severity' => 'ok', 'adhesion' => 'gut', 'damage_pattern_id' => DamagePattern::factory()->create()->id])->id,
+            'condition_id' => Condition::factory()->state(['severity' => 'ok'])->create()->id,
+            'result_id' => Condition::factory()->state(['severity' => 'ok'])->create()->id,
             'size' => 1.0,
         ]);
         $process = Process::create([
