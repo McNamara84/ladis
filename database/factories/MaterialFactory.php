@@ -65,6 +65,14 @@ class MaterialFactory extends Factory
         'Keramik' => ['Terrakotta', 'Porzellan', 'Steingut', 'Fayence', 'Majolika'],
         'Glas' => ['Bleiglas', 'Kalkglas', 'Borosilikatglas', 'Kristallglas'],
         'Textil' => ['Seide', 'Wolle', 'Leinen', 'Baumwolle', 'Samt'],
+        'Kunststoff' => ['PVC', 'PE', 'PP'],
+        'Papier' => ['Zeitungspapier', 'Karton'],
+        'Beton' => ['Stahlbeton', 'Faserbeton'],
+        'Gips' => ['Stuckgips', 'Naturgips'],
+        'Leder' => ['Rindsleder', 'Ziegenleder'],
+        'Pergament' => ['Ziegenhaut', 'Schafhaut'],
+        'Elfenbein' => ['Mammut', 'Walross'],
+        'Farbe' => ['Ölfarbe', 'Acrylfarbe']
     ];
 
     /**

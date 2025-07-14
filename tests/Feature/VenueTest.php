@@ -30,15 +30,7 @@ class VenueTest extends TestCase
         $city = City::factory()->create();
         $venue = Venue::factory()->for($city)->create();
         $location = Location::factory()->for($venue)->create();
-        $project = Project::forceCreate([
-            'name' => 'P',
-            'description' => 'desc',
-            'url' => 'http://example.com',
-            'started_at' => '2024-01-01',
-            'ended_at' => '2024-01-02',
-            'person_id' => Person::factory()->create()->id,
-            'venue_id' => $venue->id,
-        ]);
+        $project = Project::factory()->for($venue)->create();
 
         $this->assertInstanceOf(BelongsTo::class, $venue->city());
         $this->assertInstanceOf(HasMany::class, $venue->locations());

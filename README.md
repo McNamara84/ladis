@@ -135,12 +135,7 @@ Seeders are used to populate the database with initial or sample data. To run al
 
 ## Factories
 
-Factories automatically generate sample data for models to simplify testing and development.
-
-### Available Factories
-
-- `LensFactory`
-
+Factories automatically generate sample data for models to simplify testing and development. All models in this project have a factory.
 
 ## Contributing
 

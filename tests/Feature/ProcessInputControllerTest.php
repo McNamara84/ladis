@@ -47,16 +47,10 @@ class ProcessInputControllerTest extends TestCase
         $user = User::factory()->create();
         $this->actingAs($user);
 
-        $artifact = Artifact::factory()->create();
-        $sampleSurface = SampleSurface::unguarded(callback: fn(): SampleSurface => SampleSurface::create(attributes: [
-            'name' => 'Test',
-            'description' => 'desc',
-            'artifacts_id' => $artifact->id,
-
-        ]));
+        $sampleSurface = SampleSurface::factory()->create();
         $damagePattern = DamagePattern::factory()->create();
-        $condition = Condition::create(attributes: ['damage_pattern_id' => $damagePattern->id]);
-        $result = Condition::create(attributes: ['damage_pattern_id' => $damagePattern->id]);
+        $condition = Condition::factory()->for($damagePattern)->create();
+        $result = Condition::factory()->for($damagePattern)->create();
         $foundation = Material::factory()->create();
         $coating = Material::factory()->create();
         $partialSurface = PartialSurface::create(attributes: [
@@ -99,15 +93,10 @@ class ProcessInputControllerTest extends TestCase
         $user = User::factory()->create();
         $this->actingAs($user);
 
-        $artifact = Artifact::factory()->create();
-        $sampleSurface = SampleSurface::unguarded(fn() => SampleSurface::create([
-            'name' => 'Test',
-            'description' => 'desc',
-            'artifacts_id' => $artifact->id,
-        ]));
+        $sampleSurface = SampleSurface::factory()->create();
         $damagePattern = DamagePattern::factory()->create();
-        $condition = Condition::create(['damage_pattern_id' => $damagePattern->id]);
-        $result = Condition::create(['damage_pattern_id' => $damagePattern->id]);
+        $condition = Condition::factory()->for($damagePattern)->create();
+        $result = Condition::factory()->for($damagePattern)->create();
         $foundation = Material::factory()->create();
         $coating = Material::factory()->create();
         $partialSurface = PartialSurface::create([
