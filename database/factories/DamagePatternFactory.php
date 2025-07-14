@@ -14,7 +14,15 @@ class DamagePatternFactory extends Factory
         'Graffiti',
         'Verrußung',
         'Umwandlungskruste',
-        'biogener Bewuchs'
+        'biogener Bewuchs',
+        'Kruste',
+        'Patina',
+        'Erosion',
+        'Schmierfilm',
+        'Salzablagerung',
+        'Tarnanstrich',
+        'Farbschicht',
+        'Ruß'
     ];
     /**
      * Define the model's default state.
