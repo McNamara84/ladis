@@ -1,4 +1,4 @@
-![PHP 8.4](https://img.shields.io/badge/php-8.4-blue?logo=php)
+![PHP ^8.2](https://img.shields.io/badge/php-%5E8.2-blue?logo=php)
 ![MySQL 8](https://img.shields.io/badge/mysql-8.4-orange?logo=mysql&logoColor=white)
 ![Laravel 12](https://img.shields.io/badge/laravel-12-red?logo=laravel&style=flat)
 ![Bootstrap 5.3](https://img.shields.io/badge/bootstrap-5.3-563d7c?logo=bootstrap)
@@ -56,7 +56,9 @@ We are developing our own information system as part of the P11 laboratory. A sp
 
 ## Prerequisites
 
-<!-- List dependencies and system requirements here -->
+### System Requirements
+
+- **PHP**: 8.2 or higher
 
 ## Quick Start
 
@@ -91,6 +93,10 @@ Follow these steps to set up the development environment:
 
 - `php artisan serve` to start test server for manual testing
 - `php artisan test` to execute the test suite.
+
+## Automated Testing (CI/CD)
+
+In addition to [local testing](#commands-for-testing), our test suite runs automatically via GitHub Actions on every push and pull request. All supported PHP versions (8.2, 8.3, and 8.4) are tested to ensure compatibility across the entire supported range. This automated testing is separate from the manual testing commands above and requires no action from developers.
 
 ## Production Deployment
 
