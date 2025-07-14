@@ -8,23 +8,29 @@ on:
 jobs:
   tests:
     runs-on: ubuntu-latest
-    
+
+    strategy:
+      matrix:
+        php-version: ['8.2', '8.3', '8.4']
+
+    name: PHP ${{ matrix.php-version }} Tests
+
     steps:
     - uses: actions/checkout@v4
-    
+
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '8.4'
+        php-version: ${{ matrix.php-version }}
         extensions: mbstring, xml, ctype, iconv, intl, pdo_mysql, zip, bcmath, gd, curl, sqlite3, pdo_sqlite
         coverage: none
-        
+
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
         node-version: '20'
         cache: 'npm'
-        
+
     - name: Copy .env file and configure for testing
       run: |
         cp .env.example .env
@@ -39,31 +45,31 @@ jobs:
         echo "LOG_CHANNEL=stderr" >> .env
         echo "MAIL_MAILER=array" >> .env
         echo "BROADCAST_DRIVER=log" >> .env
-        
+
     - name: Create SQLite database for testing
       run: |
         mkdir -p database
         touch database/testing.sqlite
-        
+
     - name: Install Composer dependencies
       run: composer install --prefer-dist --no-progress
-      
+
     - name: Generate application key
       run: php artisan key:generate --force
-        
+
     - name: Install npm dependencies
       run: |
         if [ -f package.json ]; then
           npm ci
         fi
-        
+
     - name: Run database migrations
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/testing.sqlite
         APP_ENV: testing
       run: php artisan migrate --force
-        
+
     - name: Run Laravel tests (with debugging)
       env:
         DB_CONNECTION: sqlite
@@ -72,7 +78,7 @@ jobs:
       run: |
         php artisan test --debug
         echo "Exit code: $?"
-        
+
     - name: Run frontend tests (not yet integrated)
       run: |
         if [ -f package.json ] && npm run --silent test 2>/dev/null; then
