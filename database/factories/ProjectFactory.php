@@ -18,9 +18,9 @@ class ProjectFactory extends Factory
             'description' => $this->faker->sentence(),
             'url' => $this->faker->unique()->url(),
             'started_at' => $this->faker->date(),
-            'ended_at' => $this->faker->date(),
             'person_id' => Person::factory(),
             'venue_id' => Venue::factory(),
+            'ended_at' => $this->faker->date(),
         ];
     }
 }
