@@ -13,14 +13,16 @@ class ProjectFactory extends Factory
 {
     public function definition(): array
     {
+        $startedAt = $this->faker->date();
+
         return [
             'name' => $this->faker->unique()->words(3, true),
             'description' => $this->faker->sentence(),
             'url' => $this->faker->unique()->url(),
-            'started_at' => $this->faker->date(),
+            'started_at' => $startedAt,
             'person_id' => Person::factory(),
             'venue_id' => Venue::factory(),
-            'ended_at' => $this->faker->date(),
+            'ended_at' => $this->faker->dateTimeBetween($startedAt, '+2 years'),
         ];
     }
 }
