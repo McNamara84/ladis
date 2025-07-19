@@ -73,7 +73,7 @@ class SearchControllerTest extends TestCase
         $device->beam_type = Device::BEAM_POINT;
         $device->save();
 
-        $response = $this->get('/adv-search/result?advanced=1&institution_id=Däßler');
+        $response = $this->get('/adv-search/result?advanced=1&institution_id=' . $institution->id);
 
         $response->assertStatus(200);
         $response->assertSee('SuperLaser');
@@ -97,6 +97,30 @@ class SearchControllerTest extends TestCase
 
         $response->assertStatus(200);
         $response->assertSee('CL60');
+    }
+
+    public function test_advanced_search_filters_exact_institution_id_when_names_overlap(): void
+    {
+        $targetInst = Institution::create([
+            'name' => 'Däßler',
+            'type' => Institution::TYPE_MANUFACTURER,
+            'contact_information' => 'info@daessler.de',
+        ]);
+
+        $otherInst = Institution::create([
+            'name' => 'Däßler Laser',
+            'type' => Institution::TYPE_MANUFACTURER,
+            'contact_information' => 'info@daessler-laser.de',
+        ]);
+
+        Device::factory()->for($targetInst)->create(['name' => 'TargetDevice']);
+        Device::factory()->for($otherInst)->create(['name' => 'OtherDevice']);
+
+        $response = $this->get('/adv-search/result?advanced=1&institution_id=' . $targetInst->id);
+
+        $response->assertStatus(200);
+        $response->assertSee('TargetDevice');
+        $response->assertDontSee('OtherDevice');
     }
 
     public function test_advanced_search_filters_by_device_and_institution(): void
@@ -125,7 +149,7 @@ class SearchControllerTest extends TestCase
         $device2->beam_type = Device::BEAM_POINT;
         $device2->save();
 
-        $response = $this->get('/adv-search/result?advanced=1&q=Advanced2000&institution_id=Tech');
+        $response = $this->get('/adv-search/result?advanced=1&q=Advanced2000&institution_id=' . $inst1->id);
 
         $response->assertStatus(200);
         $response->assertSee('Advanced2000');

@@ -39,7 +39,7 @@
                                 <select class="form-control" id="institution_id" name="institution_id" size="3">
                                     <option disabled selected value="">Wählen Sie den Namen der Institution aus</option>
                                     @foreach ($institutions as $institution)
-                                        <option value="{{ $institution->name }}">{{ $institution->name }}</option>
+                                        <option value="{{ $institution->id }}">{{ $institution->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
