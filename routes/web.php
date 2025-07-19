@@ -113,8 +113,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/devices/create', [InputFormDeviceController::class, 'store'])->name('inputform.store');
     Route::delete('/devices/{device}', [DeviceController::class, 'destroy'])->name('devices.destroy');
     // Material management
-    Route::get('/inputform_material', [MaterialInputController::class, 'index'])->name('inputform_material.index');
-    Route::post('/inputform_material', [MaterialInputController::class, 'store'])->name('inputform_material.store');
+    Route::get('/materials/create', [MaterialInputController::class, 'index'])->name('inputform_material.index');
+    Route::post('/materials/create', [MaterialInputController::class, 'store'])->name('inputform_material.store');
     Route::delete('/materials/{material}', [MaterialController::class, 'destroy'])->name('materials.destroy');
     // Institutions management
     Route::get('/institutions/create', [InputFormInstitutionController::class, 'index'])->name('inputform_institution.index');
