@@ -40,7 +40,7 @@ class MaterialInputController extends Controller
         try {
             Material::create($data);
 
-            return redirect()->route('inputform_material.index')
+            return redirect()->route('materials.all')
                 ->with('success', 'Material wurde gespeichert');
 
         } catch (\Exception $e) {

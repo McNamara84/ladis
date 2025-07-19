@@ -24,12 +24,12 @@ class MaterialInputFormValidationTest extends TestCase
         $name = 'Stein';
 
         $response = $this->actingAs($this->user)
-            ->withHeader('referer', '/inputform_material')
-            ->post('/inputform_material', [
+            ->withHeader('referer', '/materials/create')
+            ->post('/materials/create', [
                 'material_name' => $name,
             ]);
 
-        $response->assertRedirect('/inputform_material');
+        $response->assertRedirect('/materials/all');
         $this->assertDatabaseHas('materials', [
             'name' => $name,
         ]);
@@ -43,12 +43,12 @@ class MaterialInputFormValidationTest extends TestCase
         $name_non = '';
 
         $response = $this->actingAs($this->user)
-            ->withHeader('referer', '/inputform_material')
-            ->post('/inputform_material', [
+            ->withHeader('referer', '/materials/create')
+            ->post('/materials/create', [
                 'material_name' => $name_non,
             ]);
 
-        $response->assertRedirect('/inputform_material');
+        $response->assertRedirect('/materials/create');
         $response->assertSessionHasErrors('material_name');
         $this->assertDatabaseMissing('materials', [
             'name' => $name_non,
@@ -60,11 +60,11 @@ class MaterialInputFormValidationTest extends TestCase
         $name_non_valid = 'BeispielstringBeispielstringBeispielstringBeispiels';
 
         $response = $this->actingAs($this->user)
-            ->withHeader('referer', '/inputform_material')
-            ->post('/inputform_material', [
+            ->withHeader('referer', '/materials/create')
+            ->post('/materials/create', [
                 'material_name' => $name_non_valid,
             ]);
-        $response->assertRedirect('/inputform_material');
+        $response->assertRedirect('/materials/create');
         $response->assertSessionHasErrors('material_name');
         $this->assertDatabaseMissing('materials', [
             'name' => $name_non_valid,
@@ -76,12 +76,12 @@ class MaterialInputFormValidationTest extends TestCase
         $name_non = null;
 
         $response = $this->actingAs($this->user)
-            ->withHeader('referer', '/inputform_material')
-            ->post('/inputform_material', [
+            ->withHeader('referer', '/materials/create')
+            ->post('/materials/create', [
                 'material_name' => $name_non,
             ]);
 
-        $response->assertRedirect('/inputform_material');
+        $response->assertRedirect('/materials/create');
         $response->assertSessionHasErrors('material_name');
     }
 
@@ -91,13 +91,13 @@ class MaterialInputFormValidationTest extends TestCase
         $child = Material::create(['name' => 'Child', 'parent_id' => $top->id]);
 
         $response = $this->actingAs($this->user)
-            ->withHeader('referer', '/inputform_material')
-            ->post('/inputform_material', [
+            ->withHeader('referer', '/materials/create')
+            ->post('/materials/create', [
                 'material_name' => 'Third',
                 'material_parent_id' => $child->id,
             ]);
 
-        $response->assertRedirect('/inputform_material');
+        $response->assertRedirect('/materials/create');
         $response->assertSessionHas('error');
         $this->assertDatabaseMissing('materials', ['name' => 'Third']);
     }
