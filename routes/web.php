@@ -108,16 +108,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/user-management/create', [UserManagementController::class, 'create'])->name('user-management.create');
     Route::post('/user-management/create', [UserManagementController::class, 'store'])->name('user-management.store');
     Route::delete('/user-management/{user}', [UserManagementController::class, 'destroy'])->name('user-management.destroy');
-
-    // Routes for devices
+    // Devices management
     Route::get('/devices/create', [InputFormDeviceController::class, 'index'])->name('inputform.index');
     Route::post('/devices/create', [InputFormDeviceController::class, 'store'])->name('inputform.store');
     Route::delete('/devices/{device}', [DeviceController::class, 'destroy'])->name('devices.destroy');
-
-    // Routes for materials
+    // Material management
+    Route::get('/inputform_material', [MaterialInputController::class, 'index'])->name('inputform_material.index');
+    Route::post('/inputform_material', [MaterialInputController::class, 'store'])->name('inputform_material.store');
     Route::delete('/materials/{material}', [MaterialController::class, 'destroy'])->name('materials.destroy');
-
-    // Routes for institutions
+    // Institutions management
     Route::get('/institutions/create', [InputFormInstitutionController::class, 'index'])->name('inputform_institution.index');
     Route::post('/institutions/create', [InputFormInstitutionController::class, 'store'])->name('inputform_institution.store');
     Route::delete('/institutions/{institution}', [InstitutionController::class, 'destroy'])->name('institutions.destroy');
@@ -129,10 +128,6 @@ Route::middleware('auth')->group(function () {
     // Routes for projects
     Route::get('/inputform_project', [ProjectInputController::class, 'index'])->name('inputform_project.index');
     Route::post('/inputform_project', [ProjectInputController::class, 'store'])->name('inputform_project.store');
-
-    // Material management
-    Route::get('/inputform_material', [MaterialInputController::class, 'index'])->name('inputform_material.index');
-    Route::post('/inputform_material', [MaterialInputController::class, 'store'])->name('inputform_material.store');
 
     // Routes for artifacts
     Route::get('/inputform_artifact', [ArtifactInputController::class, 'index'])->name('inputform_artifact.index');
