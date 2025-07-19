@@ -9,7 +9,13 @@ class MaterialController extends Controller
 {
     public function index()
     {
-        $materials = Material::with('parent')->get();
+        // Load only top level materials and eager load their children
+        // for a hierarchical display. Ordering by name keeps the list
+        // deterministic and easier to read.
+        $materials = Material::with('children')
+            ->whereNull('parent_id')
+            ->orderBy('name')
+            ->get();
 
         return view('materials.index', compact('materials'));
     }

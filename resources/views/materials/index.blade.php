@@ -19,10 +19,10 @@
                 </thead>
                 <tbody>
                     @forelse($materials as $material)
-                        <tr>
+                        <tr class="table-primary fw-bold">
                             <td>{{ $material->id }}</td>
                             <td>{{ $material->name }}</td>
-                            <td>{{ $material->parent?->name ?? '–' }}</td>
+                            <td>–</td>
                             @auth
                                 <td>
                                     <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteMaterial{{ $material->id }}">
@@ -53,6 +53,42 @@
                                 </td>
                             @endauth
                         </tr>
+                        @foreach($material->children->sortBy('name') as $child)
+                            <tr>
+                                <td>{{ $child->id }}</td>
+                                <td class="ps-4">&mdash; {{ $child->name }}</td>
+                                <td>{{ $material->name }}</td>
+                                @auth
+                                    <td>
+                                        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteMaterial{{ $child->id }}">
+                                            Löschen
+                                        </button>
+
+                                        <div class="modal fade" id="deleteMaterial{{ $child->id }}" tabindex="-1" aria-labelledby="deleteMaterial{{ $child->id }}Label" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="deleteMaterial{{ $child->id }}Label">Material löschen</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schließen"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Soll das Material <strong>{{ $child->name }}</strong> wirklich gelöscht werden?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Abbrechen</button>
+                                                        <form method="POST" action="{{ route('materials.destroy', $child->id) }}" class="d-inline">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger">Löschen</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                @endauth
+                            </tr>
+                        @endforeach
                     @empty
                         <tr>
                             <td colspan="@auth 4 @else 3 @endauth">Keine Materialien vorhanden.</td>
