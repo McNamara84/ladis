@@ -21,13 +21,13 @@ class SampleSurface extends Model
     use HasFactory;
 
     protected $fillable = [
-        'sample_surface_id',
+        'artifacts_id',
         'name',
         'description',
     ];
 
-    protected $cast = [
-        'sample_surface_id' => 'integer',
+    protected $casts = [
+        'artifacts_id' => 'integer',
         'name' => 'string',
         'description' => 'string',
     ];
@@ -37,7 +37,7 @@ class SampleSurface extends Model
      */
     public function artifact(): BelongsTo
     {
-        return $this->belongsTo(Artifact::class);
+        return $this->belongsTo(Artifact::class, 'artifacts_id');
     }
 
     /**
