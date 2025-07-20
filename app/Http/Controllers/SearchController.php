@@ -28,9 +28,7 @@ class SearchController extends Controller
             }
 
             if ($institution) {
-                $devicesQuery->whereHas('institution', function ($q) use ($institution) {
-                    $q->where('name', 'like', "%{$institution}%");
-                });
+                $devicesQuery->where('institution_id', $institution);
             }
         } else {
             if ($queryString) {
