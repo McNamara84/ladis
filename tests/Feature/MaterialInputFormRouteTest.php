@@ -17,7 +17,7 @@ class MaterialInputFormRouteTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $response = $this->actingAs($user)->get('/inputform_material');
+        $response = $this->actingAs($user)->get('/materials/create');
 
         $response->assertStatus(200);
         $response->assertViewIs('inputform_material');
@@ -30,7 +30,7 @@ class MaterialInputFormRouteTest extends TestCase
 
         $user = User::factory()->create();
 
-        $response = $this->actingAs($user)->get('/inputform_material');
+        $response = $this->actingAs($user)->get('/materials/create');
 
         $response->assertStatus(200);
         $materials = $response->viewData('materials');
