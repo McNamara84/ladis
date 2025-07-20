@@ -2,3 +2,5 @@
 !.gitignore
 !devices/
 !devices/**
+!contacts/
+!contacts/**

@@ -1,0 +1,8 @@
+{
+	"@context": "https://schema.org",
+	"@type": "EducationalOrganization",
+	"@id": "fb2",
+	"name": "Fachbereich STADT | BAU | KULTUR",
+	"additionalName": "FB2",
+	"url": "https://www.fh-potsdam.de/studium-weiterbildung/fachbereiche/fachbereich-stadt-bau-kultur"
+}

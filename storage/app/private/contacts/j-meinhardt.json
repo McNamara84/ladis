@@ -1,0 +1,13 @@
+{
+	"@context": "https://schema.org",
+	"@type": "Person",
+	"@id": "j-meinhardt",
+	"name": "Prof. Dr. Jeannine Meinhardt",
+	"label": "Fachbeirat",
+	"affiliation": "fhp",
+	"inherits": [
+		"streetAddress",
+		"postalCode",
+		"addressLocality"
+	]
+}

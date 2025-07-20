@@ -1,0 +1,8 @@
+{
+	"@context": "https://schema.org",
+	"@type": "EducationalOrganization",
+	"@id": "fb5",
+	"name": "Fachbereich Informationswissenschaften",
+	"additionalName": "FB5",
+	"url": "https://www.fh-potsdam.de/studium-weiterbildung/fachbereiche/fachbereich-informationswissenschaften"
+}
