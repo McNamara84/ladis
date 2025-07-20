@@ -1,0 +1,12 @@
+{
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": "grimm-remus-corinna",
+    "name": "Dipl. Rest. Dr. Corinna Grimm-Remus",
+    "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Am Schäferbrunnen 12",
+        "postalCode": "39128",
+        "addressLocality": "Magdeburg"
+    }
+}
