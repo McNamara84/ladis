@@ -5,7 +5,7 @@
     "name": "Prof. Dr. Eva Schmitt-Rodermund",
     "email": "praesidentin@fh-potsdam.de",
     "affiliation": "fhp",
-    "label": "Präsidentin",
+    "jobTitle": "Präsidentin",
     "inherits": [
         "streetAddress",
         "postalCode",
