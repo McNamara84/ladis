@@ -18,6 +18,12 @@ class ProjectInputControllerTest extends TestCase
     private Person $person;
     private Venue $venue;
 
+    protected function tearDown(): void
+    {
+        Event::forget('eloquent.creating: '.Project::class);
+        parent::tearDown();
+    }
+
     protected function setUp(): void
     {
         parent::setUp();
