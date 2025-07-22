@@ -61,4 +61,35 @@ class InstitutionListTest extends TestCase
         $response->assertRedirect('/institutions/manufacturers/all');
         $this->assertModelMissing($institution);
     }
+
+    public function test_guest_cannot_delete_institution(): void
+    {
+        $institution = Institution::factory()->create();
+
+        $response = $this->delete(route('institutions.destroy', $institution));
+
+        $response->assertRedirect('/login');
+        $this->assertModelExists($institution);
+    }
+
+    public function test_manufacturers_list_page_passes_page_title(): void
+    {
+        $response = $this->get('/institutions/manufacturers/all');
+
+        $response->assertViewHas('pageTitle', 'Alle Hersteller');
+    }
+
+    public function test_clients_list_page_passes_page_title(): void
+    {
+        $response = $this->get('/institutions/clients/all');
+
+        $response->assertViewHas('pageTitle', 'Alle Auftraggeber');
+    }
+
+    public function test_contractors_list_page_passes_page_title(): void
+    {
+        $response = $this->get('/institutions/contractors/all');
+
+        $response->assertViewHas('pageTitle', 'Alle Auftragnehmer');
+    }
 }
