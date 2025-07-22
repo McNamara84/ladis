@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use App\Models\Condition;
 use App\Models\Project;
+use Illuminate\Support\Carbon;
 
 /**
  * Image Model:
@@ -16,6 +17,17 @@ use App\Models\Project;
  * - belongs to Project (n:1)
  * - has one Project (being a cover image) (1:1)
  * - has one Project (being a thumbnail image) (1:1)
+ * 
+ * @property int $id
+ * @property int|null $condition_id
+ * @property int $project_id
+ * @property string $uri
+ * @property string|null $description
+ * @property string $alt_text
+ * @property int $year_created
+ * @property string $creator
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  */
 class Image extends Model
 {
