@@ -20,6 +20,12 @@ class ProcessInputControllerTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected function tearDown(): void
+    {
+        Event::forget('eloquent.creating: '.Process::class);
+        parent::tearDown();
+    }
+
     public function test_empty_form_can_not_be_saved(): void
     {
         $user = User::factory()->create();
@@ -276,7 +282,5 @@ class ProcessInputControllerTest extends TestCase
         $response->assertRedirect('/inputform_process');
         $response->assertSessionHas('error');
         $this->assertDatabaseCount('processes', 0);
-
-        Event::forget('eloquent.creating: '.Process::class);
     }
 }
