@@ -17,6 +17,12 @@ class InputFormInstitutionTest extends TestCase
 
     private User $user;
 
+    protected function tearDown(): void
+    {
+        Event::forget('eloquent.creating: '.Institution::class);
+        parent::tearDown();
+    }
+
     /**
      * This protected method sets up a Faker instance so that all tests can use this instance.
      * Helps to create truly unique values.
@@ -238,7 +244,5 @@ class InputFormInstitutionTest extends TestCase
         $response->assertRedirect('/institutions/create');
         $response->assertSessionHas('error');
         $this->assertDatabaseCount('institutions', 0);
-
-        Event::forget('eloquent.creating: '.Institution::class);
     }
 }
