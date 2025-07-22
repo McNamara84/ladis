@@ -8,12 +8,20 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\SampleSurface;
 use App\Models\Location;
+use Illuminate\Support\Carbon;
 
 /**
  * Artifact Model:
  *
  * - belongs to Location (n:1)
  * - has many SampleSurfaces (1:n)
+ * 
+ * @property int $id
+ * @property int $location_id
+ * @property string $name
+ * @property string|null $inventory_number
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  */
 class Artifact extends Model
 {
