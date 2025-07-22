@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Person;
 use App\Models\Venue;
 use App\Models\Project;
+use Illuminate\Support\Facades\Event;
 
 class ProjectInputControllerTest extends TestCase
 {
@@ -53,6 +54,7 @@ class ProjectInputControllerTest extends TestCase
             'name' => 'Project X',
             'url' => 'https://example.com',
         ]);
+        $response->assertSessionHas('success');
     }
 
     public function test_store_fails_with_missing_fields(): void
@@ -118,5 +120,30 @@ class ProjectInputControllerTest extends TestCase
         $response->assertRedirect('/inputform_project');
         $response->assertSessionHasErrors(['name', 'url']);
         $this->assertDatabaseCount('projects', 1);
+    }
+
+    public function test_store_handles_exception_and_redirects_with_error(): void
+    {
+        $data = [
+            'name' => 'Exception Project',
+            'description' => 'Desc',
+            'url' => 'https://exception.test',
+            'started_at' => '2024-01-01',
+            'ended_at' => '2024-01-02',
+            'person_id' => $this->person->id,
+            'venue_id' => $this->venue->id,
+        ];
+
+        Event::listen('eloquent.creating: '.Project::class, function () {
+            throw new \Exception('db error');
+        });
+
+        $response = $this->actingAs($this->user)
+            ->withHeader('referer', '/inputform_project')
+            ->post('/inputform_project', $data);
+
+        $response->assertRedirect('/inputform_project');
+        $response->assertSessionHas('error');
+        $this->assertDatabaseCount('projects', 0);
     }
 }
