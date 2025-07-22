@@ -56,6 +56,9 @@ use Illuminate\Support\Carbon;
  * @property int|null $last_edit_by
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * @property-read string $build_type
+ * @property-read string $beam_type_name
+ * @property-read string $cooling_type
  */
 class Device extends Model
 {
