@@ -46,7 +46,9 @@ class ImageUploadControllerTest extends TestCase
         $response->assertRedirect(route('inputform_image.index'));
         $response->assertSessionHas('success');
 
-        Storage::disk('public')->assertExists("uploads/{$project->id}/{$file->hashName()}");
+        /** @var \Illuminate\Filesystem\FilesystemAdapter $storage */
+        $storage = Storage::disk('public');
+        $storage->assertExists("uploads/{$project->id}/{$file->hashName()}");
 
         $this->assertDatabaseHas('images', [
             'project_id' => $project->id,
@@ -97,7 +99,9 @@ class ImageUploadControllerTest extends TestCase
         ]);
 
         $response->assertRedirect('/login');
-        Storage::disk('public')->assertMissing("uploads/{$project->id}/{$file->hashName()}");
+        /** @var \Illuminate\Filesystem\FilesystemAdapter $storage */
+        $storage = Storage::disk('public');
+        $storage->assertMissing("uploads/{$project->id}/{$file->hashName()}");
         $this->assertDatabaseCount('images', 0);
     }
 
@@ -130,7 +134,7 @@ class ImageUploadControllerTest extends TestCase
         $file = UploadedFile::fake()->image('fail.jpg');
 
         Image::creating(function () {
-            throw new \Exception('fail');
+            throw new Exception('fail');
         });
 
         $response = $this->actingAs($user)
