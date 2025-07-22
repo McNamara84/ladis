@@ -8,6 +8,8 @@ use App\Models\User;
 use App\Models\Project;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Image;
+use Exception;
 
 class ImageUploadControllerTest extends TestCase
 {
@@ -71,5 +73,82 @@ class ImageUploadControllerTest extends TestCase
         $response->assertRedirect('/inputform_image');
         $response->assertSessionHasErrors('image');
         $this->assertDatabaseCount('images', 0);
+    }
+
+    public function test_guest_is_redirected_from_form(): void
+    {
+        $response = $this->get('/inputform_image');
+
+        $response->assertRedirect('/login');
+    }
+
+    public function test_guest_cannot_store_image(): void
+    {
+        Storage::fake('public');
+        $project = Project::factory()->create();
+        $file = UploadedFile::fake()->image('guest.jpg');
+
+        $response = $this->post('/inputform_image', [
+            'image' => $file,
+            'project_id' => $project->id,
+            'alt_text' => 'Alt',
+            'year_created' => 2024,
+            'creator' => 'Tester',
+        ]);
+
+        $response->assertRedirect('/login');
+        Storage::disk('public')->assertMissing("uploads/{$project->id}/{$file->hashName()}");
+        $this->assertDatabaseCount('images', 0);
+    }
+
+    public function test_store_fails_validation_when_alt_text_missing(): void
+    {
+        Storage::fake('public');
+        $user = User::factory()->create();
+        $project = Project::factory()->create();
+        $file = UploadedFile::fake()->image('photo.jpg');
+
+        $response = $this->actingAs($user)
+            ->from('/inputform_image')
+            ->post('/inputform_image', [
+                'image' => $file,
+                'project_id' => $project->id,
+                'year_created' => 2024,
+                'creator' => 'Tester',
+            ]);
+
+        $response->assertRedirect('/inputform_image');
+        $response->assertSessionHasErrors('alt_text');
+        $this->assertDatabaseCount('images', 0);
+    }
+
+    public function test_store_handles_exception_and_redirects_back(): void
+    {
+        Storage::fake('public');
+        $user = User::factory()->create();
+        $project = Project::factory()->create();
+        $file = UploadedFile::fake()->image('fail.jpg');
+
+        Image::creating(function () {
+            throw new \Exception('fail');
+        });
+
+        $response = $this->actingAs($user)
+            ->withHeader('referer', '/inputform_image')
+            ->post('/inputform_image', [
+                'image' => $file,
+                'project_id' => $project->id,
+                'description' => 'Test',
+                'alt_text' => 'Alt',
+                'year_created' => 2024,
+                'creator' => 'Tester',
+            ]);
+
+        $response->assertRedirect('/inputform_image');
+        $response->assertSessionHas('error');
+        $this->assertDatabaseCount('images', 0);
+
+        Image::flushEventListeners();
+        Image::clearBootedModels();
     }
 }
