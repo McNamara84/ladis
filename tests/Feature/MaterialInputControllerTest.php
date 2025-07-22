@@ -12,6 +12,13 @@ class MaterialInputControllerTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected function tearDown(): void
+    {
+        Material::flushEventListeners();
+        Material::clearBootedModels();
+        parent::tearDown();
+    }
+
     public function test_store_creates_material_with_parent_and_redirects(): void
     {
         $parent = Material::factory()->create();
@@ -47,8 +54,5 @@ class MaterialInputControllerTest extends TestCase
 
         $response->assertRedirect('/materials/create');
         $response->assertSessionHas('error');
-
-        Material::flushEventListeners();
-        Material::clearBootedModels();
     }
 }
