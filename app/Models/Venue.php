@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\City;
 use App\Models\Location;
 use App\Models\Project;
+use Illuminate\Support\Carbon;
 
 /**
  * Venue Model:
@@ -16,6 +17,12 @@ use App\Models\Project;
  * - belongs to City (n:1)
  * - has many Locations (1:n)
  * - has many Projects (1:n)
+ *
+ * @property int $id
+ * @property int $city_id
+ * @property string $name
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  */
 class Venue extends Model
 {
