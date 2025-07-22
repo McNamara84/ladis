@@ -13,6 +13,13 @@ class ArtifactInputControllerTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected function tearDown(): void
+    {
+        Artifact::flushEventListeners();
+        Artifact::clearBootedModels();
+        parent::tearDown();
+    }
+
     public function test_it_displays_the_artifact_input_form(): void
     {
         $user = User::factory()->create();
