@@ -7,6 +7,7 @@ use Tests\TestCase;
 use App\Models\Location;
 use App\Models\Artifact;
 use App\Models\User;
+use Exception;
 
 class ArtifactInputControllerTest extends TestCase
 {
@@ -108,5 +109,73 @@ class ArtifactInputControllerTest extends TestCase
 
         $response->assertStatus(302); // 302 = Redirect (form has been sent)
         $response->assertRedirect('/inputform_artifact');
+    }
+
+    public function test_store_creates_artifact_without_inventory_number(): void
+    {
+        $user = User::factory()->create();
+        $this->actingAs($user);
+
+        $location = Location::factory()->create();
+
+        $response = $this->withHeader('referer', '/inputform_artifact')
+            ->post('/inputform_artifact', [
+                'artifact_name' => 'Bank',
+                'artifact_location_id' => $location->id,
+                'artifact_inventory_number' => null,
+            ]);
+
+        $response->assertRedirect('/inputform_artifact');
+        $this->assertDatabaseHas('artifacts', [
+            'name' => 'Bank',
+            'location_id' => $location->id,
+            'inventory_number' => null,
+        ]);
+    }
+
+    public function test_store_fails_with_duplicate_name(): void
+    {
+        $user = User::factory()->create();
+        $this->actingAs($user);
+
+        $location = Location::factory()->create();
+
+        Artifact::factory()->create([
+            'name' => 'Chair',
+            'location_id' => $location->id,
+        ]);
+
+        $response = $this->withHeader('referer', '/inputform_artifact')
+            ->post('/inputform_artifact', [
+                'artifact_name' => 'Chair',
+                'artifact_location_id' => $location->id,
+                'artifact_inventory_number' => 'INV-002',
+            ]);
+
+        $response->assertRedirect('/inputform_artifact');
+        $response->assertSessionHasErrors('artifact_name');
+        $this->assertDatabaseCount('artifacts', 1);
+    }
+
+    public function test_store_handles_exception_during_creation(): void
+    {
+        $user = User::factory()->create();
+        $this->actingAs($user);
+
+        $location = Location::factory()->create();
+
+        Artifact::creating(function () {
+            throw new Exception('fail');
+        });
+
+        $response = $this->withHeader('referer', '/inputform_artifact')
+            ->post('/inputform_artifact', [
+                'artifact_name' => 'ErrObj',
+                'artifact_location_id' => $location->id,
+                'artifact_inventory_number' => 'INV-999',
+            ]);
+
+        $response->assertRedirect('/inputform_artifact');
+        $response->assertSessionHas('error');
     }
 }
