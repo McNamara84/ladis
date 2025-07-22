@@ -134,4 +134,30 @@ class ProcessInputControllerTest extends TestCase
             'wet' => 0,
         ]);
     }
+
+    public function test_store_fails_with_invalid_foreign_keys(): void
+    {
+        $user = User::factory()->create();
+        $this->actingAs($user);
+
+        $data = [
+            'partial_surface_id' => 999,
+            'device_id' => 999,
+            'configuration_id' => 999,
+            'description' => 'Invalid',
+            'duration' => 1,
+            'wet' => 1,
+        ];
+
+        $response = $this->withHeader('referer', '/inputform_process')
+            ->post('/inputform_process', $data);
+
+        $response->assertRedirect('/inputform_process');
+        $response->assertSessionHasErrors([
+            'partial_surface_id',
+            'device_id',
+            'configuration_id',
+        ]);
+        $this->assertDatabaseCount('processes', 0);
+    }
 }
