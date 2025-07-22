@@ -10,6 +10,7 @@ use App\Models\SampleSurface;
 use App\Models\Process;
 use App\Models\Condition;
 use App\Models\Material;
+use Illuminate\Support\Carbon;
 
 /**
  * PartialSurface Model:
@@ -20,6 +21,17 @@ use App\Models\Material;
  * - has one (result) Condition (1:1)
  * - belongs to (foundation) Material (n:1)
  * - belongs to (coating) Material (n:1)
+ * 
+ * @property int $id
+ * @property int $sample_surface_id
+ * @property int $foundation_material_id
+ * @property int $coating_material_id
+ * @property int $condition_id
+ * @property int $result_id
+ * @property string|null $identifier
+ * @property string $size
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  */
 class PartialSurface extends Model
 {
