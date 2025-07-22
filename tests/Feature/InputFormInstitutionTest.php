@@ -7,6 +7,8 @@ use Tests\TestCase;
 use App\Models\Institution;
 use App\Models\User;
 use Faker\Factory;
+use Illuminate\Support\Facades\Event;
+use Exception;
 
 class InputFormInstitutionTest extends TestCase
 {
@@ -187,5 +189,56 @@ class InputFormInstitutionTest extends TestCase
         $this->assertDatabaseMissing('institutions', [
             'name' => $record['name'],
         ]);
+    }
+
+    public function test_index_passes_page_title_to_view(): void
+    {
+        $response = $this->actingAs(User::factory()->create())
+            ->get('/institutions/create');
+
+        $response->assertViewHas('pageTitle', 'Eingabeformular - Institution - LADIS - FH Potsdam');
+    }
+
+    public function test_store_fails_when_name_is_not_unique(): void
+    {
+        $existing = Institution::factory()->create();
+
+        $record = [
+            'name' => $existing->name,
+            'type' => Institution::TYPE_CLIENT,
+            'contact_information' => 'info'
+        ];
+
+        $response = $this->actingAs(User::factory()->create())
+            ->withHeader('referer', '/institutions/create')
+            ->post('/institutions/create', $record);
+
+        $response->assertRedirect('/institutions/create');
+        $response->assertSessionHasErrors('name');
+        $this->assertDatabaseCount('institutions', 1);
+    }
+
+    public function test_store_handles_exception_and_redirects_back(): void
+    {
+        $this->actingAs(User::factory()->create());
+
+        Event::listen('eloquent.creating: '.Institution::class, function () {
+            throw new Exception('db fail');
+        });
+
+        $record = [
+            'name' => 'Test Institution',
+            'type' => Institution::TYPE_CLIENT,
+            'contact_information' => 'info'
+        ];
+
+        $response = $this->withHeader('referer', '/institutions/create')
+            ->post('/institutions/create', $record);
+
+        $response->assertRedirect('/institutions/create');
+        $response->assertSessionHas('error');
+        $this->assertDatabaseCount('institutions', 0);
+
+        Event::forget('eloquent.creating: '.Institution::class);
     }
 }
