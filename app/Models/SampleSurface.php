@@ -8,12 +8,20 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\Artifact;
 use App\Models\PartialSurface;
+use Illuminate\Support\Carbon;
 
 /**
  * SampleSurface Model:
  * 
  * - belongs to Artifact (n:1)
  * - has many PartialSurfaces (1:n)
+ * 
+ * @property int $id
+ * @property int $artifacts_id
+ * @property string $name
+ * @property string $description
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  */
 class SampleSurface extends Model
 {
