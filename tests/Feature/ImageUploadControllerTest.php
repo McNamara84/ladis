@@ -15,6 +15,13 @@ class ImageUploadControllerTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected function tearDown(): void
+    {
+        Image::flushEventListeners();
+        Image::clearBootedModels();
+        parent::tearDown();
+    }
+
     public function test_index_displays_form(): void
     {
         $user = User::factory()->create();
@@ -151,8 +158,5 @@ class ImageUploadControllerTest extends TestCase
         $response->assertRedirect('/inputform_image');
         $response->assertSessionHas('error');
         $this->assertDatabaseCount('images', 0);
-
-        Image::flushEventListeners();
-        Image::clearBootedModels();
     }
 }
