@@ -7,14 +7,14 @@ use Tests\TestCase;
 use App\Models\PartialSurface;
 use App\Models\Device;
 use App\Models\Configuration;
-use App\Models\Artifact;
 use App\Models\SampleSurface;
 use App\Models\DamagePattern;
 use App\Models\Condition;
 use App\Models\Material;
 use App\Models\Lens;
 use App\Models\User;
-
+use Illuminate\Support\Facades\Event;
+use App\Models\Process;
 
 class ProcessInputControllerTest extends TestCase
 {
@@ -159,5 +159,124 @@ class ProcessInputControllerTest extends TestCase
             'configuration_id',
         ]);
         $this->assertDatabaseCount('processes', 0);
+    }
+
+    public function test_index_displays_all_needed_data(): void
+    {
+        $user = User::factory()->create();
+        $partialSurface = PartialSurface::factory()->create();
+        $device = Device::factory()->create();
+        $lens = Lens::factory()->create();
+        $configuration = Configuration::factory()->create(['lens_id' => $lens->id]);
+
+        $response = $this->actingAs($user)->get('/inputform_process');
+
+        $response->assertStatus(200);
+        $response->assertViewIs('inputform_process');
+        $response->assertViewHas('pageTitle', 'Prozesseingabe');
+        $response->assertViewHas('partialSurfaces', function ($surfaces) use ($partialSurface) {
+            return $surfaces->contains($partialSurface);
+        });
+        $response->assertViewHas('devices', function ($devices) use ($device) {
+            return $devices->contains($device);
+        });
+        $response->assertViewHas('configurations', function ($configs) use ($configuration) {
+            return $configs->contains($configuration);
+        });
+    }
+
+    public function test_store_creates_process_without_description(): void
+    {
+        $user = User::factory()->create();
+        $this->actingAs($user);
+
+        $partialSurface = PartialSurface::factory()->create();
+        $device = Device::factory()->create();
+        $lens = Lens::factory()->create();
+        $configuration = Configuration::factory()->create(['lens_id' => $lens->id]);
+
+        $data = [
+            'partial_surface_id' => $partialSurface->id,
+            'device_id' => $device->id,
+            'configuration_id' => $configuration->id,
+            'description' => '',
+            'duration' => 2,
+            'wet' => 1,
+        ];
+
+        $response = $this->withHeader('referer', '/inputform_process')
+            ->post('/inputform_process', $data);
+
+        $response->assertRedirect('/inputform_process');
+        $response->assertSessionHas('success');
+        $this->assertDatabaseHas('processes', [
+            'partial_surface_id' => $partialSurface->id,
+            'device_id' => $device->id,
+            'configuration_id' => $configuration->id,
+            'description' => null,
+            'duration' => 2,
+            'wet' => 1,
+        ]);
+    }
+
+    public function test_store_fails_with_invalid_ids_and_values(): void
+    {
+        $user = User::factory()->create();
+        $this->actingAs($user);
+
+        $data = [
+            'partial_surface_id' => 999,
+            'device_id' => 999,
+            'configuration_id' => 999,
+            'description' => 'Bad',
+            'duration' => 99,
+            'wet' => 2,
+        ];
+
+        $response = $this->withHeader('referer', '/inputform_process')
+            ->post('/inputform_process', $data);
+
+        $response->assertRedirect('/inputform_process');
+        $response->assertSessionHasErrors([
+            'partial_surface_id',
+            'device_id',
+            'configuration_id',
+            'duration',
+            'wet',
+        ]);
+        $this->assertDatabaseCount('processes', 0);
+    }
+
+    public function test_store_handles_exception_and_redirects_with_error(): void
+    {
+        $user = User::factory()->create();
+        $this->actingAs($user);
+
+        $partialSurface = PartialSurface::factory()->create();
+        $device = Device::factory()->create();
+        $lens = Lens::factory()->create();
+        $configuration = Configuration::factory()->create(['lens_id' => $lens->id]);
+
+        Event::listen('eloquent.creating: '.Process::class, function () {
+            throw new \Exception('fail');
+        });
+
+        $data = [
+            'partial_surface_id' => $partialSurface->id,
+            'device_id' => $device->id,
+            'configuration_id' => $configuration->id,
+            'description' => 'err',
+            'duration' => 1,
+            'wet' => 0,
+        ];
+
+        $response = $this->withHeader('referer', '/inputform_process')
+            ->post('/inputform_process', $data);
+
+        $response->assertRedirect('/inputform_process');
+        $response->assertSessionHas('error');
+        $this->assertDatabaseCount('processes', 0);
+
+        Event::forget('eloquent.creating: '.Process::class);
     }
 }
