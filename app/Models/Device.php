@@ -11,6 +11,7 @@ use App\Models\Institution;
 use App\Models\Lens;
 use App\Models\Process;
 use App\Models\User;
+use Illuminate\Support\Carbon;
 
 /**
  * Device Model
@@ -18,6 +19,43 @@ use App\Models\User;
  * - belongs to Institution (n:1)
  * - has many Processes (1:n)
  * - belongs to many Lenses (n:m)
+ * 
+ * @property int $id
+ * @property int $institution_id
+ * @property string $name
+ * @property string|null $description
+ * @property int|null $year
+ * @property int|null $build
+ * @property int|null $safety_class
+ * @property int|null $height
+ * @property int|null $width
+ * @property int|null $depth
+ * @property string|null $weight
+ * @property string|null $fiber_length
+ * @property int|null $cooling
+ * @property bool|null $mounting
+ * @property bool|null $automation
+ * @property float|null $max_output
+ * @property float|null $mean_output
+ * @property float|null $max_wattage
+ * @property string|null $head
+ * @property int|null $emission_source
+ * @property int $beam_type
+ * @property string|null $beam_profile
+ * @property float|null $wavelength
+ * @property float|null $min_spot_size
+ * @property float|null $max_spot_size
+ * @property float|null $min_pf
+ * @property float|null $max_pf
+ * @property float|null $min_pw
+ * @property float|null $max_pw
+ * @property float|null $min_scan_width
+ * @property float|null $max_scan_width
+ * @property float|null $min_focal_length
+ * @property float|null $max_focal_length
+ * @property int|null $last_edit_by
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  */
 class Device extends Model
 {
