@@ -8,12 +8,20 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\Artifact;
 use App\Models\PartialSurface;
+use Illuminate\Support\Carbon;
 
 /**
  * SampleSurface Model:
  * 
  * - belongs to Artifact (n:1)
  * - has many PartialSurfaces (1:n)
+ * 
+ * @property int $id
+ * @property int $artifacts_id
+ * @property string $name
+ * @property string $description
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  */
 class SampleSurface extends Model
 {
@@ -21,13 +29,13 @@ class SampleSurface extends Model
     use HasFactory;
 
     protected $fillable = [
-        'sample_surface_id',
+        'artifacts_id',
         'name',
         'description',
     ];
 
-    protected $cast = [
-        'sample_surface_id' => 'integer',
+    protected $casts = [
+        'artifacts_id' => 'integer',
         'name' => 'string',
         'description' => 'string',
     ];
@@ -37,7 +45,7 @@ class SampleSurface extends Model
      */
     public function artifact(): BelongsTo
     {
-        return $this->belongsTo(Artifact::class);
+        return $this->belongsTo(Artifact::class, 'artifacts_id');
     }
 
     /**

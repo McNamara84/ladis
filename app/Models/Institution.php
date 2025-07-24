@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\Device;
 use App\Models\Person;
+use Illuminate\Support\Carbon;
 
 /**
  * Institution Model:
@@ -14,6 +15,13 @@ use App\Models\Person;
  * - represents an institution entity in the system
  * - has many Devices (1:n)
  * - has many Persons (1:n)
+ * 
+ * @property int $id
+ * @property string $name
+ * @property string $type
+ * @property string $contact_information
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  */
 class Institution extends Model
 {

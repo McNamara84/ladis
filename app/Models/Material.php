@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\PartialSurface;
+use Illuminate\Support\Carbon;
 
 /**
  * Material Model:
@@ -14,6 +15,12 @@ use App\Models\PartialSurface;
  * - belongs to (parent) Material (n:1)
  * - has many (children) Materials (1:n)
  * - has many PartialSurfaces (1:n)
+ * 
+ * @property int $id
+ * @property string $name
+ * @property int|null $parent_id
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  */
 class Material extends Model
 {

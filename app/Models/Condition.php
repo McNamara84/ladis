@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use App\Models\DamagePattern;
 use App\Models\Image;
 use App\Models\PartialSurface;
+use Illuminate\Support\Carbon;
 
 /**
  * Condition Model:
@@ -17,6 +18,18 @@ use App\Models\PartialSurface;
  * - belongs to DamagePattern (n:1)
  * - has many Images (1:n)
  * - has one PartialSurface (1:1)
+ * 
+ * @property int $id
+ * @property int $damage_pattern_id
+ * @property float|null $wac
+ * @property string|null $description
+ * @property string|null $severity
+ * @property string|null $adhesion
+ * @property string|null $lab_l
+ * @property string|null $lab_a
+ * @property string|null $lab_b
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  */
 class Condition extends Model
 {

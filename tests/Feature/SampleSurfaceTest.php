@@ -21,7 +21,7 @@ class SampleSurfaceTest extends TestCase
     {
         $sample = new SampleSurface();
 
-        $this->assertSame(['sample_surface_id', 'name', 'description'], $sample->getFillable());
+        $this->assertSame(['artifacts_id', 'name', 'description'], $sample->getFillable());
     }
 
     public function test_relationships(): void

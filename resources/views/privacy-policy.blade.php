@@ -1,13 +1,3 @@
-@php
-    use Carbon\Carbon;
-
-    function format_date($date, $format = 'd. F Y', $timezone = 'Europe/Berlin')
-    {
-        return Carbon::parse($date)
-            ->timezone($timezone)
-            ->format($format);
-    }
-@endphp
 
 @extends('layouts.app')
 
@@ -18,7 +8,7 @@
         </div>
         <h1>{{ $pageTitle }}</h1>
         <p>Wir verarbeiten personenbezogene Daten, die beim Besuch unserer Webseite erhoben werden, unter Beachtung der geltenden datenschutzrechtlichen Bestimmungen, insbesondere der EU-Datenschutz-Grundverordnung (DSGVO).</p>
-        <p>Diese Datenschutzhinweise (Stand: <time datetime="{{ $lastUpdated }}">{{ format_date($lastUpdated) }}</time>) gelten für folgende von der FH Potsdam betriebenen Seiten:</p>
+        <p>Diese Datenschutzhinweise (Stand: <time datetime="{{ $lastUpdated }}">{{ $lastUpdatedFormatted }}</time>) gelten für folgende von der FH Potsdam betriebenen Seiten:</p>
         <ul>
             <li><a href="{{ config('app.url') }}">{{ config('app.url') }}</a></li>
         </ul>
@@ -65,7 +55,7 @@
         <h2>5. Hosting</h2>
         <p>Die Webseite wird über Server der Fachhochschule Potsdam gehostet. Es besteht ein entsprechender Vertrag zur Auftragsverarbeitung gemäß Art. 28 DSGVO.</p>
         <h2>6. Änderungen dieser Datenschutzerklärung</h2>
-        <p>Wir behalten uns vor, diese Datenschutzerklärung zu ändern, um sie an geänderte rechtliche Rahmenbedingungen oder bei Änderungen des Dienstes anzupassen. Die aktuelle Version wurde am <time datetime="{{ $lastUpdated }}">{{ $lastUpdated }}</time> ist stets auf unserer Webseite verfügbar. Bitte informieren Sie sich regelmäßig über die geltenden Datenschutzbestimmungen.</p>
+        <p>Wir behalten uns vor, diese Datenschutzerklärung zu ändern, um sie an geänderte rechtliche Rahmenbedingungen oder bei Änderungen des Dienstes anzupassen. Die aktuelle Version wurde am <time datetime="{{ $lastUpdated }}">{{ $lastUpdatedFormatted }}</time> ist stets auf unserer Webseite verfügbar. Bitte informieren Sie sich regelmäßig über die geltenden Datenschutzbestimmungen.</p>
         <h2>Technische Umsetzung</h2>
         <h3>Ansprechpartner*innen</h3>
         <h4>Verantwortliche Stelle ist:</h4>
