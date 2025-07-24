@@ -1,18 +1,18 @@
 {
-	"@context": "https://schema.org",
-	"@type": "CollegeOrUniversity",
-	"@id": "fhp",
-	"name": "Fachhochschule Potsdam",
-	"alternateName": "University of Applied Sciences",
-	"additionalName": "FHP",
-	"telephone": "+49 331 580-00",
-	"faxNumber": "+49 331 580-1009",
-	"email": "info@fh-potsdam.de",
-	"url": "https://www.fh-potsdam.de",
-	"address": {
-		"@type": "PostalAddress",
-		"streetAddress": "Kiepenheuerallee 5",
-		"postalCode": "14469",
-		"addressLocality": "Potsdam"
-	}
+    "@context": "https://schema.org",
+    "@type": "CollegeOrUniversity",
+    "@id": "fhp",
+    "name": "Fachhochschule Potsdam",
+    "alternateName": "University of Applied Sciences",
+    "additionalName": "FHP",
+    "telephone": "+49 331 580-00",
+    "faxNumber": "+49 331 580-1009",
+    "email": "info@fh-potsdam.de",
+    "url": "https://www.fh-potsdam.de",
+    "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Kiepenheuerallee 5",
+        "postalCode": "14469",
+        "addressLocality": "Potsdam"
+    }
 }

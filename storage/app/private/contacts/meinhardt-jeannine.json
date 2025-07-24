@@ -4,10 +4,14 @@
     "@id": "meinhardt-jeannine",
     "name": "Prof. Dr. Jeannine Meinhardt",
     "jobTitle": "Fachbeirat",
-    "affiliation": "fhp",
-    "inherits": [
-        "streetAddress",
-        "postalCode",
-        "addressLocality"
-    ]
+    "worksFor": {
+        "@id": "fb2"
+    },
+    "affiliation": {
+        "@type": "OrganizationRole",
+        "roleName": "Fachbeirat",
+        "memberOf": {
+            "@id": "az35765-01"
+        }
+    }
 }

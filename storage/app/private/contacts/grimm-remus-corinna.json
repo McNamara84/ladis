@@ -8,5 +8,8 @@
         "streetAddress": "Am Schäferbrunnen 12",
         "postalCode": "39128",
         "addressLocality": "Magdeburg"
+    },
+    "worksFor": {
+        "@id": "fb2"
     }
 }

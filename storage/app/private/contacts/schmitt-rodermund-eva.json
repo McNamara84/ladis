@@ -4,11 +4,12 @@
     "@id": "schmitt-rodermund-eva",
     "name": "Prof. Dr. Eva Schmitt-Rodermund",
     "email": "praesidentin@fh-potsdam.de",
-    "affiliation": "fhp",
-    "jobTitle": "Präsidentin",
-    "inherits": [
-        "streetAddress",
-        "postalCode",
-        "addressLocality"
-    ]
+    "telephone": "+49 331 580-1000",
+    "affiliation": {
+        "@type": "OrganizationRole",
+        "roleName": "Präsidentin",
+        "memberOf": {
+            "@id": "fhp"
+        }
+    }
 }
