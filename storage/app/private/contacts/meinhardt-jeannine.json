@@ -9,7 +9,8 @@
     "affiliation": {
         "@type": "OrganizationRole",
         "roleName": "Fachbeirat",
-        "memberOf": {
+        "affiliation": {
+            "@type": "Organization",
             "@id": "az35765-01"
         }
     }

@@ -8,7 +8,8 @@
     "affiliation": {
         "@type": "OrganizationRole",
         "roleName": "Präsidentin",
-        "memberOf": {
+        "affiliation": {
+            "@type": "Organization",
             "@id": "fhp"
         }
     }
