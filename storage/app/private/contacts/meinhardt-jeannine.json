@@ -3,7 +3,6 @@
     "@type": "Person",
     "@id": "meinhardt-jeannine",
     "name": "Prof. Dr. Jeannine Meinhardt",
-    "jobTitle": "Fachbeirat",
     "worksFor": {
         "@id": "fb2"
     },
