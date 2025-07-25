@@ -72,6 +72,7 @@ Follow these steps to set up the development environment:
 6. Run `php artisan migrate` to set up the database.
 7. Run `composer run-script dev` to start the development server.
 8. Access the application at [http://localhost:8000](http://localhost:8000).
+9. Logs rotate daily. Adjust `LOG_DAILY_DAYS` in your `.env` file to change retention.
 
 > [!TIP]
 > See [Development Environment Setup](https://github.com/McNamara84/cleanup-laser-database/wiki/Development-Environment-Setup) for detailed instructions.
