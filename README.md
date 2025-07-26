@@ -36,6 +36,7 @@ We are developing our own information system as part of the P11 laboratory. A sp
     - /institutions/contractors/all
   - Devices: /devices/all
   - Materials: /materials/all
+  - Projects: projects/all
   - Contact Us: /contact
   - Database Statistics: /statistics
   - Legal (Rechtliches / Impressum): /impressum
