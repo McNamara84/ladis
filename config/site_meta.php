@@ -17,13 +17,27 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Primary Contact Information
+    | Contact Information
     |--------------------------------------------------------------------------
     |
-    | This is the primary contact information for the website.
+    | Maps functional roles to contact IDs.
     |
     */
 
-    'contact' => env('SITE_CONTACT', 'site_info.contact_fhp'),
+    'contact' => [
+
+        // Primary contact information for the site
+        'primary' => env('SITE_CONTACT_PRIMARY', 'fhp'),
+
+        // Responsible person for the contents of the site
+        'responsible' => env('SITE_CONTACT_RESPONSIBLE', 'schmitt-rodermund-eva'),
+
+        // The sites privacy officer
+        'privacy' => env('SITE_CONTACT_PRIVACY', 'hirsch-sven'),
+
+        // The site's hosting provider
+        'hosting' => env('SITE_CONTACT_HOSTING', 'fhp-it'),
+
+    ],
 
 ];
