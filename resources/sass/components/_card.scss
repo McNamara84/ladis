@@ -6,3 +6,8 @@
     // Make the card take the full height of the list item
     height: 100%;
 }
+
+// Restrict the width of a card fluitly to 50ch
+.card.mis {
+    max-width: 50ch;
+}
