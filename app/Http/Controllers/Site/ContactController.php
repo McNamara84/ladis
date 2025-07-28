@@ -3,25 +3,36 @@
 namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
+use App\Services\Contacts\ContactsService;
 
 /**
- * AboutController
+ * ContactController
  *
  * This controller is used to display the contact page.
  *
- * @package App\Http\Controllers\Site
- * @author LADIS Team FB5 FHP
- * @since 0.1.0
+ * @since 0.2.0
  */
 class ContactController extends Controller
 {
     /**
      * Display the contact page.
      *
+     * @param ContactsService $contactsService
      * @return \Illuminate\View\View
      */
-    public function index()
+    public function index(ContactsService $contactsService)
     {
-        return view('site.contact');
+        // Load all contacts for the card list demo
+        $allContacts = $contactsService->all();
+
+        // Assign demo contacts for individual components
+        $demoOrganization = $allContacts['fhp'];
+        $demoPerson = $allContacts['schmitt-rodermund-eva'];
+
+        return view('site.contact', [
+            'demoOrganization' => $demoOrganization,
+            'demoPerson' => $demoPerson,
+            'allContacts' => $allContacts
+        ]);
     }
 }
