@@ -24,6 +24,7 @@ use App\Http\Controllers\InstitutionController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\InputFormPersonController;
 use App\Http\Controllers\PersonController;
+use App\Http\Controllers\ProjectController;
 
 // TODO/Conventions:
 // - Prefix all routes for authenticated users with /app
@@ -61,6 +62,7 @@ Route::get('/adv-search/result', [SearchController::class, 'search'])->name('sea
 Route::get('/devices/all', [DeviceController::class, 'index'])->name('devices.all');
 Route::get('/materials/all', [MaterialController::class, 'index'])->name('materials.all');
 Route::get('/institutions/manufacturers/all', [InstitutionController::class, 'index'])->defaults('category', 'manufacturers')->name('institutions.manufacturers');
+Route::get('/projects/all', [ProjectController::class, 'index'])->name('projects.all');
 Route::get('/institutions/clients/all', [InstitutionController::class, 'index'])->defaults('category', 'clients')->name('institutions.clients');
 Route::get('/institutions/contractors/all', [InstitutionController::class, 'index'])->defaults('category', 'contractors')->name('institutions.contractors');
 Route::get('/persons/all', [PersonController::class, 'index'])->name('persons.all');
@@ -135,6 +137,9 @@ Route::middleware('auth')->group(function () {
     // Routes for projects
     Route::get('/inputform_project', [ProjectInputController::class, 'index'])->name('inputform_project.index');
     Route::post('/inputform_project', [ProjectInputController::class, 'store'])->name('inputform_project.store');
+    Route::get('/projects/create', [ProjectInputController::class, 'index'])->name('projects.create');
+    Route::post('/projects/create', [ProjectInputController::class, 'store'])->name('projects.store');
+    Route::delete('/projects/{project}', [ProjectController::class, 'destroy'])->name('projects.destroy');
 
     // Routes for artifacts
     Route::get('/inputform_artifact', [ArtifactInputController::class, 'index'])->name('inputform_artifact.index');
