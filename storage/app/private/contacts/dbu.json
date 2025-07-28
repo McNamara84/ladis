@@ -3,7 +3,7 @@
     "@type": "GovernmentOrganization",
     "@id": "dbu",
     "name": "Deutsche Bundesstiftung Umwelt",
-    "additionalName": "DBU",
+    "alternateName": "DBU",
     "telephone": "+49 541 9633 0",
     "faxNumber": "+49 541 9633 190",
     "email": "info@dbu.de",
