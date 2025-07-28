@@ -4,6 +4,7 @@
     "@id": "fhp-it",
     "name": "Zentrale IT der FH Potsdam",
     "email": "it-service@fh-potsdam.de",
+    "url": "https://www.fh-potsdam.de/campus-services/it-service",
     "parentOrganization": {
         "@id": "fhp"
     }
