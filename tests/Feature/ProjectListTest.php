@@ -22,6 +22,14 @@ class ProjectListTest extends TestCase
         $response->assertViewHas('projects');
     }
 
+    public function test_projects_list_page_displays_no_projects_message_when_empty(): void
+    {
+        $response = $this->get('/projects/all');
+
+        $response->assertStatus(200);
+        $response->assertSee('Keine Projekte vorhanden.');
+    }
+
     public function test_project_can_be_deleted(): void
     {
         $user = User::factory()->create();
@@ -30,6 +38,8 @@ class ProjectListTest extends TestCase
         $response = $this->actingAs($user)->delete(route('projects.destroy', $project));
 
         $response->assertRedirect(route('projects.all'));
+        $response->assertSessionHas('success');
+        $this->assertStringContainsString('Projekt wurde', $response->baseResponse->getSession()->get('success'));
         $this->assertModelMissing($project);
     }
 
@@ -41,5 +51,28 @@ class ProjectListTest extends TestCase
 
         $response->assertRedirect('/login');
         $this->assertModelExists($project);
+    }
+
+    public function test_authenticated_user_sees_create_and_delete_buttons(): void
+    {
+        $user = User::factory()->create();
+        Project::factory()->create();
+
+        $response = $this->actingAs($user)->get('/projects/all');
+
+        $response->assertStatus(200);
+        $response->assertSee('Neues Projekt anlegen');
+        $response->assertSee('Löschen');
+    }
+
+    public function test_guest_does_not_see_create_or_delete_buttons(): void
+    {
+        Project::factory()->create();
+
+        $response = $this->get('/projects/all');
+
+        $response->assertStatus(200);
+        $response->assertDontSee('Neues Projekt anlegen');
+        $response->assertDontSee('Löschen');
     }
 }
