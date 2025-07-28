@@ -68,7 +68,7 @@
             </table>
         </div>
         @auth
-            <a href="{{ url('/projects/create') }}" class="btn btn-primary mt-3">Neues Projekt anlegen</a>
+            <a href="{{ route('projects.create') }}" class="btn btn-primary mt-3">Neues Projekt anlegen</a>
         @endauth
     </div>
 @endsection
