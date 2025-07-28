@@ -9,6 +9,7 @@
         "@type": "PostalAddress",
         "streetAddress": "Domplatz 3",
         "postalCode": "06108",
-        "addressLocality": "Halle (Saale)"
+        "addressLocality": "Halle (Saale)",
+        "addressCountry": "DE"
     }
 }

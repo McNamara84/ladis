@@ -1,0 +1,10 @@
+{
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "fhp-it",
+    "name": "Zentrale IT der FH Potsdam",
+    "email": "it-service@fh-potsdam.de",
+    "parentOrganization": {
+        "@id": "fhp"
+    }
+}

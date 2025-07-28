@@ -12,6 +12,7 @@
         "@type": "PostalAddress",
         "streetAddress": "An der Bornau 2",
         "postalCode": "49090",
-        "addressLocality": "Osnabrück"
+        "addressLocality": "Osnabrück",
+        "addressCountry": "DE"
     }
 }

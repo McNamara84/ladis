@@ -1,17 +1,18 @@
 {
-	"@context": "https://schema.org",
-	"@type": "GovernmentOrganization",
-	"@id": "ksa",
-	"name": "Kulturstiftung Sachsen-Anhalt",
-	"telephone": "+49 39241 934-0",
-	"faxNumber": "+49 39241 934-34",
-	"email": "leitzkau@kulturstiftung-st.de",
-	"url": "https://www.kulturstiftung-st.de",
-	"address": {
-		"@type": "PostalAddress",
-		"streetAddress": "Am Schloss 4",
-		"postalCode": "39279",
-		"addressLocality": "Leitzkau",
-		"extendedAddress": "Bauabteilung Zuständigkeitsbereich Halberstadt Dom, Frau Weigelt Röseler"
-	}
+    "@context": "https://schema.org",
+    "@type": "GovernmentOrganization",
+    "@id": "ksa",
+    "name": "Kulturstiftung Sachsen-Anhalt",
+    "telephone": "+49 39241 934-0",
+    "faxNumber": "+49 39241 934-34",
+    "email": "leitzkau@kulturstiftung-st.de",
+    "url": "https://www.kulturstiftung-st.de",
+    "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Am Schloss 4",
+        "postalCode": "39279",
+        "addressLocality": "Leitzkau",
+        "extendedAddress": "Bauabteilung Zuständigkeitsbereich Halberstadt Dom, Frau Weigelt Röseler",
+        "addressCountry": "DE"
+    }
 }

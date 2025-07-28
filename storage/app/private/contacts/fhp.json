@@ -12,6 +12,7 @@
         "@type": "PostalAddress",
         "streetAddress": "Kiepenheuerallee 5",
         "postalCode": "14469",
-        "addressLocality": "Potsdam"
+        "addressLocality": "Potsdam",
+        "addressCountry": "DE"
     }
 }

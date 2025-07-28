@@ -1,0 +1,19 @@
+{
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": "ldabb",
+    "name": "Dagmar Hartge",
+    "email": "poststelle@LDA.brandenburg.de",
+    "url": "https://www.lda.brandenburg.de",
+    "affiliation": {
+        "@type": "OrganizationRole",
+        "roleName": "Landesbeauftragte für den Datenschutz und für das Recht auf Akteneinsicht"
+    },
+    "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Stahnsdorfer Damm 77",
+        "postalCode": "14532",
+        "addressLocality": "Kleinmachnow",
+        "addressCountry": "DE"
+    }
+}

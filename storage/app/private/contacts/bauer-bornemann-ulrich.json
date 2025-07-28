@@ -7,6 +7,7 @@
         "@type": "PostalAddress",
         "streetAddress": "Oberer Stephansberg 37",
         "postalCode": "96049",
-        "addressLocality": "Bamberg"
+        "addressLocality": "Bamberg",
+        "addressCountry": "DE"
     }
 }

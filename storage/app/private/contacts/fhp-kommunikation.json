@@ -1,0 +1,10 @@
+{
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "fhp-kommunikation",
+    "name": "Stabsstelle Hochschulkommunikation",
+    "email": "webredaktion@fh-potsdam.de",
+    "parentOrganization": {
+        "@id": "fhp"
+    }
+}

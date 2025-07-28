@@ -9,6 +9,7 @@
         "@type": "PostalAddress",
         "streetAddress": "Dortustr. 36",
         "postalCode": "14467",
-        "addressLocality": "Potsdam"
+        "addressLocality": "Potsdam",
+        "addressCountry": "DE"
     }
 }

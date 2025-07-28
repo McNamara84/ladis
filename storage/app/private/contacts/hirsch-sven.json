@@ -1,13 +1,12 @@
 {
     "@context": "https://schema.org",
     "@type": "Person",
-    "@id": "schmitt-rodermund-eva",
-    "name": "Prof. Dr. Eva Schmitt-Rodermund",
-    "email": "praesidentin@fh-potsdam.de",
-    "telephone": "+49 331 580-1000",
+    "@id": "hirsch-sven",
+    "name": "Sven Hirsch",
+    "email": "datenschutz@fh-potsdam.de",
     "affiliation": {
         "@type": "OrganizationRole",
-        "roleName": "Präsidentin",
+        "roleName": "Datenschutzbeauftragter",
         "affiliation": {
             "@type": "Organization",
             "@id": "fhp"
@@ -18,6 +17,7 @@
         "extendedAddress": "Fachhochschule Potsdam",
         "streetAddress": "Kiepenheuerallee 5",
         "postalCode": "14469",
-        "addressLocality": "Potsdam"
+        "addressLocality": "Potsdam",
+        "addressCountry": "DE"
     }
 }
