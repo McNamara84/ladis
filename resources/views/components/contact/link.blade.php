@@ -1,4 +1,9 @@
 <span itemscope itemtype="https://schema.org/{{ $contact->{'@type'} }}">
-    <a itemprop="url" href="{{ $contact->url }}"><span
-            itemprop="name">{!! $contact->formatName($nameFormat) !!}</span></a>
+    <a itemprop="url" href="{{ $contact->url }}">
+        @if ($slot->isEmpty())
+            <span itemprop="name">{!! $contact->formatName($nameFormat) !!}</span>
+        @else
+            {{ $slot }}
+        @endif
+    </a>
 </span>
