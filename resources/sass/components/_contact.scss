@@ -1,3 +1,23 @@
+//
+// Contact Component
+//
+
+.contact header {
+    font-weight: #{$font-weight-bold};
+}
+
+.contact-body {
+    margin-block-start: var(--flow-gap-start);
+}
+
 .contact [itemprop=name] {
-    margin-block-end: 1.5em;
+    font-weight: inherit;
+    font-size: #{$font-size-lg};
+    margin: 0;
+}
+
+.contact .card-header {
+    background-color: inherit;
+    // Use the same block padding as the card body
+    --bs-card-cap-padding-y: var(--bs-card-spacer-y);
 }
