@@ -22,6 +22,8 @@ use App\Http\Controllers\ProcessInputController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\InstitutionController;
 use App\Http\Controllers\MaterialController;
+use App\Http\Controllers\InputFormPersonController;
+use App\Http\Controllers\PersonController;
 
 // TODO/Conventions:
 // - Prefix all routes for authenticated users with /app
@@ -61,6 +63,7 @@ Route::get('/materials/all', [MaterialController::class, 'index'])->name('materi
 Route::get('/institutions/manufacturers/all', [InstitutionController::class, 'index'])->defaults('category', 'manufacturers')->name('institutions.manufacturers');
 Route::get('/institutions/clients/all', [InstitutionController::class, 'index'])->defaults('category', 'clients')->name('institutions.clients');
 Route::get('/institutions/contractors/all', [InstitutionController::class, 'index'])->defaults('category', 'contractors')->name('institutions.contractors');
+Route::get('/persons/all', [PersonController::class, 'index'])->name('persons.all');
 
 // TODO: Routes for details pages
 // Route::get('/devices/{id}', [InputFormController::class, 'show']);
@@ -116,6 +119,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/materials/create', [MaterialInputController::class, 'index'])->name('inputform_material.index');
     Route::post('/materials/create', [MaterialInputController::class, 'store'])->name('inputform_material.store');
     Route::delete('/materials/{material}', [MaterialController::class, 'destroy'])->name('materials.destroy');
+    // Persons management
+    Route::get('/persons/create', [InputFormPersonController::class, 'index'])->name('inputform_person.index');
+    Route::post('/persons/create', [InputFormPersonController::class, 'store'])->name('inputform_person.store');
+    Route::delete('/persons/{person}', [PersonController::class, 'destroy'])->name('persons.destroy');
     // Institutions management
     Route::get('/institutions/create', [InputFormInstitutionController::class, 'index'])->name('inputform_institution.index');
     Route::post('/institutions/create', [InputFormInstitutionController::class, 'store'])->name('inputform_institution.store');
