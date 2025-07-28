@@ -19,9 +19,9 @@
                     Oberflächen eingenommen. Um diese Technologie einem noch größeren Kreis anwendender
                     Restaurator*innen zugänglich
                     zu
-                    machen, bedarf es eines systematischen Erfahrungstransfers, den das hier durch die <a
-                        href="https://www.dbu.de">Deutsche Bundesstiftung Umwelt (DBU) </a> unterstützte Projekt der <a
-                        href="https://www.kulturstiftung-st.de">Kulturstiftung Sachsen-Anhalt</a> befördern soll. So
+                    machen, bedarf es eines systematischen Erfahrungstransfers, den das hier durch die <x-contact.link
+                        :contact="$inlineContacts['dbu']" /> unterstützte Projekt der <x-contact.link
+                        :contact="$inlineContacts['ksa']" /> befördern soll. So
                     wurden aktuell
                     in
                     der Denkmalpflege für verschiedene Reinigungsaufgaben <x-link route="devices.all"
@@ -35,9 +35,8 @@
                         text="Domen in Magdeburg und Halle" /> sowie Alabasteruntergründe wurden systematisch
                     untersucht. Ein
                     wesentlicher Pfeiler für die systematische Erfassung umfassender Ergebnisse bildeten verschiedene
-                    Qualifikationsarbeiten im Studiengang <a
-                        href="https://www.fh-potsdam.de/studium-weiterbildung/studiengaenge/konservierung-und-restaurierung-ba">Konservierung
-                        und Restaurierung der FH Potsdam</a>. So wurden materialübergreifend auch verruste oder mit
+                    Qualifikationsarbeiten im <x-contact.link :contact="$inlineContacts['fb2-konservierung']" />.
+                    So wurden materialübergreifend auch verruste oder mit
                     Graffiti
                     verschmutzte Holzoberflächen zum Gegenstand des Forschungsprojektes. Die für viele Anwender*innen
                     interessanten
@@ -65,30 +64,13 @@
             jeweils optimalen Laser und deren Einstellparameter zusammenfasst.</p>
         <p>Der Katalog wurde als fortschreibbare Datenbank konzipiert. Sie ist mit dem Ziel angelegt, eine kontinuierliche
             Erweiterung durch weitere Fachanwender*innen zu ermöglichen.</p>
-        <p>Erstellt wurde die Datenbank von Studierenden im <a
-                href="https://www.fh-potsdam.de/studium-weiterbildung/fachbereiche/fachbereich-informationswissenschaften">Fachbereich
-                Informationswissenschaften der Fachhochschule Potsdam</a> im Rahmen eines Semesterprojekts in enger
+        <p>Erstellt wurde die Datenbank von Studierenden im <x-contact.link :contact="$inlineContacts['fb5-iud']" /> im
+            Rahmen
+            eines Semesterprojekts in enger
             Zusammenarbeit mit betreuenden Restauratorinnen.</p>
 
         <h2>Projektleitung und Kooperationspartner</h2>
-        <dl class="row">
-            <dt class="col-sm-4">Kulturstiftung Sachsen-Anhalt</dt>
-            <dd class="col-sm-8">Bauabteilung Zuständigkeitsbereich Halberstadt Dom, Frau Weigelt Röseler<br>
-                Am Schloss 4, 39279 Leitzkau</dd>
-            <dt class="col-sm-4">Landesamt für Denkmalpflege und Archäologie Sachsen-Anhalt</dt>
-            <dd class="col-sm-8">Abteilung Bau- und Kunstdenkmalpflege<br>
-                Referat Denkmaluntersuchung, Dipl. Restaurator Karsten Böhm<br>
-                Richard-Wagner-Str. 9, 06114 Halle (Saale)</dd>
-            <dt class="col-sm-4">Dipl. Rest. Dr. Corinna Grimm-Remus</dt>
-            <dd class="col-sm-8">Am Schäferbrunnen 12, 39128 Magdeburg</dd>
-            <dt class="col-sm-4">Institut für Diagnostik und Konservierung an Denkmalen in Sachsen und Sachsen-Anhalt e. V.
-            </dt>
-            <dd class="col-sm-8">Domplatz 3, 06108 Halle</dd>
-            <dt class="col-sm-4">Ulrich Bauer Bornemann</dt>
-            <dd class="col-sm-8">Oberer Stephansberg 37, 96049 Bamberg</dd>
-            <dt class="col-sm-4">Fachbeirat</dt>
-            <dd class="col-sm-8">Prof. Dr. Jeannine Meinhardt<br>Fachhochschule Potsdam<br>Kiepenheuerallee 5, 14469 Potsdam
-            </dd>
-        </dl>
-    </div>
+
+        <x-contact.card-list :contacts="$projectContacts" />
+
 @endsection
