@@ -35,9 +35,37 @@
         <x-contact.card-list :contacts="$allContacts" />
 
         <h2><code>x-contact.link</code></h2>
-        <p>Lorem ipsum, dolor sit amet <x-contact.link :contact="$demoOrganization" /> consectetur
-            adipisicing elit. Tempora architecto, pariatur aliquam eius ipsum labore aut vero vitae libero distinctio
-            ratione, ipsam officia accusantium nihil illo maiores excepturi, et similique.</p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Component</th>
+                    <th>Ausgabe</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>&lt;x-contact.link :contact=&quot;$demo&quot; /&gt;</code></td>
+                    <td><x-contact.link :contact="$demoOrganization" /></td>
+                </tr>
+                <tr>
+                    <td><code>&lt;x-contact.link :contact=&quot;$demo&quot; itemprop=&quot;email&quot; /&gt;</code>
+                    </td>
+                    <td><x-contact.link :contact="$demoOrganization" itemprop="email" /></td>
+                </tr>
+                <tr>
+                    <td><code>&lt;x-contact.link :contact=&quot;$demo&quot;&gt;&lt;span&gt;Custom content&lt;/span&gt;&lt;/x-contact.link&gt;</code>
+                    </td>
+                    <td><x-contact.link :contact="$demoOrganization"><span>Custom content</span></x-contact.link></td>
+                </tr>
+                <tr>
+                    <td><code>&lt;x-contact.link :contact=&quot;$demo&quot;&gt;&lt;span itemprop=&quot;name&quot;&gt;&#123;&#123; $demo-&gt;name &#125;&#125;&lt;/span&gt;&lt;/x-contact.link&gt;</code>
+                    </td>
+                    <td><x-contact.link :contact="$demoOrganization"><span
+                                itemprop="name">{{ $demoOrganization->name }}</span></x-contact.link></td>
+                </tr>
+            </tbody>
+        </table>
+
         <h2>Namen formatieren</h2>
         <p>Das Ausgabeformat für Namen kann in allen Komponenten mit dem Attribut <code>name-format</code> individualisiert
             werden. Einzelne Bestandteile werden jeweils von <code>[</code> und <code>]</code> umschlossen und können
