@@ -2,13 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\Contacts\ContactsService;
+
 class LegalNoticeController extends Controller
 {
-     public function index()
+    public function index(ContactsService $contactsService)
     {
         $pageTitle = 'Impressum';
-        $lastUpdated = '2025-07-02 T00:00:00Z';
+        $lastUpdated = '2025-07-29T00:00:00Z';
 
-        return view('legal_notice', ['pageTitle' => $pageTitle, 'lastUpdated' => $lastUpdated]);
+        $mwfk = $contactsService->mwfk;
+
+        return view('legal_notice', compact(
+            'pageTitle',
+            'lastUpdated',
+            'mwfk',
+        ));
     }
 }
