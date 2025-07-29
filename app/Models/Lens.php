@@ -8,12 +8,18 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\Configuration;
 use App\Models\Device;
+use Illuminate\Support\Carbon;
 
 /**
  * Lens Model:
  *
  * - has many Configurations (1:n)
  * - belongs to many Devices (m:n)
+ * 
+ * @property int $id
+ * @property int $size
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  */
 class Lens extends Model
 {

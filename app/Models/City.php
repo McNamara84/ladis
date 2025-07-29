@@ -8,12 +8,20 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\FederalState;
 use App\Models\Venue;
+use Illuminate\Support\Carbon;
 
 /**
  * City Model:
  *
  * - belongs to FederalState (n:1)
  * - has many Venues (1:n)
+ * 
+ * @property int $id
+ * @property int $federal_state_id
+ * @property string $name
+ * @property string $postal_code
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  */
 class City extends Model
 {

@@ -49,24 +49,13 @@ class DeviceTest extends TestCase
         $device = Device::factory()->for($institution)->for($user, 'lastEditor')->create();
         $lens = Lens::factory()->create();
         $device->lenses()->attach($lens);
-        $artifact = Artifact::factory()->create();
-        $sample = SampleSurface::forceCreate([
-            'name' => 'S',
-            'description' => 'desc',
-            'artifacts_id' => $artifact->id,
-        ]);
+        $sample = SampleSurface::factory()->create();
         $partialSurface = PartialSurface::create([
             'sample_surface_id' => $sample->id,
             'foundation_material_id' => Material::create(['name' => 'm'])->id,
             'coating_material_id' => Material::create(['name' => 'c'])->id,
-            'condition_id' => Condition::create([
-                'severity' => 'a',
-                'damage_pattern_id' => DamagePattern::factory()->create()->id,
-            ])->id,
-            'result_id' => Condition::create([
-                'severity' => 'b',
-                'damage_pattern_id' => DamagePattern::factory()->create()->id,
-            ])->id,
+            'condition_id' => Condition::factory()->state(['severity' => 'a'])->create()->id,
+            'result_id' => Condition::factory()->state(['severity' => 'b'])->create()->id,
             'size' => 1.0,
         ]);
         $config = Configuration::create([
@@ -114,5 +103,101 @@ class DeviceTest extends TestCase
         $this->assertEquals('Unbekannt', $device->build_type);
         $this->assertEquals('Unbekannt', $device->beam_type_name);
         $this->assertEquals('Unbekannt', $device->cooling_type);
+    }
+
+    public function test_fillable_and_casts_are_defined(): void
+    {
+        $device = new Device([
+            'institution_id' => '1',
+            'name' => 'Test',
+            'beam_type' => Device::BEAM_POINT,
+            'mounting' => '1',
+            'max_output' => '1.5'
+        ]);
+
+        $this->assertSame([
+            'institution_id',
+            'name',
+            'description',
+            'year',
+            'build',
+            'safety_class',
+            'height',
+            'width',
+            'depth',
+            'weight',
+            'fiber_length',
+            'cooling',
+            'mounting',
+            'automation',
+            'max_output',
+            'mean_output',
+            'max_wattage',
+            'head',
+            'emission_source',
+            'beam_type',
+            'beam_profile',
+            'wavelength',
+            'min_spot_size',
+            'max_spot_size',
+            'min_pf',
+            'max_pf',
+            'min_pw',
+            'max_pw',
+            'min_scan_width',
+            'max_scan_width',
+            'min_focal_length',
+            'max_focal_length',
+            'last_edit_by',
+        ], $device->getFillable());
+
+        $this->assertIsInt($device->institution_id);
+        $this->assertIsBool($device->mounting);
+        $this->assertIsFloat($device->max_output);
+    }
+
+    public function test_database_enforces_unique_name_constraint(): void
+    {
+        $institution = Institution::factory()->create();
+        Device::factory()->create(['name' => 'UniqueName', 'institution_id' => $institution->id]);
+
+        $this->expectException(\Illuminate\Database\QueryException::class);
+        Device::factory()->create(['name' => 'UniqueName', 'institution_id' => $institution->id]);
+    }
+
+    public function test_id_field_is_protected_from_mass_assignment(): void
+    {
+        $institution = Institution::factory()->create();
+
+        $device = Device::create([
+            'id' => 999,
+            'name' => 'Device',
+            'beam_type' => Device::BEAM_LINE,
+            'institution_id' => $institution->id,
+        ]);
+
+        $this->assertNotEquals(999, $device->id);
+        $this->assertGreaterThan(0, $device->id);
+    }
+
+    public function test_institution_id_is_required(): void
+    {
+        $this->expectException(\Illuminate\Database\QueryException::class);
+
+        Device::create([
+            'name' => 'NoInstitution',
+            'beam_type' => Device::BEAM_POINT,
+        ]);
+    }
+
+    public function test_invalid_institution_id_is_rejected(): void
+    {
+        $this->expectException(\Illuminate\Database\QueryException::class);
+
+        Device::create([
+            'name' => 'InvalidInstitution',
+            'beam_type' => Device::BEAM_POINT,
+            'institution_id' => 999,
+        ]);
     }
 }

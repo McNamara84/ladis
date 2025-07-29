@@ -8,12 +8,19 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\Artifact;
 use App\Models\Venue;
+use Illuminate\Support\Carbon;
 
 /**
  * Location Model
  *
  * - Belongs to a Venue (n:1)
  * - Has many Artifacts (1:n)
+ * 
+ * @property int $id
+ * @property int $venue_id
+ * @property string $name
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  */
 class Location extends Model
 {

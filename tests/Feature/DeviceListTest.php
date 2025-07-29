@@ -35,4 +35,14 @@ class DeviceListTest extends TestCase
         $response->assertRedirect(route('devices.all'));
         $this->assertModelMissing($device);
     }
+
+    public function test_guest_cannot_delete_device(): void
+    {
+        $device = Device::factory()->create(['institution_id' => Institution::factory()->create()->id]);
+
+        $response = $this->delete(route('devices.destroy', $device));
+
+        $response->assertRedirect('/login');
+        $this->assertModelExists($device);
+    }
 }

@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+use App\Models\Lens;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Configuration>
@@ -18,7 +19,7 @@ class ConfigurationFactory extends Factory
     public function definition(): array
     {
         return [
-            'lens_id'           =>  1,
+            'lens_id'           =>  Lens::factory(),
             'focal_length'      =>  100,
             'output'            =>  1000.00,
             'pw'                =>  1000,

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Models\Process;
 use App\Models\Lens;
+use Illuminate\Support\Carbon;
 
 /**
  * Configuration Model:
@@ -17,6 +18,20 @@ use App\Models\Lens;
  * 
  * A lens can be used with multiple configurations,
  * a configuration can be used with only one lens.
+ * 
+ * @property int $id
+ * @property int $lens_id
+ * @property int $focal_length
+ * @property float $output
+ * @property int $pw
+ * @property int $pf
+ * @property int $scan_frequency
+ * @property string $scan_width
+ * @property string $spot_size
+ * @property string $fluence
+ * @property string|null $description
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  */
 
 class Configuration extends Model

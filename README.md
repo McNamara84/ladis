@@ -1,4 +1,4 @@
-![PHP 8.4](https://img.shields.io/badge/php-8.4-blue?logo=php)
+![PHP ^8.2](https://img.shields.io/badge/php-%5E8.2-blue?logo=php)
 ![MySQL 8](https://img.shields.io/badge/mysql-8.4-orange?logo=mysql&logoColor=white)
 ![Laravel 12](https://img.shields.io/badge/laravel-12-red?logo=laravel&style=flat)
 ![Bootstrap 5.3](https://img.shields.io/badge/bootstrap-5.3-563d7c?logo=bootstrap)
@@ -12,13 +12,12 @@ We are developing our own information system as part of the P11 laboratory. A sp
 
 ## Features
 
-
-- **User-friendly input forms:** Add devices, material and process via input form
-- **Overview lists:** List all registered devices and institutions
+- **Overview lists:** List all registered projects, devices, materials and institutions
 - **User-friendly input forms:**
   - Add new **materials**
   - Add new **institutions**
   - Add new **devices**
+  - Add new **projects**
 - **Admin Tools:** Create new Accounts via UI or enter `php artisan newuser <name> <email> <password>` in server terminal for easy user creation.
 - **Simple Search:** The simple search function in the main menu allows you to quickly search for device names, institution names, ...
 - **Advanced Search:** The advanced search allows you to search the database for specific attributes. Currently, device and institution names as well as the features year and cooling can be searched.
@@ -28,35 +27,39 @@ We are developing our own information system as part of the P11 laboratory. A sp
 ## Sitemap
 
 - Welcome (Homepage): /
-    - About LADIS: /about
-    - Advanced Search: /adv-search
-        - Search Result: /adv-search/result
-    - Institutions:
-      - /institutions/manufacturers/all
-      - /institutions/clients/all
-      - /institutions/contractors/all
-    - Devices: /devices/all
-    - Contact Us: /contact
-    - Database Statistics: /statistics
-    - Legal (Rechtliches / Impressum): /impressum
-    - Log-In Mask: /login
-        - Account Overview: /login/home 
-        - Data Input Form (Eingabemaske): /login/inputform
-            - New Artifact Entry [dynamic page]
-            - New Device Entry [dynamic page]
-            - New Institution Entry [dynamic page]
-            - New Process Entry [dynamic page]
-            - New Project Entry [dynamic page]
-            - Report Review: /login/review
-    - Privacy Policy (Datenschutzerklärung): /datenschutz
-    - Terms of Use (Nutzungsbedingungen): /terms-of-use
-    - User Help: /help
-        - Registered User Help [dynamic page]
-        - Unregistered User Help [dynamic page]
+  - About LADIS: /about
+  - Advanced Search: /adv-search
+    - Search Result: /adv-search/result
+  - Institutions:
+    - /institutions/manufacturers/all
+    - /institutions/clients/all
+    - /institutions/contractors/all
+  - Devices: /devices/all
+  - Materials: /materials/all
+  - Projects: projects/all
+  - Contact Us: /contact
+  - Database Statistics: /statistics
+  - Legal (Rechtliches / Impressum): /impressum
+  - Log-In Mask: /login
+    - Account Overview: /login/home
+      - Data Input Form (Eingabemaske): /login/inputform
+        - New Artifact Entry [dynamic page]
+        - New Device Entry [dynamic page]
+        - New Institution Entry [dynamic page]
+        - New Process Entry [dynamic page]
+        - New Project Entry [dynamic page]
+        - Report Review: /login/review
+  - Privacy Policy (Datenschutzerklärung): /datenschutz
+  - Terms of Use (Nutzungsbedingungen): /terms-of-use
+  - User Help: /help
+    - Registered User Help [dynamic page]
+    - Unregistered User Help [dynamic page]
 
 ## Prerequisites
 
-<!-- List dependencies and system requirements here -->
+### System Requirements
+
+- **PHP**: 8.2 or higher
 
 ## Quick Start
 
@@ -70,6 +73,7 @@ Follow these steps to set up the development environment:
 6. Run `php artisan migrate` to set up the database.
 7. Run `composer run-script dev` to start the development server.
 8. Access the application at [http://localhost:8000](http://localhost:8000).
+9. Logs rotate daily. Adjust `LOG_DAILY_DAYS` in your `.env` file to change retention.
 
 > [!TIP]
 > See [Development Environment Setup](https://github.com/McNamara84/cleanup-laser-database/wiki/Development-Environment-Setup) for detailed instructions.
@@ -91,6 +95,10 @@ Follow these steps to set up the development environment:
 
 - `php artisan serve` to start test server for manual testing
 - `php artisan test` to execute the test suite.
+
+## Automated Testing (CI/CD)
+
+In addition to [local testing](#commands-for-testing), our test suite runs automatically via GitHub Actions on every push and pull request. All supported PHP versions (8.2, 8.3, and 8.4) are tested to ensure compatibility across the entire supported range. This automated testing is separate from the manual testing commands above and requires no action from developers.
 
 ## Production Deployment
 
@@ -129,12 +137,7 @@ Seeders are used to populate the database with initial or sample data. To run al
 
 ## Factories
 
-Factories automatically generate sample data for models to simplify testing and development.
-
-### Available Factories
-
-- `LensFactory`
-
+Factories automatically generate sample data for models to simplify testing and development. All models in this project have a factory.
 
 ## Contributing
 

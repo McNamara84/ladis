@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\Institution;
 use App\Models\Project;
+use Illuminate\Support\Carbon;
 
 /**
  * Person Model:
@@ -15,6 +16,12 @@ use App\Models\Project;
  * - represents a person entity in the system
  * - belongs to an Institution (n:1)
  * - has many Projects (1:n)
+ * 
+ * @property int $id
+ * @property int $institution_id
+ * @property string $name
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  */
 class Person extends Model
 {

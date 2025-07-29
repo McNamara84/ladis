@@ -90,7 +90,7 @@
                                     <span>Daten</span>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><x-link class="dropdown-item" route="inputform_project.index" text="Projekte"
+                                    <li><x-link class="dropdown-item" route="projects.all" text="Projekte"
                                             icon="bi-rocket-takeoff" /></li>
                                     <li><x-link class="dropdown-item" route="institutions.clients"
                                             text="Auftraggeber" icon="bi-bank2" /></li>
@@ -100,7 +100,7 @@
                                             icon="bi-lightning-charge" /></li>
                                     <li><x-link class="dropdown-item" route="institutions.manufacturers"
                                             text="Hersteller" icon="bi-bank2" /></li>
-                                    <li><x-link class="dropdown-item" route="inputform_material.index" text="Material"
+                                    <li><x-link class="dropdown-item" route="materials.all" text="Material"
                                             icon="bi-stack" /></li>
                                     @auth
                                         <li>

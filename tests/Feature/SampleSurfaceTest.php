@@ -21,23 +21,18 @@ class SampleSurfaceTest extends TestCase
     {
         $sample = new SampleSurface();
 
-        $this->assertSame(['sample_surface_id', 'name', 'description'], $sample->getFillable());
+        $this->assertSame(['artifacts_id', 'name', 'description'], $sample->getFillable());
     }
 
     public function test_relationships(): void
     {
-        $artifact = Artifact::factory()->create();
-        $sample = SampleSurface::forceCreate([
-            'name' => 'S',
-            'description' => 'd',
-            'artifacts_id' => $artifact->id,
-        ]);
+        $sample = SampleSurface::factory()->create();
         $partial = PartialSurface::create([
             'sample_surface_id' => $sample->id,
             'foundation_material_id' => Material::create(['name' => 'm'])->id,
             'coating_material_id' => Material::create(['name' => 'c'])->id,
-            'condition_id' => Condition::create(['severity' => 'a', 'adhesion' => 'b', 'damage_pattern_id' => DamagePattern::factory()->create()->id])->id,
-            'result_id' => Condition::create(['severity' => 'c', 'adhesion' => 'd', 'damage_pattern_id' => DamagePattern::factory()->create()->id])->id,
+            'condition_id' => Condition::factory()->create()->id,
+            'result_id' => Condition::factory()->create()->id,
             'size' => 1.0,
         ]);
 
