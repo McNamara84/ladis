@@ -92,8 +92,8 @@
                                 <ul class="dropdown-menu">
                                     <li><x-link class="dropdown-item" route="projects.all" text="Projekte"
                                             icon="bi-rocket-takeoff" /></li>
-                                    <li><x-link class="dropdown-item" route="institutions.clients"
-                                            text="Auftraggeber" icon="bi-bank2" /></li>
+                                    <li><x-link class="dropdown-item" route="institutions.clients" text="Auftraggeber"
+                                            icon="bi-bank2" /></li>
                                     <li><x-link class="dropdown-item" route="institutions.contractors"
                                             text="Auftragnehmer" icon="bi-bank2" /></li>
                                     <li><x-link class="dropdown-item" route="devices.all" text="Laser"
@@ -104,8 +104,8 @@
                                             icon="bi-stack" /></li>
                                     @auth
                                         <li>
-                                            <x-link class="dropdown-item" route="inputform_image.index"
-                                                text="Image-Upload" icon="bi-stack" />
+                                            <x-link class="dropdown-item" route="inputform_image.index" text="Image-Upload"
+                                                icon="bi-stack" />
                                         </li>
                                     @endauth
                                 </ul>
@@ -245,8 +245,8 @@
                         <p>{{ $appTagline }}</p>
                     </div>
                     <div class="col-md-6 text-md-end">
-                        <p><time datetime="{{ now()->year }}-01-01">{{ date('Y') }}</time> <a
-                                href="{{ $appLicenseHolderURL }}">{!! $appLicenseHolder !!}</a><br>
+                        <p><time datetime="{{ now()->year }}-01-01">{{ date('Y') }}</time> <x-contact.link
+                                :contact="$appContactPrimary" name-format="[n][ (a)]" /><br>
                             {{ $appName }} wird unter der <a href="{{ $appLicenseURL }}">{{ $appLicenseName }}</a>
                             bereitgestellt.
                         </p>
