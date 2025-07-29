@@ -6,13 +6,9 @@
         <div class="container content hero">
             <h1 class="hero-title">{{ $appName }}</h1>
             <p><span class="brand-name">{{ $appName }}</span> ({{ $appNameLong }}) ist ein Informationssystem zur
-                Dokumentation von
-                Laserreinigungsverfahren bei der Restaurierung historischer Oberflächen. Das System wurde 2025 vom <a
-                    href="https://www.fh-potsdam.de/studium-weiterbildung/fachbereiche/fachbereich-stadt-bau-kultur">Fachbereich
-                    STADT | BAU | KULTUR</a> in Kooperation mit dem <a
-                    href="https://www.fh-potsdam.de/studium-weiterbildung/fachbereiche/fachbereich-informationswissenschaften">Fachbereich
-                    Informationswissenschaften</a> der <a href="https://www.fh-potsdam.de">Fachhochschule Potsdam (FHP) –
-                    University of Applied Sciences</a> entwickelt.</p>
+                Dokumentation von Laserreinigungsverfahren bei der Restaurierung historischer Oberflächen. Das System wurde
+                2025 vom <x-contact.link :contact="$fb2" /> in Kooperation mit dem <x-contact.link :contact="$fb5" /> der
+                <x-contact.link :contact="$appContactPrimary" name-format="[n][ (a)]" /> entwickelt.</p>
         </div>
     </div>
     <div class="container">
