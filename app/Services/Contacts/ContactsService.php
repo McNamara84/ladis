@@ -17,28 +17,6 @@ use App\Services\Contacts\Models\Contact;
 class ContactsService
 {
     /**
-     * The key of the cache.
-     *
-     * @var string
-     */
-    private const CACHE_KEY = 'contacts';
-
-    /**
-     * The directory where the contact data is stored.
-     * Usually `storage/app/private/contacts`.
-     *
-     * @var string
-     */
-    private const STORAGE_DIRECTORY = 'contacts';
-
-    /**
-     * The file extension of the contact data.
-     *
-     * @var string
-     */
-    private const STORAGE_FILE_EXTENSION = '.json';
-
-    /**
      * Contacts data as Contact instances for this request
      *
      * @var array<string, Contact>
@@ -55,6 +33,36 @@ class ContactsService
     public function __construct()
     {
         $this->load();
+    }
+
+    /**
+     * Get the cache key for contacts
+     *
+     * @return string
+     */
+    private function getCacheKey(): string
+    {
+        return config('contacts.cache_key');
+    }
+
+    /**
+     * Get the storage directory for contacts
+     *
+     * @return string
+     */
+    private function getStorageDirectory(): string
+    {
+        return config('contacts.storage.directory');
+    }
+
+    /**
+     * Get the file extension for contact files
+     *
+     * @return string
+     */
+    private function getFileExtension(): string
+    {
+        return config('contacts.storage.file_extension');
     }
 
     /**
@@ -88,14 +96,13 @@ class ContactsService
     /**
      * Clear the contacts cache
      *
-     * Controllers MUST use this method to clear the cache whenever contacts
-     * are updated.
+     * Use this method to clear the cache whenever contacts are updated.
      *
      * @return void
      */
     public function clearCache(): void
     {
-        Cache::forget(self::CACHE_KEY);
+        Cache::forget($this->getCacheKey());
     }
 
     /**
@@ -116,19 +123,6 @@ class ContactsService
     }
 
     /**
-     * Update the persistent cache
-     *
-     * Contacts are cached indefinitely.
-     *
-     * @param array<string, string> $data The contacts to update the cache with
-     * @return void
-     */
-    private function updateCache(array $data): void
-    {
-        Cache::forever(self::CACHE_KEY, $data);
-    }
-
-    /**
      * Remember the contacts data in the cache.
      *
      * Retrieves the raw contacts data from the cache if it exists, otherwise
@@ -139,7 +133,7 @@ class ContactsService
     private function remember(): array
     {
         return Cache::rememberForever(
-            self::CACHE_KEY,
+            $this->getCacheKey(),
             fn() => $this->loadFromStorage()
         );
     }
@@ -151,7 +145,7 @@ class ContactsService
      */
     private function loadFromCache(): array
     {
-        return Cache::get(self::CACHE_KEY, []);
+        return Cache::get($this->getCacheKey(), []);
     }
 
     /**
@@ -163,22 +157,22 @@ class ContactsService
     {
         $records = [];
 
-        if (!Storage::exists(self::STORAGE_DIRECTORY)) {
+        if (!Storage::exists($this->getStorageDirectory())) {
             Log::warning('Contacts directory does not exist', [
-                'directory' => self::STORAGE_DIRECTORY,
-                'path' => Storage::path(self::STORAGE_DIRECTORY)
+                'directory' => $this->getStorageDirectory(),
+                'path' => Storage::path($this->getStorageDirectory())
             ]);
 
             return $records;
         }
 
-        $files = collect(Storage::files(self::STORAGE_DIRECTORY))
-            ->filter(fn($file) => str_ends_with($file, self::STORAGE_FILE_EXTENSION));
+        $files = collect(Storage::files($this->getStorageDirectory()))
+            ->filter(fn($file) => str_ends_with($file, $this->getFileExtension()));
 
         foreach ($files as $file) {
             try {
                 $json = Storage::get($file);
-                $id = basename($file, self::STORAGE_FILE_EXTENSION);
+                $id = basename($file, $this->getFileExtension());
                 $records[$id] = $json;
             } catch (\Exception $e) {
                 Log::error("Error loading contact file", [
