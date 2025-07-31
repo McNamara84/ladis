@@ -320,4 +320,122 @@ class ContactsServiceTest extends TestCase
         // Mockery will automatically verify the expectations were met
         $this->addToAssertionCount(1); // Explicitly count this as an assertion
     }
+
+    /**
+     * Test that ContactsService gracefully handles file loading errors and continues loading other files
+     */
+    public function test_handles_file_loading_errors_gracefully(): void
+    {
+        // Mock config values
+        config(['contacts.cache_key' => 'test_contacts_cache']);
+        config(['contacts.storage.directory' => 'test/contacts']);
+        config(['contacts.storage.file_extension' => '.json']);
+
+        // Prepare test contact data for successful file
+        $validContactJson = json_encode([
+            '@type' => 'Person',
+            'name' => 'Valid User',
+            'email' => 'valid@example.com'
+        ]);
+
+        // Mock Storage facade
+        Storage::shouldReceive('exists')->with('test/contacts')->once()->andReturn(true);
+        Storage::shouldReceive('files')->with('test/contacts')->once()
+            ->andReturnUsing(fn() => [
+                'test/contacts/valid-user.json',
+                'test/contacts/corrupted-file.json',
+                'test/contacts/another-valid.json'
+            ]);
+
+        // Mock successful file loads
+        Storage::shouldReceive('get')->with('test/contacts/valid-user.json')->once()->andReturn($validContactJson);
+        Storage::shouldReceive('get')->with('test/contacts/another-valid.json')->once()->andReturn($validContactJson);
+
+        // Mock failed file load - this should throw an exception
+        Storage::shouldReceive('get')->with('test/contacts/corrupted-file.json')->once()
+            ->andThrow(new \Exception('File is corrupted or unreadable'));
+
+        // Mock Log facade to expect error logging
+        Log::shouldReceive('error')
+            ->with('Error loading contact file', Mockery::type('array'))
+            ->once();
+
+        // Mock Cache facade
+        Cache::shouldReceive('rememberForever')
+            ->with('test_contacts_cache', Mockery::type('Closure'))
+            ->once()
+            ->andReturnUsing(fn($key, $callback) => $callback());
+
+        // Create service instance - should load successfully despite the failed file
+        $service = new ContactsService();
+
+        // Assert that only the valid contacts are loaded (corrupted file should be skipped)
+        $contacts = $service->all();
+        $this->assertIsArray($contacts);
+        $this->assertCount(2, $contacts); // Only 2 valid contacts, corrupted one skipped
+        $this->assertArrayHasKey('valid-user', $contacts);
+        $this->assertArrayHasKey('another-valid', $contacts);
+        $this->assertArrayNotHasKey('corrupted-file', $contacts);
+
+        // Verify the loaded contacts are valid Contact instances
+        $this->assertInstanceOf(Contact::class, $contacts['valid-user']);
+        $this->assertInstanceOf(Contact::class, $contacts['another-valid']);
+        $this->assertEquals('Valid User', $contacts['valid-user']->name);
+    }
+
+    /**
+     * Test that ContactsService loads from cache when cache data exists (cache hit)
+     */
+    public function test_loads_contacts_from_cache_when_cache_exists(): void
+    {
+        // Mock config values
+        config(['contacts.cache_key' => 'test_contacts_cache']);
+        config(['contacts.storage.directory' => 'test/contacts']);
+        config(['contacts.storage.file_extension' => '.json']);
+
+        // Prepare cached contact data (raw JSON strings)
+        $cachedData = [
+            'cached-user1' => json_encode([
+                '@type' => 'Person',
+                'name' => 'Cached User One',
+                'email' => 'cached1@example.com'
+            ]),
+            'cached-user2' => json_encode([
+                '@type' => 'Organization',
+                'name' => 'Cached Corp',
+                'url' => 'https://cached.com'
+            ])
+        ];
+
+        // Mock Cache facade to return existing cached data (cache hit)
+        Cache::shouldReceive('rememberForever')
+            ->with('test_contacts_cache', Mockery::type('Closure'))
+            ->once()
+            ->andReturnUsing(fn($key, $callback) => $cachedData); // Return cached data directly, don't call callback
+
+        // Note: We don't mock Storage methods since they shouldn't be called due to cache hit
+        // The cache hit means the callback in rememberForever won't be executed
+
+        // Create service instance - should load from cache
+        $service = new ContactsService();
+
+        // Assert that contacts are loaded from cache
+        $contacts = $service->all();
+        $this->assertIsArray($contacts);
+        $this->assertCount(2, $contacts);
+        $this->assertArrayHasKey('cached-user1', $contacts);
+        $this->assertArrayHasKey('cached-user2', $contacts);
+
+        // Verify contacts are Contact instances with correct data
+        $this->assertInstanceOf(Contact::class, $contacts['cached-user1']);
+        $this->assertInstanceOf(Contact::class, $contacts['cached-user2']);
+        $this->assertEquals('Cached User One', $contacts['cached-user1']->name);
+        $this->assertEquals('cached1@example.com', $contacts['cached-user1']->email);
+        $this->assertEquals('Cached Corp', $contacts['cached-user2']->name);
+        $this->assertEquals('https://cached.com', $contacts['cached-user2']->url);
+
+        // Test magic methods work with cached data
+        $this->assertTrue(isset($service->{'cached-user1'}));
+        $this->assertEquals('Cached User One', $service->{'cached-user1'}->name);
+    }
 }
