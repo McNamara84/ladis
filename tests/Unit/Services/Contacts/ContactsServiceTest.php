@@ -205,4 +205,68 @@ class ContactsServiceTest extends TestCase
         $this->assertIsArray($nonExistingResult);
         $this->assertEmpty($nonExistingResult);
     }
+
+    /**
+     * Test that magic methods __get() and __isset() work correctly for accessing contacts
+     */
+    public function test_magic_methods_allow_direct_contact_access(): void
+    {
+        // Mock config values
+        config(['contacts.cache_key' => 'test_contacts_cache']);
+        config(['contacts.storage.directory' => 'test/contacts']);
+        config(['contacts.storage.file_extension' => '.json']);
+
+        // Prepare test contact data
+        $personJson = json_encode([
+            '@type' => 'Person',
+            'name' => 'Jane Doe',
+            'email' => 'jane@example.com'
+        ]);
+
+        $organizationJson = json_encode([
+            '@type' => 'Organization',
+            'name' => 'Acme Corp',
+            'url' => 'https://acme.com'
+        ]);
+
+        // Mock Storage facade
+        Storage::shouldReceive('exists')->with('test/contacts')->once()->andReturn(true);
+        Storage::shouldReceive('files')->with('test/contacts')->once()
+            ->andReturnUsing(fn() => [
+                'test/contacts/jane-doe.json',
+                'test/contacts/acme.json'
+            ]);
+
+        Storage::shouldReceive('get')->with('test/contacts/jane-doe.json')->once()->andReturn($personJson);
+        Storage::shouldReceive('get')->with('test/contacts/acme.json')->once()->andReturn($organizationJson);
+
+        // Mock Cache facade
+        Cache::shouldReceive('rememberForever')
+            ->with('test_contacts_cache', Mockery::type('Closure'))
+            ->once()
+            ->andReturnUsing(fn($key, $callback) => $callback());
+
+        // Create service instance
+        $service = new ContactsService();
+
+        // Test __isset() magic method
+        $this->assertTrue(isset($service->{'jane-doe'})); // Requires curly braces due to hyphen
+        $this->assertTrue(isset($service->acme));          // Simple syntax for single word
+        $this->assertFalse(isset($service->{'non-existing'}));
+
+        // Test __get() magic method for existing contacts
+        $personContact = $service->{'jane-doe'}; // Curly brace syntax for hyphenated ID
+        $this->assertInstanceOf(Contact::class, $personContact);
+        $this->assertEquals('Jane Doe', $personContact->name);
+        $this->assertEquals('jane@example.com', $personContact->email);
+
+        $orgContact = $service->acme; // Simple property syntax for single word ID
+        $this->assertInstanceOf(Contact::class, $orgContact);
+        $this->assertEquals('Acme Corp', $orgContact->name);
+        $this->assertEquals('https://acme.com', $orgContact->url);
+
+        // Test __get() magic method for non-existing contact
+        $nonExistingContact = $service->{'non-existing'};
+        $this->assertNull($nonExistingContact);
+    }
 }
