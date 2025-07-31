@@ -141,4 +141,68 @@ class ContactsServiceTest extends TestCase
         $this->assertInstanceOf(Contact::class, $contacts['john-doe']);
         $this->assertInstanceOf(Contact::class, $contacts['test-org']);
     }
+
+    /**
+     * Test that getMultiple returns only the requested contacts that exist
+     */
+    public function test_getMultiple_returns_only_existing_contacts_in_order(): void
+    {
+        // Mock config values
+        config(['contacts.cache_key' => 'test_contacts_cache']);
+        config(['contacts.storage.directory' => 'test/contacts']);
+        config(['contacts.storage.file_extension' => '.json']);
+
+        // Prepare test contact data
+        $contact1Json = json_encode(['@type' => 'Person', 'name' => 'Alice']);
+        $contact2Json = json_encode(['@type' => 'Person', 'name' => 'Bob']);
+        $contact3Json = json_encode(['@type' => 'Person', 'name' => 'Charlie']);
+
+        // Mock Storage facade
+        Storage::shouldReceive('exists')->with('test/contacts')->once()->andReturn(true);
+        Storage::shouldReceive('files')->with('test/contacts')->once()
+            ->andReturnUsing(fn() => [
+                'test/contacts/alice.json',
+                'test/contacts/bob.json',
+                'test/contacts/charlie.json'
+            ]);
+
+        Storage::shouldReceive('get')->with('test/contacts/alice.json')->once()->andReturn($contact1Json);
+        Storage::shouldReceive('get')->with('test/contacts/bob.json')->once()->andReturn($contact2Json);
+        Storage::shouldReceive('get')->with('test/contacts/charlie.json')->once()->andReturn($contact3Json);
+
+        // Mock Cache facade
+        Cache::shouldReceive('rememberForever')
+            ->with('test_contacts_cache', Mockery::type('Closure'))
+            ->once()
+            ->andReturnUsing(fn($key, $callback) => $callback());
+
+        // Create service instance
+        $service = new ContactsService();
+
+        // Test getting multiple contacts - mix of existing and non-existing IDs
+        $requestedIds = ['alice', 'nonexistent', 'charlie', 'another-missing'];
+        $result = $service->getMultiple($requestedIds);
+
+        // Assert only existing contacts are returned
+        $this->assertIsArray($result);
+        $this->assertCount(2, $result);
+        $this->assertArrayHasKey('alice', $result);
+        $this->assertArrayHasKey('charlie', $result);
+        $this->assertArrayNotHasKey('nonexistent', $result);
+        $this->assertArrayNotHasKey('another-missing', $result);
+
+        // Assert contacts are Contact instances
+        $this->assertInstanceOf(Contact::class, $result['alice']);
+        $this->assertInstanceOf(Contact::class, $result['charlie']);
+
+        // Test with empty array
+        $emptyResult = $service->getMultiple([]);
+        $this->assertIsArray($emptyResult);
+        $this->assertEmpty($emptyResult);
+
+        // Test with all non-existing IDs
+        $nonExistingResult = $service->getMultiple(['missing1', 'missing2']);
+        $this->assertIsArray($nonExistingResult);
+        $this->assertEmpty($nonExistingResult);
+    }
 }
