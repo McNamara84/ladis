@@ -36,36 +36,6 @@ class ContactsService
     }
 
     /**
-     * Get the cache key for contacts
-     *
-     * @return string
-     */
-    private function getCacheKey(): string
-    {
-        return config('contacts.cache_key');
-    }
-
-    /**
-     * Get the storage directory for contacts
-     *
-     * @return string
-     */
-    private function getStorageDirectory(): string
-    {
-        return config('contacts.storage.directory');
-    }
-
-    /**
-     * Get the file extension for contact files
-     *
-     * @return string
-     */
-    private function getFileExtension(): string
-    {
-        return config('contacts.storage.file_extension');
-    }
-
-    /**
      * Get all contacts
      *
      * @return array<string, Contact> All contacts keyed by their IDs
@@ -139,16 +109,6 @@ class ContactsService
     }
 
     /**
-     * Load contacts from the persistent cache.
-     *
-     * @return array<string, string> The contacts from the cache
-     */
-    private function loadFromCache(): array
-    {
-        return Cache::get($this->getCacheKey(), []);
-    }
-
-    /**
      * Load raw contact data from storage files
      *
      * @return array<string, string>
@@ -157,32 +117,115 @@ class ContactsService
     {
         $records = [];
 
-        if (!Storage::exists($this->getStorageDirectory())) {
-            Log::warning('Contacts directory does not exist', [
-                'directory' => $this->getStorageDirectory(),
-                'path' => Storage::path($this->getStorageDirectory())
-            ]);
-
+        if (!$this->checkStorageDirectoryExists()) {
             return $records;
         }
 
-        $files = collect(Storage::files($this->getStorageDirectory()))
-            ->filter(fn($file) => str_ends_with($file, $this->getFileExtension()));
+        $files = $this->collectContactFiles();
 
-        foreach ($files as $file) {
+        foreach ($files as $id => $file) {
             try {
-                $json = Storage::get($file);
-                $id = basename($file, $this->getFileExtension());
-                $records[$id] = $json;
+                $result = $this->loadContactFile($file);
+                $records[$id] = $result;
             } catch (\Exception $e) {
-                Log::error("Error loading contact file", [
-                    'error' => $e->getMessage(),
-                    'file' => $file,
-                ]);
+                // Nothing to do here
             }
         }
 
         return $records;
+    }
+
+    /**
+     * Check if the storage directory exists
+     *
+     * @return bool
+     */
+    private function checkStorageDirectoryExists(): bool
+    {
+        $directory = $this->getStorageDirectory();
+
+        if (Storage::exists($directory)) {
+            return true;
+        }
+
+        Log::warning('Contacts directory does not exist', [
+            'directory' => $directory,
+            'path' => Storage::path($directory)
+        ]);
+
+        return false;
+    }
+
+    /**
+     * Collect contact files from the storage directory
+     *
+     * @return array<string, string> Array of contact files keyed by their IDs
+     */
+    private function collectContactFiles(): array
+    {
+        $files = Storage::files($this->getStorageDirectory());
+        $records = [];
+        $extension = $this->getFileExtension();
+
+        foreach ($files as $file) {
+            if (str_ends_with($file, $extension)) {
+                $id = basename($file, $extension);
+                $records[$id] = $file;
+            }
+        }
+
+        return $records;
+    }
+
+    /**
+     * Load a contact file from storage
+     *
+     * @param string $file The file path
+     * @return string The contact data
+     * @throws \Exception If the file cannot be loaded
+     */
+    private function loadContactFile(string $file): string
+    {
+        try {
+            return Storage::get($file);
+        } catch (\Exception $e) {
+            Log::error("Error loading contact file", [
+                'error' => $e->getMessage(),
+                'file' => $file,
+            ]);
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Get the cache key for contacts
+     *
+     * @return string
+     */
+    private function getCacheKey(): string
+    {
+        return config('contacts.cache_key');
+    }
+
+    /**
+     * Get the storage directory for contacts
+     *
+     * @return string
+     */
+    private function getStorageDirectory(): string
+    {
+        return config('contacts.storage.directory');
+    }
+
+    /**
+     * Get the file extension for contact files
+     *
+     * @return string
+     */
+    private function getFileExtension(): string
+    {
+        return config('contacts.storage.file_extension');
     }
 
     /**
