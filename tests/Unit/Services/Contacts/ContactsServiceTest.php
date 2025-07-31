@@ -269,4 +269,55 @@ class ContactsServiceTest extends TestCase
         $nonExistingContact = $service->{'non-existing'};
         $this->assertNull($nonExistingContact);
     }
+
+    /**
+     * Test that clearCache method properly clears the contacts cache
+     */
+    public function test_clearCache_calls_cache_forget_with_correct_key(): void
+    {
+        // Mock config values
+        config(['contacts.cache_key' => 'test_contacts_cache']);
+        config(['contacts.storage.directory' => 'test/contacts']);
+        config(['contacts.storage.file_extension' => '.json']);
+
+        // Prepare test contact data
+        $contactJson = json_encode([
+            '@type' => 'Person',
+            'name' => 'Test User',
+            'email' => 'test@example.com'
+        ]);
+
+        // Mock Storage facade for initial load
+        Storage::shouldReceive('exists')->with('test/contacts')->once()->andReturn(true);
+        Storage::shouldReceive('files')->with('test/contacts')->once()
+            ->andReturnUsing(fn() => ['test/contacts/testuser.json']);
+        Storage::shouldReceive('get')->with('test/contacts/testuser.json')->once()->andReturn($contactJson);
+
+        // Mock Cache facade for initial load (rememberForever)
+        Cache::shouldReceive('rememberForever')
+            ->with('test_contacts_cache', Mockery::type('Closure'))
+            ->once()
+            ->andReturnUsing(fn($key, $callback) => $callback());
+
+        // Create service instance (this will load contacts into cache)
+        $service = new ContactsService();
+
+        // Verify contacts are loaded
+        $this->assertCount(1, $service->all());
+        $this->assertTrue(isset($service->testuser));
+
+        // Mock Cache::forget for the clearCache call - this is the key assertion
+        Cache::shouldReceive('forget')
+            ->with('test_contacts_cache')
+            ->once()
+            ->andReturn(true);
+
+        // Call clearCache method - this should trigger Cache::forget
+        $service->clearCache();
+
+        // The fact that this test completes without Mockery exceptions
+        // proves that clearCache() correctly called Cache::forget() with the right key
+        // Mockery will automatically verify the expectations were met
+        $this->addToAssertionCount(1); // Explicitly count this as an assertion
+    }
 }
