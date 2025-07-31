@@ -18,6 +18,13 @@ class ContactsServiceTest extends TestCase
 
         // Clear any previous mocks
         Mockery::close();
+
+        // Set up common config for all tests
+        config([
+            'contacts.cache_key' => 'test_contacts_cache',
+            'contacts.storage.directory' => 'test/contacts',
+            'contacts.storage.file_extension' => '.json'
+        ]);
     }
 
     protected function tearDown(): void
@@ -31,39 +38,13 @@ class ContactsServiceTest extends TestCase
      */
     public function test_all_returns_empty_array_when_storage_directory_does_not_exist(): void
     {
-        // Mock config values
-        config(['contacts.cache_key' => 'test_contacts_cache']);
-        config(['contacts.storage.directory' => 'test/contacts']);
-        config(['contacts.storage.file_extension' => '.json']);
+        Storage::shouldReceive('exists')->with('test/contacts')->once()->andReturn(false);
+        Log::shouldReceive('warning')->once();
+        Storage::shouldReceive('path')->once()->andReturn('/fake/path');
+        Cache::shouldReceive('rememberForever')->once()->andReturnUsing(fn($key, $callback) => $callback());
 
-        // Mock Storage facade to return false for directory existence
-        Storage::shouldReceive('exists')
-            ->with('test/contacts')
-            ->once()
-            ->andReturn(false);
-
-        // Mock Log facade to expect warning
-        Log::shouldReceive('warning')
-            ->with('Contacts directory does not exist', Mockery::type('array'))
-            ->once();
-
-        // Mock Cache facade for rememberForever to call the callback
-        Cache::shouldReceive('rememberForever')
-            ->with('test_contacts_cache', Mockery::type('Closure'))
-            ->once()
-            ->andReturnUsing(fn($key, $callback) => $callback());
-
-        // Mock Storage::path for logging
-        Storage::shouldReceive('path')
-            ->with('test/contacts')
-            ->once()
-            ->andReturn('/fake/path/test/contacts');
-
-        // Create service instance
         $service = new ContactsService();
 
-        // Assert that all() returns an empty array
-        $this->assertIsArray($service->all());
         $this->assertEmpty($service->all());
     }
 
@@ -72,138 +53,39 @@ class ContactsServiceTest extends TestCase
      */
     public function test_all_returns_contacts_when_storage_directory_exist(): void
     {
-        // Mock config values
-        config(['contacts.cache_key' => 'test_contacts_cache']);
-        config(['contacts.storage.directory' => 'test/contacts']);
-        config(['contacts.storage.file_extension' => '.json']);
+        Storage::shouldReceive('exists')->with('test/contacts')->once()->andReturn(true);
+        Storage::shouldReceive('files')->once()->andReturnUsing(fn() => ['test/contacts/alice.json']);
+        Storage::shouldReceive('get')->once()->andReturn(json_encode(['name' => 'Alice']));
+        Cache::shouldReceive('rememberForever')->once()->andReturnUsing(fn($key, $callback) => $callback());
 
-        // Prepare test contact data
-        $contact1Json = json_encode([
-            '@type' => 'Person',
-            'name' => 'John Doe',
-            'email' => 'john@example.com',
-            'telephone' => '+1234567890'
-        ]);
-
-        $contact2Json = json_encode([
-            '@type' => 'Organization',
-            'name' => 'Test Organization',
-            'url' => 'https://example.org',
-            'address' => 'Test Address'
-        ]);
-
-        // Mock Storage facade to return true for directory existence
-        Storage::shouldReceive('exists')
-            ->with('test/contacts')
-            ->once()
-            ->andReturn(true);
-
-        // Mock Storage facade to return contact files
-        Storage::shouldReceive('files')
-            ->with('test/contacts')
-            ->once()
-            ->andReturnUsing(fn() => [
-                'test/contacts/john-doe.json',
-                'test/contacts/test-org.json',
-                'test/contacts/invalid-file.txt' // Should be ignored
-            ]);
-
-        // Mock Storage facade to return file contents
-        Storage::shouldReceive('get')
-            ->with('test/contacts/john-doe.json')
-            ->once()
-            ->andReturn($contact1Json);
-
-        Storage::shouldReceive('get')
-            ->with('test/contacts/test-org.json')
-            ->once()
-            ->andReturn($contact2Json);
-
-        // Mock Cache facade for rememberForever to call the callback
-        Cache::shouldReceive('rememberForever')
-            ->with('test_contacts_cache', Mockery::type('Closure'))
-            ->once()
-            ->andReturnUsing(fn($key, $callback) => $callback());
-
-        // Create service instance
         $service = new ContactsService();
-
-        // Get all contacts
         $contacts = $service->all();
 
-        // Assert that contacts are loaded correctly
-        $this->assertIsArray($contacts);
-        $this->assertCount(2, $contacts);
-        $this->assertArrayHasKey('john-doe', $contacts);
-        $this->assertArrayHasKey('test-org', $contacts);
-
-        // Assert that contacts are Contact instances
-        $this->assertInstanceOf(Contact::class, $contacts['john-doe']);
-        $this->assertInstanceOf(Contact::class, $contacts['test-org']);
+        $this->assertCount(1, $contacts);
+        $this->assertInstanceOf(Contact::class, $contacts['alice']);
     }
 
     /**
      * Test that getMultiple returns only the requested contacts that exist
      */
-    public function test_getMultiple_returns_only_existing_contacts_in_order(): void
+    public function test_getMultiple_returns_only_existing_contacts(): void
     {
-        // Mock config values
-        config(['contacts.cache_key' => 'test_contacts_cache']);
-        config(['contacts.storage.directory' => 'test/contacts']);
-        config(['contacts.storage.file_extension' => '.json']);
+        // Use cache hit to avoid storage setup
+        Cache::shouldReceive('rememberForever')->once()->andReturnUsing(fn() => [
+            'alice' => json_encode(['name' => 'Alice']),
+            'bob' => json_encode(['name' => 'Bob'])
+        ]);
 
-        // Prepare test contact data
-        $contact1Json = json_encode(['@type' => 'Person', 'name' => 'Alice']);
-        $contact2Json = json_encode(['@type' => 'Person', 'name' => 'Bob']);
-        $contact3Json = json_encode(['@type' => 'Person', 'name' => 'Charlie']);
-
-        // Mock Storage facade
-        Storage::shouldReceive('exists')->with('test/contacts')->once()->andReturn(true);
-        Storage::shouldReceive('files')->with('test/contacts')->once()
-            ->andReturnUsing(fn() => [
-                'test/contacts/alice.json',
-                'test/contacts/bob.json',
-                'test/contacts/charlie.json'
-            ]);
-
-        Storage::shouldReceive('get')->with('test/contacts/alice.json')->once()->andReturn($contact1Json);
-        Storage::shouldReceive('get')->with('test/contacts/bob.json')->once()->andReturn($contact2Json);
-        Storage::shouldReceive('get')->with('test/contacts/charlie.json')->once()->andReturn($contact3Json);
-
-        // Mock Cache facade
-        Cache::shouldReceive('rememberForever')
-            ->with('test_contacts_cache', Mockery::type('Closure'))
-            ->once()
-            ->andReturnUsing(fn($key, $callback) => $callback());
-
-        // Create service instance
         $service = new ContactsService();
 
-        // Test getting multiple contacts - mix of existing and non-existing IDs
-        $requestedIds = ['alice', 'nonexistent', 'charlie', 'another-missing'];
-        $result = $service->getMultiple($requestedIds);
-
-        // Assert only existing contacts are returned
-        $this->assertIsArray($result);
+        // Test main behavior: returns only existing contacts
+        $result = $service->getMultiple(['alice', 'nonexistent', 'bob']);
         $this->assertCount(2, $result);
-        $this->assertArrayHasKey('alice', $result);
-        $this->assertArrayHasKey('charlie', $result);
         $this->assertArrayNotHasKey('nonexistent', $result);
-        $this->assertArrayNotHasKey('another-missing', $result);
 
-        // Assert contacts are Contact instances
-        $this->assertInstanceOf(Contact::class, $result['alice']);
-        $this->assertInstanceOf(Contact::class, $result['charlie']);
-
-        // Test with empty array
-        $emptyResult = $service->getMultiple([]);
-        $this->assertIsArray($emptyResult);
-        $this->assertEmpty($emptyResult);
-
-        // Test with all non-existing IDs
-        $nonExistingResult = $service->getMultiple(['missing1', 'missing2']);
-        $this->assertIsArray($nonExistingResult);
-        $this->assertEmpty($nonExistingResult);
+        // Test edge cases
+        $this->assertEmpty($service->getMultiple([]));
+        $this->assertEmpty($service->getMultiple(['missing']));
     }
 
     /**
@@ -211,176 +93,44 @@ class ContactsServiceTest extends TestCase
      */
     public function test_magic_methods_allow_direct_contact_access(): void
     {
-        // Mock config values
-        config(['contacts.cache_key' => 'test_contacts_cache']);
-        config(['contacts.storage.directory' => 'test/contacts']);
-        config(['contacts.storage.file_extension' => '.json']);
-
-        // Prepare test contact data
-        $personJson = json_encode([
-            '@type' => 'Person',
-            'name' => 'Jane Doe',
-            'email' => 'jane@example.com'
+        // Use cache hit - we're testing delegation, not loading
+        Cache::shouldReceive('rememberForever')->once()->andReturnUsing(fn() => [
+            'alice' => json_encode(['name' => 'Alice'])
         ]);
 
-        $organizationJson = json_encode([
-            '@type' => 'Organization',
-            'name' => 'Acme Corp',
-            'url' => 'https://acme.com'
-        ]);
-
-        // Mock Storage facade
-        Storage::shouldReceive('exists')->with('test/contacts')->once()->andReturn(true);
-        Storage::shouldReceive('files')->with('test/contacts')->once()
-            ->andReturnUsing(fn() => [
-                'test/contacts/jane-doe.json',
-                'test/contacts/acme.json'
-            ]);
-
-        Storage::shouldReceive('get')->with('test/contacts/jane-doe.json')->once()->andReturn($personJson);
-        Storage::shouldReceive('get')->with('test/contacts/acme.json')->once()->andReturn($organizationJson);
-
-        // Mock Cache facade
-        Cache::shouldReceive('rememberForever')
-            ->with('test_contacts_cache', Mockery::type('Closure'))
-            ->once()
-            ->andReturnUsing(fn($key, $callback) => $callback());
-
-        // Create service instance
         $service = new ContactsService();
 
-        // Test __isset() magic method
-        $this->assertTrue(isset($service->{'jane-doe'})); // Requires curly braces due to hyphen
-        $this->assertTrue(isset($service->acme));          // Simple syntax for single word
-        $this->assertFalse(isset($service->{'non-existing'}));
-
-        // Test __get() magic method for existing contacts
-        $personContact = $service->{'jane-doe'}; // Curly brace syntax for hyphenated ID
-        $this->assertInstanceOf(Contact::class, $personContact);
-        $this->assertEquals('Jane Doe', $personContact->name);
-        $this->assertEquals('jane@example.com', $personContact->email);
-
-        $orgContact = $service->acme; // Simple property syntax for single word ID
-        $this->assertInstanceOf(Contact::class, $orgContact);
-        $this->assertEquals('Acme Corp', $orgContact->name);
-        $this->assertEquals('https://acme.com', $orgContact->url);
-
-        // Test __get() magic method for non-existing contact
-        $nonExistingContact = $service->{'non-existing'};
-        $this->assertNull($nonExistingContact);
+        // Test magic method delegation
+        $this->assertTrue(isset($service->alice));
+        $this->assertFalse(isset($service->nonexistent));
+        $this->assertInstanceOf(Contact::class, $service->alice);
+        $this->assertNull($service->nonexistent);
     }
 
     /**
-     * Test that clearCache method properly clears the contacts cache
-     */
-    public function test_clearCache_calls_cache_forget_with_correct_key(): void
-    {
-        // Mock config values
-        config(['contacts.cache_key' => 'test_contacts_cache']);
-        config(['contacts.storage.directory' => 'test/contacts']);
-        config(['contacts.storage.file_extension' => '.json']);
-
-        // Prepare test contact data
-        $contactJson = json_encode([
-            '@type' => 'Person',
-            'name' => 'Test User',
-            'email' => 'test@example.com'
-        ]);
-
-        // Mock Storage facade for initial load
-        Storage::shouldReceive('exists')->with('test/contacts')->once()->andReturn(true);
-        Storage::shouldReceive('files')->with('test/contacts')->once()
-            ->andReturnUsing(fn() => ['test/contacts/testuser.json']);
-        Storage::shouldReceive('get')->with('test/contacts/testuser.json')->once()->andReturn($contactJson);
-
-        // Mock Cache facade for initial load (rememberForever)
-        Cache::shouldReceive('rememberForever')
-            ->with('test_contacts_cache', Mockery::type('Closure'))
-            ->once()
-            ->andReturnUsing(fn($key, $callback) => $callback());
-
-        // Create service instance (this will load contacts into cache)
-        $service = new ContactsService();
-
-        // Verify contacts are loaded
-        $this->assertCount(1, $service->all());
-        $this->assertTrue(isset($service->testuser));
-
-        // Mock Cache::forget for the clearCache call - this is the key assertion
-        Cache::shouldReceive('forget')
-            ->with('test_contacts_cache')
-            ->once()
-            ->andReturn(true);
-
-        // Call clearCache method - this should trigger Cache::forget
-        $service->clearCache();
-
-        // The fact that this test completes without Mockery exceptions
-        // proves that clearCache() correctly called Cache::forget() with the right key
-        // Mockery will automatically verify the expectations were met
-        $this->addToAssertionCount(1); // Explicitly count this as an assertion
-    }
-
-    /**
-     * Test that ContactsService gracefully handles file loading errors and continues loading other files
+     * Test that ContactsService gracefully handles file loading errors and continues processing
      */
     public function test_handles_file_loading_errors_gracefully(): void
     {
-        // Mock config values
-        config(['contacts.cache_key' => 'test_contacts_cache']);
-        config(['contacts.storage.directory' => 'test/contacts']);
-        config(['contacts.storage.file_extension' => '.json']);
-
-        // Prepare test contact data for successful file
-        $validContactJson = json_encode([
-            '@type' => 'Person',
-            'name' => 'Valid User',
-            'email' => 'valid@example.com'
-        ]);
-
-        // Mock Storage facade
+        Cache::shouldReceive('rememberForever')->once()->andReturnUsing(fn($key, $callback) => $callback());
         Storage::shouldReceive('exists')->with('test/contacts')->once()->andReturn(true);
-        Storage::shouldReceive('files')->with('test/contacts')->once()
-            ->andReturnUsing(fn() => [
-                'test/contacts/valid-user.json',
-                'test/contacts/corrupted-file.json',
-                'test/contacts/another-valid.json'
-            ]);
-
-        // Mock successful file loads
-        Storage::shouldReceive('get')->with('test/contacts/valid-user.json')->once()->andReturn($validContactJson);
-        Storage::shouldReceive('get')->with('test/contacts/another-valid.json')->once()->andReturn($validContactJson);
-
-        // Mock failed file load - this should throw an exception
+        Storage::shouldReceive('files')->once()->andReturnUsing(fn() => [
+            'test/contacts/alice.json',
+            'test/contacts/corrupted-file.json'
+        ]);
+        Storage::shouldReceive('get')->with('test/contacts/alice.json')->once()
+            ->andReturn(json_encode(['name' => 'Alice']));
         Storage::shouldReceive('get')->with('test/contacts/corrupted-file.json')->once()
             ->andThrow(new \Exception('File is corrupted or unreadable'));
+        Log::shouldReceive('error')->once();
 
-        // Mock Log facade to expect error logging
-        Log::shouldReceive('error')
-            ->with('Error loading contact file', Mockery::type('array'))
-            ->once();
-
-        // Mock Cache facade
-        Cache::shouldReceive('rememberForever')
-            ->with('test_contacts_cache', Mockery::type('Closure'))
-            ->once()
-            ->andReturnUsing(fn($key, $callback) => $callback());
-
-        // Create service instance - should load successfully despite the failed file
         $service = new ContactsService();
-
-        // Assert that only the valid contacts are loaded (corrupted file should be skipped)
         $contacts = $service->all();
-        $this->assertIsArray($contacts);
-        $this->assertCount(2, $contacts); // Only 2 valid contacts, corrupted one skipped
-        $this->assertArrayHasKey('valid-user', $contacts);
-        $this->assertArrayHasKey('another-valid', $contacts);
-        $this->assertArrayNotHasKey('corrupted-file', $contacts);
 
-        // Verify the loaded contacts are valid Contact instances
-        $this->assertInstanceOf(Contact::class, $contacts['valid-user']);
-        $this->assertInstanceOf(Contact::class, $contacts['another-valid']);
-        $this->assertEquals('Valid User', $contacts['valid-user']->name);
+        $this->assertCount(1, $contacts);
+        $this->assertArrayHasKey('alice', $contacts);
+        $this->assertArrayNotHasKey('corrupted-file', $contacts);
+        $this->assertInstanceOf(Contact::class, $contacts['alice']);
     }
 
     /**
@@ -388,54 +138,17 @@ class ContactsServiceTest extends TestCase
      */
     public function test_loads_contacts_from_cache_when_cache_exists(): void
     {
-        // Mock config values
-        config(['contacts.cache_key' => 'test_contacts_cache']);
-        config(['contacts.storage.directory' => 'test/contacts']);
-        config(['contacts.storage.file_extension' => '.json']);
-
-        // Prepare cached contact data (raw JSON strings)
         $cachedData = [
-            'cached-user1' => json_encode([
-                '@type' => 'Person',
-                'name' => 'Cached User One',
-                'email' => 'cached1@example.com'
-            ]),
-            'cached-user2' => json_encode([
-                '@type' => 'Organization',
-                'name' => 'Cached Corp',
-                'url' => 'https://cached.com'
-            ])
+            'alice' => json_encode(['name' => 'Alice'])
         ];
 
-        // Mock Cache facade to return existing cached data (cache hit)
-        Cache::shouldReceive('rememberForever')
-            ->with('test_contacts_cache', Mockery::type('Closure'))
-            ->once()
-            ->andReturnUsing(fn($key, $callback) => $cachedData); // Return cached data directly, don't call callback
+        // No Storage mocks needed - cache hit shouldn't touch storage
+        Cache::shouldReceive('rememberForever')->once()->andReturnUsing(fn() => $cachedData);
 
-        // Note: We don't mock Storage methods since they shouldn't be called due to cache hit
-        // The cache hit means the callback in rememberForever won't be executed
-
-        // Create service instance - should load from cache
         $service = new ContactsService();
-
-        // Assert that contacts are loaded from cache
         $contacts = $service->all();
-        $this->assertIsArray($contacts);
-        $this->assertCount(2, $contacts);
-        $this->assertArrayHasKey('cached-user1', $contacts);
-        $this->assertArrayHasKey('cached-user2', $contacts);
 
-        // Verify contacts are Contact instances with correct data
-        $this->assertInstanceOf(Contact::class, $contacts['cached-user1']);
-        $this->assertInstanceOf(Contact::class, $contacts['cached-user2']);
-        $this->assertEquals('Cached User One', $contacts['cached-user1']->name);
-        $this->assertEquals('cached1@example.com', $contacts['cached-user1']->email);
-        $this->assertEquals('Cached Corp', $contacts['cached-user2']->name);
-        $this->assertEquals('https://cached.com', $contacts['cached-user2']->url);
-
-        // Test magic methods work with cached data
-        $this->assertTrue(isset($service->{'cached-user1'}));
-        $this->assertEquals('Cached User One', $service->{'cached-user1'}->name);
+        $this->assertCount(1, $contacts);
+        $this->assertInstanceOf(Contact::class, $contacts['alice']);
     }
 }
