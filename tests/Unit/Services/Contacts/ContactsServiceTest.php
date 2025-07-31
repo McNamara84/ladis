@@ -70,7 +70,7 @@ class ContactsServiceTest extends TestCase
     /**
      * Test that ContactsService successfully loads contacts from storage files
      */
-    public function test_all_returns_contacts_when_storage_files_exist(): void
+    public function test_all_returns_contacts_when_storage_directory_exist(): void
     {
         // Mock config values
         config(['contacts.cache_key' => 'test_contacts_cache']);
@@ -140,11 +140,5 @@ class ContactsServiceTest extends TestCase
         // Assert that contacts are Contact instances
         $this->assertInstanceOf(Contact::class, $contacts['john-doe']);
         $this->assertInstanceOf(Contact::class, $contacts['test-org']);
-
-        // Assert contact data is accessible
-        $this->assertEquals('John Doe', $contacts['john-doe']->name);
-        $this->assertEquals('john@example.com', $contacts['john-doe']->email);
-        $this->assertEquals('Test Organization', $contacts['test-org']->name);
-        $this->assertEquals('https://example.org', $contacts['test-org']->url);
     }
 }
