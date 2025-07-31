@@ -64,18 +64,6 @@ class ContactsService
     }
 
     /**
-     * Clear the contacts cache
-     *
-     * Use this method to clear the cache whenever contacts are updated.
-     *
-     * @return void
-     */
-    public function clearCache(): void
-    {
-        Cache::forget($this->getCacheKey());
-    }
-
-    /**
      * Load contacts from cache or storage.
      *
      * If the contacts are not in the cache, they are loaded from storage and
