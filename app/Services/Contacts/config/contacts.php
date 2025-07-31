@@ -1,8 +1,10 @@
 <?php
 
+namespace App\Services\Contacts\config;
+
 /*
 |--------------------------------------------------------------------------
-| ContactsService Configuration
+| ContactsService Default Configuration
 |--------------------------------------------------------------------------
 |
 | The settings in this file are used to configure the ContactsService.

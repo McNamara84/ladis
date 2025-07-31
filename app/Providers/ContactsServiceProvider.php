@@ -6,11 +6,12 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
 use App\Services\Contacts\ContactsService;
+use App\Services\Contacts\Validators\ContactsConfigValidator;
 
 /**
  * Contacts Service Provider
  *
- * Registers the ContactService with the application.
+ * Registers the ContactService with the application and validates the configuration.
  *
  * @since 0.2.0
  */
@@ -21,10 +22,32 @@ class ContactsServiceProvider extends ServiceProvider implements DeferrableProvi
      */
     public function register(): void
     {
+        // Merge the default configuration from the service provider
+        $this->mergeConfigFrom(
+            __DIR__ . '/../Services/Contacts/config/contacts.php',
+            'contacts'
+        );
+
+        // Register the contacts service
         $this->app->singleton(
             ContactsService::class,
-            fn(Application $app) => new ContactsService()
+            concrete: function (Application $app) {
+                $config = $app['config']->get('contacts');
+                ContactsConfigValidator::validate($config);
+
+                return new ContactsService();
+            }
         );
+    }
+
+    /**
+     * Boot the contacts service.
+     */
+    public function boot(): void
+    {
+        $this->publishes([
+            __DIR__ . '/../Services/Contacts/config/contacts.php' => config_path('contacts.php'),
+        ], 'contacts');
     }
 
     /**
