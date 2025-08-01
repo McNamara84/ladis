@@ -31,7 +31,7 @@ class ContactsServiceProvider extends ServiceProvider implements DeferrableProvi
         // Register the contacts service
         $this->app->singleton(
             ContactsService::class,
-            concrete: function (Application $app) {
+            function (Application $app) {
                 $config = $app['config']->get('contacts');
                 ContactsConfigValidator::validate($config);
 
