@@ -46,16 +46,6 @@ class Contact extends Component
     }
 
     /**
-     * Get the contact model
-     *
-     * @return ContactModel
-     */
-    public function getContactModel(): ContactModel
-    {
-        return $this->contact;
-    }
-
-    /**
      * Get the view / contents that represent the component.
      */
     public function render(): View|Closure|string
