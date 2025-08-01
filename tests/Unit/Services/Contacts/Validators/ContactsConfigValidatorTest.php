@@ -13,7 +13,7 @@ class ContactsConfigValidatorTest extends TestCase
      */
     private function getValidConfig(): array
     {
-        return require base_path('app/Services/Contacts/config/contacts.php');
+        return require app_path('Services/Contacts/config/contacts.php');
     }
 
     /**
