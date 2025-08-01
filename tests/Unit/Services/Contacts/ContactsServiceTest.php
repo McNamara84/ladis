@@ -16,9 +16,6 @@ class ContactsServiceTest extends TestCase
     {
         parent::setUp();
 
-        // Clear any previous mocks
-        Mockery::close();
-
         // Set up common config for all tests
         config([
             'contacts.cache_key' => 'test_contacts_cache',
