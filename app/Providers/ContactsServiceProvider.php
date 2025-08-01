@@ -24,7 +24,7 @@ class ContactsServiceProvider extends ServiceProvider implements DeferrableProvi
     {
         // Merge the default configuration from the service provider
         $this->mergeConfigFrom(
-            __DIR__ . '/../Services/Contacts/config/contacts.php',
+            app_path('Services/Contacts/config/contacts.php'),
             'contacts'
         );
 
