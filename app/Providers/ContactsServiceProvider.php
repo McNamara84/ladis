@@ -46,8 +46,8 @@ class ContactsServiceProvider extends ServiceProvider implements DeferrableProvi
     public function boot(): void
     {
         $this->publishes([
-            __DIR__ . '/../Services/Contacts/config/contacts.php' => config_path('contacts.php'),
-        ], 'contacts');
+            app_path('Services/Contacts/config/contacts.php') => config_path('contacts.php'),
+        ], 'config');
     }
 
     /**
