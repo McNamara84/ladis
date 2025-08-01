@@ -8,7 +8,6 @@ use App\Services\Contacts\Models\Contact;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
-use Mockery;
 
 class ContactsServiceTest extends TestCase
 {
@@ -22,12 +21,6 @@ class ContactsServiceTest extends TestCase
             'contacts.storage.directory' => 'test/contacts',
             'contacts.storage.file_extension' => '.json'
         ]);
-    }
-
-    protected function tearDown(): void
-    {
-        Mockery::close();
-        parent::tearDown();
     }
 
     /**
@@ -139,7 +132,6 @@ class ContactsServiceTest extends TestCase
             'alice' => json_encode(['name' => 'Alice'])
         ];
 
-        // No Storage mocks needed - cache hit shouldn't touch storage
         Cache::shouldReceive('rememberForever')->once()->andReturnUsing(fn() => $cachedData);
 
         $service = new ContactsService();
