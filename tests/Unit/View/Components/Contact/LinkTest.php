@@ -3,7 +3,6 @@
 namespace Tests\Unit\View\Components\Contact;
 
 use Tests\TestCase;
-use App\View\Components\Contact\Link;
 use App\Services\Contacts\Models\Contact as ContactModel;
 
 class LinkTest extends TestCase
@@ -90,7 +89,7 @@ class LinkTest extends TestCase
             '<span itemprop="name">Alice</span>',
         ]);
 
-        $view->assertDontSee('Alice Liddell');
+        $view->assertDontSeeText('Alice Liddell');
     }
 
     public function test_component_renders_with_slot_content(): void
@@ -108,8 +107,8 @@ class LinkTest extends TestCase
             '</a>',
         ]);
 
-        $view->assertDontSee('<span itemprop="name">');
-        $view->assertDontSee('Alice Liddell');
+        $view->assertDontSee('<span itemprop="name">', false);
+        $view->assertDontSeeText('Alice Liddell');
     }
 
     public function test_component_renders_with_custom_attributes(): void
@@ -121,9 +120,8 @@ class LinkTest extends TestCase
             ['contact' => $contact]
         );
 
-        $view->assertSeeInOrder([
-            '<span itemscope itemtype="https://schema.org/Person" class="test-class" id="test-id">',
-        ]);
+        $view->assertSee('<span itemscope itemtype="https://schema.org/Person" class="test-class" id="test-id">', false);
+
     }
 
     /**

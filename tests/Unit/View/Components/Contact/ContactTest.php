@@ -33,18 +33,18 @@ class ContactTest extends TestCase
             '<h3 itemprop="name">Alice Liddell (Alice)</h3>',
         ]);
 
-        $view->assertDontSee('itemprop="affiliation"');
-        $view->assertDontSee('itemprop="roleName"');
-        $view->assertDontSee('class="contact-body dl-container"');
-        $view->assertDontSee('itemprop="address"');
-        $view->assertDontSee('itemprop="extendedAddress"');
-        $view->assertDontSee('itemprop="streetAddress"');
-        $view->assertDontSee('itemprop="postalCode"');
-        $view->assertDontSee('itemprop="addressLocality"');
-        $view->assertDontSee('itemprop="url"');
-        $view->assertDontSee('itemprop="email"');
-        $view->assertDontSee('itemprop="telephone"');
-        $view->assertDontSee('itemprop="faxNumber"');
+        $view->assertDontSee('itemprop="affiliation"', false);
+        $view->assertDontSee('itemprop="roleName"', false);
+        $view->assertDontSee('class="contact-body dl-container"', false);
+        $view->assertDontSee('itemprop="address"', false);
+        $view->assertDontSee('itemprop="extendedAddress"', false);
+        $view->assertDontSee('itemprop="streetAddress"', false);
+        $view->assertDontSee('itemprop="postalCode"', false);
+        $view->assertDontSee('itemprop="addressLocality"', false);
+        $view->assertDontSee('itemprop="url"', false);
+        $view->assertDontSee('itemprop="email"', false);
+        $view->assertDontSee('itemprop="telephone"', false);
+        $view->assertDontSee('itemprop="faxNumber"', false);
     }
 
     public function test_component_renders_extras_correctly(): void
@@ -103,7 +103,7 @@ class ContactTest extends TestCase
             '<h2 itemprop="name">Alice Liddell (Alice)</h2>',
         ]);
 
-        $view->assertDontSee('<h3 itemprop="name">Alice Liddell (Alice)</h3>');
+        $view->assertDontSee('<h3 itemprop="name">Alice Liddell (Alice)</h3>', false);
     }
 
     public function test_component_renders_with_custom_attributes(): void
@@ -115,9 +115,7 @@ class ContactTest extends TestCase
             ['contact' => $contact]
         );
 
-        $view->assertSeeInOrder([
-            '<article itemscope itemtype="https://schema.org/Person" class="contact test-class" id="test-id">',
-        ]);
+        $view->assertSee('<article itemscope itemtype="https://schema.org/Person" class="contact test-class" id="test-id">', false);
     }
 
     public function test_component_renders_with_name_format(): void
@@ -129,9 +127,7 @@ class ContactTest extends TestCase
             'nameFormat' => '[a]',
         ]);
 
-        $view->assertSeeInOrder([
-            '<h3 itemprop="name">Alice</h3>',
-        ]);
+        $view->assertSee('<h3 itemprop="name">Alice</h3>', false);
     }
 
     public function test_component_renders_with_variant(): void
