@@ -28,12 +28,14 @@ class ContactTest extends TestCase
         ]);
 
         $view->assertSeeInOrder([
-            '<article itemscope itemtype="https://schema.org/Person"',
+            '<article itemscope itemtype="https://schema.org/Person" class="contact"',
+            '<header class="contact-header">',
             '<h3 itemprop="name">Alice Liddell (Alice)</h3>',
         ]);
 
         $view->assertDontSee('itemprop="affiliation"');
         $view->assertDontSee('itemprop="roleName"');
+        $view->assertDontSee('class="contact-body dl-container"');
         $view->assertDontSee('itemprop="address"');
         $view->assertDontSee('itemprop="extendedAddress"');
         $view->assertDontSee('itemprop="streetAddress"');
@@ -75,6 +77,7 @@ class ContactTest extends TestCase
         $view->assertSeeInOrder([
             '<div itemprop="affiliation" itemscope itemtype="https://schema.org/OrganizationRole">',
             '<span itemprop="roleName">Protagonist</span>',
+            '<div class="contact-body dl-container">',
             '<dd itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">',
             '<span itemprop="extendedAddress">c/o Cheshire Cat</span>',
             '<span itemprop="streetAddress">Cheshire Cat Crossroads</span>',
@@ -117,7 +120,7 @@ class ContactTest extends TestCase
         ]);
     }
 
-    public function test_component_uses_name_format(): void
+    public function test_component_renders_with_name_format(): void
     {
         $contact = $this->getSampleContact();
 
@@ -128,6 +131,22 @@ class ContactTest extends TestCase
 
         $view->assertSeeInOrder([
             '<h3 itemprop="name">Alice</h3>',
+        ]);
+    }
+
+    public function test_component_renders_with_variant(): void
+    {
+        $contact = $this->getSampleContact(['telephone' => '1234567890']);
+
+        $view = $this->component(Contact::class, [
+            'contact' => $contact,
+            'variant' => 'card',
+        ]);
+
+        $view->assertSeeInOrder([
+            '<article itemscope itemtype="https://schema.org/Person" class="contact card">',
+            '<header class="card-header">',
+            '<div class="card-body dl-container">',
         ]);
     }
 }
