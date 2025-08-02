@@ -98,6 +98,8 @@
                                             text="Auftragnehmer" icon="bi-bank2" /></li>
                                     <li><x-link class="dropdown-item" route="devices.all" text="Laser"
                                             icon="bi-lightning-charge" /></li>
+                                    <li><x-link class="dropdown-item" route="persons.all" text="Personen"
+                                            icon="bi-people" /></li>
                                     <li><x-link class="dropdown-item" route="institutions.manufacturers"
                                             text="Hersteller" icon="bi-bank2" /></li>
                                     <li><x-link class="dropdown-item" route="materials.all" text="Material"
