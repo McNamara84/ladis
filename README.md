@@ -12,7 +12,7 @@ We are developing our own information system as part of the P11 laboratory. A sp
 
 ## Features
 
-- **Overview lists:** List all registered projects, devices, materials and institutions
+- **Overview lists:** List all registered projects, devices, materials, institutions and persons
 - **User-friendly input forms:**
   - Add new **materials**
   - Add new **institutions**
@@ -35,6 +35,7 @@ We are developing our own information system as part of the P11 laboratory. A sp
     - /institutions/clients/all
     - /institutions/contractors/all
   - Devices: /devices/all
+  - Persons: /persons/all
   - Materials: /materials/all
   - Projects: projects/all
   - Contact Us: /contact
