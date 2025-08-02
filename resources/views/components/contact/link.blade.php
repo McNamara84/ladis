@@ -1,4 +1,4 @@
-<span itemscope itemtype="https://schema.org/{{ $contact->{'@type'} }}">
+<span itemscope itemtype="https://schema.org/{{ $contact->{'@type'} }}" {{ $attributes }}>
     <a itemprop="{{ $itemprop }}" href="{{ $href }}">
         @if ($slot->isEmpty())
             <span itemprop="name">{!! $contact->formatName($nameFormat) !!}</span>
