@@ -18,27 +18,107 @@
 @section('page-content')
     <div class="flow">
         <h2><code>x-contact</code></h2>
+        <p>Rendert einen Kontakt in der Standard-Darstellung.</p>
         <x-contact :contact="$demoOrganization" />
         <x-contact :contact="$demoPerson" class="my-5" />
 
-        <h2><code>x-contact.card</code></h2>
-        <div class="row g-5">
-            <div class="col-md-6">
-                <x-contact.card :contact="$demoOrganization" />
-            </div>
-            <div class="col-md-6">
-                <x-contact.card :contact="$demoPerson" />
-            </div>
-        </div>
-
-        <h2><code>x-contact.card-list</code></h2>
-        <x-contact.card-list :contacts="$allContacts" />
-
-        <h2><code>x-contact.link</code></h2>
+        <h3 id="attribute">Attribute</h3>
         <table class="table">
             <thead>
                 <tr>
-                    <th>Component</th>
+                    <th>Attribut</th>
+                    <th>Beschreibung</th>
+                    <th>Standard</th>
+                    <th>Optionen</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>contact</code></td>
+                    <td>Die <code>id</code> des Kontakt-Datensatzes.</td>
+                    <td><code>null</code></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><code>variant</code></td>
+                    <td>Die Darstellungsvariante für den Kontakt.<br>Die Änderungen sind rein kosmetisch (CSS). Markup und
+                        Informationen bleiben unberührt. </td>
+                    <td><code>contact</code></td>
+                    <td><code>contact</code><br><code>card</code></td>
+                </tr>
+                <tr>
+                    <td><code>name-format</code></td>
+                    <td>Das Format für den Namen des Kontakts.</td>
+                    <td class="text-nowrap"><code>[n][ (a)]</code></td>
+                    <td>Siehe <a href="#namen-formatieren">Namen formatieren</a></td>
+                </tr>
+                <tr>
+                    <td><code>heading-level</code></td>
+                    <td>Die Überschriftenstufe für das Kontakt-Element.</td>
+                    <td><code>h3</code></td>
+                    <td><code>h1</code><br><code>h2</code><br><code>h3</code><br><code>h4</code><br><code>h5</code><br><code>h6</code>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3><code>x-contact variant="card"</code></h3>
+        <p>Rendert einen Kontakt mit dem Bootstrap <code>.card</code>-Layout.</p>
+        <div class="row g-5">
+            <div class="col-md-6">
+                <x-contact variant="card" :contact="$demoOrganization" />
+            </div>
+            <div class="col-md-6">
+                <x-contact variant="card" :contact="$demoPerson" />
+            </div>
+        </div>
+
+        <h2><code>x-contact.grid</code></h2>
+        <p>Rendert eine Liste von Kontakten in einem responsiven Grid. Alle <a href="#attribute">Attribute</a> von
+            <code>x-contact</code> sind
+            auch für <code>x-contact.grid</code> verfügbar.
+        </p>
+        <x-contact.grid variant="card" :contacts="$allContacts" />
+
+        <h2><code>x-contact.link</code></h2>
+        <p>Rendert einen Kontakt als einfachen Link (<code>&lt;a&gt;</code>).</p>
+
+        <h3>Attribute</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Attribut</th>
+                    <th>Beschreibung</th>
+                    <th>Standard</th>
+                    <th>Optionen</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>name-format</code></td>
+                    <td>Das Format für den Namen des Kontakts.</td>
+                    <td><code>[n]</code></td>
+                    <td>Siehe <a href="#namen-formatieren">Namen formatieren</a></td>
+                </tr>
+                <tr>
+                    <td><code>itemprop</code></td>
+                    <td>Die verwendete Eigenschaft des Kontakts als Link-Ziel (<code>href</code> und <code>itemprop</code>
+                        Attribut).<br>Hat keinen Einfluss auf den angezeigten Text.</td>
+                    <td><code>url</code></td>
+                    <td><code>url</code><br><code>email</code><br><code>telephone</code></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Slots</h3>
+        <p>Die Komponente unterstützt einen <code>slot</code>, der den Inhalt des Links ersetzt.</p>
+
+        <h3>Beispiele</h3>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Markup</th>
                     <th>Ausgabe</th>
                 </tr>
             </thead>
@@ -58,18 +138,18 @@
                     <td><x-contact.link :contact="$demoOrganization"><span>Custom content</span></x-contact.link></td>
                 </tr>
                 <tr>
-                    <td><code>&lt;x-contact.link :contact=&quot;$demo&quot;&gt;&lt;span itemprop=&quot;name&quot;&gt;&#123;&#123; $demo-&gt;name &#125;&#125;&lt;/span&gt;&lt;/x-contact.link&gt;</code>
+                    <td><code>&lt;x-contact.link :contact=&quot;$demo&quot;&gt;Link zur &lt;span itemprop=&quot;alternateName&quot;&gt;&#123;&#123; $demo-&gt;alternateName &#125;&#125;&lt;/span&gt;&lt;/x-contact.link&gt;</code>
                     </td>
-                    <td><x-contact.link :contact="$demoOrganization"><span
-                                itemprop="name">{{ $demoOrganization->name }}</span></x-contact.link></td>
+                    <td><x-contact.link :contact="$demoOrganization">Link zur <span
+                                itemprop="alternateName">{{ $demoOrganization->alternateName }}</span></x-contact.link></td>
                 </tr>
             </tbody>
         </table>
 
-        <h2>Namen formatieren</h2>
+        <h2 id="namen-formatieren">Namen formatieren</h2>
         <p>Das Ausgabeformat für Namen kann in allen Komponenten mit dem Attribut <code>name-format</code> individualisiert
             werden. Einzelne Bestandteile werden jeweils von <code>[</code> und <code>]</code> umschlossen und können
-            weitere, optionale Formatierungen wie etwa Klammern beinhalten. Im Datensatz nicht vorhandene Elmente werdden
+            weitere, optionale Formatierungen wie etwa Klammern beinhalten. Im Datensatz nicht vorhandene Elmente werden
             bei der Ausgabe ignoriert.
         </p>
         <p>Die folgende Tabelle zeigt die verfügbaren Platzhalter und deren Bedeutung.</p>
