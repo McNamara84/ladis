@@ -25,9 +25,9 @@
         <p>Die Fachhochschule Potsdam ist eine Körperschaft des Öffentlichen Rechts. Sie wird durch die amtierende
             Präsidentin / den amtierenden Präsidenten vertreten. Inhaltlich verantwortlich für die Inhalte dieses
             Webauftritts ist der Studiengang „Konservierung und Restaurierung“ der Fachhochschule Potsdam.</p>
-        <x-contact.card :contact="$appContactPrimary" class="my-5 mis" />
+        <x-contact variant="card" :contact="$appContactPrimary" class="my-5 mis" />
         <h2>Zuständige Aufsichtsbehörde</h2>
-        <x-contact.card :contact="$mwfk" class="my-5 mis" />
+        <x-contact variant="card" :contact="$mwfk" class="my-5 mis" />
         <h2>Finanzierung</h2>
         <p>Diese Web-Veröffentlichung ist Resultat einer Masterarbeit von Lale Baudissin und einem Projekt von Frau
             Grimm-Remus sowie des Labs „PD11 Konzipierung und Entwicklung eines Informationssystems“ der Fachhochschule

@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 
 @section('content')
@@ -7,8 +6,10 @@
             ENTWURF (bitte nicht verklagen, danke!)
         </div>
         <h1>{{ $pageTitle }}</h1>
-        <p>Wir verarbeiten personenbezogene Daten, die beim Besuch unserer Webseite erhoben werden, unter Beachtung der geltenden datenschutzrechtlichen Bestimmungen, insbesondere der EU-Datenschutz-Grundverordnung (DSGVO).</p>
-        <p>Diese Datenschutzhinweise (Stand: <time datetime="{{ $lastUpdated }}">{{ $lastUpdatedFormatted }}</time>) gelten für folgende von der FH Potsdam betriebenen Seiten:</p>
+        <p>Wir verarbeiten personenbezogene Daten, die beim Besuch unserer Webseite erhoben werden, unter Beachtung der
+            geltenden datenschutzrechtlichen Bestimmungen, insbesondere der EU-Datenschutz-Grundverordnung (DSGVO).</p>
+        <p>Diese Datenschutzhinweise (Stand: <time datetime="{{ $lastUpdated }}">{{ $lastUpdatedFormatted }}</time>) gelten
+            für folgende von der FH Potsdam betriebenen Seiten:</p>
         <ul>
             <li><a href="{{ config('app.url') }}">{{ config('app.url') }}</a></li>
         </ul>
@@ -16,7 +17,7 @@
         <p>Verantwortliche*r im Sinne der DSGVO und anderer nationaler Datenschutzgesetze der Mitgliedsstaaten sowie
             sonstiger datenschutzrechtlicher Bestimmungen ist:
         </p>
-        <x-contact.card :contact="$contactResponsible" class="my-5 mis" />
+        <x-contact variant="card" :contact="$contactResponsible" class="my-5 mis" />
         <h2>2. Zweck und Rechtsgrundlagen</h2>
         <p>Die personenbezogenen Daten (insbesondere E-Mail-Adresse und Benutzername) dienen zur Verifikation von
             Datensätzen, um nachvollziehen zu können, wer Inhalte erstellt hat und wer als Kontaktperson fungiert. Soweit
@@ -70,23 +71,26 @@
             Landesbeauftragte für den Datenschutz und für das Recht auf Akteneinsicht wenden möchten, können Sie sie wie
             folgt kontaktieren:
         </p>
-        <x-contact.card :contact="$contactLdabb" class="my-5 mis" />
+        <x-contact variant="card" :contact="$contactLdabb" class="my-5 mis" />
 
         <h2>5. Hosting</h2>
         <p>Die Webseite wird über Server der Fachhochschule Potsdam gehostet. Es besteht ein entsprechender Vertrag zur
             Auftragsverarbeitung gemäß Art. 28 DSGVO.</p>
         <h2>6. Änderungen dieser Datenschutzerklärung</h2>
-        <p>Wir behalten uns vor, diese Datenschutzerklärung zu ändern, um sie an geänderte rechtliche Rahmenbedingungen oder bei Änderungen des Dienstes anzupassen. Die aktuelle Version wurde am <time datetime="{{ $lastUpdated }}">{{ $lastUpdatedFormatted }}</time> ist stets auf unserer Webseite verfügbar. Bitte informieren Sie sich regelmäßig über die geltenden Datenschutzbestimmungen.</p>
+        <p>Wir behalten uns vor, diese Datenschutzerklärung zu ändern, um sie an geänderte rechtliche Rahmenbedingungen oder
+            bei Änderungen des Dienstes anzupassen. Die aktuelle Version wurde am <time
+                datetime="{{ $lastUpdated }}">{{ $lastUpdatedFormatted }}</time> ist stets auf unserer Webseite verfügbar.
+            Bitte informieren Sie sich regelmäßig über die geltenden Datenschutzbestimmungen.</p>
         <h2>Technische Umsetzung</h2>
         <h3>Ansprechpartner*innen</h3>
         <h4>Verantwortliche Stelle ist:</h4>
-        <x-contact.card :contact="$contactResponsible" class="my-5 mis" />
+        <x-contact variant="card" :contact="$contactResponsible" class="my-5 mis" />
 
         <h4>Sie erreichen unseren behördlichen Datenschutzbeauftragten unter:</h4>
-        <x-contact.card :contact="$contactPrivacy" class="my-5 mis" />
+        <x-contact variant="card" :contact="$contactPrivacy" class="my-5 mis" />
 
         <h4>Technische Umsetzung:</h4>
         <p>Der Web-Server für den Betrieb der Website wird technisch betreut durch:</p>
-        <x-contact.card :contact="$contactHosting" class="my-5 mis" />
+        <x-contact variant="card" :contact="$contactHosting" class="my-5 mis" />
     </div>
 @endsection

@@ -71,6 +71,6 @@
 
         <h2>Projektleitung und Kooperationspartner</h2>
 
-        <x-contact.card-list :contacts="$projectContacts" />
+        <x-contact.grid :contacts="$projectContacts" variant="card" />
 
 @endsection
