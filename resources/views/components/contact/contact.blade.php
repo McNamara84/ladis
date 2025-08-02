@@ -1,5 +1,5 @@
-<article itemscope itemtype="https://schema.org/{{ $contact->{'@type'} }}" {{ $attributes->class(['contact']) }}>
-    <header>
+<article itemscope itemtype="https://schema.org/{{ $contact->{'@type'} }}" {{ $attributes->class(['contact', $variant => $variant != 'contact']) }}>
+    <header class="{{ $variant }}-header">
         <{{ $headingLevel }} itemprop="name">{!! $contact->formatName($nameFormat) !!}</{{ $headingLevel }}>
         @if(isset($contact->{'affiliation.roleName'}))
             <div itemprop="affiliation" itemscope itemtype="https://schema.org/OrganizationRole">
@@ -8,7 +8,7 @@
         @endif
     </header>
     @if($contact->hasDetails())
-        <div class="contact-body dl-container">
+        <div class="{{ $variant }}-body dl-container">
             <dl>
                 @if(isset($contact->address))
                     <dt>Postanschrift</dt>
