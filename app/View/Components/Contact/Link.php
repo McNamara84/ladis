@@ -44,10 +44,13 @@ class Link extends Contact
             nameFormat: $nameFormat,
         );
 
-        $this->href = $contact->{$itemprop};
-        if ($this->itemprop === 'email') {
-            $this->href = "mailto:{$this->href}";
-        }
+        $protocol = match ($itemprop) {
+            'email' => 'mailto:',
+            'telephone' => 'tel:',
+            default => '',
+        };
+
+        $this->href = $protocol . $contact->{$itemprop};
     }
 
     public function render(): View|Closure|string
