@@ -16,4 +16,11 @@ class LegalNoticePageTest extends TestCase
         $response->assertViewIs('legal_notice');
         $response->assertSee('Impressum');
     }
+
+    public function test_legal_notice_page_loads_contact_information(): void
+    {
+        $response = $this->get('/impressum');
+
+        $response->assertViewHas('supervisoryAuthority');
+    }
 }
