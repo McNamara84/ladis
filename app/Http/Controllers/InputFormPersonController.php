@@ -35,7 +35,7 @@ class InputFormPersonController extends Controller
 
             return redirect()
                 ->route('inputform_person.index')
-                ->with('success', 'Person \"' . $person->name . '\" wurde erfolgreich hinzugefügt!');
+                ->with('success', 'Person "' . $person->name . '" wurde erfolgreich hinzugefügt!');
         } catch (\Exception $e) {
             return redirect()
                 ->back()
