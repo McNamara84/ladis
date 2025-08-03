@@ -208,7 +208,7 @@
                                 <x-link route="impressum" text="Impressum" />
                             </li>
                             <li class="list-inline-item d-block d-md-inline-block">
-                                <x-link route="contact" text="Kontakt" disabled />
+                                <x-link route="site.contact" text="Kontakt" />
                             </li>
                         </ul>
                     </div>
