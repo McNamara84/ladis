@@ -8,16 +8,6 @@
             <div class="col-md-6 col-lg-5">
                 <!-- Header -->
                 <div class="text-center mb-4">
-                    <!-- Logo placeholder
-                    <div class="mx-auto mb-3 bg-primary rounded-circle d-flex align-items-center justify-content-center"
-                        style="width: 80px; height: 80px;">
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
-                            class="text-white">
-                            <path d="M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2Z"
-                                fill="currentColor" />
-                            <circle cx="12" cy="18" r="2" fill="currentColor" />
-                        </svg>
-                    </div> -->
                     <!-- LADIS Logo -->
                     <svg class="app-logo-bg">
                         <use xlink:href="#ladis-logo"></use>
