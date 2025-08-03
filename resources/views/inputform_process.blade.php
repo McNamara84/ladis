@@ -27,7 +27,7 @@
                             @csrf
 
                         <div class="mb-5">
-                             <label for="partial_surface_id" class="form-label">Partielle Oberfläche<span class="text-danger"></span></label>
+                            <label for="partial_surface_id" class="form-label">Partielle Oberfläche<span class="text-danger"></span></label>
                             <select class="form-select" id="partial_surface_id" name="partial_surface_id" required>
                                 <option value="">-</option>
                                 @foreach($partialSurfaces as $surface)
@@ -75,12 +75,11 @@
                         </div> 
 
                         <div class="mb-5 form-floating">
-                            <textarea class="form-control @error('description') is-invalid @enderror" 
-                                    placeholder="Anmerkung" 
-                                    id="description" 
-                                    name="description" 
-                                    required 
-                                    style="height: 120px">{{ old('description') }}</textarea>
+                            <textarea class="form-control @error('description') is-invalid @enderror"
+                                    placeholder="Anmerkung"
+                                    id="description"
+                                    name="description"
+                                    required>{{ old('description') }}</textarea>
                             <label for="description">Anmerkung <span class="text-danger">*</span></label>
 
                             <div class="form-text">
