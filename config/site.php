@@ -29,6 +29,9 @@ return [
         // Primary contact information for the site
         'primary' => env('SITE_CONTACT_PRIMARY', 'fhp'),
 
+        // Competent supervisory authority for the primary contact
+        'supervisory_authority' => env('SITE_CONTACT_SUPERVISORY_AUTHORITY', 'mwfk'),
+
         // Responsible person for the contents of the site
         'responsible' => env('SITE_CONTACT_RESPONSIBLE', 'schmitt-rodermund-eva'),
 
@@ -37,6 +40,7 @@ return [
 
         // The site's hosting provider
         'hosting' => env('SITE_CONTACT_HOSTING', 'fhp-it'),
+
 
     ],
 
