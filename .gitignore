@@ -23,3 +23,5 @@ yarn-error.log
 /.zed
 /.cursor
 .DS_Store
+# Allow the GH Wiki as a nested Git Repository without being tracked
+/wiki
