@@ -30,4 +30,12 @@ class AboutPageTest extends TestCase
 
         $response->assertSee('Über das Projekt');
     }
+
+    public function test_about_page_loads_contact_information(): void
+    {
+        $response = $this->get('/ladis');
+
+        $response->assertViewHas('inlineContacts');
+        $response->assertViewHas('projectContacts');
+    }
 }
