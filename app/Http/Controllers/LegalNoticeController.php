@@ -11,12 +11,12 @@ class LegalNoticeController extends Controller
         $pageTitle = 'Impressum';
         $lastUpdated = '2025-07-29T00:00:00Z';
 
-        $mwfk = $contactsService->mwfk;
+        $supervisoryAuthority = $contactsService->{config('site.contact.supervisory_authority')};
 
         return view('legal_notice', compact(
             'pageTitle',
             'lastUpdated',
-            'mwfk',
+            'supervisoryAuthority',
         ));
     }
 }
