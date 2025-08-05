@@ -1,0 +1,16 @@
+body {
+    text-align: center;
+    font-family: sans-serif;
+    margin-top: 50px;
+}
+
+.error-image {
+    max-width: 300px;
+    border-radius: 12px;
+}
+
+.attribution img {
+    height: 1em;
+    margin-right: 0.125em;
+    display: inline;
+}

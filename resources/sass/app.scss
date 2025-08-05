@@ -148,6 +148,25 @@ a .link-text {
 }
 
 //
+// Forms
+//
+
+.card .form-text {
+    // Allow form help text to wrap inside card containers
+    white-space: normal;
+    overflow-wrap: anywhere;
+}
+
+.auth-icon {
+    width: 80px;
+    height: 80px;
+}
+
+.form-floating textarea.form-control {
+    height: 120px;
+}
+
+//
 // Dropdown
 //
 
