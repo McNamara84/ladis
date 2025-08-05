@@ -248,7 +248,7 @@
                     </div>
                     <div class="col-md-6 text-md-end">
                         <p><time datetime="{{ now()->year }}-01-01">{{ date('Y') }}</time> <x-contact.link
-                                :contact="$appContactPrimary" name-format="[n][ (a)]" /><br>
+                                :contact="$appContactPrimary()" name-format="[n][ (a)]" /><br>
                             {{ $appName }} wird unter der <a href="{{ $appLicenseURL }}">{{ $appLicenseName }}</a>
                             bereitgestellt.
                         </p>

@@ -8,7 +8,8 @@
             <p><span class="brand-name">{{ $appName }}</span> ({{ $appNameLong }}) ist ein Informationssystem zur
                 Dokumentation von Laserreinigungsverfahren bei der Restaurierung historischer Oberflächen. Das System wurde
                 2025 vom <x-contact.link :contact="$fb2" /> in Kooperation mit dem <x-contact.link :contact="$fb5" /> der
-                <x-contact.link :contact="$appContactPrimary" name-format="[n][ (a)]" /> entwickelt.</p>
+                <x-contact.link :contact="$appContactPrimary()" name-format="[n][ (a)]" /> entwickelt.
+            </p>
         </div>
     </div>
     <div class="container">

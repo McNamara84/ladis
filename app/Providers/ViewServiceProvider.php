@@ -22,7 +22,7 @@ class ViewServiceProvider extends ServiceProvider
     /**
      * Bootstrap services.
      */
-    public function boot(ContactsService $contactsService): void
+    public function boot(): void
     {
         // Share common information about the application as global variables.
         // ToDo: Get these values from the repo or at least from env/config
@@ -34,8 +34,11 @@ class ViewServiceProvider extends ServiceProvider
         View::share('appNameFull', config('app.name_full'));
         View::share('appTagline', "Datenbank zum Einsatz von Lasertechnik in der Restaurierung.");
 
-        // Contact information
-        View::share('appContactPrimary', $contactsService->{config('site.contact.primary')});
+        // Contact information - Use a closure to defer ContactsService access
+        View::share('appContactPrimary', function () {
+            $contactsService = app(ContactsService::class);
+            return $contactsService->{config('site.contact.primary')};
+        });
 
         // Code repository information
         View::share('appRepoPlatformName', 'GitHub');
