@@ -8,8 +8,7 @@
             <div class="col-md-6 col-lg-5">
                 <!-- Header -->
                 <div class="text-center mb-4">
-                    <div class="mx-auto mb-3 bg-success rounded-circle d-flex align-items-center justify-content-center"
-                        style="width: 80px; height: 80px;">
+                    <div class="mx-auto mb-3 bg-success rounded-circle d-flex align-items-center justify-content-center auth-icon">
                         <svg width="40" height="40" fill="currentColor" class="bi bi-person-plus text-white"
                             viewBox="0 0 16 16">
                             <path
