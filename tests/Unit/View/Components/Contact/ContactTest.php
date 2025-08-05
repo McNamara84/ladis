@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\View\Components;
+namespace Tests\Unit\View\Components\Contact;
 
 use Tests\TestCase;
 use App\View\Components\Contact\Contact;
