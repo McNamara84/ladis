@@ -24,16 +24,11 @@ class ContactsService
     private array $instances = [];
 
     /**
-     * Constructor
+     * Whether the contacts have been loaded
      *
-     * Loads the contacts data from the cache or the storage and caches them.
-     *
-     * @return void
+     * @var bool
      */
-    public function __construct()
-    {
-        $this->load();
-    }
+    private bool $loaded = false;
 
     /**
      * Get all contacts
@@ -42,6 +37,8 @@ class ContactsService
      */
     public function all(): array
     {
+        $this->ensureLoaded();
+
         return $this->instances;
     }
 
@@ -54,6 +51,8 @@ class ContactsService
      */
     public function getMultiple(array $ids): array
     {
+        $this->ensureLoaded();
+
         $result = [];
         foreach ($ids as $id) {
             if (isset($this->instances[$id])) {
@@ -61,6 +60,19 @@ class ContactsService
             }
         }
         return $result;
+    }
+
+    /**
+     * Ensure that contacts are loaded before accessing them.
+     *
+     * @return void
+     */
+    private function ensureLoaded(): void
+    {
+        if (!$this->loaded) {
+            $this->load();
+            $this->loaded = true;
+        }
     }
 
     /**
@@ -224,6 +236,8 @@ class ContactsService
      */
     public function __get(string $id): ?Contact
     {
+        $this->ensureLoaded();
+
         return $this->instances[$id] ?? null;
     }
 
@@ -235,6 +249,8 @@ class ContactsService
      */
     public function __isset(string $id): bool
     {
+        $this->ensureLoaded();
+
         return isset($this->instances[$id]);
     }
 }
