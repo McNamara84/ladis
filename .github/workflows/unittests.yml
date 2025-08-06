@@ -39,12 +39,12 @@ jobs:
         echo "APP_KEY=" >> .env
         echo "DB_CONNECTION=sqlite" >> .env
         echo "DB_DATABASE=database/testing.sqlite" >> .env
-        echo "CACHE_DRIVER=array" >> .env
+        echo "CACHE_STORE=array" >> .env
         echo "SESSION_DRIVER=array" >> .env
         echo "QUEUE_CONNECTION=sync" >> .env
         echo "LOG_CHANNEL=stderr" >> .env
         echo "MAIL_MAILER=array" >> .env
-        echo "BROADCAST_DRIVER=log" >> .env
+        echo "BROADCAST_CONNECTION=log" >> .env
 
     - name: Create SQLite database for testing
       run: |
