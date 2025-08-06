@@ -15,7 +15,7 @@
             <div class="col-md-6 flow">
                 <h2>Allgemeiner Kontakt</h2>
                 <p>Für allgemeine Fragen und Anregungen wenden Sie sich bitte an:</p>
-                <x-contact variant="card" :contact="$allContacts['fb2']" />
+                <x-contact variant="card" :contact="$mainContact" />
             </div>
             <div class="col-md-6 flow">
                 <h2>Technische Anliegen</h2>

@@ -22,17 +22,8 @@ class ContactController extends Controller
      */
     public function index(ContactsService $contactsService)
     {
-        // Load all contacts for the card list demo
-        $allContacts = $contactsService->all();
+        $mainContact = $contactsService->fb2;
 
-        // Assign demo contacts for individual components
-        $demoOrganization = $allContacts['fhp'];
-        $demoPerson = $allContacts['schmitt-rodermund-eva'];
-
-        return view('site.contact', [
-            'demoOrganization' => $demoOrganization,
-            'demoPerson' => $demoPerson,
-            'allContacts' => $allContacts
-        ]);
+        return view('site.contact', compact('mainContact'));
     }
 }
