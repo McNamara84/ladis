@@ -92,22 +92,22 @@
                                 <ul class="dropdown-menu">
                                     <li><x-link class="dropdown-item" route="projects.all" text="Projekte"
                                             icon="bi-rocket-takeoff" /></li>
-                                    <li><x-link class="dropdown-item" route="institutions.clients"
-                                            text="Auftraggeber" icon="bi-bank2" /></li>
+                                    <li><x-link class="dropdown-item" route="institutions.clients" text="Auftraggeber"
+                                            icon="bi-bank2" /></li>
                                     <li><x-link class="dropdown-item" route="institutions.contractors"
                                             text="Auftragnehmer" icon="bi-bank2" /></li>
                                     <li><x-link class="dropdown-item" route="devices.all" text="Laser"
                                             icon="bi-lightning-charge" /></li>
                                     <li><x-link class="dropdown-item" route="persons.all" text="Personen"
-                                            icon="bi-people" /></li>
+                                            icon="bi-person-vcard-fill" /></li>
                                     <li><x-link class="dropdown-item" route="institutions.manufacturers"
                                             text="Hersteller" icon="bi-bank2" /></li>
                                     <li><x-link class="dropdown-item" route="materials.all" text="Material"
                                             icon="bi-stack" /></li>
                                     @auth
                                         <li>
-                                            <x-link class="dropdown-item" route="inputform_image.index"
-                                                text="Image-Upload" icon="bi-stack" />
+                                            <x-link class="dropdown-item" route="inputform_image.index" text="Image-Upload"
+                                                icon="bi-images" />
                                         </li>
                                     @endauth
                                 </ul>
