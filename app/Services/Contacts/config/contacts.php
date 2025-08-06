@@ -1,7 +1,5 @@
 <?php
 
-namespace App\Services\Contacts\config;
-
 /*
 |--------------------------------------------------------------------------
 | ContactsService Default Configuration
