@@ -19,8 +19,9 @@
             </div>
             <div class="col-md-6 flow">
                 <h2>Technische Anliegen</h2>
-                <p>Fragen zur Funktionalität der App bzw. Fehler und Bugs können dem EntwicklerInnen-Team auf <a
-                        href="{{ $appRepoURL }}"><x-icon icon="{{ $appRepoIcon }}" /> {{ $appRepoPlatformName }}</a>
+                <p>Fragen zur Funktionalität der App bzw. Fehler und Bugs können dem EntwicklerInnen-Team im <a
+                        href="{{ $appRepoURL }}">{{ $appName }} Code-Repository auf <x-icon icon="{{ $appRepoIcon }}" />
+                        {{ $appRepoPlatformName }}</a>
                     gemeldet werden.</p>
             </div>
         </div>
