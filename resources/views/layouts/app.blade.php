@@ -106,8 +106,7 @@
                                             icon="bi-stack" /></li>
                                     @auth
                                         <li>
-                                            <x-link class="dropdown-item" route="inputform_image.index" text="Image-Upload"
-                                                icon="bi-images" />
+                                            <x-link class="dropdown-item" route="inputform_image.index" text="Image-Upload" icon="bi-images" />
                                         </li>
                                     @endauth
                                 </ul>
@@ -210,7 +209,7 @@
                                 <x-link route="impressum" text="Impressum" />
                             </li>
                             <li class="list-inline-item d-block d-md-inline-block">
-                                <x-link route="contact" text="Kontakt" disabled />
+                                <x-link route="site.contact" text="Kontakt" />
                             </li>
                         </ul>
                     </div>
@@ -247,8 +246,8 @@
                         <p>{{ $appTagline }}</p>
                     </div>
                     <div class="col-md-6 text-md-end">
-                        <p><time datetime="{{ now()->year }}-01-01">{{ date('Y') }}</time> <a
-                                href="{{ $appLicenseHolderURL }}">{!! $appLicenseHolder !!}</a><br>
+                        <p><time datetime="{{ now()->year }}-01-01">{{ date('Y') }}</time> <x-contact.link
+                                :contact="$appContactPrimary()" name-format="[n][ (a)]" /><br>
                             {{ $appName }} wird unter der <a href="{{ $appLicenseURL }}">{{ $appLicenseName }}</a>
                             bereitgestellt.
                         </p>

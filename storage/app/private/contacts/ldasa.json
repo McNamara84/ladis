@@ -1,0 +1,15 @@
+{
+    "@context": "https://schema.org",
+    "@type": "GovernmentOrganization",
+    "@id": "ldasa",
+    "name": "Landesamt für Denkmalpflege und Archäologie Sachsen-Anhalt",
+    "url": "https://www.lda-lsa.de",
+    "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Richard-Wagner-Str. 9",
+        "postalCode": "06114",
+        "addressLocality": "Halle (Saale)",
+        "extendedAddress": "Abteilung Bau- und Kunstdenkmalpflege\nReferat Denkmaluntersuchung, Dipl. Restaurator Karsten Böhm",
+        "addressCountry": "DE"
+    }
+}

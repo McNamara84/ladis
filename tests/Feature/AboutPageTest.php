@@ -2,15 +2,11 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class AboutPageTest extends TestCase
 {
-    use RefreshDatabase;
-
-    public function test_about_page_returns_successful_response(): void
+    public function test_about_page_response_is_ok(): void
     {
         $response = $this->get('/ladis');
 
@@ -29,5 +25,13 @@ class AboutPageTest extends TestCase
         $response = $this->get('/ladis');
 
         $response->assertSee('Über das Projekt');
+    }
+
+    public function test_about_page_loads_contact_information(): void
+    {
+        $response = $this->get('/ladis');
+
+        $response->assertViewHas('inlineContacts');
+        $response->assertViewHas('projectContacts');
     }
 }

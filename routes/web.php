@@ -15,6 +15,7 @@ use App\Http\Controllers\ProjectInputController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserManagementController;
 use App\Http\Controllers\Site\AboutController;
+use App\Http\Controllers\Site\ContactController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
@@ -79,6 +80,8 @@ Route::get('/impressum', [LegalNoticeController::class, 'index'])->name('impress
 // About (the project) Page
 Route::get('/ladis', [AboutController::class, 'index'])->name('site.about');
 
+// Contact Page
+Route::get('/kontakt', [ContactController::class, 'index'])->name('site.contact');
 
 // ----------------------------
 // Login and logout routes

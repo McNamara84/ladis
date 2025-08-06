@@ -1,0 +1,15 @@
+{
+    "@context": "https://schema.org",
+    "@type": "GovernmentOrganization",
+    "@id": "mwfk",
+    "name": "Ministerium für Wissenschaft, Forschung und Kultur des Landes Brandenburg",
+    "alternateName": "MWFK",
+    "url": "https://mwfk.brandenburg.de",
+    "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Dortustr. 36",
+        "postalCode": "14467",
+        "addressLocality": "Potsdam",
+        "addressCountry": "DE"
+    }
+}

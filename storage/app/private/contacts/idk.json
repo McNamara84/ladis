@@ -1,0 +1,15 @@
+{
+    "@context": "https://schema.org",
+    "@type": "ResearchOrganization",
+    "@id": "idk",
+    "name": "Institut für Diagnostik und Konservierung an Denkmalen in Sachsen und Sachsen-Anhalt e. V.",
+    "alternateName": "IDK",
+    "url": "https://www.idk.de",
+    "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Domplatz 3",
+        "postalCode": "06108",
+        "addressLocality": "Halle (Saale)",
+        "addressCountry": "DE"
+    }
+}

@@ -1,0 +1,13 @@
+{
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": "bauer-bornemann-ulrich",
+    "name": "Ulrich Bauer Bornemann",
+    "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Oberer Stephansberg 37",
+        "postalCode": "96049",
+        "addressLocality": "Bamberg",
+        "addressCountry": "DE"
+    }
+}

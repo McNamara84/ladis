@@ -2,15 +2,12 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use Carbon\Carbon;
 
 class PrivacyPolicyPageTest extends TestCase
 {
-    use RefreshDatabase;
-
-    public function test_privacy_policy_page_is_accessible(): void
+    public function test_privacy_policy_page_response_is_ok(): void
     {
         $response = $this->get('/datenschutz');
 
@@ -22,5 +19,12 @@ class PrivacyPolicyPageTest extends TestCase
             ->timezone('Europe/Berlin')
             ->format('d. F Y');
         $response->assertSee($formattedDate);
+
+        // Check if required contact information is loaded
+        $response->assertViewHas('contactResponsible');
+        $response->assertViewHas('contactPrivacy');
+        $response->assertViewHas('contactHosting');
+        $response->assertViewHas('contactLdabb');
+        $response->assertViewHas('contactFhpKommunikation');
     }
 }

@@ -1,0 +1,18 @@
+{
+    "@context": "https://schema.org",
+    "@type": "GovernmentOrganization",
+    "@id": "dbu",
+    "name": "Deutsche Bundesstiftung Umwelt",
+    "alternateName": "DBU",
+    "telephone": "+49 541 9633 0",
+    "faxNumber": "+49 541 9633 190",
+    "email": "info@dbu.de",
+    "url": "https://www.dbu.de",
+    "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "An der Bornau 2",
+        "postalCode": "49090",
+        "addressLocality": "Osnabrück",
+        "addressCountry": "DE"
+    }
+}

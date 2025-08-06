@@ -197,17 +197,64 @@ a .link-text {
 }
 
 // Utility class to maintain a vertical rhythm in flow content sections
-.flow>*+* {
-    margin-block-start: var(--flow-gap-start, 1.5em);
-    margin-block-end: var(--flow-gap-end, 1em);
+:root {
+    --flow-gap: 1em;
+    --flow-gap-medium: 1.5em;
+    --flow-gap-large: 3em;
+    --flow-gap-start: var(--flow-gap-medium);
+    --flow-gap-end: var(--flow-gap);
+}
+
+.flow>*:not(.row, hr) {
+    margin-block-start: var(--flow-gap-start);
+    margin-block-end: var(--flow-gap-end);
+}
+
+.flow>*:first-child {
+    margin-block-start: 0;
+}
+
+.flow>*:last-child {
+    margin-block-end: 0;
+}
+
+// Use a larger gap for horizontal rules.
+.flow>hr {
+    margin-block: var(--flow-gap-large);
 }
 
 //
 // Description List
 //
-dl.row dt,
-dl.row dd {
-    margin-block-end: 1.5em;
+// Horizontal layout that breaks to a vertical layout on small viewports.
+
+.dl-container {
+    container-type: inline-size;
+    container-name: dl-container;
+}
+
+.dl-container dl {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    margin-block: 0;
+    column-gap: calc(var(--flow-gap) * 2);
+    row-gap: var(--flow-gap);
+}
+
+.dl-container dt,
+.dl-container dd {
+    margin-block: 0;
+}
+
+// Container query for the vertical layout.
+@container dl-container (max-width: 30ch) {
+    .dl-container dl {
+        display: block;
+    }
+
+    .dl-container dd+* {
+        margin-block-start: var(--flow-gap);
+    }
 }
 
 //
@@ -223,6 +270,21 @@ dl.row dd {
 
 .figure img:hover {
     transform: scale(1.05);
+}
+
+//
+// Regular Page Sections
+//
+
+.page-body {
+    // Prevent horizontal overflow induced by grid gutters in page body
+    overflow-x: hidden;
+}
+
+// Page Title
+.page-title:only-child {
+    // Important is required becaus Bootstraps margin classes use it.
+    margin-block-end: 0 !important;
 }
 
 //
@@ -259,6 +321,13 @@ dl.row dd {
 .site-footer .bi {
     font-size: 1.5em;
 }
+
+//
+// Custom component includes
+//
+
+@import 'components/card';
+@import 'components/contact';
 
 //
 // Dark Mode

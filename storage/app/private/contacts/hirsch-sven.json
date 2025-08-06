@@ -1,0 +1,23 @@
+{
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": "hirsch-sven",
+    "name": "Sven Hirsch",
+    "email": "datenschutz@fh-potsdam.de",
+    "affiliation": {
+        "@type": "OrganizationRole",
+        "roleName": "Datenschutzbeauftragter",
+        "affiliation": {
+            "@type": "Organization",
+            "@id": "fhp"
+        }
+    },
+    "address": {
+        "@type": "PostalAddress",
+        "extendedAddress": "Fachhochschule Potsdam",
+        "streetAddress": "Kiepenheuerallee 5",
+        "postalCode": "14469",
+        "addressLocality": "Potsdam",
+        "addressCountry": "DE"
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "@id": "fb2",
+    "name": "Fachbereich STADT | BAU | KULTUR",
+    "url": "https://www.fh-potsdam.de/studium-weiterbildung/fachbereiche/fachbereich-stadt-bau-kultur",
+    "email": "dekanat-fb2@fh-potsdam.de",
+    "telephone": "+49 331 580-4211",
+    "parentOrganization": {
+        "@id": "fhp"
+    }
+}

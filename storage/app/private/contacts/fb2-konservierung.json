@@ -1,0 +1,10 @@
+{
+    "@context": "https://schema.org",
+    "@type": "EducationalOccupationalProgram",
+    "@id": "fb2-konservierung",
+    "name": "Studiengang Konservierung und Restaurierung (B.A.)",
+    "url": "https://www.fh-potsdam.de/studium-weiterbildung/studiengaenge/konservierung-und-restaurierung-ba",
+    "provider": {
+        "@id": "fb2"
+    }
+}
