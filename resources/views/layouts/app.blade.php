@@ -107,7 +107,7 @@
                                     @auth
                                         <li>
                                             <x-link class="dropdown-item" route="inputform_image.index" text="Image-Upload"
-                                                icon="bi-stack" />
+                                                icon="bi-images" />
                                         </li>
                                     @endauth
                                 </ul>
