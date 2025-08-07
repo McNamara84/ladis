@@ -53,9 +53,22 @@ document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener('DOMContentLoaded', function () {
     const filters = document.getElementById('searchFilters');
     const toggle = document.querySelector('[data-bs-target="#searchFilters"]');
-    if (filters && toggle && window.matchMedia('(min-width: 768px)').matches) {
+
+    if (!filters || !toggle) return;
+
+    function setExpanded(expanded) {
+        toggle.setAttribute('aria-expanded', expanded);
+        toggle.setAttribute('aria-label', expanded ? 'Filter ausblenden' : 'Filter einblenden');
+    }
+
+    filters.addEventListener('shown.bs.collapse', () => setExpanded('true'));
+    filters.addEventListener('hidden.bs.collapse', () => setExpanded('false'));
+
+    if (window.matchMedia('(min-width: 768px)').matches) {
         filters.classList.add('show');
-        toggle.setAttribute('aria-expanded', 'true');
         toggle.classList.remove('collapsed');
+        setExpanded('true');
+    } else {
+        setExpanded('false');
     }
 });
