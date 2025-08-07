@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\App\Processes;
+
+use App\Http\Controllers\Controller;
 use App\Models\Configuration;
 use App\Models\Device;
 use App\Models\PartialSurface;
@@ -19,7 +21,7 @@ class ProcessInputController extends Controller
         $configurations = Configuration::orderBy('description')->get();
 
         return view('inputform_process', compact('pageTitle', 'partialSurfaces', 'devices', 'configurations'));
-    }   
+    }
 
     public function store(Request $request)
     {
