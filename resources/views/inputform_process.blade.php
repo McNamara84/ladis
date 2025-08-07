@@ -23,7 +23,7 @@
                                 {{ session('error') }}
                             </div>
                         @endif
-                        <form method="POST" action="{{ route('inputform_process.store') }}">
+                        <form method="POST" action="{{ route('processes.store') }}">
                             @csrf
 
                         <div class="mb-5">
@@ -71,8 +71,8 @@
                             @error('configuration_id')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                                     <strong>{{ $message }}</strong>
-                            @enderror       
-                        </div> 
+                            @enderror
+                        </div>
 
                         <div class="mb-5 form-floating">
                             <textarea class="form-control @error('description') is-invalid @enderror"
@@ -99,10 +99,10 @@
                                 value="{{ old('duration') }}" required min="0" max="3" step="1" placeholder="Dauer (0-3)" />
                             <div class="form-text">
                                 Bitte geben Sie die Dauer ein (mögliche Werte: 0, 1, 2, 3).
-                                <p>0: 0-3 Minuten</p> 
-                                <p>1: 3-5 Minuten</p> 
-                                <p>2: 5-10 Minuten</p> 
-                                <p>3: 10+ Minuten</p> 
+                                <p>0: 0-3 Minuten</p>
+                                <p>1: 3-5 Minuten</p>
+                                <p>2: 5-10 Minuten</p>
+                                <p>3: 10+ Minuten</p>
                             </div>
                             @error('duration')
                                 <div class="invalid-feedback" role="alert">
