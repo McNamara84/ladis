@@ -20,7 +20,7 @@ class ProcessesInputController extends Controller
         $partialSurfaces = PartialSurface::orderBy('sample_surface_id')->get();
         $configurations = Configuration::orderBy('description')->get();
 
-        return view('inputform_process', compact('pageTitle', 'partialSurfaces', 'devices', 'configurations'));
+        return view('processes.create', compact('pageTitle', 'partialSurfaces', 'devices', 'configurations'));
     }
 
     public function store(Request $request)

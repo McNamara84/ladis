@@ -178,7 +178,7 @@ class ProcessesInputControllerTest extends TestCase
         $response = $this->actingAs($user)->get('/processes/create');
 
         $response->assertStatus(200);
-        $response->assertViewIs('inputform_process');
+        $response->assertViewIs('processes.create');
         $response->assertViewHas('pageTitle', 'Prozesseingabe');
         $response->assertViewHas('partialSurfaces', function ($surfaces) use ($partialSurface) {
             return $surfaces->contains($partialSurface);
