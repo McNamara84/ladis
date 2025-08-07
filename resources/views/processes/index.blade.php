@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Prozesse')
+
 @section('content')
     <div class="container">
         <h1 class="h3 mb-4">Alle Prozess</h1>
