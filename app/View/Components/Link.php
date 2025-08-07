@@ -33,6 +33,7 @@ class Link extends Component
         public ?string $route = null,
         public bool $disabled = false,
         public string $icon = '',
+        public array $parameters = [],
     ) {
     }
 
@@ -47,7 +48,7 @@ class Link extends Component
             return '#';
         }
 
-        return route($this->route);
+        return route($this->route, $this->parameters);
     }
 
     /**

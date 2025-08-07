@@ -11,42 +11,56 @@ class InstitutionListTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_manufacturers_list_page_displays_only_manufacturers(): void
+    public function test_all_list_page_displays_all_institutions_by_default(): void
     {
-        Institution::factory()->manufacturer()->count(2)->create();
+        Institution::factory()->manufacturer()->create();
         Institution::factory()->client()->create();
         Institution::factory()->contractor()->create();
 
-        $response = $this->get('/institutions/manufacturers/all');
+        $response = $this->get('/institutions/all');
 
         $response->assertStatus(200);
         $response->assertViewIs('institutions.index');
         $institutions = $response->viewData('institutions');
-        $this->assertTrue($institutions->every(fn($i) => $i->type === Institution::TYPE_MANUFACTURER));
+        $this->assertCount(3, $institutions);
     }
 
-    public function test_clients_list_page_displays_only_clients(): void
+    public function test_list_page_can_filter_clients(): void
     {
         Institution::factory()->client()->count(2)->create();
         Institution::factory()->manufacturer()->create();
 
-        $response = $this->get('/institutions/clients/all');
+        $response = $this->get('/institutions/all?type=clients');
 
         $response->assertStatus(200);
         $institutions = $response->viewData('institutions');
         $this->assertTrue($institutions->every(fn($i) => $i->type === Institution::TYPE_CLIENT));
     }
 
-    public function test_contractors_list_page_displays_only_contractors(): void
+    public function test_list_page_can_filter_contractors(): void
     {
         Institution::factory()->contractor()->count(2)->create();
         Institution::factory()->manufacturer()->create();
 
-        $response = $this->get('/institutions/contractors/all');
+        $response = $this->get('/institutions/all?type=contractors');
 
         $response->assertStatus(200);
         $institutions = $response->viewData('institutions');
         $this->assertTrue($institutions->every(fn($i) => $i->type === Institution::TYPE_CONTRACTOR));
+    }
+
+    public function test_list_page_can_filter_manufacturers(): void
+    {
+        Institution::factory()->manufacturer()->count(2)->create();
+        Institution::factory()->client()->create();
+        Institution::factory()->contractor()->create();
+
+        $response = $this->get('/institutions/all?type=manufacturers');
+
+        $response->assertStatus(200);
+        $response->assertViewIs('institutions.index');
+        $institutions = $response->viewData('institutions');
+        $this->assertTrue($institutions->every(fn($i) => $i->type === Institution::TYPE_MANUFACTURER));
     }
 
     public function test_institution_can_be_deleted(): void
@@ -55,10 +69,10 @@ class InstitutionListTest extends TestCase
         $institution = Institution::factory()->manufacturer()->create();
 
         $response = $this->actingAs($user)
-            ->withHeader('referer', '/institutions/manufacturers/all')
+            ->withHeader('referer', '/institutions/all?type=manufacturers')
             ->delete(route('institutions.destroy', $institution));
 
-        $response->assertRedirect('/institutions/manufacturers/all');
+        $response->assertRedirect('/institutions/all?type=manufacturers');
         $this->assertModelMissing($institution);
     }
 
@@ -72,24 +86,10 @@ class InstitutionListTest extends TestCase
         $this->assertModelExists($institution);
     }
 
-    public function test_manufacturers_list_page_passes_page_title(): void
+    public function test_all_list_page_passes_page_title(): void
     {
-        $response = $this->get('/institutions/manufacturers/all');
+        $response = $this->get('/institutions/all');
 
-        $response->assertViewHas('pageTitle', 'Alle Hersteller');
-    }
-
-    public function test_clients_list_page_passes_page_title(): void
-    {
-        $response = $this->get('/institutions/clients/all');
-
-        $response->assertViewHas('pageTitle', 'Alle Auftraggeber');
-    }
-
-    public function test_contractors_list_page_passes_page_title(): void
-    {
-        $response = $this->get('/institutions/contractors/all');
-
-        $response->assertViewHas('pageTitle', 'Alle Auftragnehmer');
+        $response->assertViewHas('pageTitle', 'Alle Institutionen');
     }
 }

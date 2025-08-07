@@ -5,6 +5,19 @@
 @section('content')
     <div class="container">
         <h1 class="h3 mb-4">{{ $pageTitle }}</h1>
+        <div class="d-flex mb-3">
+            <form method="GET" action="{{ url('/institutions/all') }}" class="me-auto">
+                <select name="type" class="form-select" onchange="this.form.submit()">
+                    <option value="" {{ ($type ?? null) === null ? 'selected' : '' }}>Alle</option>
+                    <option value="clients" {{ ($type ?? null) === 'clients' ? 'selected' : '' }}>Auftraggeber</option>
+                    <option value="contractors" {{ ($type ?? null) === 'contractors' ? 'selected' : '' }}>Auftragnehmer</option>
+                    <option value="manufacturers" {{ ($type ?? null) === 'manufacturers' ? 'selected' : '' }}>Hersteller</option>
+                </select>
+            </form>
+            @auth
+                <a href="{{ url('/institutions/create') }}" class="btn btn-primary ms-3">Institution hinzufügen</a>
+            @endauth
+        </div>
         <div class="table-responsive">
             <table class="table table-striped">
                 <thead>
@@ -60,8 +73,5 @@
                 </tbody>
             </table>
         </div>
-        @auth
-            <a href="{{ url('/institutions/create') }}" class="btn btn-primary mt-3">Institution hinzufügen</a>
-        @endauth
     </div>
 @endsection

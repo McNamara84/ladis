@@ -62,10 +62,8 @@ Route::get('/adv-search/result', [SearchController::class, 'search'])->name('sea
 // Routes for lists
 Route::get('/devices/all', [DeviceController::class, 'index'])->name('devices.all');
 Route::get('/materials/all', [MaterialController::class, 'index'])->name('materials.all');
-Route::get('/institutions/manufacturers/all', [InstitutionController::class, 'index'])->defaults('category', 'manufacturers')->name('institutions.manufacturers');
+Route::get('/institutions/all', [InstitutionController::class, 'index'])->name('institutions.all');
 Route::get('/projects/all', [ProjectController::class, 'index'])->name('projects.all');
-Route::get('/institutions/clients/all', [InstitutionController::class, 'index'])->defaults('category', 'clients')->name('institutions.clients');
-Route::get('/institutions/contractors/all', [InstitutionController::class, 'index'])->defaults('category', 'contractors')->name('institutions.contractors');
 Route::get('/persons/all', [PersonController::class, 'index'])->name('persons.all');
 
 // TODO: Routes for details pages

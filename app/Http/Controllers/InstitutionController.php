@@ -8,9 +8,15 @@ use App\Models\Institution;
 
 class InstitutionController extends Controller
 {
-    public function index(string $category)
+    public function index(Request $request)
     {
+        $type = $request->get('type');
+
         $mapping = [
+            null => [
+                'title' => 'Alle Institutionen',
+                'type' => null,
+            ],
             'manufacturers' => [
                 'title' => 'Alle Hersteller',
                 'type' => Institution::TYPE_MANUFACTURER,
@@ -25,14 +31,17 @@ class InstitutionController extends Controller
             ],
         ];
 
-        if (!isset($mapping[$category])) {
+        if (!array_key_exists($type, $mapping)) {
             abort(404);
         }
 
-        $institutions = Institution::where('type', $mapping[$category]['type'])->get();
-        $pageTitle = $mapping[$category]['title'];
+        $institutions = Institution::when(
+            $mapping[$type]['type'],
+            fn($query, $type) => $query->where('type', $type)
+        )->get();
+        $pageTitle = $mapping[$type]['title'];
 
-        return view('institutions.index', compact('institutions', 'pageTitle'));
+        return view('institutions.index', compact('institutions', 'pageTitle', 'type'));
     }
 
     public function destroy(Request $request, Institution $institution): RedirectResponse
