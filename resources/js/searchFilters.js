@@ -49,3 +49,12 @@ document.addEventListener('DOMContentLoaded', function () {
         updateYearSlider(min);
     }
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    const filters = document.getElementById('searchFilters');
+    const toggle = document.querySelector('[data-bs-target="#searchFilters"]');
+    if (filters && toggle && window.matchMedia('(min-width: 768px)').matches) {
+        filters.classList.add('show');
+        toggle.setAttribute('aria-expanded', 'true');
+    }
+});

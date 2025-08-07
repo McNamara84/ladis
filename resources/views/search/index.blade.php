@@ -6,12 +6,12 @@
     <div class="container py-4">
         <div class="row">
             <aside class="col-md-3 mb-4">
-                <button class="btn btn-outline-secondary w-100 mb-3 d-md-none" type="button"
+                <button class="btn btn-outline-secondary w-100 mb-3" type="button"
                         data-bs-toggle="collapse" data-bs-target="#searchFilters" aria-expanded="false"
                         aria-controls="searchFilters">
                     Filter
                 </button>
-                <div id="searchFilters" class="collapse d-md-block">
+                <div id="searchFilters" class="collapse">
                     @include('search._filters')
                 </div>
             </aside>
