@@ -49,3 +49,26 @@ document.addEventListener('DOMContentLoaded', function () {
         updateYearSlider(min);
     }
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    const filters = document.getElementById('searchFilters');
+    const toggle = document.querySelector('[data-bs-target="#searchFilters"]');
+
+    if (!filters || !toggle) return;
+
+    function setExpanded(expanded) {
+        toggle.setAttribute('aria-expanded', expanded.toString());
+        toggle.setAttribute('aria-label', expanded ? 'Filter ausblenden' : 'Filter einblenden');
+    }
+
+    filters.addEventListener('shown.bs.collapse', () => setExpanded(true));
+    filters.addEventListener('hidden.bs.collapse', () => setExpanded(false));
+
+    if (window.matchMedia('(min-width: 768px)').matches) {
+        filters.classList.add('show');
+        toggle.classList.remove('collapsed');
+        setExpanded(true);
+    } else {
+        setExpanded(false);
+    }
+});

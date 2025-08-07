@@ -22,3 +22,11 @@
     pointer-events: all;
     position: relative;
 }
+
+.filter-toggle .bi-chevron-down {
+    transition: transform 0.2s ease;
+}
+
+.filter-toggle:not(.collapsed) .bi-chevron-down {
+    transform: rotate(180deg);
+}
