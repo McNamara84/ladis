@@ -19,7 +19,6 @@ use App\Http\Controllers\Site\ContactController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
-use App\Http\Controllers\ProcessInputController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\InstitutionController;
 use App\Http\Controllers\MaterialController;
@@ -27,6 +26,7 @@ use App\Http\Controllers\InputFormPersonController;
 use App\Http\Controllers\PersonController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\App\Processes\ProcessesController;
+use App\Http\Controllers\App\Processes\ProcessesInputController;
 
 // TODO/Conventions:
 // - Prefix all routes for authenticated users with /app
@@ -136,8 +136,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/institutions/{institution}', [InstitutionController::class, 'destroy'])->name('institutions.destroy');
 
     // Process management
-    Route::get('/processes/create', [ProcessInputController::class, 'index'])->name('processes.create');
-    Route::post('/processes/create', [ProcessInputController::class, 'store'])->name('processes.store');
+    Route::get('/processes/create', [ProcessesInputController::class, 'index'])->name('processes.create');
+    Route::post('/processes/create', [ProcessesInputController::class, 'store'])->name('processes.store');
     Route::delete('/processes/{process}', [ProcessesController::class, 'destroy'])->name('processes.destroy');
 
     // Routes for projects
