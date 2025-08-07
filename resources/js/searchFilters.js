@@ -56,5 +56,6 @@ document.addEventListener('DOMContentLoaded', function () {
     if (filters && toggle && window.matchMedia('(min-width: 768px)').matches) {
         filters.classList.add('show');
         toggle.setAttribute('aria-expanded', 'true');
+        toggle.classList.remove('collapsed');
     }
 });
