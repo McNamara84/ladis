@@ -55,14 +55,14 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="@auth 7 @else 6 @endauth">Keine Prozesse vorhanden.</td>
+                            <td colspan="@auth 2 @else 1 @endauth">Keine Prozesse vorhanden.</td>
                         </tr>
                     @endforelse
                 </tbody>
             </table>
         </div>
         @auth
-            <a href="{{ route('process.create') }}" class="btn btn-primary mt-3">Neuen Prozess anlegen</a>
+            <a href="{{ route('processes.create') }}" class="btn btn-primary mt-3">Neuen Prozess anlegen</a>
         @endauth
     </div>
 @endsection
