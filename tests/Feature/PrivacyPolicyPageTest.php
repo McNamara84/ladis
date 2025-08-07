@@ -15,10 +15,17 @@ class PrivacyPolicyPageTest extends TestCase
         $response->assertViewIs('privacy-policy');
         $response->assertSee('Datenschutzerkl');
 
-        $formattedDate = Carbon::parse('2025-06-21T00:00:00Z')
-            ->timezone('Europe/Berlin')
-            ->format('d. F Y');
-        $response->assertSee($formattedDate);
+        $response->assertViewHas('lastUpdated');
+        $response->assertViewHas('lastUpdatedFormatted');
+
+        $data = $response->getOriginalContent()->getData();
+        $updatedAt = $data['lastUpdated'];
+        $updatedAtReadable = $data['lastUpdatedFormatted'];
+
+        $response->assertSeeHtmlInOrder([
+            "datetime=\"$updatedAt\"",
+            $updatedAtReadable
+        ]);
 
         // Check if required contact information is loaded
         $response->assertViewHas('contactResponsible');
