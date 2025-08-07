@@ -57,18 +57,18 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!filters || !toggle) return;
 
     function setExpanded(expanded) {
-        toggle.setAttribute('aria-expanded', expanded);
+        toggle.setAttribute('aria-expanded', expanded.toString());
         toggle.setAttribute('aria-label', expanded ? 'Filter ausblenden' : 'Filter einblenden');
     }
 
-    filters.addEventListener('shown.bs.collapse', () => setExpanded('true'));
-    filters.addEventListener('hidden.bs.collapse', () => setExpanded('false'));
+    filters.addEventListener('shown.bs.collapse', () => setExpanded(true));
+    filters.addEventListener('hidden.bs.collapse', () => setExpanded(false));
 
     if (window.matchMedia('(min-width: 768px)').matches) {
         filters.classList.add('show');
         toggle.classList.remove('collapsed');
-        setExpanded('true');
+        setExpanded(true);
     } else {
-        setExpanded('false');
+        setExpanded(false);
     }
 });
