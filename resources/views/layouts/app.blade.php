@@ -104,9 +104,12 @@
                                             text="Hersteller" icon="bi-bank2" /></li>
                                     <li><x-link class="dropdown-item" route="materials.all" text="Material"
                                             icon="bi-stack" /></li>
+                                    <li><x-link class="dropdown-item" route="processes.all" text="Prozesse"
+                                            icon="bi-vignette" /></li>
                                     @auth
                                         <li>
-                                            <x-link class="dropdown-item" route="inputform_image.index" text="Image-Upload" icon="bi-images" />
+                                            <x-link class="dropdown-item" route="inputform_image.index" text="Image-Upload"
+                                                icon="bi-images" />
                                         </li>
                                     @endauth
                                 </ul>
