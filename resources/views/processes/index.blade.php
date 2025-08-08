@@ -6,17 +6,17 @@
     <div class="container">
         <h1 class="h3 mb-4">Alle Prozess</h1>
         <div class="table-responsive">
-            <table class="table table-striped">
+            <table class="table table-striped" data-sortable>
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th data-sortable-type="number">ID</th>
                         <th>Material</th>
                         <th>Beschichtung</th>
                         <th>Schadensmuster</th>
                         <th>Gerät</th>
                         <th>Venue</th>
                         @auth
-                            <th>Aktionen</th>
+                            <th class="no-sort">Aktionen</th>
                         @endauth
                     </tr>
                 </thead>
