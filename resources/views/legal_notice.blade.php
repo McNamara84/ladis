@@ -1,15 +1,3 @@
-@php
-    use Carbon\Carbon;
-
-    function format_date($date, $format = 'd. F Y', $timezone = 'Europe/Berlin')
-    {
-        return Carbon::parse($date)
-            ->timezone($timezone)
-            ->format($format);
-    }
-@endphp
-
-
 @extends('layouts.app')
 
 @section('content')
@@ -18,7 +6,7 @@
             ENTWURF (bitte nicht verklagen, danke!)
         </div>
         <h1>{{ $pageTitle }}</h1>
-        <p>Diese Impressum wurde zuletzt am <time datetime="{{ $lastUpdated }}">{{ format_date($lastUpdated) }}</time>
+        <p>Diese Impressum wurde zuletzt am <time datetime="{{ $lastUpdated }}">{{ $lastUpdatedFormatted }}</time>
             bearbeitet.</p>
         <h2>Zuständige Institutionen</h2>
         <h3>Fachhochschule Potsdam</h3>

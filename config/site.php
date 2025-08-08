@@ -17,6 +17,21 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Date & Time
+    |--------------------------------------------------------------------------
+    |
+    | Maps functional roles to contact IDs.
+    |
+    */
+
+    // Default timezone used to format date and time values
+    'timezone' => env('SITE_TIMEZONE', 'Europe/Berlin'),
+
+    // Default format used when formatting dates
+    'date_format' => env('SITE_DATE_FORMAT', 'D. MMMM YYYY'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Contact Information
     |--------------------------------------------------------------------------
     |
