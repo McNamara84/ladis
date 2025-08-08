@@ -21,8 +21,11 @@ class ProcessesController extends Controller
 
     public function destroy(Process $process)
     {
-
-        $process->delete();
+        try {
+            $process->delete();
+        } catch (\Exception $e) {
+            return redirect()->route('processes.all')->with('error', 'Prozess konnte nicht gelöscht werden: ' . $e->getMessage());
+        }
 
         return redirect()->route('processes.all')->with('success', 'Prozess wurde gelöscht.');
     }
