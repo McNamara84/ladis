@@ -328,6 +328,7 @@ a .link-text {
 
 @import 'components/card';
 @import 'components/contact';
+@import 'components/table';
 
 //
 // Dark Mode
@@ -361,4 +362,4 @@ a .link-text {
     }
 }
 
-@import "filters";
+@import 'filters';

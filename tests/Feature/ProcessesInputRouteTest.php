@@ -8,7 +8,7 @@ use App\Models\User;
 use App\Models\Device;
 use App\Models\Configuration;
 
-class ProcessInputRouteTest extends TestCase
+class ProcessesInputRouteTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -17,10 +17,10 @@ class ProcessInputRouteTest extends TestCase
         $user = User::factory()->create();
         $this->actingAs($user);
 
-        $response = $this->get('/inputform_process');
+        $response = $this->get('/processes/create');
 
         $response->assertStatus(200);
-        $response->assertViewIs('inputform_process');
+        $response->assertViewIs('processes.create');
         $response->assertViewHas('pageTitle', 'Prozesseingabe');
         $response->assertViewHas('partialSurfaces');
     }
@@ -33,10 +33,10 @@ class ProcessInputRouteTest extends TestCase
         $device = Device::factory()->create();
         $configuration = Configuration::factory()->create();
 
-        $response = $this->get('/inputform_process');
+        $response = $this->get('/processes/create');
 
         $response->assertStatus(200);
-        $response->assertViewIs('inputform_process');
+        $response->assertViewIs('processes.create');
         $response->assertViewHas('devices', function ($devices) use ($device) {
             return $devices->contains($device);
         });

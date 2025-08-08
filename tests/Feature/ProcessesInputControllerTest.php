@@ -16,13 +16,13 @@ use App\Models\User;
 use Illuminate\Support\Facades\Event;
 use App\Models\Process;
 
-class ProcessInputControllerTest extends TestCase
+class ProcessesInputControllerTest extends TestCase
 {
     use RefreshDatabase;
 
     protected function tearDown(): void
     {
-        Event::forget('eloquent.creating: '.Process::class);
+        Event::forget('eloquent.creating: ' . Process::class);
         parent::tearDown();
     }
 
@@ -30,7 +30,7 @@ class ProcessInputControllerTest extends TestCase
     {
         $user = User::factory()->create();
         $this->actingAs($user);
-        $response = $this->post('/inputform_process', [
+        $response = $this->post('/processes/create', [
             'partial_surface_id' => '',
             'device_id' => '',
             'configuration_id' => '',
@@ -80,10 +80,10 @@ class ProcessInputControllerTest extends TestCase
             'duration' => 1,
             'wet' => 0,
         ];
-        $response = $this->withHeader(name: 'referer', value: '/inputform_process')
-            ->post(uri: '/inputform_process', data: $data);
+        $response = $this->withHeader(name: 'referer', value: '/processes/create')
+            ->post(uri: '/processes/create', data: $data);
 
-        $response->assertRedirect(uri: 'inputform_process');
+        $response->assertRedirect(uri: '/processes/create');
         $this->assertDatabaseHas(table: 'processes', data: [
             'partial_surface_id' => $partialSurface->id,
             'device_id' => $device->id,
@@ -127,10 +127,10 @@ class ProcessInputControllerTest extends TestCase
             'description' => '',
         ];
 
-        $response = $this->withHeader(name: 'referer', value: '/inputform_process')
-            ->post(uri: '/inputform_process', data: $data);
+        $response = $this->withHeader(name: 'referer', value: '/processes/create')
+            ->post(uri: '/processes/create', data: $data);
 
-        $response->assertRedirect(uri: '/inputform_process');
+        $response->assertRedirect(uri: '/processes/create');
         $response->assertSessionHasErrors('duration');
         $this->assertDatabaseMissing('processes', [
             'partial_surface_id' => $partialSurface->id,
@@ -155,10 +155,10 @@ class ProcessInputControllerTest extends TestCase
             'wet' => 1,
         ];
 
-        $response = $this->withHeader('referer', '/inputform_process')
-            ->post('/inputform_process', $data);
+        $response = $this->withHeader('referer', '/processes/create')
+            ->post('/processes/create', $data);
 
-        $response->assertRedirect('/inputform_process');
+        $response->assertRedirect('/processes/create');
         $response->assertSessionHasErrors([
             'partial_surface_id',
             'device_id',
@@ -175,10 +175,10 @@ class ProcessInputControllerTest extends TestCase
         $lens = Lens::factory()->create();
         $configuration = Configuration::factory()->create(['lens_id' => $lens->id]);
 
-        $response = $this->actingAs($user)->get('/inputform_process');
+        $response = $this->actingAs($user)->get('/processes/create');
 
         $response->assertStatus(200);
-        $response->assertViewIs('inputform_process');
+        $response->assertViewIs('processes.create');
         $response->assertViewHas('pageTitle', 'Prozesseingabe');
         $response->assertViewHas('partialSurfaces', function ($surfaces) use ($partialSurface) {
             return $surfaces->contains($partialSurface);
@@ -210,10 +210,10 @@ class ProcessInputControllerTest extends TestCase
             'wet' => 1,
         ];
 
-        $response = $this->withHeader('referer', '/inputform_process')
-            ->post('/inputform_process', $data);
+        $response = $this->withHeader('referer', '/processes/create')
+            ->post('/processes/create', $data);
 
-        $response->assertRedirect('/inputform_process');
+        $response->assertRedirect('/processes/create');
         $response->assertSessionHas('success');
         $this->assertDatabaseHas('processes', [
             'partial_surface_id' => $partialSurface->id,
@@ -239,10 +239,10 @@ class ProcessInputControllerTest extends TestCase
             'wet' => 2,
         ];
 
-        $response = $this->withHeader('referer', '/inputform_process')
-            ->post('/inputform_process', $data);
+        $response = $this->withHeader('referer', '/processes/create')
+            ->post('/processes/create', $data);
 
-        $response->assertRedirect('/inputform_process');
+        $response->assertRedirect('/processes/create');
         $response->assertSessionHasErrors([
             'partial_surface_id',
             'device_id',
@@ -263,7 +263,7 @@ class ProcessInputControllerTest extends TestCase
         $lens = Lens::factory()->create();
         $configuration = Configuration::factory()->create(['lens_id' => $lens->id]);
 
-        Event::listen('eloquent.creating: '.Process::class, function () {
+        Event::listen('eloquent.creating: ' . Process::class, function () {
             throw new \Exception('fail');
         });
 
@@ -276,10 +276,10 @@ class ProcessInputControllerTest extends TestCase
             'wet' => 0,
         ];
 
-        $response = $this->withHeader('referer', '/inputform_process')
-            ->post('/inputform_process', $data);
+        $response = $this->withHeader('referer', '/processes/create')
+            ->post('/processes/create', $data);
 
-        $response->assertRedirect('/inputform_process');
+        $response->assertRedirect('/processes/create');
         $response->assertSessionHas('error');
         $this->assertDatabaseCount('processes', 0);
     }

@@ -4,15 +4,19 @@
 ![Bootstrap 5.3](https://img.shields.io/badge/bootstrap-5.3-563d7c?logo=bootstrap)
 ![Test Coverage](https://github.com/McNamara84/cleanup-laser-database/blob/image-data/coverage.svg?raw=true)
 
-# Cleanup Laser Database
-
-<!-- Add project description here -->
+# LADIS - Laser Datenbank Informationssystem
 
 We are developing our own information system as part of the P11 laboratory. A specialist laser database is to be created for the “Restoration” department. This will be a contact point for restorers who want to find out about cleaning with a laser device. Among other things, information on the laser device, the material to be treated, the project and the location will be collected. In the first steps, we developed a data model and then tried to integrate existing information. Now the whole thing is to be implemented with code.
 
 ## Features
 
-- **Overview lists:** List all registered projects, devices, materials, institutions and persons
+- **Overview lists:**
+  - Devices
+  - Institutions
+  - Materials
+  - Persons
+  - Processes
+  - Projects
 - **User-friendly input forms:**
   - Add new **materials**
   - Add new **institutions**
@@ -37,7 +41,8 @@ We are developing our own information system as part of the P11 laboratory. A sp
   - Devices: /devices/all
   - Persons: /persons/all
   - Materials: /materials/all
-  - Projects: projects/all
+  - Projects: /projects/all
+  - Processes: /processes/all
   - Contact Us: /contact
   - Database Statistics: /statistics
   - Legal (Rechtliches / Impressum): /impressum
@@ -88,6 +93,7 @@ Follow these steps to set up the development environment:
 - `php artisan migrate:rollback` to roll back the last migration.
 - `php artisan migrate:reset` to reset all migrations.
 - `php artisan migrate:fresh` to reset all migrations and newly execute all migrations.
+- `php artisan migrate:fresh --seed` to create a fresh database and seed it with the data from the seeders.
 
 > [!TIP]
 > Detailed information about [migrations](https://github.com/McNamara84/cleanup-laser-database/wiki/Adding-a-new-table-with-a-new-migration) and [adding new models](https://github.com/McNamara84/cleanup-laser-database/wiki/Adding-new-models) can be found in the [Wiki](https://github.com/McNamara84/cleanup-laser-database/wiki).
@@ -124,16 +130,24 @@ This web application will be deployed automatically to the production server in 
 
 ## Database Seeding
 
-<!-- Introduction text for the db schema here -->
-
 Seeders are used to populate the database with initial or sample data. To run all seeders, execute:
 
-`php artisan db:seed`
+```bash
+php artisan db:seed
+
+# or
+php artisan migrate:fresh --seed
+```
+
+See [Commands for database handling](#commands-for-database-handling) for more information.
 
 ### Available Seeders
 
+- `DamagePatternSeeder`
 - `DeviceSeeder`
 - `InstitutionSeeder`
+- `MaterialSeeder`
+- `ProcessSeeder`
 - `UserSeeder`
 
 ## Factories

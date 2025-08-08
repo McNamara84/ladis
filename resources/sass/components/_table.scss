@@ -1,0 +1,46 @@
+//
+// Table Component
+//
+
+// Sortable tables
+//
+// Based on:
+// https://github.com/tristen/tablesort/blob/master/src/css/tablesort.css
+//
+
+th[role=columnheader]:not(.no-sort) {
+    cursor: pointer;
+    // Keep header text on one line and reserve space for the sort marker
+    white-space: nowrap;
+    position: relative;
+    padding-right: 1.5rem;
+}
+
+th[role=columnheader]:not(.no-sort):after {
+    content: '';
+    position: absolute;
+    right: .5rem;
+    top: .85rem;
+    border-bottom: none;
+    border-width: 4px 4px 0;
+    border-style: solid;
+    border-color: var(--bs-table-color) transparent;
+    visibility: hidden;
+    opacity: 0;
+    user-select: none;
+}
+
+th[aria-sort=ascending]:not(.no-sort):after {
+    border-width: 0 4px 4px;
+}
+
+th[aria-sort]:not(.no-sort):after {
+    visibility: visible;
+    opacity: 1;
+}
+
+th[role=columnheader]:not(.no-sort):focus:after,
+th[role=columnheader]:not(.no-sort):hover:after {
+    visibility: visible;
+    opacity: 1;
+}
