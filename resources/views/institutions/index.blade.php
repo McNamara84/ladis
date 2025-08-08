@@ -14,9 +14,6 @@
                     <option value="manufacturers" {{ ($type ?? null) === 'manufacturers' ? 'selected' : '' }}>Hersteller</option>
                 </select>
             </form>
-            @auth
-                <a href="{{ url('/institutions/create') }}" class="btn btn-primary ms-3">Institution hinzufügen</a>
-            @endauth
         </div>
         <div class="table-responsive">
             <table class="table table-striped">
@@ -73,5 +70,10 @@
                 </tbody>
             </table>
         </div>
+        @auth
+            <div class="mt-3">
+                <a href="{{ url('/institutions/create') }}" class="btn btn-primary">Institution hinzufügen</a>
+            </div>
+        @endauth
     </div>
 @endsection
