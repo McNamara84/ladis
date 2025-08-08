@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="min-vh-100">
+<html lang="{{ localeToBCP47() }}" class="min-vh-100">
 
 <head>
     <meta charset="utf-8">

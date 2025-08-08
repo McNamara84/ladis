@@ -39,4 +39,21 @@ class LegalNoticePageTest extends TestCase
 
         $response->assertViewHas('supervisoryAuthority');
     }
+
+    public function test_legal_notice_page_shows_date_updated_at(): void
+    {
+        $response = $this->getResponse();
+
+        $response->assertViewHas('lastUpdated');
+        $response->assertViewHas('lastUpdatedFormatted');
+
+        $data = $response->getOriginalContent()->getData();
+        $updatedAt = $data['lastUpdated'];
+        $updatedAtReadable = $data['lastUpdatedFormatted'];
+
+        $response->assertSeeHtmlInOrder([
+            "datetime=\"$updatedAt\"",
+            $updatedAtReadable
+        ]);
+    }
 }

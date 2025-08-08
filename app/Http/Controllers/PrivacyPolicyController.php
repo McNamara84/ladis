@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-use Carbon\Carbon;
+
+use Illuminate\Support\Facades\App;
 
 use App\Services\Contacts\ContactsService;
 
@@ -12,9 +13,7 @@ class PrivacyPolicyController extends Controller
     {
         $pageTitle = 'Datenschutzerklärung';
         $lastUpdated = '2025-06-21T00:00:00Z';
-        $lastUpdatedFormatted = Carbon::parse($lastUpdated)
-            ->timezone('Europe/Berlin')
-            ->format('d. F Y');
+        $lastUpdatedFormatted = formatDate($lastUpdated);
 
         $contactResponsible = $contactsService->{config('site.contact.responsible')};
         $contactPrivacy = $contactsService->{config('site.contact.privacy')};
