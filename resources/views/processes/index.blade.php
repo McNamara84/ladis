@@ -10,6 +10,11 @@
                 <thead>
                     <tr>
                         <th>ID</th>
+                        <th>Material</th>
+                        <th>Beschichtung</th>
+                        <th>Schadensmuster</th>
+                        <th>Gerät</th>
+                        <th>Venue</th>
                         @auth
                             <th>Aktionen</th>
                         @endauth
@@ -18,11 +23,17 @@
                 <tbody>
                     @forelse($processes as $process)
                         <tr>
-                            <td>{{ $project->id }}</td>
+                            <td>{{ $process->id }}</td>
+                            <td>{{ $process->partialSurface->foundationMaterial->name }}</td>
+                            <td>{{ $process->partialSurface?->coatingMaterial?->name ?? '' }}</td>
+                            <td>{{ $process->partialSurface->condition->damagePattern->name }}</td>
+                            <td>{{ $process->device->name }}</td>
+                            <td>{{ $process->partialSurface->sampleSurface->artifact->location->venue->name }}
+                                ({{ $process->partialSurface->sampleSurface->artifact->location->venue->city->name }})</td>
                             @auth
                                 <td>
                                     <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                        data-bs-target="#deleteProject{{ $process->id }}">
+                                        data-bs-target="#deleteProcess{{ $process->id }}">
                                         Löschen
                                     </button>
 
@@ -57,7 +68,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="@auth 2 @else 1 @endauth">Keine Prozesse vorhanden.</td>
+                            <td colspan="@auth 4 @else 3 @endauth">Keine Prozesse vorhanden.</td>
                         </tr>
                     @endforelse
                 </tbody>

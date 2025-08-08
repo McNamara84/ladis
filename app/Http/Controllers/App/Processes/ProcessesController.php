@@ -9,7 +9,12 @@ class ProcessesController extends Controller
 {
     public function index()
     {
-        $processes = Process::get();
+        $processes = Process::with([
+            'device',
+            'partialSurface.foundationMaterial',
+            'partialSurface.coatingMaterial',
+            'partialSurface.sampleSurface.artifact.location.venue.projects'
+        ])->get();
 
         return view('processes.index', compact('processes'));
     }
