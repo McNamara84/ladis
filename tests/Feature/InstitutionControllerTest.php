@@ -13,11 +13,11 @@ class InstitutionControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_index_returns_404_for_invalid_category(): void
+    public function test_index_returns_404_for_invalid_type(): void
     {
-        Route::get('test/institutions/{category}', [InstitutionController::class, 'index']);
+        Route::get('test/institutions', [InstitutionController::class, 'index']);
 
-        $response = $this->get('test/institutions/invalid');
+        $response = $this->get('test/institutions?type=invalid');
 
         $response->assertNotFound();
     }
@@ -28,10 +28,10 @@ class InstitutionControllerTest extends TestCase
         $institution = Institution::factory()->create();
 
         $response = $this->actingAs($user)
-            ->withHeader('referer', '/institutions/manufacturers/all')
+            ->withHeader('referer', '/institutions/all?type=manufacturers')
             ->delete(route('institutions.destroy', $institution));
 
-        $response->assertRedirect('/institutions/manufacturers/all');
+        $response->assertRedirect('/institutions/all?type=manufacturers');
         $response->assertSessionHas('success', 'Institution wurde gelöscht.');
     }
 }
