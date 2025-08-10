@@ -1,52 +1,50 @@
 ---
-name: Feature request
+name: Feature Request
 about: Suggest an idea for this project
 title: ''
 labels: ''
 assignees: ''
-
 ---
 
-# ✨ Feature Request
+# Feature Request
 
-## 📝 Feature-Beschreibung
-<!-- Beschreibe die gewünschte Funktion klar und präzise -->
+<!-- Describe the desired feature clearly and concisely -->
 
-## 💡 Problem/Motivation
-<!-- Welches Problem löst dieses Feature? Warum wird es benötigt? -->
+## Problem / motivation
+<!-- What problem does this feature solve? Why is it needed? -->
 
-## 🎯 Gewünschte Lösung
-<!-- Wie soll das Feature funktionieren? -->
+## Proposed solution
+<!-- How should the feature work? -->
 
-## 🔄 Use Cases
-<!-- Wie würde das Feature verwendet werden? -->
-1. Als [Benutzertyp] möchte ich [Aktion] um [Ziel] zu erreichen
+## Use cases
+<!-- How would the feature be used? -->
+1. As a [user type], I want to [action] so that [goal]
 2.  
 3.  
 
-## 🚀 Implementierung
-<!-- Hast du schon Ideen zur technischen Umsetzung? -->
-- [ ] Frontend/Blade Templates
-- [ ] Backend/Controller Logic
-- [ ] Database Migrations
-- [ ] API Endpoints
+## Implementation (optional)
+<!-- Any initial ideas for a technical approach? -->
+- [ ] Frontend/Blade templates
+- [ ] Backend/controller logic
+- [ ] Database migrations
+- [ ] API endpoints
 - [ ] Middleware
-- [ ] Commands/Jobs
+- [ ] Commands/jobs
 
-## 🔗 Verwandte Features
-<!-- Gibt es ähnliche Features oder Abhängigkeiten? -->
+## Related features
+<!-- Are there similar features or dependencies? -->
 
-## 🎨 UI/UX Mockups
-<!-- Falls relevant: Wie soll es aussehen? -->
+## UI/UX mockups (optional)
+<!-- If relevant: what should it look like? -->
 
-## ⚖️ Alternativen
-<!-- Hast du andere Lösungen in Betracht gezogen? -->
+## Alternatives
+<!-- Have you considered other solutions? -->
 
-## 📊 Priorität
+## Priority
 
-- [ ] 🔥 Hoch - Kritisch für die Anwendung
-- [ ] 🟡 Mittel - Würde die UX verbessern
-- [ ] 🟢 Niedrig - Nice-to-have
+- [ ] High — Critical for the application
+- [ ] Medium — Improves UX
+- [ ] Low — Nice-to-have
 
-## 🔧 Zusätzlicher Kontext
-<!-- Weitere hilfreiche Informationen -->
+## Additional context
+<!-- Any other helpful information -->
