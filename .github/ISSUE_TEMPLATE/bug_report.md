@@ -1,5 +1,5 @@
 ---
-name: Bug report
+name: Bug Report
 about: Create a report to help us improve
 title: ''
 labels: ''
@@ -8,7 +8,6 @@ assignees: ''
 
 # Bug Report
 
-## Problem description
 <!-- Describe the problem clearly and concisely -->
 
 ## Steps to reproduce
@@ -18,22 +17,25 @@ assignees: ''
 3.  
 
 ## Expected behavior
-<!-- What should happen? -->
+<!-- What should happen? Include screenshots if applicable. -->
 
 ## Actual behavior
-<!-- What happens instead? -->
+<!-- What happens instead? Include screenshots if applicable. -->
 
 ## Environment
 
-- **PHP Version:**
-- **Database:** (MySQL, PostgreSQL, etc.)
-- **Browser:** (if relevant)
-- **OS:** (if relevant)
+- **App version:**
+- **Deployment:** (local, staging, production)
+- **PHP version:**
+- **Database and version:** (MySQL/PostgreSQL/etc.)
+- **Node.js/npm version:**
+- **Browser and version:**
+- **OS and version:**
 
 ## Logs / error output
 
 ```
-Paste relevant logs, stack traces, or error messages here
+<!-- Paste relevant logs, stack traces, or error messages here -->
 ```
 
 ## Affected files/routes
@@ -41,9 +43,6 @@ Paste relevant logs, stack traces, or error messages here
 
 ## Possible cause
 <!-- If you have a hypothesis -->
-
-## Screenshots
-<!-- If the issue is visual -->
 
 ## Additional context
 <!-- Any other helpful information -->
