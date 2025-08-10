@@ -4,48 +4,46 @@ about: Create a report to help us improve
 title: ''
 labels: ''
 assignees: ''
-
 ---
 
-# 🐛 Bug Report
+# Bug Report
 
-## 📝 Beschreibung des Problems
-<!-- Beschreibe das Problem klar und präzise -->
+## Problem description
+<!-- Describe the problem clearly and concisely -->
 
-## 🔄 Schritte zur Reproduktion
+## Steps to reproduce
 
 1.  
 2.  
 3.  
-4.  
 
-## ✅ Erwartetes Verhalten
-<!-- Was sollte eigentlich passieren? -->
+## Expected behavior
+<!-- What should happen? -->
 
-## ❌ Aktuelles Verhalten
-<!-- Was passiert stattdessen? -->
+## Actual behavior
+<!-- What happens instead? -->
 
-## 🌍 Umgebung
+## Environment
 
-- **PHP Version:**  
+- **PHP Version:**
 - **Database:** (MySQL, PostgreSQL, etc.)
-- **Browser:** (falls relevant)
-- **OS:** (falls relevant)
+- **Browser:** (if relevant)
+- **OS:** (if relevant)
 
-## 📄 Logs/Fehlerausgabe
+## Logs / error output
 
 ```
-Hier relevante Logs, Stacktraces oder Fehlermeldungen einfügen
+Paste relevant logs, stack traces, or error messages here
 ```
 
-## 📁 Betroffene Dateien/Routes
-<!-- Welche Controller, Models, Views sind betroffen? -->
+## Affected files/routes
+<!-- Which controllers, models, or views are affected? -->
 
-## 💡 Mögliche Ursache
-<!-- Falls du eine Vermutung hast -->
+## Possible cause
+<!-- If you have a hypothesis -->
 
-## 📷 Screenshots
-<!-- Falls das Problem visuell ist -->
+## Screenshots
+<!-- If the issue is visual -->
 
-## 🔧 Zusätzlicher Kontext
-<!-- Weitere hilfreiche Informationen -->
+## Additional context
+<!-- Any other helpful information -->
