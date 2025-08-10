@@ -1,34 +1,50 @@
-# Pull Request
+<!-- TL;DR: Include a short summary of the purpose and main changes in this PR -->
 
-## 📝 What was changed?
-<!-- Brief description of changes -->
+## Changes & Rationale
+<!-- Briefly explain the specific edits and why they were made. Use subheadings to group related changes. Include screenshots if UI changes were made. -->
 
-## 🔗 Issue
-<!-- Closed Issues: "- Closes #…" -->
+<!-- Example:
+### Some change
 
-## 🧪 Definition of Done erfüllt?
+- Description of the edits made
+- …
 
-- [ ] User story fulfilled
+<details>
+<summary>Additional screenshots</summary>
+    …
+</details>
+-->
+
+## Related Issues
+<!-- Example: Closes #123, Fixes #456 -->
+
+## Definition of Done Checklist
+
+- [ ] User story requirements met
 - [ ] Documentation updated
-- [ ] New code is covered by unit tests
-- [ ] Unit tests locally pass
+- [ ] New code covered by unit tests
+- [ ] All unit tests pass locally
 - [ ] Manually tested
-- [ ] Browser compatible
-- [ ] Mobile compatible
+- [ ] Works on desktop devices
+- [ ] Works on mobile devices
 
-## 🚀 Laravel-specific
+## Laravel-Specific Changes
 
-- [ ] Migrations added/changed
-- [ ] Models added/changed
-- [ ] Views added/changed
-- [ ] Routes registered
-- [ ] Seeder added/changed
-- [ ] Config changed
-- [ ] Composer dependencies updated
-- [ ] Artisan Commands added/changed
+- [ ] Migrations
+- [ ] Models
+- [ ] Views
+- [ ] Routes
+- [ ] Seeders
+- [ ] Config
+- [ ] Artisan commands
 
-## 📷 Screenshots
-<!-- If UI changed -->
+## Infrastructure & Tooling Changes
 
-## 💬 Notes
-<!-- Additional info for reviewers -->
+- [ ] PHP dependencies
+- [ ] Node.js dependencies
+- [ ] Tooling/scripts
+- [ ] CI/CD workflows
+- [ ] Repository meta/templates
+
+## Additional Notes
+<!-- Add any extra context for reviewers and contributors -->
