@@ -21,7 +21,9 @@ We are developing our own information system as part of the P11 laboratory. A sp
   - Add new **materials**
   - Add new **institutions**
   - Add new **devices**
+  - Add new **processes**
   - Add new **projects**
+- **Filterable institutions list:** View all institutions on a single page and filter by type (clients, contractors, manufacturers).
 - **Admin Tools:** Create new Accounts via UI or enter `php artisan newuser <name> <email> <password>` in server terminal for easy user creation.
 - **Simple Search:** The simple search function in the main menu allows you to quickly search for device names, institution names, ...
 - **Advanced Search:** The advanced search allows you to search the database for specific attributes. Currently, device and institution names as well as the features year and cooling can be searched.
@@ -34,10 +36,7 @@ We are developing our own information system as part of the P11 laboratory. A sp
   - About LADIS: /about
   - Advanced Search: /adv-search
     - Search Result: /adv-search/result
-  - Institutions:
-    - /institutions/manufacturers/all
-    - /institutions/clients/all
-    - /institutions/contractors/all
+  - Institutions: /institutions/all
   - Devices: /devices/all
   - Persons: /persons/all
   - Materials: /materials/all
