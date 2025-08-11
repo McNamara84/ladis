@@ -2,11 +2,9 @@
 
 namespace Tests\Feature;
 
-use App\Http\Controllers\InstitutionController;
 use App\Models\Institution;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Route;
 use Tests\TestCase;
 
 class InstitutionControllerTest extends TestCase
@@ -15,9 +13,7 @@ class InstitutionControllerTest extends TestCase
 
     public function test_index_returns_404_for_invalid_type(): void
     {
-        Route::get('test/institutions', [InstitutionController::class, 'index']);
-
-        $response = $this->get('test/institutions?type=invalid');
+        $response = $this->get('/institutions/all?type=invalid');
 
         $response->assertNotFound();
     }
