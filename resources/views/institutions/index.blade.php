@@ -5,14 +5,19 @@
 @section('content')
     <div class="container">
         <h1 class="h3 mb-4">{{ $pageTitle }}</h1>
-        <div class="d-flex mb-3">
-            <form method="GET" action="{{ url('/institutions/all') }}" class="me-auto">
-                <select name="type" class="form-select" onchange="this.form.submit()">
-                    <option value="" {{ ($type ?? null) === null ? 'selected' : '' }}>Alle</option>
-                    <option value="clients" {{ ($type ?? null) === 'clients' ? 'selected' : '' }}>Auftraggeber</option>
-                    <option value="contractors" {{ ($type ?? null) === 'contractors' ? 'selected' : '' }}>Auftragnehmer</option>
-                    <option value="manufacturers" {{ ($type ?? null) === 'manufacturers' ? 'selected' : '' }}>Hersteller</option>
-                </select>
+        <div class="border p-3 bg-body-secondary rounded mb-3">
+            <form method="GET" action="{{ url('/institutions/all') }}" class="row g-3 align-items-center">
+                <div class="col-auto">
+                    <label for="type" class="col-form-label">Institutionstyp</label>
+                </div>
+                <div class="col-auto">
+                    <select id="type" name="type" class="form-select" onchange="this.form.submit()">
+                        <option value="" {{ ($type ?? null) === null ? 'selected' : '' }}>Alle</option>
+                        <option value="clients" {{ ($type ?? null) === 'clients' ? 'selected' : '' }}>Auftraggeber</option>
+                        <option value="contractors" {{ ($type ?? null) === 'contractors' ? 'selected' : '' }}>Auftragnehmer</option>
+                        <option value="manufacturers" {{ ($type ?? null) === 'manufacturers' ? 'selected' : '' }}>Hersteller</option>
+                    </select>
+                </div>
             </form>
         </div>
         <div class="table-responsive">
