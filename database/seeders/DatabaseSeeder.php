@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 class DatabaseSeeder extends Seeder
 {
     /**
-     * Seed the application's database. 
+     * Seed the application's database.
      * This seeder should only be used to define the order when calling each individual seeder class.
      */
     public function run(): void
@@ -19,7 +19,9 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             InstitutionSeeder::class,
             DeviceSeeder::class,
-            MaterialSeeder::class
+            MaterialSeeder::class,
+            DamagePatternSeeder::class,
+            ProcessSeeder::class,
         ]);
     }
 }
