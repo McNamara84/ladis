@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use App\Models\Device;
+use App\Models\Institution;
 
 class InputFormDeviceController extends Controller
 {
@@ -13,8 +14,9 @@ class InputFormDeviceController extends Controller
     public function index()
     {
         $pageTitle = 'Input Form - LADIS - FH Potsdam';
+        $institutions = Institution::orderBy('name')->get();
 
-        return view('inputform_device', compact('pageTitle'));
+        return view('inputform_device', compact('pageTitle', 'institutions'));
     }
 
     /**
@@ -32,6 +34,7 @@ class InputFormDeviceController extends Controller
             'build' => 'nullable|integer|in:0,1',
             'safety_class' => 'nullable|integer|min:1|max:4',
             'description' => 'nullable|string',
+            'institution_id' => 'required|exists:institutions,id',
             
             // Dimensions
             'height' => 'nullable|integer|min:0',
@@ -69,10 +72,6 @@ class InputFormDeviceController extends Controller
             'min_focal_length' => 'nullable|numeric|min:0',
             'max_focal_length' => 'nullable|numeric|min:0',
         ]);
-
-        // Add Institution ID (temporarily hardcoded)
-        // TODO: Later we get this from form
-        $validatedData['institution_id'] = 1; // Temporarily hardcoded
         
         // Add User ID (temporarily hardcoded)
         // TODO: Later we get this from Auth::user()

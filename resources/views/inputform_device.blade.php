@@ -40,7 +40,15 @@
                                             Bitte geben Sie eine eindeutige Bezeichnung für das Lasergerät an, z.B. CL50.
                                         </div>
                                     </div>
-
+                                    <div class="form-group mb-3">
+                                        <label for="institution_id" class="form-label">Institution *</label>
+                                        <select class="form-control @error('institution_id') is-invalid @enderror" id="institution_id" name="institution_id" required>
+                                            <option value="">Bitte auswählen</option>
+                                            @foreach($institutions as $institution)
+                                                <option value="{{ $institution->id }}" @selected(old('institution_id') == $institution->id)>{{ $institution->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                     <div class="form-group mb-3">
                                         <label for="year" class="form-label">Gerätejahr *</label>
                                         <input type="number" class="form-control @error('year') is-invalid @enderror"
