@@ -47,6 +47,7 @@ class DeviceFormTest extends TestCase
             'build' => Device::BUILD_FIBER, // Glasfaser
             'safety_class' => 2,
             'description' => 'Test Lasergerät für Unit Tests',
+            'institution_id' => $this->institution->id,
             'height' => 1200,
             'width' => 800,
             'depth' => 600,
@@ -91,7 +92,7 @@ class DeviceFormTest extends TestCase
             'build' => Device::BUILD_FIBER,
             'safety_class' => 2,
             'beam_type' => Device::BEAM_POINT,
-            'institution_id' => 1, // Hardcoded in Controller TODO: Later we get this from form
+            'institution_id' => $this->institution->id,
             'last_edit_by' => 1,   // Hardcoded in Controller TODO: Later we get this from Auth::user()
         ]);
 
@@ -112,6 +113,7 @@ class DeviceFormTest extends TestCase
         $deviceData = [
             // 'name' => 'Test Device', // Missing on purpose
             'beam_type' => Device::BEAM_POINT,
+            'institution_id' => $this->institution->id,
         ];
 
         $response = $this->post(route('inputform.store'), $deviceData);
@@ -129,6 +131,7 @@ class DeviceFormTest extends TestCase
         $deviceData = [
             'name' => 'Test Device',
             // 'beam_type' => 0, // Missing on purpose
+            'institution_id' => $this->institution->id,
         ];
 
         $response = $this->post(route('inputform.store'), $deviceData);
@@ -151,6 +154,7 @@ class DeviceFormTest extends TestCase
         $deviceData = [
             'name' => 'Unique Device', // Same name as first Device
             'beam_type' => Device::BEAM_POINT,
+            'institution_id' => $this->institution->id,
         ];
 
         $response = $this->post(route('inputform.store'), $deviceData);
@@ -169,6 +173,7 @@ class DeviceFormTest extends TestCase
             'build' => 99,      // Unallowed value (only 0,1 allowed)
             'beam_type' => 99,  // Unallowed value (only 0,1,2 allowed)
             'cooling' => 99,    // Unallowed value (only 0,1 allowed)
+            'institution_id' => $this->institution->id,
         ];
 
         $response = $this->post(route('inputform.store'), $deviceData);
@@ -192,6 +197,7 @@ class DeviceFormTest extends TestCase
             'fiber_length' => -5.0, // signed
             'max_output' => -100,   // signed
             'wavelength' => -1064,  // signed
+            'institution_id' => $this->institution->id,
         ];
 
         $response = $this->post(route('inputform.store'), $deviceData);
@@ -211,6 +217,7 @@ class DeviceFormTest extends TestCase
             'head' => str_repeat('B', 51),           // Max. 50 chars
             'beam_profile' => str_repeat('C', 51),   // Max. 50 chars
             'beam_type' => Device::BEAM_POINT,
+            'institution_id' => $this->institution->id,
         ];
 
         $response = $this->post(route('inputform.store'), $deviceData);
@@ -231,6 +238,7 @@ class DeviceFormTest extends TestCase
             'cooling' => Device::COOLING_EXTERNAL, // Max. allowed
             'height' => 1, // Min. > 0
             'width' => 999999, // Large value, but should be valid
+            'institution_id' => $this->institution->id,
         ];
 
         $response = $this->post(route('inputform.store'), $deviceData);
@@ -249,6 +257,7 @@ class DeviceFormTest extends TestCase
         $deviceData = [
             'name' => 'Minimal Device', // Required field
             'beam_type' => Device::BEAM_LINE, // Required field
+            'institution_id' => $this->institution->id,
         ];
 
         $response = $this->post(route('inputform.store'), $deviceData);
@@ -259,6 +268,7 @@ class DeviceFormTest extends TestCase
         $this->assertDatabaseHas('devices', [
             'name' => 'Minimal Device',
             'beam_type' => Device::BEAM_LINE,
+            'institution_id' => $this->institution->id,
         ]);
         
         $device = Device::first();
@@ -275,6 +285,7 @@ class DeviceFormTest extends TestCase
             'beam_type' => Device::BEAM_POINT,
             'mounting' => 1,    // true
             'automation' => 0,  // false
+            'institution_id' => $this->institution->id,
         ];
 
         $response = $this->post(route('inputform.store'), $deviceData);
@@ -286,10 +297,11 @@ class DeviceFormTest extends TestCase
 
         // Test case with mounting=false, automation=true
         $deviceData2 = [
-            'name' => 'Boolean Test 2', 
+            'name' => 'Boolean Test 2',
             'beam_type' => Device::BEAM_POINT,
             'mounting' => 0,    // false
             'automation' => 1,  // true
+            'institution_id' => $this->institution->id,
         ];
 
         $this->post(route('inputform.store'), $deviceData2);
@@ -315,17 +327,18 @@ class DeviceFormTest extends TestCase
         
         // Delete all institutions if any exists
         Institution::query()->delete();
-        
+
         $deviceData = [
             'name' => 'Exception Test',
             'beam_type' => Device::BEAM_POINT,
+            'institution_id' => $this->institution->id,
         ];
 
         $response = $this->post(route('inputform.store'), $deviceData);
 
-        // Check if we get redirected back with an error message
+        // Check if validation catches missing institution
         $response->assertRedirect();
-        $response->assertSessionHas('error');
+        $response->assertSessionHasErrors(['institution_id']);
         $this->assertDatabaseCount('devices', 0);
     }
 }
