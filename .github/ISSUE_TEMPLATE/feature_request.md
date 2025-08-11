@@ -1,52 +1,32 @@
 ---
-name: Feature request
+name: Feature Request
 about: Suggest an idea for this project
 title: ''
 labels: ''
 assignees: ''
-
 ---
 
-# ✨ Feature Request
+# Feature Request
 
-## 📝 Feature-Beschreibung
-<!-- Beschreibe die gewünschte Funktion klar und präzise -->
+<!--
+Describe the suggested feature and what problem it solves.
+Example of a user story:
 
-## 💡 Problem/Motivation
-<!-- Welches Problem löst dieses Feature? Warum wird es benötigt? -->
+As a [user type], I want to [action] so that [goal]
+-->
 
-## 🎯 Gewünschte Lösung
-<!-- Wie soll das Feature funktionieren? -->
+## Proposed solution
+<!--
+How should the feature work?
+Include technical details if you have any ideas.
+Include screenshots if you have any mockups.
+-->
 
-## 🔄 Use Cases
-<!-- Wie würde das Feature verwendet werden? -->
-1. Als [Benutzertyp] möchte ich [Aktion] um [Ziel] zu erreichen
-2.  
-3.  
+## Related features and alternatives
+<!--
+Are there similar features or dependencies?
+Are there alternatives?
+-->
 
-## 🚀 Implementierung
-<!-- Hast du schon Ideen zur technischen Umsetzung? -->
-- [ ] Frontend/Blade Templates
-- [ ] Backend/Controller Logic
-- [ ] Database Migrations
-- [ ] API Endpoints
-- [ ] Middleware
-- [ ] Commands/Jobs
-
-## 🔗 Verwandte Features
-<!-- Gibt es ähnliche Features oder Abhängigkeiten? -->
-
-## 🎨 UI/UX Mockups
-<!-- Falls relevant: Wie soll es aussehen? -->
-
-## ⚖️ Alternativen
-<!-- Hast du andere Lösungen in Betracht gezogen? -->
-
-## 📊 Priorität
-
-- [ ] 🔥 Hoch - Kritisch für die Anwendung
-- [ ] 🟡 Mittel - Würde die UX verbessern
-- [ ] 🟢 Niedrig - Nice-to-have
-
-## 🔧 Zusätzlicher Kontext
-<!-- Weitere hilfreiche Informationen -->
+## Additional context
+<!-- Any other helpful information -->
