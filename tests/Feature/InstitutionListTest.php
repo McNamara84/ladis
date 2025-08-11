@@ -86,6 +86,27 @@ class InstitutionListTest extends TestCase
         $this->assertModelExists($institution);
     }
 
+    public function test_guest_does_not_see_create_button(): void
+    {
+        Institution::factory()->create();
+
+        $response = $this->get('/institutions/all');
+
+        $response->assertStatus(200);
+        $response->assertDontSee('Institution hinzufügen');
+    }
+
+    public function test_authenticated_user_sees_create_button(): void
+    {
+        Institution::factory()->create();
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/institutions/all');
+
+        $response->assertStatus(200);
+        $response->assertSee('Institution hinzufügen');
+    }
+
     public function test_all_list_page_passes_page_title(): void
     {
         $response = $this->get('/institutions/all');
