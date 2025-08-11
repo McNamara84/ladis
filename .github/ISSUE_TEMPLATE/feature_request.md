@@ -10,7 +10,7 @@ assignees: ''
 
 <!--
 Describe the suggested feature and what problem it solves.
-Example for a user story:
+Example of a user story:
 
 As a [user type], I want to [action] so that [goal]
 -->
