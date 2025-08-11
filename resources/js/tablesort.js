@@ -2,7 +2,6 @@ import Tablesort from 'tablesort';
 window.Tablesort = Tablesort; // plugin needs global
 
 function initTablesort() {
-    console.log('Tablesort init');
     document.querySelectorAll('table[data-sortable]').forEach((t) => new Tablesort(t));
 }
 
@@ -14,5 +13,4 @@ import('tablesort/src/sorts/tablesort.number.js')
         } else {
             initTablesort();
         }
-    })
-    .catch((e) => console.error('Tablesort plugin load failed', e));
+    });
