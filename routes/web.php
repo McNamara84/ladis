@@ -19,13 +19,14 @@ use App\Http\Controllers\Site\ContactController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
-use App\Http\Controllers\ProcessInputController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\InstitutionController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\InputFormPersonController;
 use App\Http\Controllers\PersonController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\App\Processes\ProcessesController;
+use App\Http\Controllers\App\Processes\ProcessesInputController;
 
 // TODO/Conventions:
 // - Prefix all routes for authenticated users with /app
@@ -65,6 +66,7 @@ Route::get('/materials/all', [MaterialController::class, 'index'])->name('materi
 Route::get('/institutions/all', [InstitutionController::class, 'index'])->name('institutions.all');
 Route::get('/projects/all', [ProjectController::class, 'index'])->name('projects.all');
 Route::get('/persons/all', [PersonController::class, 'index'])->name('persons.all');
+Route::get('/processes/all', [ProcessesController::class, 'index'])->name('processes.all');
 
 // TODO: Routes for details pages
 // Route::get('/devices/{id}', [InputFormController::class, 'show']);
@@ -131,9 +133,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/institutions/create', [InputFormInstitutionController::class, 'store'])->name('inputform_institution.store');
     Route::delete('/institutions/{institution}', [InstitutionController::class, 'destroy'])->name('institutions.destroy');
 
-    //Route for inputform for the process
-    Route::get('/inputform_process', [ProcessInputController::class, 'index'])->name('inputform_process.index');
-    Route::post('/inputform_process', [ProcessInputController::class, 'store'])->name('inputform_process.store');
+    // Process management
+    Route::get('/processes/create', [ProcessesInputController::class, 'index'])->name('processes.create');
+    Route::post('/processes/create', [ProcessesInputController::class, 'store'])->name('processes.store');
+    Route::delete('/processes/{process}', [ProcessesController::class, 'destroy'])->name('processes.destroy');
 
     // Routes for projects
     Route::get('/inputform_project', [ProjectInputController::class, 'index'])->name('inputform_project.index');
@@ -145,7 +148,7 @@ Route::middleware('auth')->group(function () {
     // Routes for artifacts
     Route::get('/inputform_artifact', [ArtifactInputController::class, 'index'])->name('inputform_artifact.index');
     Route::post('/inputform_artifact', [ArtifactInputController::class, 'store'])->name('inputform_artifact.store');
-    
+
     // GET Routes for image upload
     Route::get('/inputform_image', [ImageUploadController::class, 'index'])->name('inputform_image.index');
     // POST route for image upload

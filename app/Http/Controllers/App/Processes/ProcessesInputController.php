@@ -1,14 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\App\Processes;
+
+use App\Http\Controllers\Controller;
 use App\Models\Configuration;
 use App\Models\Device;
 use App\Models\PartialSurface;
-use Illuminate\Http\Request;
 use App\Models\Process;
+use Illuminate\Http\Request;
 
 
-class ProcessInputController extends Controller
+class ProcessesInputController extends Controller
 {
     public function index()
     {
@@ -18,8 +20,8 @@ class ProcessInputController extends Controller
         $partialSurfaces = PartialSurface::orderBy('sample_surface_id')->get();
         $configurations = Configuration::orderBy('description')->get();
 
-        return view('inputform_process', compact('pageTitle', 'partialSurfaces', 'devices', 'configurations'));
-    }   
+        return view('processes.create', compact('pageTitle', 'partialSurfaces', 'devices', 'configurations'));
+    }
 
     public function store(Request $request)
     {
@@ -45,7 +47,7 @@ class ProcessInputController extends Controller
             // Create a new process record in the database
             Process::create($data);
 
-            return redirect()->route('inputform_process.index')
+            return redirect()->route('processes.create')
                 ->with('success', 'Prozess wurde erfolgreich gespeichert!');
         } catch (\Exception $e) {
             return redirect()->back()->withInput()

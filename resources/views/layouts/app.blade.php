@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="min-vh-100">
+<html lang="{{ localeToBCP47() }}" class="min-vh-100">
 
 <head>
     <meta charset="utf-8">
@@ -100,9 +100,12 @@
                                             icon="bi-person-vcard-fill" /></li>
                                     <li><x-link class="dropdown-item" route="materials.all" text="Material"
                                             icon="bi-stack" /></li>
+                                    <li><x-link class="dropdown-item" route="processes.all" text="Prozesse"
+                                            icon="bi-vignette" /></li>
                                     @auth
                                         <li>
-                                            <x-link class="dropdown-item" route="inputform_image.index" text="Image-Upload" icon="bi-images" />
+                                            <x-link class="dropdown-item" route="inputform_image.index" text="Image-Upload"
+                                                icon="bi-images" />
                                         </li>
                                     @endauth
                                 </ul>
