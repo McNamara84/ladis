@@ -113,4 +113,25 @@ class InstitutionListTest extends TestCase
 
         $response->assertViewHas('pageTitle', 'Alle Institutionen');
     }
+
+    public function test_clients_list_page_passes_page_title(): void
+    {
+        $response = $this->get('/institutions/all?type=clients');
+
+        $response->assertViewHas('pageTitle', 'Alle Auftraggeber');
+    }
+
+    public function test_contractors_list_page_passes_page_title(): void
+    {
+        $response = $this->get('/institutions/all?type=contractors');
+
+        $response->assertViewHas('pageTitle', 'Alle Auftragnehmer');
+    }
+
+    public function test_manufacturers_list_page_passes_page_title(): void
+    {
+        $response = $this->get('/institutions/all?type=manufacturers');
+
+        $response->assertViewHas('pageTitle', 'Alle Hersteller');
+    }
 }
