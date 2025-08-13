@@ -107,8 +107,9 @@ class DeviceTest extends TestCase
 
     public function test_fillable_and_casts_are_defined(): void
     {
+        $institution = Institution::factory()->create();
         $device = new Device([
-            'institution_id' => '1',
+            'institution_id' => $institution->id,
             'name' => 'Test',
             'beam_type' => Device::BEAM_POINT,
             'mounting' => '1',
