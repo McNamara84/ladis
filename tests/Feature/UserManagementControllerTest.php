@@ -53,6 +53,21 @@ class UserManagementControllerTest extends TestCase
         $this->assertNotNull($user->password);
     }
 
+    public function test_store_rejects_invalid_email(): void
+    {
+        $this->actingAs(User::factory()->create());
+
+        $response = $this->withHeader('referer', '/user-management/create')
+            ->post('/user-management/create', [
+                'name' => 'Invalid Email',
+                'email' => 'alice@wonderland',
+            ]);
+
+        $response->assertRedirect();
+        $response->assertSessionHasErrors(['email']);
+        $this->assertDatabaseMissing('users', ['email' => 'alice@wonderland']);
+    }
+
     public function test_destroy_deletes_user_and_redirects(): void
     {
         User::factory()->create(['id' => 1]);
