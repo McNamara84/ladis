@@ -141,6 +141,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/processes/{process}', [ProcessesController::class, 'destroy'])->name('processes.destroy');
 
     // Venue management
+    Route::get('/venues/create', [VenueController::class, 'create'])->name('venues.create');
+    Route::post('/venues/create', [VenueController::class, 'store'])->name('venues.store');
     Route::delete('/venues/{venue}', [VenueController::class, 'destroy'])->name('venues.destroy');
 
     // Routes for projects
