@@ -102,6 +102,8 @@
                                             icon="bi-stack" /></li>
                                     <li><x-link class="dropdown-item" route="processes.all" text="Prozesse"
                                             icon="bi-vignette" /></li>
+                                    <li><x-link class="dropdown-item" route="venues.all" text="Orte"
+                                            icon="bi-geo-alt" /></li>
                                     @auth
                                         <li>
                                             <x-link class="dropdown-item" route="inputform_image.index" text="Image-Upload"
