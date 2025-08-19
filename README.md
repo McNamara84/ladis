@@ -41,6 +41,7 @@ We are developing our own information system as part of the P11 laboratory. A sp
   - Persons: /persons/all
   - Materials: /materials/all
   - Projects: /projects/all
+  - Venues: /venues/all
   - Processes: /processes/all
   - Contact Us: /contact
   - Database Statistics: /statistics
