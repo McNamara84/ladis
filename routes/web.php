@@ -28,6 +28,7 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\App\Processes\ProcessesController;
 use App\Http\Controllers\App\Processes\ProcessesInputController;
 use App\Http\Controllers\VenueController;
+use App\Http\Controllers\ArtifactController;
 
 // TODO/Conventions:
 // - Prefix all routes for authenticated users with /app
@@ -69,6 +70,7 @@ Route::get('/projects/all', [ProjectController::class, 'index'])->name('projects
 Route::get('/persons/all', [PersonController::class, 'index'])->name('persons.all');
 Route::get('/processes/all', [ProcessesController::class, 'index'])->name('processes.all');
 Route::get('/venues/all', [VenueController::class, 'index'])->name('venues.all');
+Route::get('/artifacts/all', [ArtifactController::class, 'index'])->name('artifacts.all');
 
 // TODO: Routes for details pages
 // Route::get('/devices/{id}', [InputFormController::class, 'show']);
