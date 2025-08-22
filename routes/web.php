@@ -27,6 +27,7 @@ use App\Http\Controllers\PersonController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\App\Processes\ProcessesController;
 use App\Http\Controllers\App\Processes\ProcessesInputController;
+use App\Http\Controllers\VenueController;
 
 // TODO/Conventions:
 // - Prefix all routes for authenticated users with /app
@@ -67,6 +68,7 @@ Route::get('/institutions/all', [InstitutionController::class, 'index'])->name('
 Route::get('/projects/all', [ProjectController::class, 'index'])->name('projects.all');
 Route::get('/persons/all', [PersonController::class, 'index'])->name('persons.all');
 Route::get('/processes/all', [ProcessesController::class, 'index'])->name('processes.all');
+Route::get('/venues/all', [VenueController::class, 'index'])->name('venues.all');
 
 // TODO: Routes for details pages
 // Route::get('/devices/{id}', [InputFormController::class, 'show']);
@@ -137,6 +139,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/processes/create', [ProcessesInputController::class, 'index'])->name('processes.create');
     Route::post('/processes/create', [ProcessesInputController::class, 'store'])->name('processes.store');
     Route::delete('/processes/{process}', [ProcessesController::class, 'destroy'])->name('processes.destroy');
+
+    // Venue management
+    Route::get('/venues/create', [VenueController::class, 'create'])->name('venues.create');
+    Route::post('/venues/create', [VenueController::class, 'store'])->name('venues.store');
+    Route::delete('/venues/{venue}', [VenueController::class, 'destroy'])->name('venues.destroy');
 
     // Routes for projects
     Route::get('/inputform_project', [ProjectInputController::class, 'index'])->name('inputform_project.index');

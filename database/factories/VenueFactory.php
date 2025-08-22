@@ -22,7 +22,29 @@ class VenueFactory extends Factory
             'name' => fake()->randomElement([
                 'Kölner Dom',
                 'Schloss Bellevue',
-                'Brandenburger Tor'
+                'Brandenburger Tor',
+                'Aachener Dom',
+                'Berliner Fernsehturm',
+                'Frauenkirche Dresden',
+                'Schloss Neuschwanstein',
+                'Reichstagsgebäude',
+                'Münchner Frauenkirche',
+                'Hamburger Michel',
+                'Schloss Sanssouci',
+                'Wartburg',
+                'Speicherstadt Hamburg',
+                'Münster zu Ulm',
+                'Schloss Heidelberg',
+                'Kaiser-Wilhelm-Gedächtniskirche',
+                'Semperoper Dresden',
+                'Holstentor Lübeck',
+                'Paulskirche Frankfurt',
+                'Schloss Charlottenburg',
+                'Marienplatz München',
+                'Alte Oper Frankfurt',
+                'Zwinger Dresden',
+                'Nürnberger Kaiserburg',
+                'Völkerschlachtdenkmal Leipzig'
             ]),
         ];
     }
