@@ -17,4 +17,11 @@ class ArtifactController extends Controller
     {
         return view('artifacts.show', compact('artifact'));
     }
+
+    public function destroy(Artifact $artifact)
+    {
+        $artifact->delete();
+
+        return redirect()->route('artifacts.all')->with('success', 'Objekt wurde gelöscht.');
+    }
 }
