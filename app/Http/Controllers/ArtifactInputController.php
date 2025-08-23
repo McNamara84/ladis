@@ -32,7 +32,7 @@ class ArtifactInputController extends Controller
         try {
             Artifact::create($data);
 
-            return redirect()->route('inputform_artifact.index')
+            return redirect()->route('artifacts.all')
                 ->with('success', 'Objekt wurde gespeichert');
 
         } catch (\Exception $e) {
