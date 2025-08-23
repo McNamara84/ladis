@@ -157,13 +157,10 @@ Route::middleware('auth')->group(function () {
     // Routes for artifacts
     Route::get('/inputform_artifact', [ArtifactInputController::class, 'index'])->name('inputform_artifact.index');
     Route::post('/inputform_artifact', [ArtifactInputController::class, 'store'])->name('inputform_artifact.store');
+    Route::delete('/artifacts/{artifact}', [ArtifactController::class, 'destroy'])->name('artifacts.destroy');
 
     // GET Routes for image upload
     Route::get('/inputform_image', [ImageUploadController::class, 'index'])->name('inputform_image.index');
     // POST route for image upload
     Route::post('/inputform_image', [ImageUploadController::class, 'store'])->name('inputform_image.store');
 });
-
-// Routes for artifacts
-Route::get('/inputform_artifact', [ArtifactInputController::class, 'index'])->name('inputform_artifact.index');
-Route::post('/inputform_artifact', [ArtifactInputController::class, 'store'])->name('inputform_artifact.store');
