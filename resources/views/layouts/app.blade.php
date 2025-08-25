@@ -94,6 +94,8 @@
                                             icon="bi-rocket-takeoff" /></li>
                                     <li><x-link class="dropdown-item" route="institutions.all" text="Institutionen"
                                             icon="bi-bank2" /></li>
+                                    <li><x-link class="dropdown-item" route="artifacts.all" text="Artefakte"
+                                            icon="bi-box" /></li>
                                     <li><x-link class="dropdown-item" route="devices.all" text="Laser"
                                             icon="bi-lightning-charge" /></li>
                                     <li><x-link class="dropdown-item" route="persons.all" text="Personen"
