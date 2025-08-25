@@ -13,6 +13,7 @@ We are developing our own information system as part of the P11 laboratory. A sp
 - **Overview lists:**
   - Devices
   - Institutions
+  - Artifacts
   - Materials
   - Persons
   - Processes
@@ -22,6 +23,7 @@ We are developing our own information system as part of the P11 laboratory. A sp
   - Add new **institutions**
   - Add new **devices**
   - Add new **processes**
+  - Add new **artifacts**
   - Add new **projects**
 - **Filterable institutions list:** View all institutions on a single page and filter by type (clients, contractors, manufacturers).
 - **Admin Tools:** Create new Accounts via UI or enter `php artisan newuser <name> <email> <password>` in server terminal for easy user creation.
@@ -38,6 +40,7 @@ We are developing our own information system as part of the P11 laboratory. A sp
     - Search Result: /adv-search/result
   - Institutions: /institutions/all
   - Devices: /devices/all
+  - Artifacts: /artifacts/all
   - Persons: /persons/all
   - Materials: /materials/all
   - Projects: /projects/all
@@ -49,6 +52,7 @@ We are developing our own information system as part of the P11 laboratory. A sp
   - Log-In Mask: /login
     - Account Overview: /login/home
       - Data Input Form (Eingabemaske): /login/inputform
+        - New Artifact Entry: /inputform_artifact
         - New Artifact Entry [dynamic page]
         - New Device Entry [dynamic page]
         - New Institution Entry [dynamic page]
