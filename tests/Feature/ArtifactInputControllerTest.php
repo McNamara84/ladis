@@ -20,6 +20,26 @@ class ArtifactInputControllerTest extends TestCase
         parent::tearDown();
     }
 
+    public function test_guest_is_redirected_from_input_form(): void
+    {
+        $response = $this->get('/inputform_artifact');
+        $response->assertRedirect('/login');
+    }
+
+    public function test_guest_cannot_store_artifact(): void
+    {
+        $location = Location::factory()->create();
+
+        $response = $this->post('/inputform_artifact', [
+            'artifact_name' => 'Gastobjekt',
+            'artifact_location_id' => $location->id,
+            'artifact_inventory_number' => 'INV-123',
+        ]);
+
+        $response->assertRedirect('/login');
+        $this->assertDatabaseCount('artifacts', 0);
+    }
+
     public function test_it_displays_the_artifact_input_form(): void
     {
         $user = User::factory()->create();
@@ -52,7 +72,7 @@ class ArtifactInputControllerTest extends TestCase
                 'artifact_inventory_number' => $inventory_number,
             ]);
 
-        $response->assertRedirect('/inputform_artifact');
+        $response->assertRedirect(route('artifacts.all'));
         $this->assertDatabaseHas('artifacts', [
             'name' => $name,
             'location_id' => $location_id,
@@ -115,7 +135,7 @@ class ArtifactInputControllerTest extends TestCase
         ]);
 
         $response->assertStatus(302); // 302 = Redirect (form has been sent)
-        $response->assertRedirect('/inputform_artifact');
+        $response->assertRedirect(route('artifacts.all'));
     }
 
     public function test_store_creates_artifact_without_inventory_number(): void
@@ -132,7 +152,7 @@ class ArtifactInputControllerTest extends TestCase
                 'artifact_inventory_number' => null,
             ]);
 
-        $response->assertRedirect('/inputform_artifact');
+        $response->assertRedirect(route('artifacts.all'));
         $this->assertDatabaseHas('artifacts', [
             'name' => 'Bank',
             'location_id' => $location->id,
