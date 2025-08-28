@@ -28,28 +28,13 @@
                                     <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteMaterial{{ $material->id }}">
                                         Löschen
                                     </button>
-
-                                    <div class="modal fade" id="deleteMaterial{{ $material->id }}" tabindex="-1" aria-labelledby="deleteMaterial{{ $material->id }}Label" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="deleteMaterial{{ $material->id }}Label">Material löschen</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schließen"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    Soll das Material <strong>{{ $material->name }}</strong> wirklich gelöscht werden?
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Abbrechen</button>
-                                                    <form method="POST" action="{{ route('materials.destroy', $material->id) }}" class="d-inline">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger">Löschen</button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @component('components.delete-modal', [
+                                        'modalId' => 'deleteMaterial' . $material->id,
+                                        'title' => 'Material löschen',
+                                        'message' => 'Soll das Material <strong>' . e($material->name) . '</strong> wirklich gelöscht werden?',
+                                        'actionRoute' => route('materials.destroy', $material->id),
+                                    ])
+                                    @endcomponent
                                 </td>
                             @endauth
                         </tr>
@@ -63,28 +48,13 @@
                                         <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteMaterial{{ $child->id }}">
                                             Löschen
                                         </button>
-
-                                        <div class="modal fade" id="deleteMaterial{{ $child->id }}" tabindex="-1" aria-labelledby="deleteMaterial{{ $child->id }}Label" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="deleteMaterial{{ $child->id }}Label">Material löschen</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schließen"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        Soll das Material <strong>{{ $child->name }}</strong> wirklich gelöscht werden?
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Abbrechen</button>
-                                                        <form method="POST" action="{{ route('materials.destroy', $child->id) }}" class="d-inline">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger">Löschen</button>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        @component('components.delete-modal', [
+                                            'modalId' => 'deleteMaterial' . $child->id,
+                                            'title' => 'Material löschen',
+                                            'message' => 'Soll das Material <strong>' . e($child->name) . '</strong> wirklich gelöscht werden?',
+                                            'actionRoute' => route('materials.destroy', $child->id),
+                                        ])
+                                        @endcomponent
                                     </td>
                                 @endauth
                             </tr>
