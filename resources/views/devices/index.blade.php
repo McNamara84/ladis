@@ -36,28 +36,13 @@
                                     <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteDevice{{ $device->id }}">
                                         Löschen
                                     </button>
-
-                                    <div class="modal fade" id="deleteDevice{{ $device->id }}" tabindex="-1" aria-labelledby="deleteDevice{{ $device->id }}Label" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="deleteDevice{{ $device->id }}Label">Gerät löschen</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schließen"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    Soll das Gerät <strong>{{ $device->name }}</strong> wirklich gelöscht werden?
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Abbrechen</button>
-                                                    <form method="POST" action="{{ route('devices.destroy', $device->id) }}" class="d-inline">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger">Löschen</button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @component('components.delete-modal', [
+                                        'modalId' => 'deleteDevice' . $device->id,
+                                        'title' => 'Gerät löschen',
+                                        'message' => 'Soll das Gerät <strong>' . e($device->name) . '</strong> wirklich gelöscht werden?',
+                                        'actionRoute' => route('devices.destroy', $device->id),
+                                    ])
+                                    @endcomponent
                                 </td>
                             @endauth
                         </tr>
