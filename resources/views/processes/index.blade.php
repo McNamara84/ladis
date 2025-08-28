@@ -36,33 +36,13 @@
                                         data-bs-target="#deleteProcess{{ $process->id }}">
                                         Löschen
                                     </button>
-
-                                    <div class="modal fade" id="deleteProcess{{ $process->id }}" tabindex="-1"
-                                        aria-labelledby="deleteProcess{{ $process->id }}Label" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="deleteProcess{{ $process->id }}Label">Prozess
-                                                        löschen</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Schließen"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    Soll der Prozess <strong>{{ $process->id }}</strong> wirklich gelöscht werden?
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal">Abbrechen</button>
-                                                    <form method="POST" action="{{ route('processes.destroy', $process->id) }}"
-                                                        class="d-inline">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger">Löschen</button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @component('components.delete-modal', [
+                                        'modalId' => 'deleteProcess' . $process->id,
+                                        'title' => 'Prozess löschen',
+                                        'message' => 'Soll der Prozess <strong>' . $process->id . '</strong> wirklich gelöscht werden?',
+                                        'actionRoute' => route('processes.destroy', $process->id),
+                                    ])
+                                    @endcomponent
                                 </td>
                             @endauth
                         </tr>
