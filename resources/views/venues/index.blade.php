@@ -45,27 +45,13 @@
                                     <button type='button' class='btn btn-danger btn-sm' data-bs-toggle='modal' data-bs-target='#deleteVenue{{ $venue->id }}'>
                                         Löschen
                                     </button>
-                                    <div class='modal fade' id='deleteVenue{{ $venue->id }}' tabindex='-1' aria-labelledby='deleteVenue{{ $venue->id }}Label' aria-hidden='true'>
-                                        <div class='modal-dialog'>
-                                            <div class='modal-content'>
-                                                <div class='modal-header'>
-                                                    <h5 class='modal-title' id='deleteVenue{{ $venue->id }}Label'>Ort löschen</h5>
-                                                    <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Schließen'></button>
-                                                </div>
-                                                <div class='modal-body'>
-                                                    Soll der Ort <strong>{{ $venue->name }}</strong> wirklich gelöscht werden?
-                                                </div>
-                                                <div class='modal-footer'>
-                                                    <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Abbrechen</button>
-                                                    <form method='POST' action='{{ route('venues.destroy', $venue->id) }}' class='d-inline'>
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type='submit' class='btn btn-danger'>Löschen</button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @component('components.delete-modal', [
+                                        'modalId' => 'deleteVenue' . $venue->id,
+                                        'title' => 'Ort löschen',
+                                        'message' => 'Soll der Ort <strong>' . e($venue->name) . '</strong> wirklich gelöscht werden?',
+                                        'actionRoute' => route('venues.destroy', $venue->id),
+                                    ])
+                                    @endcomponent
                                 </td>
                             @endauth
                         </tr>

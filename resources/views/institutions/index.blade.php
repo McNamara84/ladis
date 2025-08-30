@@ -43,27 +43,13 @@
                                     <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteInstitution{{ $institution->id }}">
                                         Löschen
                                     </button>
-                                    <div class="modal fade" id="deleteInstitution{{ $institution->id }}" tabindex="-1" aria-labelledby="deleteInstitution{{ $institution->id }}Label" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="deleteInstitution{{ $institution->id }}Label">Institution löschen</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schliessen"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    Soll die Institution <strong>{{ $institution->name }}</strong> wirklich gelöscht werden?
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Abbrechen</button>
-                                                    <form method="POST" action="{{ route('institutions.destroy', $institution->id) }}" class="d-inline">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger">Löschen</button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @component('components.delete-modal', [
+                                        'modalId' => 'deleteInstitution' . $institution->id,
+                                        'title' => 'Institution löschen',
+                                        'message' => 'Soll die Institution <strong>' . e($institution->name) . '</strong> wirklich gelöscht werden?',
+                                        'actionRoute' => route('institutions.destroy', $institution->id),
+                                    ])
+                                    @endcomponent
                                 </td>
                             @endauth
                         </tr>
