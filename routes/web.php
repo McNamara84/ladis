@@ -29,6 +29,7 @@ use App\Http\Controllers\App\Processes\ProcessesController;
 use App\Http\Controllers\App\Processes\ProcessesInputController;
 use App\Http\Controllers\VenueController;
 use App\Http\Controllers\ArtifactController;
+use App\Http\Controllers\LocationController;
 
 // TODO/Conventions:
 // - Prefix all routes for authenticated users with /app
@@ -146,6 +147,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/venues/create', [VenueController::class, 'create'])->name('venues.create');
     Route::post('/venues/create', [VenueController::class, 'store'])->name('venues.store');
     Route::delete('/venues/{venue}', [VenueController::class, 'destroy'])->name('venues.destroy');
+
+    // Location management
+    Route::get('/locations/all', [LocationController::class, 'index'])->name('locations.all');
+    Route::get('/locations/create', [LocationController::class, 'create'])->name('locations.create');
+    Route::post('/locations/create', [LocationController::class, 'store'])->name('locations.store');
+    Route::delete('/locations/{location}', [LocationController::class, 'destroy'])->name('locations.destroy');
 
     // Routes for projects
     Route::get('/inputform_project', [ProjectInputController::class, 'index'])->name('inputform_project.index');
