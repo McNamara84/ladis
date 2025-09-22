@@ -71,6 +71,10 @@
                                         </option>
                                     @endforeach
                                 </select>
+                                <div class="form-text">
+                                    Kein passender Standort verfügbar?
+                                    <a href="{{ route('locations.create') }}" class="link-primary">Legen Sie einen neuen Standort an.</a>
+                                </div>
                                 @error('artifact_location_id')
                                     <div class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
