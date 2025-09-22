@@ -10,6 +10,7 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Image;
 use Exception;
+use App\Models\Condition;
 
 class ImageUploadControllerTest extends TestCase
 {
@@ -59,6 +60,62 @@ class ImageUploadControllerTest extends TestCase
 
         $this->assertDatabaseHas('images', [
             'project_id' => $project->id,
+            'alt_text' => 'Alt',
+            'year_created' => 2024,
+            'creator' => 'Tester',
+        ]);
+    }
+
+    public function test_store_saves_condition_when_provided(): void
+    {
+        Storage::fake('public');
+        $user = User::factory()->create();
+        $project = Project::factory()->create();
+        $condition = Condition::factory()->create();
+        $file = UploadedFile::fake()->image('condition.jpg');
+
+        $response = $this->actingAs($user)->post('/inputform_image', [
+            'image' => $file,
+            'project_id' => $project->id,
+            'condition_id' => $condition->id,
+            'description' => 'Test',
+            'alt_text' => 'Alt',
+            'year_created' => 2024,
+            'creator' => 'Tester',
+        ]);
+
+        $response->assertRedirect(route('inputform_image.index'));
+
+        $this->assertDatabaseHas('images', [
+            'project_id' => $project->id,
+            'condition_id' => $condition->id,
+            'alt_text' => 'Alt',
+            'year_created' => 2024,
+            'creator' => 'Tester',
+        ]);
+    }
+
+    public function test_store_sets_condition_to_null_when_omitted(): void
+    {
+        Storage::fake('public');
+        $user = User::factory()->create();
+        $project = Project::factory()->create();
+        $file = UploadedFile::fake()->image('nocondition.jpg');
+
+        $response = $this->actingAs($user)->post('/inputform_image', [
+            'image' => $file,
+            'project_id' => $project->id,
+            'description' => 'Test',
+            'alt_text' => 'Alt',
+            'year_created' => 2024,
+            'creator' => 'Tester',
+        ]);
+
+        $response->assertRedirect(route('inputform_image.index'));
+
+        $this->assertDatabaseHas('images', [
+            'project_id' => $project->id,
+            'condition_id' => null,
             'alt_text' => 'Alt',
             'year_created' => 2024,
             'creator' => 'Tester',

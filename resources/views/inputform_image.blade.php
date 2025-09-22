@@ -47,6 +47,28 @@
                                         @enderror
                                     </div>
                                     <div class="form-group mb-3">
+                                        <label for="condition_id" class="form-label">Zustand</label>
+                                        <select
+                                            class="form-select @error('condition_id') is-invalid @enderror"
+                                            id="condition_id"
+                                            name="condition_id"
+                                            aria-describedby="conditionHelp"
+                                        >
+                                            <option value="">Bitte wählen Sie optional einen Zustand aus</option>
+                                            @foreach ($conditions as $condition)
+                                                <option value="{{ $condition->id }}" {{ old('condition_id') == $condition->id ? 'selected' : '' }}>
+                                                    {{ $condition->damage_pattern_id }} – {{ $condition->severity }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        <div id="conditionHelp" class="form-text">
+                                            Wählen Sie bei Bedarf den Zustand, der auf dem Bild dargestellt ist.
+                                        </div>
+                                        @error('condition_id')
+                                            <div class="invalid-feedback">{{ __('Die ausgewählte Zustandsoption ist nicht verfügbar. Bitte wählen Sie einen anderen Wert aus.') }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group mb-3">
                                         <label class="form-label">Beschreibung</label>
                                         <textarea class="form-control @error('description') is-invalid @enderror"
                                             name="description" rows="3">{{ old('description') }}</textarea>
