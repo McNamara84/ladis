@@ -72,6 +72,7 @@ Route::get('/persons/all', [PersonController::class, 'index'])->name('persons.al
 Route::get('/processes/all', [ProcessesController::class, 'index'])->name('processes.all');
 Route::get('/venues/all', [VenueController::class, 'index'])->name('venues.all');
 Route::get('/artifacts/all', [ArtifactController::class, 'index'])->name('artifacts.all');
+Route::get('/locations/all', [LocationController::class, 'index'])->name('locations.all');
 
 // TODO: Routes for details pages
 // Route::get('/devices/{id}', [InputFormController::class, 'show']);
@@ -149,7 +150,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/venues/{venue}', [VenueController::class, 'destroy'])->name('venues.destroy');
 
     // Location management
-    Route::get('/locations/all', [LocationController::class, 'index'])->name('locations.all');
     Route::get('/locations/create', [LocationController::class, 'create'])->name('locations.create');
     Route::post('/locations/create', [LocationController::class, 'store'])->name('locations.store');
     Route::delete('/locations/{location}', [LocationController::class, 'destroy'])->name('locations.destroy');
