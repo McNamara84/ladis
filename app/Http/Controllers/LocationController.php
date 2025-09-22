@@ -20,7 +20,7 @@ class LocationController extends Controller
             ->orderBy('name')
             ->get();
 
-        $pageTitle = 'Standorte verwalten';
+        $pageTitle = auth()->check() ? 'Standorte verwalten' : 'Standorte';
 
         return view('locations.index', [
             'locations' => $locations,

@@ -23,11 +23,27 @@ class LocationManagementTest extends TestCase
         $this->user = User::factory()->create();
     }
 
-    public function test_guest_is_redirected_from_protected_routes(): void
+    public function test_guest_can_view_locations_index_without_management_actions(): void
     {
-        $this->get('/locations/all')->assertRedirect('/login');
+        $venue = Venue::factory()->create(['name' => 'Museum Insel']);
+        $location = Location::factory()->for($venue)->create(['name' => 'Ausstellungshalle']);
+
+        $response = $this->get('/locations/all');
+
+        $response->assertOk();
+        $response->assertSeeText($location->name);
+        $response->assertSeeText($venue->name);
+        $response->assertDontSee('Standort anlegen');
+        $response->assertDontSee('Standort löschen');
+    }
+
+    public function test_guest_is_redirected_from_protected_location_routes(): void
+    {
         $this->get('/locations/create')->assertRedirect('/login');
         $this->post('/locations/create', [])->assertRedirect('/login');
+
+        $location = Location::factory()->create();
+        $this->delete('/locations/' . $location->id)->assertRedirect('/login');
     }
 
     public function test_index_displays_locations_with_related_venues(): void
@@ -45,6 +61,8 @@ class LocationManagementTest extends TestCase
         ]);
         $response->assertSeeText($location->name);
         $response->assertSeeText($venue->name);
+        $response->assertSee('Standort anlegen');
+        $response->assertSee('Standort löschen');
     }
 
     public function test_create_route_displays_form_with_venues(): void
