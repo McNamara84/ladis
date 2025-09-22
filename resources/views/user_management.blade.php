@@ -28,8 +28,18 @@
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->created_at->format('d.m.Y H:i') }}</td>
                         <td>
-                            @if ($user->id !== 1)
-                                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteUser{{ $user->id }}">
+                            @if ((int) $user->id === 1)
+                                <span class="badge bg-secondary" aria-label="Der Admin-Account kann nicht gelöscht werden.">
+                                    Geschützt
+                                </span>
+                            @else
+                                <button
+                                    type="button"
+                                    class="btn btn-danger btn-sm"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#deleteUser{{ $user->id }}"
+                                    aria-label="Account {{ $user->name }} löschen"
+                                >
                                     Löschen
                                 </button>
                                 @component('components.delete-modal', [

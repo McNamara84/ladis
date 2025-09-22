@@ -56,14 +56,16 @@ class UserManagementController extends Controller
 
     public function destroy(User $user)
     {
-        if ($user->id === 1) {
-            return redirect()->route('user-management.index')->with('error', 'Der Admin-Account kann nicht gel\u00f6scht werden.');
+        if ((int) $user->id === 1) {
+            return redirect()
+                ->route('user-management.index')
+                ->with('error', 'Der Admin-Account kann nicht gelöscht werden.');
         }
 
         Device::where('last_edit_by', $user->id)->update(['last_edit_by' => 1]);
 
         $user->delete();
 
-        return redirect()->route('user-management.index')->with('success', 'Benutzer wurde gel\u00f6scht.');
+        return redirect()->route('user-management.index')->with('success', 'Benutzer wurde gelöscht.');
     }
 }
