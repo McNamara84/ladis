@@ -87,7 +87,20 @@ class UserManagementControllerTest extends TestCase
         $response = $this->actingAs(User::factory()->create())->delete(route('user-management.destroy', $admin));
 
         $response->assertRedirect(route('user-management.index'));
-        $response->assertSessionHas('error');
+        $response->assertSessionHas('error', 'Der Admin-Account kann nicht gelöscht werden.');
+        $this->assertModelExists($admin);
+    }
+
+    public function test_admin_account_is_marked_as_protected_in_index(): void
+    {
+        $admin = User::factory()->create(['id' => 1, 'name' => 'Admin']);
+
+        $response = $this->actingAs(User::factory()->create())->get('/user-management');
+
+        $response->assertStatus(200);
+        $response->assertSee('Geschützt');
+        $response->assertSee('aria-label="Der Admin-Account kann nicht gelöscht werden."', false);
+        $response->assertDontSee('data-bs-target="#deleteUser1"', false);
         $this->assertModelExists($admin);
     }
 
