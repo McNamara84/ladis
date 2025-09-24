@@ -40,9 +40,15 @@ class ImageUploadController extends Controller
             'creator' => 'required|string|max:50',
         ]);
         
-        // Currently hard-coded to null.
-        // TODO: Add check to validate condition_id across all relevant foreign keys later.
-        $validatedData['condition_id'] = null;
+        if (!empty($validatedData['condition_id'])) {
+            $conditionExists = Condition::whereKey($validatedData['condition_id'])->exists();
+
+            if (!$conditionExists) {
+                $validatedData['condition_id'] = null;
+            }
+        } else {
+            $validatedData['condition_id'] = null;
+        }
 
         // Catching errors during the database operation
         try {
