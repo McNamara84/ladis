@@ -108,6 +108,10 @@
                                             icon="bi-geo-alt" /></li>
                                     <li><x-link class="dropdown-item" route="locations.all" text="Standorte"
                                             icon="bi-pin-map" /></li>
+                                    <li><x-link class="dropdown-item" route="sample_surfaces.all" text="Probenflächen"
+                                            icon="bi-collection" /></li>
+                                    <li><x-link class="dropdown-item" route="partial_surfaces.all" text="Teilflächen"
+                                            icon="bi-grid" /></li>
                                     @auth
                                         <li>
                                             <x-link class="dropdown-item" route="inputform_image.index" text="Image-Upload"
@@ -261,6 +265,8 @@
             </div>
         </footer>
     </div>
+
+    @stack('scripts')
 
     @if (app()->environment('testing'))
         <!-- Bootstrap JS from CDN (for Tests) -->
