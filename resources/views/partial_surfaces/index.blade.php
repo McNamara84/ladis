@@ -11,7 +11,7 @@
             </div>
             @can('create', \App\Models\PartialSurface::class)
                 <a class="btn btn-primary align-self-start align-self-md-center" href="{{ route('partial_surfaces.create') }}">
-                    <x-icon icon="bi-plus-lg" class="me-2" /> Neue Teilfläche anlegen
+                    <x-icon icon="bi-database--add" class="me-2" /> Neue Teilfläche anlegen
                 </a>
             @endcan
         </div>
