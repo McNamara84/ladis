@@ -36,7 +36,11 @@
                     @forelse($institutions as $institution)
                         <tr>
                             <td>{{ $institution->id }}</td>
-                            <td>{{ $institution->name }}</td>
+                            <td>
+                                <a class="link-underline link-underline-opacity-0" href="{{ route('institutions.show', $institution) }}">
+                                    {{ $institution->name }}
+                                </a>
+                            </td>
                             <td>{!! nl2br(e($institution->contact_information)) !!}</td>
                             @auth
                                 <td>
