@@ -39,6 +39,23 @@ class PartialSurfaceController extends Controller
         ]);
     }
 
+    public function show(PartialSurface $partialSurface): View
+    {
+        $partialSurface->load([
+            'sampleSurface.artifact.location.venue.city.federalState',
+            'foundationMaterial.parent',
+            'coatingMaterial.parent',
+            'condition.damagePattern',
+            'condition.images',
+            'result.damagePattern',
+            'result.images',
+            'process.device.institution',
+            'process.configuration.lens',
+        ]);
+
+        return view('partial_surfaces.show', compact('partialSurface'));
+    }
+
     public function create(): View
     {
         $sampleSurfaces = SampleSurface::orderBy('name')->get(['id', 'name']);

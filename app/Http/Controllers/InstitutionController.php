@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 use App\Models\Institution;
 
 class InstitutionController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request): View
     {
         $type = $request->get('type');
 
@@ -42,6 +43,27 @@ class InstitutionController extends Controller
         $pageTitle = $mapping[$type]['title'];
 
         return view('institutions.index', compact('institutions', 'pageTitle', 'type'));
+    }
+
+    public function show(Institution $institution): View
+    {
+        $institution->load([
+            'devices' => static function ($query) {
+                $query->with([
+                    'institution',
+                    'lenses',
+                    'processes.partialSurface.sampleSurface.artifact.location.venue.city.federalState',
+                ])->orderBy('name');
+            },
+            'persons' => static function ($query) {
+                $query->with([
+                    'institution',
+                    'projects.venue.city.federalState',
+                ])->orderBy('name');
+            },
+        ]);
+
+        return view('institutions.show', compact('institution'));
     }
 
     public function destroy(Request $request, Institution $institution): RedirectResponse

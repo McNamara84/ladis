@@ -4,10 +4,11 @@ namespace App\Http\Controllers\App\Processes;
 
 use App\Http\Controllers\Controller;
 use App\Models\Process;
+use Illuminate\View\View;
 
 class ProcessesController extends Controller
 {
-    public function index()
+    public function index(): View
     {
         $processes = Process::with([
             'device',
@@ -17,6 +18,23 @@ class ProcessesController extends Controller
         ])->get();
 
         return view('processes.index', compact('processes'));
+    }
+
+    public function show(Process $process): View
+    {
+        $process->load([
+            'device.institution',
+            'configuration.lens',
+            'partialSurface.sampleSurface.artifact.location.venue.city.federalState',
+            'partialSurface.foundationMaterial',
+            'partialSurface.coatingMaterial',
+            'partialSurface.condition.damagePattern',
+            'partialSurface.condition.images',
+            'partialSurface.result.damagePattern',
+            'partialSurface.result.images',
+        ]);
+
+        return view('processes.show', compact('process'));
     }
 
     public function destroy(Process $process)
