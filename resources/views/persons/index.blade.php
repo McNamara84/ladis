@@ -21,7 +21,11 @@
                     @forelse($persons as $person)
                         <tr>
                             <td>{{ $person->id }}</td>
-                            <td>{{ $person->name }}</td>
+                            <td>
+                                <a class="link-underline link-underline-opacity-0" href="{{ route('persons.show', $person) }}">
+                                    {{ $person->name }}
+                                </a>
+                            </td>
                             <td>{{ $person->institution->name ?? '–' }}</td>
                             @auth
                                 <td>
