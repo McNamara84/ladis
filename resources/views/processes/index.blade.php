@@ -23,7 +23,13 @@
                 <tbody>
                     @forelse($processes as $process)
                         <tr>
-                            <td>{{ $process->id }}</td>
+                            <td>
+                                @auth
+                                    <a class="link-underline link-underline-opacity-0" href="{{ route('processes.show', $process) }}">#{{ $process->id }}</a>
+                                @else
+                                    #{{ $process->id }}
+                                @endauth
+                            </td>
                             <td>{{ $process->partialSurface->foundationMaterial->name }}</td>
                             <td>{{ $process->partialSurface?->coatingMaterial?->name ?? '' }}</td>
                             <td>{{ $process->partialSurface->condition->damagePattern->name }}</td>
