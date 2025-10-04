@@ -50,7 +50,11 @@
                 <tbody>
                     @forelse ($locations as $location)
                         <tr>
-                            <th scope="row">{{ $location->name }}</th>
+                            <th scope="row">
+                                <a class="link-underline link-underline-opacity-0" href="{{ route('locations.show', $location) }}">
+                                    {{ $location->name }}
+                                </a>
+                            </th>
                             <td>{{ $location->venue?->name ?? '–' }}</td>
                             <td>{{ $location->venue?->city?->name ?? '–' }}</td>
                             @auth
