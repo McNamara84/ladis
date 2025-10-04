@@ -30,6 +30,8 @@ use App\Http\Controllers\App\Processes\ProcessesInputController;
 use App\Http\Controllers\VenueController;
 use App\Http\Controllers\ArtifactController;
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\SampleSurfaceController;
+use App\Http\Controllers\PartialSurfaceController;
 
 // TODO/Conventions:
 // - Prefix all routes for authenticated users with /app
@@ -73,6 +75,8 @@ Route::get('/processes/all', [ProcessesController::class, 'index'])->name('proce
 Route::get('/venues/all', [VenueController::class, 'index'])->name('venues.all');
 Route::get('/artifacts/all', [ArtifactController::class, 'index'])->name('artifacts.all');
 Route::get('/locations/all', [LocationController::class, 'index'])->name('locations.all');
+Route::get('/samplesurfaces/all', [SampleSurfaceController::class, 'index'])->name('sample_surfaces.all');
+Route::get('/partialsurfaces/all', [PartialSurfaceController::class, 'index'])->name('partial_surfaces.all');
 
 // TODO: Routes for details pages
 // Route::get('/devices/{id}', [InputFormController::class, 'show']);
@@ -138,6 +142,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/institutions/create', [InputFormInstitutionController::class, 'index'])->name('inputform_institution.index');
     Route::post('/institutions/create', [InputFormInstitutionController::class, 'store'])->name('inputform_institution.store');
     Route::delete('/institutions/{institution}', [InstitutionController::class, 'destroy'])->name('institutions.destroy');
+
+    // Sample surface management
+    Route::get('/samplesurfaces/create', [SampleSurfaceController::class, 'create'])->name('sample_surfaces.create');
+    Route::post('/samplesurfaces', [SampleSurfaceController::class, 'store'])->name('sample_surfaces.store');
+    Route::delete('/samplesurfaces/{sampleSurface}', [SampleSurfaceController::class, 'destroy'])->name('sample_surfaces.destroy');
+
+    // Partial surface management
+    Route::get('/partialsurfaces/create', [PartialSurfaceController::class, 'create'])->name('partial_surfaces.create');
+    Route::post('/partialsurfaces', [PartialSurfaceController::class, 'store'])->name('partial_surfaces.store');
+    Route::delete('/partialsurfaces/{partialSurface}', [PartialSurfaceController::class, 'destroy'])->name('partial_surfaces.destroy');
 
     // Process management
     Route::get('/processes/create', [ProcessesInputController::class, 'index'])->name('processes.create');
