@@ -71,6 +71,6 @@ class Artifact extends Model
      */
     public function sampleSurfaces(): HasMany
     {
-        return $this->hasMany(SampleSurface::class);
+        return $this->hasMany(SampleSurface::class, 'artifacts_id');
     }
 }

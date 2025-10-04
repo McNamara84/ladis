@@ -22,7 +22,11 @@
                     @forelse($artifacts as $artifact)
                         <tr>
                             <td>{{ $artifact->id }}</td>
-                            <td>{{ $artifact->name }}</td>
+                            <td>
+                                <a class="link-underline link-underline-opacity-0" href="{{ route('artifacts.show', $artifact) }}">
+                                    {{ $artifact->name }}
+                                </a>
+                            </td>
                             <td>{{ $artifact->location->name ?? '–' }}</td>
                             <td>{{ $artifact->inventory_number ?? '–' }}</td>
                             @auth
