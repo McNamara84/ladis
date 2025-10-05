@@ -37,7 +37,11 @@
                     @forelse($venues as $venue)
                         <tr>
                             <td>{{ $venue->id }}</td>
-                            <td>{{ $venue->name }}</td>
+                            <td>
+                                <a class="link-underline link-underline-opacity-0" href="{{ route('venues.show', $venue) }}">
+                                    {{ $venue->name }}
+                                </a>
+                            </td>
                             <td>{{ $venue->city->name ?? '–' }}</td>
                             <td>{{ $venue->city->federalState->name ?? '–' }}</td>
                             @auth
