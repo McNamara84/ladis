@@ -67,19 +67,50 @@ Route::get('/adv-search/result', [SearchController::class, 'search'])->name('sea
 
 // Routes for lists
 Route::get('/devices/all', [DeviceController::class, 'index'])->name('devices.all');
+Route::get('/devices/{device}', [DeviceController::class, 'show'])
+    ->whereNumber('device')
+    ->name('devices.show');
 Route::get('/materials/all', [MaterialController::class, 'index'])->name('materials.all');
+Route::get('/materials/{material}', [MaterialController::class, 'show'])
+    ->whereNumber('material')
+    ->name('materials.show');
 Route::get('/institutions/all', [InstitutionController::class, 'index'])->name('institutions.all');
+Route::get('/institutions/{institution}', [InstitutionController::class, 'show'])
+    ->whereNumber('institution')
+    ->name('institutions.show');
 Route::get('/projects/all', [ProjectController::class, 'index'])->name('projects.all');
+Route::get('/projects/{project}', [ProjectController::class, 'show'])
+    ->whereNumber('project')
+    ->name('projects.show');
 Route::get('/persons/all', [PersonController::class, 'index'])->name('persons.all');
+Route::get('/persons/{person}', [PersonController::class, 'show'])
+    ->whereNumber('person')
+    ->name('persons.show');
 Route::get('/processes/all', [ProcessesController::class, 'index'])->name('processes.all');
+Route::get('/processes/{process}', [ProcessesController::class, 'show'])
+    ->middleware('auth')
+    ->whereNumber('process')
+    ->name('processes.show');
 Route::get('/venues/all', [VenueController::class, 'index'])->name('venues.all');
+Route::get('/venues/{venue}', [VenueController::class, 'show'])
+    ->whereNumber('venue')
+    ->name('venues.show');
 Route::get('/artifacts/all', [ArtifactController::class, 'index'])->name('artifacts.all');
+Route::get('/artifacts/{artifact}', [ArtifactController::class, 'show'])
+    ->whereNumber('artifact')
+    ->name('artifacts.show');
 Route::get('/locations/all', [LocationController::class, 'index'])->name('locations.all');
+Route::get('/locations/{location}', [LocationController::class, 'show'])
+    ->whereNumber('location')
+    ->name('locations.show');
 Route::get('/samplesurfaces/all', [SampleSurfaceController::class, 'index'])->name('sample_surfaces.all');
+Route::get('/samplesurfaces/{sampleSurface}', [SampleSurfaceController::class, 'show'])
+    ->whereNumber('sampleSurface')
+    ->name('sample_surfaces.show');
 Route::get('/partialsurfaces/all', [PartialSurfaceController::class, 'index'])->name('partial_surfaces.all');
-
-// TODO: Routes for details pages
-// Route::get('/devices/{id}', [InputFormController::class, 'show']);
+Route::get('/partialsurfaces/{partialSurface}', [PartialSurfaceController::class, 'show'])
+    ->whereNumber('partialSurface')
+    ->name('partial_surfaces.show');
 
 // Privacy policy
 Route::get('/datenschutz', [PrivacyPolicyController::class, 'index'])->name('datenschutz');
