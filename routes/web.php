@@ -88,7 +88,6 @@ Route::get('/persons/{person}', [PersonController::class, 'show'])
     ->name('persons.show');
 Route::get('/processes/all', [ProcessesController::class, 'index'])->name('processes.all');
 Route::get('/processes/{process}', [ProcessesController::class, 'show'])
-    ->middleware('auth')
     ->whereNumber('process')
     ->name('processes.show');
 Route::get('/venues/all', [VenueController::class, 'index'])->name('venues.all');

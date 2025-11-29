@@ -123,7 +123,7 @@ class ResourceShowPagesTest extends TestCase
         $this->get('/persons/999')->assertNotFound();
     }
 
-    public function test_process_show_requires_authentication(): void
+    public function test_process_show_page_is_accessible(): void
     {
         $process = Process::factory()->create();
         Image::factory()->create([
@@ -131,23 +131,18 @@ class ResourceShowPagesTest extends TestCase
             'project_id' => Project::factory()->create()->id,
         ]);
 
-        $this->get(route('processes.show', $process))
-            ->assertRedirect('/login');
-
-        $user = User::factory()->create();
-        $this->actingAs($user)
-            ->get(route('processes.all'))
+        $this->get(route('processes.all'))
+            ->assertOk()
             ->assertSee(route('processes.show', $process), false);
-        $this->actingAs($user)
-            ->get(route('processes.show', $process))
+
+        $this->get(route('processes.show', $process))
             ->assertOk()
             ->assertSeeText('Prozess #' . $process->id);
     }
 
     public function test_process_show_page_returns_not_found_for_missing_process(): void
     {
-        $user = User::factory()->create();
-        $this->actingAs($user)->get('/processes/999')->assertNotFound();
+        $this->get('/processes/999')->assertNotFound();
     }
 
     public function test_venue_show_page_is_accessible(): void

@@ -24,11 +24,7 @@
                     @forelse($processes as $process)
                         <tr>
                             <td>
-                                @auth
-                                    <a class="link-underline link-underline-opacity-0" href="{{ route('processes.show', $process) }}">#{{ $process->id }}</a>
-                                @else
-                                    #{{ $process->id }}
-                                @endauth
+                                <a class="link-underline link-underline-opacity-0" href="{{ route('processes.show', $process) }}">#{{ $process->id }}</a>
                             </td>
                             <td>{{ $process->partialSurface->foundationMaterial->name }}</td>
                             <td>{{ $process->partialSurface?->coatingMaterial?->name ?? '' }}</td>
