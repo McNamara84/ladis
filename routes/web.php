@@ -32,6 +32,8 @@ use App\Http\Controllers\ArtifactController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\SampleSurfaceController;
 use App\Http\Controllers\PartialSurfaceController;
+use App\Http\Controllers\DamagePatternController;
+use App\Http\Controllers\ConditionController;
 
 // TODO/Conventions:
 // - Prefix all routes for authenticated users with /app
@@ -110,6 +112,13 @@ Route::get('/partialsurfaces/all', [PartialSurfaceController::class, 'index'])->
 Route::get('/partialsurfaces/{partialSurface}', [PartialSurfaceController::class, 'show'])
     ->whereNumber('partialSurface')
     ->name('partial_surfaces.show');
+Route::get('/damagepatterns/all', [DamagePatternController::class, 'index'])->name('damage_patterns.all');
+Route::get('/damagepatterns/{damagePattern}', [DamagePatternController::class, 'show'])
+    ->whereNumber('damagePattern')
+    ->name('damage_patterns.show');
+Route::get('/conditions/{condition}', [ConditionController::class, 'show'])
+    ->whereNumber('condition')
+    ->name('conditions.show');
 
 // Privacy policy
 Route::get('/datenschutz', [PrivacyPolicyController::class, 'index'])->name('datenschutz');

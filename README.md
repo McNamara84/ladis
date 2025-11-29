@@ -68,6 +68,9 @@ We are developing our own information system as part of the P11 laboratory. A sp
     - Partial Surface Details: /partialsurfaces/{id}
   - Processes: /processes/all
     - Process Details: /processes/{id}
+  - Damage Patterns: /damagepatterns/all
+    - Damage Pattern Details: /damagepatterns/{id}
+  - Condition Details: /conditions/{id}
   - Contact Us: /contact
   - Database Statistics: /statistics
   - Legal (Rechtliches / Impressum): /impressum

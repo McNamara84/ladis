@@ -7,6 +7,18 @@
         <nav class="mb-3" aria-label="Brotkrumen">
             <ol class="breadcrumb mb-0">
                 <li class="breadcrumb-item"><a href="{{ route('materials.all') }}">Materialien</a></li>
+                @php
+                    // Build hierarchical breadcrumb path for parent materials
+                    $ancestors = collect();
+                    $current = $material->parent;
+                    while ($current) {
+                        $ancestors->prepend($current);
+                        $current = $current->parent;
+                    }
+                @endphp
+                @foreach ($ancestors as $ancestor)
+                    <li class="breadcrumb-item"><a href="{{ route('materials.show', $ancestor) }}">{{ $ancestor->name }}</a></li>
+                @endforeach
                 <li class="breadcrumb-item active" aria-current="page">{{ $material->name }}</li>
             </ol>
         </nav>

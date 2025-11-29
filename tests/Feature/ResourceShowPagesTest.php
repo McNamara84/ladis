@@ -15,6 +15,8 @@ use App\Models\Project;
 use App\Models\SampleSurface;
 use App\Models\User;
 use App\Models\Venue;
+use App\Models\DamagePattern;
+use App\Models\Condition;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -239,5 +241,44 @@ class ResourceShowPagesTest extends TestCase
     public function test_partial_surface_show_page_returns_not_found_for_missing_partial_surface(): void
     {
         $this->get('/partialsurfaces/999')->assertNotFound();
+    }
+
+    public function test_damage_pattern_index_page_is_accessible(): void
+    {
+        $damagePattern = DamagePattern::factory()->create();
+
+        $this->get(route('damage_patterns.all'))
+            ->assertOk()
+            ->assertSee(route('damage_patterns.show', $damagePattern), false)
+            ->assertSeeText($damagePattern->name);
+    }
+
+    public function test_damage_pattern_show_page_is_accessible(): void
+    {
+        $damagePattern = DamagePattern::factory()->create();
+        Condition::factory()->create(['damage_pattern_id' => $damagePattern->id]);
+
+        $this->get(route('damage_patterns.show', $damagePattern))
+            ->assertOk()
+            ->assertSeeText($damagePattern->name);
+    }
+
+    public function test_damage_pattern_show_page_returns_not_found_for_missing_damage_pattern(): void
+    {
+        $this->get('/damagepatterns/999')->assertNotFound();
+    }
+
+    public function test_condition_show_page_is_accessible(): void
+    {
+        $condition = Condition::factory()->create();
+
+        $this->get(route('conditions.show', $condition))
+            ->assertOk()
+            ->assertSeeText('Zustand');
+    }
+
+    public function test_condition_show_page_returns_not_found_for_missing_condition(): void
+    {
+        $this->get('/conditions/999')->assertNotFound();
     }
 }
