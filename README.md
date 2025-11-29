@@ -47,13 +47,27 @@ We are developing our own information system as part of the P11 laboratory. A sp
   - Advanced Search: /adv-search
     - Search Result: /adv-search/result
   - Institutions: /institutions/all
+    - Institution Details: /institutions/{id}
   - Devices: /devices/all
+    - Device Details: /devices/{id}
   - Artifacts: /artifacts/all
+    - Artifact Details: /artifacts/{id}
   - Persons: /persons/all
+    - Person Details: /persons/{id}
   - Materials: /materials/all
+    - Material Details: /materials/{id}
   - Projects: /projects/all
+    - Project Details: /projects/{id}
   - Venues: /venues/all
+    - Venue Details: /venues/{id}
+  - Locations: /locations/all
+    - Location Details: /locations/{id}
+  - Sample Surfaces: /samplesurfaces/all
+    - Sample Surface Details: /samplesurfaces/{id}
+  - Partial Surfaces: /partialsurfaces/all
+    - Partial Surface Details: /partialsurfaces/{id}
   - Processes: /processes/all
+    - Process Details: /processes/{id} [requires authentication]
   - Contact Us: /contact
   - Database Statistics: /statistics
   - Legal (Rechtliches / Impressum): /impressum
