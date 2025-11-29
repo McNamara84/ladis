@@ -236,16 +236,13 @@ class ResourceShowPagesTest extends TestCase
             ->assertOk()
             ->assertSee(route('partial_surfaces.show', $partialSurface), false);
 
-        $user = User::factory()->create();
-        $this->actingAs($user)
-            ->get(route('partial_surfaces.show', $partialSurface))
+        $this->get(route('partial_surfaces.show', $partialSurface))
             ->assertOk()
             ->assertSeeText('Teilfläche');
     }
 
     public function test_partial_surface_show_page_returns_not_found_for_missing_partial_surface(): void
     {
-        $user = User::factory()->create();
-        $this->actingAs($user)->get('/partialsurfaces/999')->assertNotFound();
+        $this->get('/partialsurfaces/999')->assertNotFound();
     }
 }
