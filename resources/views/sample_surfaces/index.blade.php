@@ -43,7 +43,11 @@
                 <tbody>
                     @forelse ($sampleSurfaces as $surface)
                         <tr>
-                            <th scope="row" class="fw-semibold">{{ $surface->name }}</th>
+                            <th scope="row" class="fw-semibold">
+                                <a class="link-underline link-underline-opacity-0" href="{{ route('sample_surfaces.show', $surface) }}">
+                                    {{ $surface->name }}
+                                </a>
+                            </th>
                             <td>{{ $surface->artifact?->name ?? '–' }}</td>
                             <td class="text-center">{{ $surface->partial_surfaces_count }}</td>
                             <td>

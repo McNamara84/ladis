@@ -25,7 +25,11 @@
                     @forelse($devices as $device)
                         <tr>
                             <td>{{ $device->id }}</td>
-                            <td>{{ $device->name }}</td>
+                            <td>
+                                <a class="link-underline link-underline-opacity-0" href="{{ route('devices.show', $device) }}">
+                                    {{ $device->name }}
+                                </a>
+                            </td>
                             <td>{{ $device->institution->name ?? '–' }}</td>
                             <td>{{ $device->year ?? '–' }}</td>
                             <td>{{ $device->build_type }}</td>

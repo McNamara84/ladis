@@ -30,6 +30,25 @@ class SampleSurfaceController extends Controller
         ]);
     }
 
+    public function show(SampleSurface $sampleSurface): View
+    {
+        $sampleSurface->load([
+            'artifact.location.venue.city.federalState',
+            'partialSurfaces' => static function ($query) {
+                $query->with([
+                    'foundationMaterial',
+                    'coatingMaterial',
+                    'condition.damagePattern',
+                    'result.damagePattern',
+                    'process.device',
+                    'process.configuration.lens',
+                ])->orderBy('identifier')->orderBy('id');
+            },
+        ]);
+
+        return view('sample_surfaces.show', compact('sampleSurface'));
+    }
+
     public function create(): View
     {
         $artifacts = Artifact::orderBy('name')->get(['id', 'name']);

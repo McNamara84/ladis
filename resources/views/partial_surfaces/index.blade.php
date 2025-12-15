@@ -46,10 +46,31 @@
                 </thead>
                 <tbody>
                     @forelse ($partialSurfaces as $partialSurface)
+                        @php($identifier = $partialSurface->identifier ?? 'Teilfläche #' . $partialSurface->id)
                         <tr>
-                            <th scope="row" class="fw-semibold">{{ $partialSurface->identifier ?? '–' }}</th>
-                            <td>{{ $partialSurface->sampleSurface?->name ?? '–' }}</td>
-                            <td>{{ $partialSurface->sampleSurface?->artifact?->name ?? '–' }}</td>
+                            <th scope="row" class="fw-semibold">
+                                <a class="link-underline link-underline-opacity-0" href="{{ route('partial_surfaces.show', $partialSurface) }}">
+                                    {{ $identifier }}
+                                </a>
+                            </th>
+                            <td>
+                                @if ($partialSurface->sampleSurface)
+                                    <a class="link-underline link-underline-opacity-0" href="{{ route('sample_surfaces.show', $partialSurface->sampleSurface) }}">
+                                        {{ $partialSurface->sampleSurface->name }}
+                                    </a>
+                                @else
+                                    <span class="text-muted">–</span>
+                                @endif
+                            </td>
+                            <td>
+                                @if ($partialSurface->sampleSurface?->artifact)
+                                    <a class="link-underline link-underline-opacity-0" href="{{ route('artifacts.show', $partialSurface->sampleSurface->artifact) }}">
+                                        {{ $partialSurface->sampleSurface->artifact->name }}
+                                    </a>
+                                @else
+                                    <span class="text-muted">–</span>
+                                @endif
+                            </td>
                             <td>{{ $partialSurface->foundationMaterial?->name ?? '–' }}</td>
                             <td>{{ $partialSurface->coatingMaterial?->name ?? '–' }}</td>
                             <td>{{ $partialSurface->condition?->description ? \Illuminate\Support\Str::limit($partialSurface->condition->description, 60) : '–' }}</td>

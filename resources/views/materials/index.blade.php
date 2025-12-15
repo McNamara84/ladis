@@ -21,7 +21,11 @@
                     @forelse($materials as $material)
                         <tr class="table-primary fw-bold">
                             <td>{{ $material->id }}</td>
-                            <td>{{ $material->name }}</td>
+                            <td>
+                                <a class="link-underline link-underline-opacity-0" href="{{ route('materials.show', $material) }}">
+                                    {{ $material->name }}
+                                </a>
+                            </td>
                             <td>–</td>
                             @auth
                                 <td>
@@ -41,8 +45,17 @@
                         @foreach($material->children->sortBy('name') as $child)
                             <tr>
                                 <td>{{ $child->id }}</td>
-                                <td class="ps-4">&mdash; {{ $child->name }}</td>
-                                <td>{{ $material->name }}</td>
+                                <td class="ps-4">
+                                    &mdash;
+                                    <a class="link-underline link-underline-opacity-0" href="{{ route('materials.show', $child) }}">
+                                        {{ $child->name }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a class="link-underline link-underline-opacity-0" href="{{ route('materials.show', $material) }}">
+                                        {{ $material->name }}
+                                    </a>
+                                </td>
                                 @auth
                                     <td>
                                         <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteMaterial{{ $child->id }}">
