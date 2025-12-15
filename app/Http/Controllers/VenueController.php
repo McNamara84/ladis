@@ -8,10 +8,11 @@ use App\Models\Venue;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\View\View;
 
 class VenueController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request): View
     {
         $stateId = $request->get('federal_state');
 
@@ -38,6 +39,26 @@ class VenueController extends Controller
             'federalStateId' => $stateId,
             'pageTitle' => $pageTitle,
         ]);
+    }
+
+    public function show(Venue $venue): View
+    {
+        $venue->load([
+            'city.federalState',
+            'locations' => static function ($query) {
+                $query->with([
+                    'artifacts.sampleSurfaces.partialSurfaces',
+                ])->orderBy('name');
+            },
+            'projects' => static function ($query) {
+                $query->with([
+                    'person.institution',
+                    'images',
+                ])->orderBy('started_at');
+            },
+        ]);
+
+        return view('venues.show', compact('venue'));
     }
 
     public function create()

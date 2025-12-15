@@ -24,7 +24,11 @@
                     @forelse($projects as $project)
                         <tr>
                             <td>{{ $project->id }}</td>
-                            <td>{{ $project->name }}</td>
+                            <td>
+                                <a class="link-underline link-underline-opacity-0" href="{{ route('projects.show', $project) }}">
+                                    {{ $project->name }}
+                                </a>
+                            </td>
                             <td>{{ $project->person->name ?? '–' }}</td>
                             <td>{{ $project->venue->name ?? '–' }}</td>
                             <td>{{ $project->started_at?->format('Y-m-d') ?? '–' }}</td>

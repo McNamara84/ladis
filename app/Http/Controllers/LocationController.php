@@ -28,6 +28,22 @@ class LocationController extends Controller
         ]);
     }
 
+    public function show(Location $location): View
+    {
+        $location->load([
+            'venue.city.federalState',
+            'artifacts' => static function ($query) {
+                $query->with([
+                    'sampleSurfaces.partialSurfaces.foundationMaterial',
+                    'sampleSurfaces.partialSurfaces.coatingMaterial',
+                    'sampleSurfaces.partialSurfaces.process.device',
+                ])->orderBy('name');
+            },
+        ]);
+
+        return view('locations.show', compact('location'));
+    }
+
     /**
      * Show the form for creating a new location.
      */
