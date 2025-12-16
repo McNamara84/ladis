@@ -2,6 +2,7 @@
     "$schema": "https://getcomposer.org/schema.json",
     "name": "mcnamara84/ladis",
     "type": "project",
+    "license": "GPL-3.0-or-later",
     "description": "Specialized laser database information system about laser cleaning devices, materials and projects for the Restoration department.",
     "keywords": [
         "laravel",
@@ -21,8 +22,8 @@
         },
         {
             "name": "Holger Ehrmann",
-            "email": "holgerehrmann@gmail.com",
-            "homepage": "https://fh-potsdam.de",
+            "email": "ehrmann@gfz.de",
+            "homepage": "https://www.gfz.de/staff/holger.ehrmann/sec51",
             "role": "Maintainer"
         },
         {
@@ -137,6 +138,9 @@
         "allow-plugins": {
             "pestphp/pest-plugin": true,
             "php-http/discovery": true
+        },
+        "platform": {
+            "php": "8.2.0"
         }
     },
     "minimum-stability": "stable",
