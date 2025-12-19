@@ -19,36 +19,33 @@
                             @csrf
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="form-group mb-3">
-                                        <label for="name" class="form-label">Name der Institution: <strong>*</strong></label>
-                                        <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                            id="name" name="name" value="{{ old('name') }}" required>
-                                        <div class="form-text">
-                                            Bitte geben Sie eine eindeutige Bezeichnung der Institution ein.
-                                        </div>
-                                    </div>
+                                    <x-form.input
+                                        name="name"
+                                        label="Name der Institution"
+                                        hint="Bitte geben Sie eine eindeutige Bezeichnung der Institution ein."
+                                        :required="true"
+                                    />
 
-                                    <div class="form-group mb-3">
-                                        <label for="type" class="form-label">Typ: <strong>*</strong></label>
-                                        <select class="form-control @error('type') is-invalid @enderror" id="type" name="type" required>
-                                            <option value="">Bitte auswählen</option>
-                                            <option value="{{ Institution::TYPE_CLIENT}}" {{ old('type') == Institution::TYPE_CLIENT ? 'selected' : '' }}>Auftraggeber</option>
-                                            <option value="{{ Institution::TYPE_CONTRACTOR}}" {{ old('type') == Institution::TYPE_CONTRACTOR ? 'selected' : '' }}>Auftragnehmer</option>
-                                            <option value="{{ Institution::TYPE_MANUFACTURER}}" {{ old('type') == Institution::TYPE_MANUFACTURER ? 'selected' : '' }}>Hersteller</option>
-                                        </select>
-                                        <div class="form-text">
-                                            Bitte wählen Sie die passende Typenbezeichnung aus der Liste aus.
-                                        </div>
-                                    </div>
+                                    <x-form.select
+                                        name="type"
+                                        label="Typ"
+                                        :options="[
+                                            Institution::TYPE_CLIENT => 'Auftraggeber',
+                                            Institution::TYPE_CONTRACTOR => 'Auftragnehmer',
+                                            Institution::TYPE_MANUFACTURER => 'Hersteller',
+                                        ]"
+                                        placeholder="Bitte auswählen"
+                                        hint="Bitte wählen Sie die passende Typenbezeichnung aus der Liste aus."
+                                        :required="true"
+                                    />
 
-                                    <div class="form-group mb-3">
-                                        <label for="contact_information" class="form-label">Kontaktinformation: <strong>*</strong></label>
-                                        <textarea class="form-control @error('contact_information') is-invalid @enderror"
-                                            name="contact_information" rows="3" required>{{ old('contact_information') }}</textarea>
-                                        <div class="form-text">
-                                            Bitte geben Sie eine Kontaktinformation ein, wie z.B. einen Webseitenlink.
-                                        </div>
-                                    </div>
+                                    <x-form.textarea
+                                        name="contact_information"
+                                        label="Kontaktinformation"
+                                        hint="Bitte geben Sie eine Kontaktinformation ein, wie z.B. einen Webseitenlink."
+                                        :required="true"
+                                    />
+
                                     <div class="form-text mb-3">
                                         <strong>*</strong> Pflichtangabe
                                     </div>
