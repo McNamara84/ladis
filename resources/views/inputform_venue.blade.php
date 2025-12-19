@@ -13,20 +13,20 @@
 
                         <form action="{{ route('venues.store') }}" method="post">
                             @csrf
-                            <div class="mb-3">
-                                <label for="name" class="form-label">Name: <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" required>
-                            </div>
+                            <x-form.input
+                                name="name"
+                                label="Name"
+                                :required="true"
+                            />
 
-                            <div class="mb-3">
-                                <label for="city_id" class="form-label">Stadt: <span class="text-danger">*</span></label>
-                                <select class="form-control @error('city_id') is-invalid @enderror" id="city_id" name="city_id" required>
-                                    <option value="">Bitte auswählen</option>
-                                    @foreach ($cities as $city)
-                                        <option value="{{ $city->id }}" @selected(old('city_id') == $city->id)>{{ $city->full_name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
+                            <x-form.select
+                                name="city_id"
+                                label="Stadt"
+                                :options="$cities"
+                                option-label="full_name"
+                                placeholder="Bitte auswählen"
+                                :required="true"
+                            />
 
                             <div class="form-text mb-3">
                                 <span class="text-danger">*</span> Pflichtangabe
