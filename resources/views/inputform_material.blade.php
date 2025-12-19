@@ -15,17 +15,7 @@
                         <form method="POST" action="{{ route('inputform_material.store') }}">
                             @csrf
 
-                            @if(session('error'))
-                                <div class="alert alert-danger">
-                                    {{ session('error') }}
-                                </div>
-                            @endif
-
-                            @if(session('success'))
-                                <div class="alert alert-success">
-                                    {{ session('success') }}
-                                </div>
-                            @endif
+                            <x-form.alerts />
 
                             <div class="mb-5">
                                 <label for="material_parent_id" class="form-label">Übergeordnetes Material</label>

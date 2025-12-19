@@ -14,29 +14,8 @@
                     <div class="card-body">
                         <form method="POST" action="{{ route('inputform_artifact.store') }}">
                             @csrf
-                            @if ($errors->any())
-                                <div class="alert alert-danger">
-                                    <ul class="mb-0">
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            @endif
 
-                            @if(session('error'))
-                                <div class="alert alert-danger">
-                                    {{ session('error') }}
-                                </div>
-                            @endif
-
-                            @if(session('success'))
-                                <div class="alert alert-success">
-                                    {{ session('success') }}
-                                </div>
-                            @endif
-
-                            <p>Pflichtfelder sind mit <span class="text-danger">*</span> gekennzeichnet.</p>
+                            <x-form.alerts :showRequiredHint="true" />
 
                             <div class="mb-5">
                                 <label for="artifact_name" class="form-label">Objektname <span

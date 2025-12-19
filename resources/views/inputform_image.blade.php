@@ -9,23 +9,7 @@
                         <h4 class="mb-0">Bild hochladen</h4>
                     </div>
                     <div class="card-body">
-                        {{-- Display validation errors --}}
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul class="mb-0">
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-
-                        {{-- Display success message --}}
-                        @if (session('success'))
-                            <div class="alert alert-success">
-                                {{ session('success') }}
-                            </div>
-                        @endif
+                        <x-form.alerts />
 
                         <form action="{{ route('inputform_image.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
