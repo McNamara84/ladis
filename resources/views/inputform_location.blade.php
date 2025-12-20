@@ -12,24 +12,7 @@
                         <p class="mb-0 text-muted">Alle Pflichtfelder sind mit einem <span class="text-danger">*</span> gekennzeichnet.</p>
                     </div>
                     <div class="card-body">
-                        @if ($errors->any())
-                            <div class="alert alert-danger" role="alert" aria-live="assertive">
-                                <h2 class="h5">Bitte überprüfen Sie Ihre Eingaben:</h2>
-                                <ul class="mb-0">
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-
-                        @if (session('error'))
-                            <div class="alert alert-danger" role="alert">{{ session('error') }}</div>
-                        @endif
-
-                        @if (session('success'))
-                            <div class="alert alert-success" role="status">{{ session('success') }}</div>
-                        @endif
+                        <x-form.alerts />
 
                         <form method="POST" action="{{ route('locations.store') }}" novalidate>
                             @csrf

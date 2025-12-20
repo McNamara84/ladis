@@ -9,43 +9,19 @@
                         <h4 class="mb-0">Bild hochladen</h4>
                     </div>
                     <div class="card-body">
-                        {{-- Display validation errors --}}
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul class="mb-0">
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-
-                        {{-- Display success message --}}
-                        @if (session('success'))
-                            <div class="alert alert-success">
-                                {{ session('success') }}
-                            </div>
-                        @endif
+                        <x-form.alerts />
 
                         <form action="{{ route('inputform_image.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="form-group mb-3">
-                                        <label for="project_id" class="form-label">Projekt *</label>
-                                        <select class="form-control @error('project_id') is-invalid @enderror"
-                                            id="project_id" name="project_id" required>
-                                            <option value="" disabled hidden>Bitte wählen Sie ein Projekt aus</option>
-                                            @foreach ($projects as $project)
-                                                <option value="{{ $project->id }}" {{ old('project_id') == $project->id ? 'selected' : '' }}>
-                                                    {{ $project->name }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                        @error('project_id')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                    </div>
+                                    <x-form.select
+                                        name="project_id"
+                                        label="Projekt"
+                                        :options="$projects"
+                                        placeholder="Bitte wählen Sie ein Projekt aus"
+                                        :required="true"
+                                    />
                                     <div class="form-group mb-3">
                                         <label for="condition_id" class="form-label">Zustand</label>
                                         <select
@@ -68,42 +44,30 @@
                                             <div class="invalid-feedback">{{ __('Die ausgewählte Zustandsoption ist nicht verfügbar. Bitte wählen Sie einen anderen Wert aus.') }}</div>
                                         @enderror
                                     </div>
-                                    <div class="form-group mb-3">
-                                        <label class="form-label">Beschreibung</label>
-                                        <textarea class="form-control @error('description') is-invalid @enderror"
-                                            name="description" rows="3">{{ old('description') }}</textarea>
-                                        @error('description')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                        <div class="form-text">
-                                            Bitte geben Sie eine Beschreibung an.
-                                        </div>
-                                    </div>
-                                    <div class="form-group mb-3">
-                                        <label class="form-label">Alternativer Text *</label>
-                                        <textarea class="form-control @error('alt_text') is-invalid @enderror"
-                                            name="alt_text" rows="3">{{ old('alt_text') }}</textarea>
-                                        <div class="form-text">
-                                            Bitte geben Sie einen alternativen Text an.
-                                        </div>
-                                    </div>
-                                    <div class="form-group mb-3">
-                                        <label for="year_created" class="form-label">Entstehungsjahr *</label>
-                                        <input type="number" class="form-control @error('year_created') is-invalid @enderror"
-                                            id="year_created" name="year_created" value="{{ old('year_created') }}"
-                                            required>
-                                        <div class="form-text">
-                                            Bitte geben Sie das Entstehungsjahr an.
-                                        </div>
-                                    </div>
-                                    <div class="form-group mb-3">
-                                        <label for="creator" class="form-label">Urheber *</label>
-                                        <input type="text" class="form-control @error('creator') is-invalid @enderror"
-                                            id="creator" name="creator" value="{{ old('creator') }}" required>
-                                        <div class="form-text">
-                                            Bitte geben Sie den Urheber an.
-                                        </div>
-                                    </div>
+                                    <x-form.textarea
+                                        name="description"
+                                        label="Beschreibung"
+                                        hint="Bitte geben Sie eine Beschreibung an."
+                                    />
+                                    <x-form.textarea
+                                        name="alt_text"
+                                        label="Alternativer Text"
+                                        hint="Bitte geben Sie einen alternativen Text an."
+                                        :required="true"
+                                    />
+                                    <x-form.input
+                                        name="year_created"
+                                        label="Entstehungsjahr"
+                                        type="number"
+                                        hint="Bitte geben Sie das Entstehungsjahr an."
+                                        :required="true"
+                                    />
+                                    <x-form.input
+                                        name="creator"
+                                        label="Urheber"
+                                        hint="Bitte geben Sie den Urheber an."
+                                        :required="true"
+                                    />
                                     <div class="form-group mb-3">
                                         <label for="image" class="form-label">Bild auswählen *</label>
                                         <input type="file" class="form-control @error('image') is-invalid @enderror"
