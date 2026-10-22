@@ -10,15 +10,18 @@ jobs:
   tests:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
       # PHP + Xdebug for Coverage
       - name: Setup PHP
-        uses: shivammathur/setup-php@v2
+        uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
         with:
-          php-version: '8.3'
-          extensions: xdebug
+          php-version: '8.5.12'
+          extensions: mbstring, xml, intl, pdo_sqlite, bcmath, gd, zip
           coverage: xdebug
+          tools: composer:2.10.3
 
       - name: Install Composer deps
         run: composer install --no-interaction --prefer-dist
@@ -37,14 +40,10 @@ jobs:
 
       # Create Badge from coverage.xml and commit
       - name: Create coverage badge
-        uses: timkrase/phpunit-coverage-badge@v1.2.1
-        with:
-          report: coverage.xml
-          coverage_badge_path: output/coverage.svg
-          push_badge: false
+        run: php scripts/coverage-badge.php coverage.xml output/coverage.svg
 
       - name: Git push to image-data branch
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@84c30a85c19949d7eee79c4ff27748b70285e453 # v4.1.0
         with:
           publish_dir: ./output
           publish_branch: image-data

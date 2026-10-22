@@ -5,30 +5,36 @@ on:
   pull_request:
     branches: [ main ]
 
+permissions:
+  contents: read
+
 jobs:
   tests:
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        php-version: ['8.2', '8.3', '8.4']
+        php-version: ['8.4.27', '8.5.12']
 
     name: PHP ${{ matrix.php-version }} Tests
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      with:
+        persist-credentials: false
 
     - name: Setup PHP
-      uses: shivammathur/setup-php@v2
+      uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
       with:
         php-version: ${{ matrix.php-version }}
         extensions: mbstring, xml, ctype, iconv, intl, pdo_mysql, zip, bcmath, gd, curl, sqlite3, pdo_sqlite
         coverage: none
+        tools: composer:2.10.3
 
     - name: Setup Node.js
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
       with:
-        node-version: '20'
+        node-version-file: '.nvmrc'
         cache: 'npm'
 
     - name: Copy .env file and configure for testing
@@ -52,7 +58,13 @@ jobs:
         touch database/testing.sqlite
 
     - name: Install Composer dependencies
-      run: composer install --prefer-dist --no-progress
+      run: composer install --no-interaction --prefer-dist --no-progress
+
+    - name: Check actual PHP platform requirements
+      run: composer check-platform-reqs
+
+    - name: Audit Composer dependencies
+      run: composer audit --locked
 
     - name: Generate application key
       run: php artisan key:generate --force
@@ -79,10 +91,7 @@ jobs:
         php artisan test --debug
         echo "Exit code: $?"
 
-    - name: Run frontend tests (not yet integrated)
+    - name: Audit and build frontend assets
       run: |
-        if [ -f package.json ] && npm run --silent test 2>/dev/null; then
-          npm test
-        else
-          echo "No frontend tests found, skipping..."
-        fi
+        npm audit
+        npm run build

@@ -3,27 +3,34 @@ on:
   push:
     branches: [ main ]
 
+permissions:
+  contents: read
+
 jobs:
   test:
     runs-on: self-hosted
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      with:
+        persist-credentials: false
 
-    - name: Setup PHP
+    - name: Verify installed PHP security baseline
       run: |
         php -v
-        which php
-        which composer
+        php scripts/check-php-version.php
 
-    - name: Setup Node.js via NVM
+    - name: Setup Node.js LTS
+      uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+      with:
+        node-version-file: '.nvmrc'
+        package-manager-cache: false
+
+    - name: Setup Composer
       run: |
-        export NVM_DIR="$HOME/.nvm"
-        [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-        nvm use 20
-        echo "$HOME/.nvm/versions/node/v20.19.2/bin" >> $GITHUB_PATH
-        node -v
-        npm -v
+        curl --fail --silent --show-error --location https://getcomposer.org/download/2.10.3/composer.phar --output "$RUNNER_TEMP/ladis-composer.phar"
+        curl --fail --silent --show-error --location https://getcomposer.org/download/2.10.3/composer.phar.sha256sum --output "$RUNNER_TEMP/ladis-composer.sha256"
+        echo "$(awk '{print $1}' "$RUNNER_TEMP/ladis-composer.sha256")  $RUNNER_TEMP/ladis-composer.phar" | sha256sum --check
 
     - name: Copy .env file
       run: |
@@ -32,7 +39,10 @@ jobs:
         fi
 
     - name: Install Composer dependencies
-      run: composer install --prefer-dist --no-progress
+      run: |
+        php "$RUNNER_TEMP/ladis-composer.phar" install --no-interaction --prefer-dist --no-progress
+        php "$RUNNER_TEMP/ladis-composer.phar" check-platform-reqs
+        php "$RUNNER_TEMP/ladis-composer.phar" audit --locked
 
     - name: Generate application key
       run: |
@@ -43,42 +53,50 @@ jobs:
     - name: Run tests
       run: php artisan test
 
+    - name: Audit and build frontend before deployment
+      run: |
+        npm ci
+        npm audit
+        npm run build
+
   deploy:
     needs: test
     runs-on: self-hosted
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      with:
+        fetch-depth: 0
+        persist-credentials: false
 
     - name: Determine version from Git tag
       run: |
         echo "Found tag: $(git describe --tags --abbrev=0)"
         echo "APP_VERSION=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
 
-    - name: Setup PHP
+    - name: Verify installed CLI and PHP-FPM security baseline
       run: |
-        php -v
-        which php
-        which composer
+        php scripts/check-php-version.php
+        FPM_VERSION=$(php-fpm8.4 -v | awk 'NR == 1 {print $2}')
+        php scripts/check-php-version.php "$FPM_VERSION"
 
-    - name: Setup Node.js via NVM
+    - name: Setup Node.js LTS
+      uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+      with:
+        node-version-file: '.nvmrc'
+        package-manager-cache: false
+
+    - name: Setup Composer
       run: |
-        # NVM laden
-        export NVM_DIR="$HOME/.nvm"
-        [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-
-        # Node.js 20 verwenden
-        nvm use 20
-
-        # PATH für nachfolgende Steps setzen
-        echo "$HOME/.nvm/versions/node/v20.19.2/bin" >> $GITHUB_PATH
-
-        # Versionen überprüfen
-        node -v
-        npm -v
+        curl --fail --silent --show-error --location https://getcomposer.org/download/2.10.3/composer.phar --output "$RUNNER_TEMP/ladis-composer.phar"
+        curl --fail --silent --show-error --location https://getcomposer.org/download/2.10.3/composer.phar.sha256sum --output "$RUNNER_TEMP/ladis-composer.sha256"
+        echo "$(awk '{print $1}' "$RUNNER_TEMP/ladis-composer.sha256")  $RUNNER_TEMP/ladis-composer.phar" | sha256sum --check
 
     - name: Install/Update Composer dependencies
-      run: composer install --no-dev --optimize-autoloader --no-progress
+      run: |
+        php "$RUNNER_TEMP/ladis-composer.phar" install --no-dev --no-interaction --optimize-autoloader --no-progress
+        php "$RUNNER_TEMP/ladis-composer.phar" check-platform-reqs --no-dev
+        php "$RUNNER_TEMP/ladis-composer.phar" audit --locked --no-dev
 
     - name: Create deployment directory
       run: |
@@ -133,6 +151,7 @@ jobs:
           if command -v npm >/dev/null 2>&1; then
             echo "✅ npm found: $(npm -v)"
             npm ci
+            npm audit
             npm run build
             echo "✅ Frontend assets compiled successfully"
           else
@@ -169,9 +188,9 @@ jobs:
         # Create symbolic link to new deployment
         sudo ln -sfn $DEPLOY_PATH /var/www/laser
 
-    - name: Reload PHP-FPM and Nginx
+    - name: Restart PHP-FPM and reload Nginx
       run: |
-        sudo systemctl reload php8.4-fpm
+        sudo systemctl restart php8.4-fpm
         sudo systemctl reload nginx
 
     - name: Clean up old deployments (keep last 5)
