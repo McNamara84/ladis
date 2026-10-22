@@ -13,6 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     strategy:
+      fail-fast: false
       matrix:
         php-version: ['8.4.27', '8.5.12']
 
@@ -82,14 +83,13 @@ jobs:
         APP_ENV: testing
       run: php artisan migrate --force
 
-    - name: Run Laravel tests (with debugging)
+    - name: Run Laravel tests
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/testing.sqlite
         APP_ENV: testing
-      run: |
-        php artisan test --debug
-        echo "Exit code: $?"
+      # Collision adds --no-output, which PHPUnit 13 cannot combine with --debug.
+      run: php artisan test --compact
 
     - name: Audit and build frontend assets
       run: |
