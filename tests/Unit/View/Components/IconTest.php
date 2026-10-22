@@ -78,7 +78,7 @@ class IconTest extends TestCase
             'icon' => 'bi-home'
         ]);
 
-        $view->assertSeeInOrder([
+        $view->assertSeeHtmlInOrder([
             '<svg',
             'class="bi bi-home"',
             'aria-hidden="true"',
@@ -95,7 +95,7 @@ class IconTest extends TestCase
             'icon' => 'ladis-logo'
         ]);
 
-        $view->assertSeeInOrder([
+        $view->assertSeeHtmlInOrder([
             '<svg',
             'class="app-logo ladis-logo"',
             'aria-hidden="true"',

@@ -27,7 +27,7 @@ class ContactTest extends TestCase
             'contact' => $contact,
         ]);
 
-        $view->assertSeeInOrder([
+        $view->assertSeeHtmlInOrder([
             '<article itemscope itemtype="https://schema.org/Person" class="contact"',
             '<header class="contact-header">',
             '<h3 itemprop="name">Alice Liddell (Alice)</h3>',
@@ -74,7 +74,7 @@ class ContactTest extends TestCase
             'contact' => $contact,
         ]);
 
-        $view->assertSeeInOrder([
+        $view->assertSeeHtmlInOrder([
             '<div itemprop="affiliation" itemscope itemtype="https://schema.org/OrganizationRole">',
             '<span itemprop="roleName">Protagonist</span>',
             '<div class="contact-body dl-container">',
@@ -99,7 +99,7 @@ class ContactTest extends TestCase
             'headingLevel' => 'h2',
         ], );
 
-        $view->assertSeeInOrder([
+        $view->assertSeeHtmlInOrder([
             '<h2 itemprop="name">Alice Liddell (Alice)</h2>',
         ]);
 
@@ -139,7 +139,7 @@ class ContactTest extends TestCase
             'variant' => 'card',
         ]);
 
-        $view->assertSeeInOrder([
+        $view->assertSeeHtmlInOrder([
             '<article itemscope itemtype="https://schema.org/Person" class="contact card">',
             '<header class="card-header">',
             '<div class="card-body dl-container">',
