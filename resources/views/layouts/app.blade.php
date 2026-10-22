@@ -14,13 +14,7 @@
     <title>@hasSection('title')@yield('title') | @endif{{ $appName }}</title>
 
     <!-- Scripts -->
-    @if (app()->environment('testing'))
-        <!-- Bootstrap CSS from CDN (für Tests) -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    @else
-        @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-    @endif
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
     <!-- Metadata associated with the site in web application context -->
     <link rel="manifest" href="/site.webmanifest">
@@ -268,12 +262,6 @@
 
     @stack('scripts')
 
-    @if (app()->environment('testing'))
-        <!-- Bootstrap JS from CDN (for Tests) -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-            crossorigin="anonymous"></script>
-    @endif
 </body>
 
 </html>

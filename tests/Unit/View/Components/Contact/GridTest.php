@@ -30,7 +30,7 @@ class GridTest extends TestCase
             'contacts' => $contacts,
         ]);
 
-        $view->assertSeeInOrder([
+        $view->assertSeeHtmlInOrder([
             '<ul role="list" class="list-unstyled row row-cols-1 row-cols-lg-2 row-cols-xl-3 g-5 contact-grid">',
             '<li class="col">',
             '<article itemscope itemtype="https://schema.org/Person" class="contact"',
@@ -50,7 +50,7 @@ class GridTest extends TestCase
             'contacts' => [],
         ]);
 
-        $view->assertSeeInOrder([
+        $view->assertSeeHtmlInOrder([
             '<ul role="list" class="list-unstyled row row-cols-1 row-cols-lg-2 row-cols-xl-3 g-5 contact-grid">',
             '</ul>',
         ]);
@@ -100,7 +100,7 @@ class GridTest extends TestCase
             'variant' => 'card',
         ]);
 
-        $view->assertSeeInOrder([
+        $view->assertSeeHtmlInOrder([
             '<ul role="list" class="list-unstyled row row-cols-1 row-cols-lg-2 row-cols-xl-3 g-5 card-grid">',
             '<article itemscope itemtype="https://schema.org/Person" class="contact card"',
         ]);
@@ -135,7 +135,7 @@ class GridTest extends TestCase
             'contacts' => $contacts,
         ]);
 
-        $view->assertSeeInOrder([
+        $view->assertSeeHtmlInOrder([
             '<ul role="list" class="list-unstyled row row-cols-1 row-cols-lg-2 row-cols-xl-3 g-5 contact-grid">',
             '<article itemscope itemtype="https://schema.org/Person" class="contact"',
             '<h3 itemprop="name">Alice Liddell (Alice)</h3>',

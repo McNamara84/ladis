@@ -30,7 +30,7 @@ class LinkTest extends TestCase
             ['contact' => $contact]
         );
 
-        $view->assertSeeInOrder([
+        $view->assertSeeHtmlInOrder([
             '<span itemscope itemtype="https://schema.org/Person" >',
             '<a itemprop="url" href="https://alice.wonderland">',
             '<span itemprop="name">Alice Liddell</span>',
@@ -48,7 +48,7 @@ class LinkTest extends TestCase
             ['contact' => $contact]
         );
 
-        $view->assertSeeInOrder([
+        $view->assertSeeHtmlInOrder([
             '<span itemscope itemtype="https://schema.org/Person" >',
             '<a itemprop="email" href="mailto:alice@wonderland">',
             '<span itemprop="name">Alice Liddell</span>',
@@ -66,7 +66,7 @@ class LinkTest extends TestCase
             ['contact' => $contact]
         );
 
-        $view->assertSeeInOrder([
+        $view->assertSeeHtmlInOrder([
             '<span itemscope itemtype="https://schema.org/Person" >',
             '<a itemprop="telephone" href="tel:1234567890">',
             '<span itemprop="name">Alice Liddell</span>',
@@ -84,7 +84,7 @@ class LinkTest extends TestCase
             ['contact' => $contact]
         );
 
-        $view->assertSeeInOrder([
+        $view->assertSeeHtmlInOrder([
             '<a itemprop="url" href="https://alice.wonderland">',
             '<span itemprop="name">Alice</span>',
         ]);
@@ -101,7 +101,7 @@ class LinkTest extends TestCase
             ['contact' => $contact]
         );
 
-        $view->assertSeeInOrder([
+        $view->assertSeeHtmlInOrder([
             '<a itemprop="url" href="https://alice.wonderland">',
             'Custom Link Text',
             '</a>',

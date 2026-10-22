@@ -17,6 +17,9 @@ return [
 
     'default' => env('CACHE_STORE', 'database'),
 
+    // Contacts are cached as JSON strings; no PHP objects need unserializing.
+    'serializable_classes' => false,
+
     /*
     |--------------------------------------------------------------------------
     | Cache Stores

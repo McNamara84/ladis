@@ -10,6 +10,9 @@ on:
       - 'composer.json'
       - 'composer.lock'
 
+permissions:
+  contents: read
+
 jobs:
   composer-validate:
     name: Validate composer.json & composer.lock
@@ -17,13 +20,18 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
       - name: Setup PHP & Composer
-        uses: shivammathur/setup-php@v2
+        uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
         with:
-          php-version: '8.4'
-          tools: composer
+          php-version: '8.5.12'
+          tools: composer:2.10.3
 
       - name: Validate composer.json and composer.lock
         run: composer validate --check-lock --no-check-publish
+
+      - name: Audit locked dependencies
+        run: composer audit --locked

@@ -19,7 +19,7 @@ class VenueFactory extends Factory
     {
         return [
             'city_id' => City::factory(),
-            'name' => sprintf('%s %s',
+            'name' => sprintf('%s #%06d',
                 fake()->randomElement([
                 'Kölner Dom',
                 'Schloss Bellevue',
@@ -47,7 +47,7 @@ class VenueFactory extends Factory
                 'Nürnberger Kaiserburg',
                 'Völkerschlachtdenkmal Leipzig'
             ]),
-            fake()->unique()->numerify('#%03d')
+            fake()->unique()->numberBetween(1, 999999)
             ),
         ];
     }

@@ -113,7 +113,7 @@ class LinkTest extends TestCase
             'disabled' => true
         ]);
 
-        $view->assertSeeInOrder([
+        $view->assertSeeHtmlInOrder([
             '<a',
             'href="#"',
             'disabled',
@@ -131,6 +131,6 @@ class LinkTest extends TestCase
         ]);
 
         $view->assertSee('has-icon');
-        $view->assertSeeInOrder(['<use', 'xlink:href="#bi-database"']);
+        $view->assertSeeHtmlInOrder(['<use', 'xlink:href="#bi-database"']);
     }
 }
